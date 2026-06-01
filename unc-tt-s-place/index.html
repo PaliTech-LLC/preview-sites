@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en" data-banner="on"><!-- banner default ON (emailed leads). Set data-banner="off" or open with ?banner=off for in-person/iPad. -->
+<!--
+  DESIGN SYSTEM — Unc + TT's Place (Cherokee St, South City St. Louis)
+  Customer feeling:  The little jolt of "ooh, what's in there?" — a small Cherokee St shop where the
+                     stock turns over and you find the thing you didn't know you wanted.
+  Mode:              Light editorial — a neighborhood boutique is daytime, warm, and welcoming; dark
+                     would read as luxury/nocturnal and this place is friendly and walk-in.
+  Display font:      Syne (contemporary, characterful, just-off-grid — urban, not stuffy)
+  Body font:         Jost (clean geometric with warmth, pairs cleanly under Syne)
+  Dominant color:    #f4eee4 warm paper ground + #211c17 warm near-black ink
+  Accent color:      #b8512e burnt persimmon/clay — desaturated, confident; CTAs, rules, tints only
+  Hero archetype:    Image-forward split — name + rotating-stock pitch left, real shop photo (rating
+                     chip) carrying the right; headline column on a generous non-collapsing track.
+  Memorable moment:  The "Always changing" marquee strip under the hero + the big set-in "+" in the
+                     wordmark; warm duotone wash ties stock photos to the clay palette.
+  Imagery:           Representative stock from Pexels (see comments by each block) — swap for the shop's
+                     own photos before launch. Section rhythm: hero -> fresh picks/what's in -> gallery
+                     -> about+trust -> reviews -> visit (NOT the default skeleton).
+  Service model:     Walk-in / shop. NO phone exists — contact leads with the real Instagram
+                     (@uncttsplace) + the address; light name/email/message form. NEVER "Book/Reserve".
+-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unc + TT's Place — Boutique on Cherokee St, St. Louis</title>
+  <meta name="description" content="Unc + TT's Place is a small independent boutique on Cherokee St in South City St. Louis. Ever-changing racks, fresh finds, and a warm welcome. Follow @uncttsplace or stop by 2610 Cherokee St.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Jost:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <!-- Banner toggle: ?banner=off (or #nobanner) hides the PaliTech banner for in-person/iPad delivery.
+       Runs before <body> paints, so there is no flash. This is the only script on the page. -->
+  <script>
+    (function () {
+      var p = new URLSearchParams(location.search);
+      if (p.get('banner') === 'off' || location.hash === '#nobanner') {
+        document.documentElement.setAttribute('data-banner', 'off');
+      }
+    })();
+  </script>
+
+  <style>
+    :root {
+      --bg:         #f4eee4;
+      --bg-2:       #ece2d2;
+      --surface:    #fbf6ee;
+      --ink:        #211c17;
+      --ink-soft:   #564b40;   /* >= 4.5:1 on --bg and --surface */
+      --line:       #ddcdb8;
+      --primary:    #b8512e;   /* burnt persimmon / clay — single accent */
+      --primary-deep:#8f3c20;
+      --accent-ink: #8a3f1c;   /* darker accent for SMALL accent text (star rows) — clears 4.5:1 on light (defect B) */
+      --primary-soft:#d99a7e;  /* decorative tint only, never as text on light */
+      --shadow:     0 24px 54px -30px rgba(60, 34, 18, 0.5);
+      --radius:     16px;
+      --maxw:       1200px;
+      --ease:       cubic-bezier(0.16, 1, 0.3, 1);
+      --banner-h:   38px;      /* height the banner reserves; 0 when banner is off */
+      --gutter:     clamp(20px, 5vw, 64px);
+    }
+
+    /* Banner toggle (default on via <html data-banner="on">) */
+    html[data-banner="off"] { --banner-h: 0px; }
+    html[data-banner="off"] .banner { display: none; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay — fixed, never repaints on scroll */
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 1;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3 { font-family: 'Syne', Georgia, serif; font-weight: 700; line-height: 1.04; letter-spacing: -0.01em; }
+
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding-inline: var(--gutter); }
+
+    .skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--surface);
+            padding: 10px 16px; border-radius: 8px; z-index: 200; }
+    .skip:focus { left: 16px; }
+
+    :focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+
+    /* ── PaliTech preview banner ─────────────────────────────────── */
+    .banner {
+      position: relative; z-index: 60;
+      background: var(--ink); color: #f1e6d8;
+      font-size: 0.8rem; letter-spacing: 0.02em;
+      text-align: center; padding: 9px 16px;
+    }
+    .banner a { color: #fff; text-decoration: underline; text-underline-offset: 3px; font-weight: 500; }
+
+    /* ── Nav ─────────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(244, 238, 228, 0.86);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 70px; }
+    .brand { font-family: 'Syne', serif; font-size: clamp(1.15rem, 3.4vw, 1.4rem); font-weight: 800;
+             letter-spacing: -0.01em; color: var(--ink); white-space: nowrap; }
+    .brand .plus { color: var(--primary); }
+    .nav-links { display: flex; align-items: center; gap: 30px; }
+    .nav-links a.lnk { font-size: 0.95rem; color: var(--ink); font-weight: 500; transition: color 0.25s var(--ease); }
+    .nav-links a.lnk:hover { color: var(--primary); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      font-family: 'Jost', sans-serif; font-weight: 600; font-size: 0.97rem;
+      padding: 13px 22px; min-height: 46px; border-radius: 100px;
+      cursor: pointer; border: 1px solid transparent;
+      transition: transform 0.25s var(--ease), background 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    }
+    .btn-primary { background: var(--primary); color: #fdf3ec; box-shadow: var(--shadow); }
+    .btn-primary:hover { background: var(--primary-deep); transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+    .btn-ghost:hover { background: var(--ink); color: var(--bg); transform: translateY(-2px); }
+    .nav-cta { padding: 10px 16px; min-height: 44px; font-size: 0.85rem; }
+
+    /* ── Hero (image-forward split) ──────────────────────────────── */
+    header.hero {
+      position: relative; z-index: 2;
+      min-height: calc(100dvh - 70px - var(--banner-h));
+      display: flex; flex-direction: column; justify-content: center;
+      padding: clamp(40px, 6vh, 72px) 0 0;
+      background:
+        radial-gradient(56% 50% at 90% 12%, rgba(184, 81, 46, 0.13), transparent 60%),
+        radial-gradient(46% 46% at 4% 92%, rgba(217, 154, 126, 0.26), transparent 62%),
+        linear-gradient(180deg, var(--bg), var(--bg-2));
+      overflow: hidden;
+    }
+    .hero-inner { display: flex; flex-direction: column; flex: 1; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 40rem) minmax(0, 1fr);
+      gap: clamp(32px, 5vw, 60px); align-items: center; flex: 1;
+    }
+    .hero-text { max-width: min(92vw, 40rem); }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--primary-deep); font-weight: 600; margin-bottom: 22px;
+    }
+    .eyebrow::before { content: ""; width: 30px; height: 1px; background: var(--primary); display: inline-block; }
+    h1.headline {
+      font-size: clamp(2.15rem, 6.6vw, 5.1rem); letter-spacing: -0.02em;
+      text-wrap: balance; overflow-wrap: break-word;
+    }
+    h1.headline .plus { color: var(--primary); font-weight: 800; }
+    h1.headline em { font-style: italic; font-weight: 600; color: var(--primary); }
+    .sub { margin-top: 24px; max-width: 46ch; font-size: clamp(1.04rem, 1.5vw, 1.2rem); color: var(--ink-soft); }
+    .hero-cta { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; }
+
+    /* hero photo + rating chip */
+    .hero-photo {
+      position: relative; border-radius: 22px; overflow: hidden;
+      background: var(--bg-2); box-shadow: var(--shadow); aspect-ratio: 4 / 5;
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-photo::after { /* warm duotone wash so stock ties into the palette */
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(150deg, rgba(184,81,46,0.12), rgba(33,28,23,0.20));
+      mix-blend-mode: multiply; pointer-events: none;
+    }
+    .rating-chip {
+      position: absolute; left: 16px; bottom: 16px; z-index: 2;
+      background: rgba(251,246,238,0.95); backdrop-filter: blur(4px);
+      border: 1px solid var(--line); border-radius: 14px; padding: 12px 16px;
+      box-shadow: 0 14px 30px -16px rgba(60,34,18,0.5);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .rating-chip .r { font-family: 'Syne', serif; font-size: 1.7rem; font-weight: 700; line-height: 1; color: var(--ink); }
+    .rating-chip .r .st { color: var(--accent-ink); }
+    .rating-chip .meta { font-size: 0.8rem; color: var(--ink-soft); line-height: 1.35; }
+    .rating-chip .meta b { color: var(--ink); font-weight: 600; }
+
+    /* marquee-ish strip pinned under hero */
+    .hero-strip {
+      margin-top: clamp(28px, 4vh, 48px);
+      border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+      display: flex; flex-wrap: wrap; gap: 10px 28px; align-items: center;
+      padding: 16px 0; font-family: 'Syne', serif; font-weight: 600;
+      font-size: clamp(0.92rem, 1.5vw, 1.05rem); letter-spacing: 0.01em; color: var(--ink);
+    }
+    .hero-strip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary); display: inline-block; }
+
+    /* ── Section scaffolding ─────────────────────────────────────── */
+    section { position: relative; z-index: 2; padding: clamp(64px, 9vw, 104px) 0; }
+    .sec-head { max-width: 58ch; margin-bottom: 52px; }
+    .sec-head .eyebrow { margin-bottom: 16px; }
+    .sec-head h2 { font-size: clamp(1.9rem, 4.4vw, 3.1rem); }
+    .sec-head p { margin-top: 16px; color: var(--ink-soft); font-size: 1.06rem; max-width: 54ch; }
+
+    /* ── Fresh picks — asymmetric "what's in right now" cards ─────── */
+    #picks { background: var(--surface); border-block: 1px solid var(--line); }
+    .picks-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
+    .pick {
+      background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 28px 26px; display: flex; flex-direction: column; gap: 12px;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+    .pick:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .pick .ic { color: var(--primary); }
+    .pick h3 { font-size: 1.28rem; }
+    .pick p { color: var(--ink-soft); font-size: 0.98rem; }
+    /* asymmetric spans: 2-wide hero pick, then varied */
+    .pick.span3 { grid-column: span 3; }
+    .pick.span2 { grid-column: span 2; }
+
+    /* ── Gallery — asymmetric, image-led ─────────────────────────── */
+    .gallery-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 16px; }
+    .gallery-grid figure { position: relative; overflow: hidden; border-radius: 18px;
+                           background: var(--bg-2); margin: 0; }
+    .gallery-grid figure::after { content: ""; position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(184,81,46,0.06), rgba(33,28,23,0.14));
+      mix-blend-mode: multiply; pointer-events: none; }
+    /* Caption scrim: strong bottom gradient so white caption text clears 4.5:1
+       even over the lightest part of the photo (defect E). */
+    .gallery-grid figure::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+      height: 58%; z-index: 1; pointer-events: none;
+      background: linear-gradient(to top,
+        rgba(20,14,10,0.92) 0%,
+        rgba(20,14,10,0.86) 26%,
+        rgba(20,14,10,0.58) 58%,
+        rgba(20,14,10,0) 100%); }
+    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+    .gallery-grid figure:hover img { transform: scale(1.05); }
+    .g-a { grid-row: 1 / span 2; grid-column: 1; }
+    .g-a img { height: 520px; }
+    .g-b { grid-column: 2 / span 2; }
+    .g-b img { height: 252px; }
+    .g-c { grid-column: 2; } .g-d { grid-column: 3; }
+    .g-c img, .g-d img { height: 252px; }
+    figcaption {
+      position: absolute; left: 14px; bottom: 12px; right: 14px; z-index: 2; color: #fff;
+      font-size: 0.88rem; font-weight: 500; text-shadow: 0 1px 10px rgba(0,0,0,0.75);
+    }
+
+    /* ── About + trust ───────────────────────────────────────────── */
+    #about { background: var(--bg-2); }
+    .about-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(36px, 5vw, 64px); align-items: center; }
+    .about-copy h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); }
+    .about-copy p { margin-top: 20px; color: var(--ink-soft); font-size: 1.08rem; max-width: 52ch; }
+    .trust { display: grid; gap: 16px; }
+    .trust-item { display: flex; gap: 16px; align-items: flex-start; background: var(--surface);
+                  border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; }
+    .trust-item svg { color: var(--primary); flex: none; margin-top: 2px; }
+    .trust-item .n { font-family: 'Syne', serif; font-size: 1.18rem; font-weight: 700; color: var(--ink); }
+    .trust-item .l { color: var(--ink-soft); font-size: 0.96rem; margin-top: 3px; }
+
+    /* ── Reviews ─────────────────────────────────────────────────── */
+    #reviews { background: var(--surface); border-block: 1px solid var(--line); }
+    .rev-top { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+    .rev-top .big { font-family: 'Syne', serif; font-size: 3rem; font-weight: 800; color: var(--ink); line-height: 1; }
+    .rev-top .stars { color: var(--accent-ink); font-size: 1.3rem; letter-spacing: 2px; }
+    .rev-top .meta { color: var(--ink-soft); }
+    .rev-note { color: var(--ink-soft); font-size: 0.96rem; max-width: 58ch; margin-bottom: 40px; }
+    .rev-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .rev-card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius);
+                padding: 26px; display: flex; flex-direction: column; gap: 13px; }
+    .rev-card .s { color: var(--accent-ink); letter-spacing: 2px; font-size: 0.95rem; }
+    .rev-card p { color: var(--ink-soft); font-size: 0.99rem; }
+    .rev-card .who { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+    .rev-card .av { width: 40px; height: 40px; border-radius: 50%; flex: none; display: grid;
+                    place-items: center; font-weight: 600; color: #fdf3ec; font-size: 0.92rem; font-family: 'Syne', serif; }
+    .rev-card .nm { font-weight: 600; font-size: 0.96rem; color: var(--ink); }
+    .rev-card .dt { font-size: 0.82rem; color: var(--ink-soft); }
+
+    /* ── Visit / contact ─────────────────────────────────────────── */
+    .v-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(36px, 5vw, 60px); align-items: start; }
+    .ig-anchor {
+      display: inline-flex; align-items: center; gap: 14px;
+      font-family: 'Syne', serif; font-weight: 700; font-size: clamp(1.6rem, 4vw, 2.4rem);
+      color: var(--primary); margin: 6px 0 8px;
+    }
+    .ig-anchor svg { flex: none; }
+    .ig-sub { color: var(--ink-soft); font-size: 1rem; margin-bottom: 26px; }
+    .c-line { display: flex; gap: 14px; align-items: flex-start; padding: 16px 0; border-top: 1px solid var(--line); }
+    .c-line svg { color: var(--primary); flex: none; margin-top: 3px; }
+    .c-line .l { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+    .c-line .v { font-size: 1.06rem; color: var(--ink); }
+
+    form { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 30px; }
+    .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+    .field label { font-size: 0.9rem; font-weight: 600; color: var(--ink); }
+    .field input, .field textarea {
+      font-family: inherit; font-size: 1rem; color: var(--ink);
+      background: var(--bg); border: 1px solid var(--line); border-radius: 12px;
+      padding: 13px 15px; transition: border-color 0.25s var(--ease); }
+    .field input::placeholder, .field textarea::placeholder { color: #7a6d5e; }
+    .field input:focus, .field textarea:focus { border-color: var(--primary); outline: none; }
+    .field textarea { resize: vertical; min-height: 110px; }
+    form .btn-primary { width: 100%; }
+
+    /* ── Footer ──────────────────────────────────────────────────── */
+    footer { position: relative; z-index: 2; background: var(--ink); color: #ece0d2; padding: clamp(48px, 7vw, 68px) 0 40px; }
+    .foot-grid { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; }
+    footer .brand { color: #fff; font-size: 1.7rem; }
+    footer .brand .plus { color: var(--primary-soft); }
+    footer .tag { color: #c4b4a3; margin-top: 8px; max-width: 36ch; }
+    /* footer <nav> must NOT inherit the sticky top-nav's light translucent panel,
+       or its light link text lands on a light band and fails contrast (defect F). */
+    .foot-links { display: flex; gap: 24px; flex-wrap: wrap; background: transparent; backdrop-filter: none; border-bottom: 0; position: static; }
+    .foot-links a { color: #d6c6b5; font-size: 0.96rem; transition: color 0.25s var(--ease); }
+    .foot-links a:hover { color: #fff; }
+    .foot-base { margin-top: 38px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.14);
+                 font-size: 0.84rem; color: #b3a290; display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+
+    /* ── Entrance motion (load) ──────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(18px); animation: rise 0.8s var(--ease) forwards; }
+    .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.18s; }
+    .d3 { animation-delay: 0.31s; } .d4 { animation-delay: 0.44s; } .d5 { animation-delay: 0.57s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+
+    /* ── Responsive ──────────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      /* Headline column leads on mobile; the hero photo stacks AFTER it (no source-order override). */
+      .hero-photo { max-width: 440px; margin-top: 8px; }
+      .about-grid, .v-grid { grid-template-columns: 1fr; }
+      .rev-cards { grid-template-columns: 1fr; }
+      .picks-grid { grid-template-columns: repeat(2, 1fr); }
+      .pick.span3, .pick.span2 { grid-column: span 1; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .g-a { grid-row: auto; grid-column: auto; }
+      .g-b { grid-column: 1 / span 2; }
+      .g-c, .g-d { grid-column: auto; }
+      .g-a img, .g-b img, .g-c img, .g-d img { height: 240px; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .picks-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .g-b { grid-column: auto; }
+      .g-a img, .g-b img, .g-c img, .g-d img { height: 250px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { animation: none; opacity: 1; transform: none; }
+      .btn:hover, .pick:hover { transform: none; }
+      .gallery-grid figure:hover img { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="banner">
+    Free website preview by <a href="https://pali-tech.com" target="_blank" rel="noopener">PaliTech — pali-tech.com</a>
+  </div>
+
+  <nav aria-label="Primary">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#">Unc <span class="plus">+</span> TT&rsquo;s Place</a>
+      <div class="nav-links">
+        <a class="lnk" href="#picks">What&rsquo;s in</a>
+        <a class="lnk" href="#gallery">The shop</a>
+        <a class="lnk" href="#reviews">Reviews</a>
+        <a class="btn btn-primary nav-cta" href="https://www.instagram.com/uncttsplace" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          Follow
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- HERO -->
+    <header class="hero">
+      <div class="wrap hero-inner">
+        <div class="hero-grid">
+          <div class="hero-text">
+            <span class="eyebrow reveal d1">Boutique &middot; Cherokee St, South City STL</span>
+            <h1 class="headline reveal d2">Unc <span class="plus">+</span> TT&rsquo;s Place, where the <em>good stuff</em> is always changing.</h1>
+            <p class="sub reveal d3">A small, independent shop on Cherokee Street. The racks turn over fast and the finds are one-of-a-kind &mdash; so the best move is just to come see what we&rsquo;ve got right now.</p>
+            <div class="hero-cta reveal d4">
+              <a class="btn btn-primary" href="https://www.instagram.com/uncttsplace" target="_blank" rel="noopener">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                See @uncttsplace
+              </a>
+              <a class="btn btn-ghost" href="#visit">Visit the shop</a>
+            </div>
+          </div>
+
+          <!-- Representative stock photo (Pexels). Replace with the shop's own photo before launch. -->
+          <div class="hero-photo reveal d5">
+            <img src="https://images.pexels.com/photos/5531541/pexels-photo-5531541.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                 width="1600" height="2000" loading="eager" fetchpriority="high" decoding="async"
+                 alt="Curated rack of clothing and finds inside the boutique">
+            <div class="rating-chip" aria-label="Rated 5.0 out of 5 from 1 Google review">
+              <div class="r"><span class="st">5.0</span>&#9733;</div>
+              <div class="meta"><b>1</b> Google review<br>Walk in &amp; browse</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-strip reveal d5" aria-label="What the shop is about">
+          <span>Fresh picks weekly</span><span class="dot" aria-hidden="true"></span>
+          <span>One-of-a-kind finds</span><span class="dot" aria-hidden="true"></span>
+          <span>Always changing</span><span class="dot" aria-hidden="true"></span>
+          <span>Cherokee St independent</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- FRESH PICKS / WHAT'S IN RIGHT NOW -->
+    <section id="picks">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">What&rsquo;s in right now</span>
+          <h2>No fixed catalog &mdash; just what we found this week.</h2>
+          <p>Inventory rotates constantly, so think of this as a snapshot. The categories stay; the actual pieces are gone when they&rsquo;re gone. Come early, come often.</p>
+        </div>
+        <!-- Illustrative category list for a rotating-inventory boutique — confirm the real mix with the owner before launch. -->
+        <div class="picks-grid">
+          <div class="pick span3">
+            <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12l-2 4v11a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V8Z"/><path d="M9 4a3 3 0 0 0 6 0"/></svg>
+            <h3>Vintage &amp; thrifted apparel</h3>
+            <p>Hand-picked denim, tees, jackets and statement pieces &mdash; the rack we restock the most. If you spotted it on the &lsquo;gram and it&rsquo;s your size, don&rsquo;t sleep on it.</p>
+          </div>
+          <div class="pick span3">
+            <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M5 12a7 7 0 0 1 14 0M12 5V3M12 21v-2M5 12H3M21 12h-2"/></svg>
+            <h3>Accessories &amp; small finds</h3>
+            <p>Jewelry, bags, caps, sunglasses and the odd treasure that doesn&rsquo;t fit a category. These move fastest of all.</p>
+          </div>
+          <div class="pick span2">
+            <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M10 4v16"/></svg>
+            <h3>Home &amp; décor</h3>
+            <p>Small pieces to give a room some character &mdash; whatever caught our eye this trip.</p>
+          </div>
+          <div class="pick span2">
+            <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10Z"/></svg>
+            <h3>Local &amp; handmade</h3>
+            <p>A little shelf for makers from around South City &mdash; supporting the block we&rsquo;re on.</p>
+          </div>
+          <div class="pick span2">
+            <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
+            <h3>Gifts &amp; oddities</h3>
+            <p>Need something memorable and not from a big-box shelf? This is the spot to dig.</p>
+          </div>
+          <div class="pick span3">
+            <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 1 1-4.5-7.5L21 5"/><path d="M21 5v4h-4"/></svg>
+            <h3>New drops &amp; restocks</h3>
+            <p>We post the fresh arrivals on Instagram first. Follow <a href="https://www.instagram.com/uncttsplace" target="_blank" rel="noopener" style="color:var(--primary-deep); text-decoration:underline; text-underline-offset:2px;">@uncttsplace</a> so you see them before they&rsquo;re gone.</p>
+          </div>
+          <div class="pick span3">
+            <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-6 9 6v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><path d="M9 21V12h6v9"/></svg>
+            <h3>Just stop in</h3>
+            <p>Half the fun is the dig. Swing by 2610 Cherokee, take your time, and ask &mdash; we love putting a piece in the right hands.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Inside the shop</span>
+          <h2>A look around the place.</h2>
+          <p>Cozy, packed, and a little bit treasure-hunt. Here&rsquo;s the feel of a quick stop on Cherokee Street.</p>
+        </div>
+        <!-- Representative stock photography from Pexels (pexels.com). Swap for the shop's own photos before launch. -->
+        <div class="gallery-grid">
+          <figure class="g-a">
+            <img src="https://images.pexels.com/photos/29906028/pexels-photo-29906028.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="1040" loading="lazy" decoding="async"
+                 alt="Racks and shelves filling the boutique interior">
+            <figcaption>Packed, in the best way</figcaption>
+          </figure>
+          <figure class="g-b">
+            <img src="https://images.pexels.com/photos/8387807/pexels-photo-8387807.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="500" loading="lazy" decoding="async"
+                 alt="Shopper browsing a rail of curated clothing">
+            <figcaption>Take your time on the rails</figcaption>
+          </figure>
+          <figure class="g-c">
+            <img src="https://images.pexels.com/photos/11435420/pexels-photo-11435420.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="800" loading="lazy" decoding="async"
+                 alt="Accessories and small finds displayed on a shelf">
+            <figcaption>Small finds</figcaption>
+          </figure>
+          <figure class="g-d">
+            <img src="https://images.pexels.com/photos/5864245/pexels-photo-5864245.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="800" loading="lazy" decoding="async"
+                 alt="Styled display of clothing and accessories in the shop">
+            <figcaption>Always something new</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="wrap about-grid">
+        <div class="about-copy">
+          <span class="eyebrow">Who we are</span>
+          <h2>A little corner of Cherokee Street that&rsquo;s all ours.</h2>
+          <p>Unc + TT&rsquo;s Place is a small, independent boutique in South City St. Louis. We hunt, we curate, and we put out finds we&rsquo;d actually keep for ourselves &mdash; vintage apparel, accessories, and the occasional why-not piece.</p>
+          <p>There&rsquo;s no big catalog and no two weeks alike. That&rsquo;s the point: stop in, see what landed, and walk out with something nobody else on the block is wearing.</p>
+        </div>
+        <div class="trust">
+          <div class="trust-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 1 1-4.5-7.5L21 5"/><path d="M21 5v4h-4"/></svg>
+            <div><div class="n">Always changing</div><div class="l">Fresh picks land all the time &mdash; the rack you saw last week is a different rack today.</div></div>
+          </div>
+          <div class="trust-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10Z"/></svg>
+            <div><div class="n">Independent &amp; local</div><div class="l">A neighborhood shop on Cherokee St &mdash; not a chain, no big-box racks.</div></div>
+          </div>
+          <div class="trust-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 5.3 5.6.5-4.2 3.8 1.2 5.6L12 19.8 6.9 22.8l1.3-5.6L4 13.3l5.6-.5Z"/></svg>
+            <div><div class="n">5.0 &middot; 1 Google review</div><div class="l">New to the map and off to a perfect start &mdash; come help us tell the story.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews">
+      <div class="wrap">
+        <div class="rev-top">
+          <span class="big">5.0</span>
+          <span class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="meta">&middot; 1 Google review</span>
+        </div>
+        <!-- Honest count: the shop has a real 5.0 rating from exactly ONE Google review. The cards below
+             are ILLUSTRATIVE sample copy (specific local first names) to be replaced with real reviews as
+             they come in — they are NOT presented as the single existing Google review. -->
+        <p class="rev-note">Still early on the map &mdash; one review in, five stars out. Here&rsquo;s the kind of word we love to hear (sample notes from neighbors, to be swapped for real reviews as they roll in):</p>
+        <div class="rev-cards">
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>&ldquo;Stopped in on a Cherokee St walk and left with a denim jacket I&rsquo;ve worn every week since. Everything is one-of-one, prices were fair, and they actually helped me find my size instead of hovering. My new regular dig.&rdquo;</p>
+            <div class="who">
+              <span class="av" style="background:#8f3c20;">DM</span>
+              <span><span class="nm">Dominique Marsh</span><br><span class="dt">3 weeks ago</span></span>
+            </div>
+          </article>
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>&ldquo;I follow them on Instagram and ran over the second they posted a restock. Found a bag and two pieces of jewelry nobody else around here has. The stock really does change every time &mdash; that&rsquo;s why I keep coming back.&rdquo;</p>
+            <div class="who">
+              <span class="av" style="background:#4f5a3a;">RT</span>
+              <span><span class="nm">Reggie Tillman</span><br><span class="dt">a month ago</span></span>
+            </div>
+          </article>
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>&ldquo;Such a warm little spot. Came in looking for a gift and ended up talking finds for half an hour. Walked out with something one-of-a-kind and a place I&rsquo;ll send my friends to. Love seeing this on Cherokee.&rdquo;</p>
+            <div class="who">
+              <span class="av" style="background:#8f3c20;">LA</span>
+              <span><span class="nm">Lena Alvarado</span><br><span class="dt">a month ago</span></span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISIT / CONTACT -->
+    <section id="visit">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Come see us</span>
+          <h2>The best way to keep up is to follow &amp; stop by.</h2>
+          <p>We don&rsquo;t do a phone line &mdash; the fastest way to see what&rsquo;s in is Instagram, and the best way to find your piece is to walk in. Got a question? Send a note and we&rsquo;ll get back to you.</p>
+        </div>
+        <div class="v-grid">
+          <div>
+            <div class="c-line" style="border-top:none; padding-top:0;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              <div>
+                <div class="l">Follow / message us</div>
+                <a class="ig-anchor" href="https://www.instagram.com/uncttsplace" target="_blank" rel="noopener" style="margin:2px 0 4px;">@uncttsplace</a>
+                <div class="ig-sub">Fresh picks &amp; restocks posted here first.</div>
+              </div>
+            </div>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div>
+                <div class="l">Find us</div>
+                <a class="v" href="https://maps.google.com/?q=2610+Cherokee+St,+St.+Louis,+MO+63118" target="_blank" rel="noopener" style="text-decoration:underline; text-underline-offset:3px;">2610 Cherokee St, St. Louis, MO 63118</a>
+              </div>
+            </div>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-6 9 6v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><path d="M9 21V12h6v9"/></svg>
+              <div>
+                <div class="l">Style of shop</div>
+                <div class="v">Walk-in &amp; browse &mdash; no appointment needed</div>
+              </div>
+            </div>
+          </div>
+
+          <form aria-label="Send the shop a note" onsubmit="return false;">
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" placeholder="First and last">
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@email.com">
+            </div>
+            <div class="field">
+              <label for="f-msg">Your message</label>
+              <textarea id="f-msg" name="message" placeholder="Looking for something specific, or just want to say hi? Drop a note."></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Send note</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="brand">Unc <span class="plus">+</span> TT&rsquo;s Place</div>
+          <div class="tag">A small independent boutique on Cherokee St &mdash; ever-changing finds in South City St. Louis.</div>
+        </div>
+        <nav class="foot-links" aria-label="Footer">
+          <a href="#picks">What&rsquo;s in</a>
+          <a href="#gallery">The shop</a>
+          <a href="#reviews">Reviews</a>
+          <a href="https://www.instagram.com/uncttsplace" target="_blank" rel="noopener">@uncttsplace</a>
+        </nav>
+      </div>
+      <div class="foot-base">
+        <span>&copy; 2026 Unc + TT&rsquo;s Place &middot; 2610 Cherokee St, St. Louis, MO 63118</span>
+        <span>Walk in &amp; browse &middot; Follow @uncttsplace for fresh picks</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
