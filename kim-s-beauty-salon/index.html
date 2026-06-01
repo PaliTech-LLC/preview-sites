@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en" data-banner="on"><!-- banner default ON (emailed leads). Set data-banner="off" or open with ?banner=off / #nobanner for in-person/iPad. -->
+<!--
+  DESIGN SYSTEM — Kim's Beauty Salon (South Grand, St. Louis, MO)
+  Customer feeling:  The exhale before a fresh start — sit in the chair, hand it over, leave looking like the best version of yourself.
+  Mode:              Light & warm — hair salons are daytime, indulgent, welcoming; dark would read as a bar, not a chair.
+  Display font:      Cormorant Garamond (high-contrast, couture serif — feels like a salon, not a SaaS)
+  Body font:         Jost (clean geometric sans with a little personality, pairs against the serif's drama)
+  Dominant color:    #f7f1e8 warm cream ground + #221c16 soft espresso ink
+  Accent color:      #9a6f3f antique bronze — desaturated (~58% sat), used only for CTAs, rules, and image tints
+  Hero archetype:    Full-bleed photograph with a legible text overlay + a grounding stat row (NOT a split — varied from sibling demos)
+  Memorable moment:  The oversized italic Cormorant headline over the warm bronze-washed chair photo, and the editorial numbered service list
+  Imagery:           Representative stock from Pexels (see comments by the hero & gallery) — swap for Kim's own salon photos before launch.
+  Section rhythm:    hero -> services -> gallery -> about/trust -> reviews -> contact (intentionally not the stock hero->stats->services skeleton)
+  Service model:     APPOINTMENT (walk-ins welcome when a chair is open) — CTAs read "Book a chair" / "Request a time" consistently.
+-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kim's Beauty Salon — Hair Salon on South Grand, St. Louis</title>
+  <meta name="description" content="Kim's Beauty Salon on South Grand in St. Louis: cuts, color, balayage, blowouts, and special-occasion styling. Rated 4.8 on Google. Book a chair: (314) 664-3990.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Banner toggle: ?banner=off (or #nobanner) hides the PaliTech banner for in-person/iPad delivery.
+       Runs before <body> paints, so there is no flash. This is the only script on the page. -->
+  <script>
+    (function () {
+      var p = new URLSearchParams(location.search);
+      if (p.get('banner') === 'off' || location.hash === '#nobanner') {
+        document.documentElement.setAttribute('data-banner', 'off');
+      }
+    })();
+  </script>
+
+  <style>
+    :root {
+      --bg:          #f7f1e8;   /* warm cream ground */
+      --bg-2:        #efe5d6;   /* deeper cream for alternating sections */
+      --surface:     #fffaf2;   /* card / form surface */
+      --ink:         #221c16;   /* soft espresso, never #000 */
+      --ink-soft:    #5c5145;
+      --line:        #e3d6c2;
+      --primary:     #9a6f3f;   /* antique bronze — single desaturated accent */
+      --primary-deep:#7e592f;
+      --sage:        #b8a988;   /* soft tint of the bronze, decorative only */
+      --shadow:      0 24px 56px -30px rgba(57, 39, 18, 0.5);
+      --radius:      16px;
+      --maxw:        1180px;
+      --ease:        cubic-bezier(0.16, 1, 0.3, 1);
+      --banner-h:    38px;      /* height the banner reserves; 0 when off */
+    }
+
+    /* Banner toggle (default on via <html data-banner="on">) */
+    html[data-banner="off"] { --banner-h: 0px; }
+    html[data-banner="off"] .banner { display: none; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', 'Helvetica Neue', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Soft grain — fixed, painted once */
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; line-height: 1.05; letter-spacing: 0; }
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+    .skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--surface);
+            padding: 10px 16px; border-radius: 8px; z-index: 200; }
+    .skip:focus { left: 16px; }
+
+    :focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+
+    /* ── PaliTech preview banner ─────────────────────────────────── */
+    .banner {
+      position: relative; z-index: 60;
+      background: var(--ink); color: #efe2d1;
+      font-size: 0.78rem; letter-spacing: 0.05em;
+      text-align: center; padding: 9px 16px;
+    }
+    .banner a { color: #fff; text-decoration: underline; text-underline-offset: 3px; font-weight: 500; }
+
+    /* ── Nav ─────────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(247, 241, 232, 0.86);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
+    .brand { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 600; letter-spacing: 0.01em; }
+    .brand span { font-style: italic; color: var(--primary); }
+    .nav-links { display: flex; align-items: center; gap: 34px; }
+    .nav-links a.lnk { font-size: 0.92rem; letter-spacing: 0.04em; color: var(--ink-soft); transition: color 0.25s var(--ease); }
+    .nav-links a.lnk:hover { color: var(--ink); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      font-family: 'Jost', sans-serif; font-weight: 500; font-size: 0.92rem; letter-spacing: 0.04em;
+      padding: 13px 24px; min-height: 46px; border-radius: 100px;
+      cursor: pointer; border: 1px solid transparent;
+      transition: transform 0.25s var(--ease), background 0.25s var(--ease), box-shadow 0.25s var(--ease), color 0.25s var(--ease);
+    }
+    .btn-primary { background: var(--primary); color: #fff8ef; box-shadow: var(--shadow); }
+    .btn-primary:hover { background: var(--primary-deep); transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: inherit; border-color: currentColor; }
+    .btn-ghost:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); transform: translateY(-2px); }
+    .nav-links .btn { padding: 10px 20px; min-height: 44px; }
+
+    /* ── Hero (full-bleed photograph + overlay) ──────────────────── */
+    header.hero {
+      position: relative; z-index: 2;
+      min-height: calc(100dvh - 70px - var(--banner-h));
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+      background: var(--bg-2);
+    }
+    .hero-img { position: absolute; inset: 0; z-index: 0; }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; }
+    /* warm bronze wash + bottom scrim so the cream type stays legible */
+    .hero-img::after {
+      content: ""; position: absolute; inset: 0;
+      background:
+        linear-gradient(180deg, rgba(34,28,22,0.30) 0%, rgba(34,28,22,0.10) 38%, rgba(34,28,22,0.62) 86%, rgba(34,28,22,0.78) 100%),
+        linear-gradient(120deg, rgba(122,89,47,0.30), rgba(34,28,22,0.10));
+    }
+    .hero-inner { position: relative; z-index: 2; width: 100%; padding: 0 0 0; }
+    .hero-copy { padding: 120px 0 36px; max-width: 18ch; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-family: 'Jost', sans-serif; font-size: 0.78rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--primary); font-weight: 500; margin-bottom: 22px;
+    }
+    .eyebrow::before { content: ""; width: 34px; height: 1px; background: currentColor; display: inline-block; }
+    .hero-copy .eyebrow { color: #e9c79a; }
+    h1.headline { font-size: clamp(3.4rem, 9vw, 7rem); color: #fdf8f0; letter-spacing: 0.005em;
+                  text-shadow: 0 2px 30px rgba(0,0,0,0.35); }
+    h1.headline em { font-style: italic; font-weight: 500; color: #ecc79b; }
+    .sub { margin-top: 24px; max-width: 40ch; font-size: clamp(1.05rem, 1.7vw, 1.25rem);
+           color: #f1e6d6; text-shadow: 0 1px 14px rgba(0,0,0,0.4); }
+    .hero-cta { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 14px; }
+    .hero-cta .btn-ghost { color: #fdf8f0; }
+
+    /* grounding rating + info row at bottom of hero */
+    .hero-bar {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: repeat(3, auto); justify-content: start;
+      gap: 48px; padding: 26px 0 30px; border-top: 1px solid rgba(255,255,255,0.22);
+    }
+    .hero-bar .n { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 600; color: #fdf8f0; line-height: 1; }
+    .hero-bar .n .st { color: #ecc79b; }
+    .hero-bar .l { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: #d9cab6; margin-top: 6px; }
+
+    /* ── Section scaffolding ─────────────────────────────────────── */
+    section { position: relative; z-index: 2; padding: 104px 0; }
+    .sec-head { max-width: 56ch; margin-bottom: 56px; }
+    .sec-head .eyebrow { margin-bottom: 16px; }
+    .sec-head h2 { font-size: clamp(2.4rem, 5vw, 3.6rem); }
+    .sec-head h2 em { font-style: italic; color: var(--primary); }
+    .sec-head p { margin-top: 14px; color: var(--ink-soft); font-size: 1.08rem; }
+
+    /* ── Services — editorial two-column numbered list ───────────── */
+    #services { background: var(--surface); border-block: 1px solid var(--line); }
+    .svc-grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 64px; }
+    .svc { display: grid; grid-template-columns: auto 1fr auto; gap: 22px; align-items: baseline;
+           padding: 26px 4px; border-top: 1px solid var(--line); transition: padding-left 0.3s var(--ease); }
+    .svc:hover { padding-left: 12px; }
+    .svc .idx { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.4rem; color: var(--primary); }
+    .svc .body h3 { font-size: 1.55rem; display: flex; align-items: center; gap: 12px; }
+    .svc .body p { color: var(--ink-soft); margin-top: 2px; font-size: 0.98rem; max-width: 40ch; }
+    .svc .price { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--ink); white-space: nowrap; }
+    .svc .ic { color: var(--primary); flex: none; }
+
+    /* ── Gallery — asymmetric, image-led ─────────────────────────── */
+    #gallery { background: var(--bg); }
+    .gallery-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; grid-auto-rows: 230px; gap: 16px; }
+    .gallery-grid figure { position: relative; overflow: hidden; border-radius: 14px; background: var(--bg-2); margin: 0; }
+    .gallery-grid figure::after { content: ""; position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(122,89,47,0.10), rgba(34,28,22,0.16)); mix-blend-mode: multiply; pointer-events: none; }
+    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+    .gallery-grid figure:hover img { transform: scale(1.05); }
+    .g-1 { grid-row: span 2; }
+    .g-2 { grid-column: span 2; }
+    figcaption { position: absolute; left: 16px; bottom: 13px; z-index: 2; color: #fff;
+                 font-family: 'Jost', sans-serif; font-size: 0.86rem; letter-spacing: 0.02em;
+                 text-shadow: 0 1px 10px rgba(0,0,0,0.55); }
+
+    /* ── About + trust ───────────────────────────────────────────── */
+    #about { background: var(--bg-2); }
+    .about-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 64px; align-items: center; }
+    .about-copy h2 { font-size: clamp(2.2rem, 4.4vw, 3.2rem); }
+    .about-copy h2 em { font-style: italic; color: var(--primary); }
+    .about-copy p { margin-top: 20px; color: var(--ink-soft); font-size: 1.08rem; max-width: 50ch; }
+    .trust { display: grid; gap: 16px; }
+    .trust-item { display: flex; gap: 18px; align-items: flex-start; background: var(--surface);
+                  border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; }
+    .trust-item svg { color: var(--primary); flex: none; margin-top: 2px; }
+    .trust-item .n { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 600; line-height: 1.1; }
+    .trust-item .l { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.5; }
+
+    /* ── Reviews ─────────────────────────────────────────────────── */
+    #reviews { background: var(--surface); border-block: 1px solid var(--line); }
+    .rev-top { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; margin-bottom: 46px; }
+    .rev-top .big { font-family: 'Cormorant Garamond', serif; font-size: 3.6rem; font-weight: 600; line-height: 1; }
+    .rev-top .stars { color: var(--primary); font-size: 1.35rem; letter-spacing: 3px; }
+    .rev-top .meta { color: var(--ink-soft); }
+    .rev-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .rev-card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius);
+                padding: 30px 28px; display: flex; flex-direction: column; gap: 16px; }
+    .rev-card .s { color: var(--primary); letter-spacing: 3px; font-size: 0.95rem; }
+    .rev-card p { color: var(--ink-soft); font-size: 1rem; }
+    .rev-card .who { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+    .rev-card .av { width: 44px; height: 44px; border-radius: 50%; flex: none; display: grid;
+                    place-items: center; font-family: 'Jost', sans-serif; font-weight: 500; color: #fff8ef; font-size: 0.92rem; }
+    .rev-card .who .nm { font-weight: 500; font-size: 0.96rem; color: var(--ink); }
+    .rev-card .who .dt { font-size: 0.82rem; color: var(--ink-soft); }
+
+    /* ── Contact ─────────────────────────────────────────────────── */
+    #contact { background: var(--bg); }
+    .c-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .phone-xl { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 6vw, 3.8rem);
+                font-weight: 600; color: var(--primary); display: inline-block; margin: 6px 0 26px; letter-spacing: 0.01em; }
+    .c-line { display: flex; gap: 14px; align-items: flex-start; padding: 16px 0; border-top: 1px solid var(--line); }
+    .c-line svg { color: var(--primary); flex: none; margin-top: 3px; }
+    .c-line .l { font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+    .c-line .v { font-size: 1.05rem; }
+
+    form { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 32px; }
+    .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+    .field label { font-size: 0.88rem; font-weight: 500; letter-spacing: 0.02em; }
+    .field input, .field textarea, .field select {
+      font-family: inherit; font-size: 1rem; color: var(--ink);
+      background: var(--bg); border: 1px solid var(--line); border-radius: 11px;
+      padding: 13px 15px; transition: border-color 0.25s var(--ease); }
+    .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--primary); outline: none; }
+    .field textarea { resize: vertical; min-height: 104px; }
+    form .btn-primary { width: 100%; }
+    form .note { font-size: 0.82rem; color: var(--ink-soft); margin-top: 14px; text-align: center; }
+
+    /* ── Footer ──────────────────────────────────────────────────── */
+    footer { position: relative; z-index: 2; background: var(--ink); color: #e6dac9; padding: 64px 0 38px; }
+    .foot-grid { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; }
+    footer .brand { color: #fff; font-size: 2.1rem; }
+    footer .brand span { color: var(--sage); }
+    footer .tag { color: #b3a48f; margin-top: 8px; max-width: 36ch; font-size: 0.96rem; }
+    .foot-links { display: flex; gap: 26px; flex-wrap: wrap; }
+    .foot-links a { color: #cabaa4; font-size: 0.94rem; transition: color 0.25s var(--ease); }
+    .foot-links a:hover { color: #fff; }
+    .foot-base { margin-top: 40px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.12);
+                 font-size: 0.83rem; color: #998a76; display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+
+    /* ── Entrance motion (load) ──────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(18px); animation: rise 0.85s var(--ease) forwards; }
+    .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.18s; }
+    .d3 { animation-delay: 0.31s; } .d4 { animation-delay: 0.44s; } .d5 { animation-delay: 0.57s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+
+    /* ── Responsive ──────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .svc-grid, .about-grid, .c-grid { grid-template-columns: 1fr; }
+      .svc-grid { column-gap: 0; }
+      .rev-cards { grid-template-columns: 1fr; }
+      .hero-copy { padding-top: 96px; max-width: 24ch; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
+      .g-1 { grid-row: auto; } .g-2 { grid-column: span 2; }
+    }
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      section { padding: 74px 0; }
+      .hero-bar { grid-template-columns: 1fr; gap: 18px; }
+      .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 240px; }
+      .g-2 { grid-column: auto; }
+      .svc { grid-template-columns: auto 1fr; }
+      .svc .price { grid-column: 2; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { animation: none; opacity: 1; transform: none; }
+      .btn:hover, .btn-ghost:hover, .btn-primary:hover { transform: none; }
+      .gallery-grid figure:hover img { transform: none; }
+      .svc:hover { padding-left: 4px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="banner">
+    Free website preview by <a href="https://pali-tech.com" target="_blank" rel="noopener">PaliTech — pali-tech.com</a>
+  </div>
+
+  <nav aria-label="Primary">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#">Kim's <span>Beauty</span></a>
+      <div class="nav-links">
+        <a class="lnk" href="#services">Services</a>
+        <a class="lnk" href="#gallery">The Salon</a>
+        <a class="lnk" href="#reviews">Reviews</a>
+        <a class="btn btn-primary" href="tel:+13146643990">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          Book a chair
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- HERO — full-bleed photo with overlay -->
+    <header class="hero">
+      <!-- Representative stock photo (Pexels). Replace with Kim's Beauty Salon's own salon photo before launch. -->
+      <div class="hero-img">
+        <img src="https://images.pexels.com/photos/1654834/pexels-photo-1654834.jpeg?auto=compress&cs=tinysrgb&w=1600"
+             width="1600" height="1067" loading="eager" fetchpriority="high" decoding="async"
+             alt="A stylist finishing a client's hair in a warm, light-filled salon">
+      </div>
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow reveal d1">Hair salon · South Grand, St. Louis</span>
+          <h1 class="headline reveal d2">Leave the chair <em>transformed.</em></h1>
+          <p class="sub reveal d3">Cut, color, and styling on South Grand by people who listen first and cut second — so you walk out looking exactly like you hoped.</p>
+          <div class="hero-cta reveal d4">
+            <a class="btn btn-primary" href="tel:+13146643990">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+              Call (314) 664-3990
+            </a>
+            <a class="btn btn-ghost" href="#services">See the services</a>
+          </div>
+        </div>
+        <div class="hero-bar reveal d5" role="list" aria-label="At a glance">
+          <div role="listitem">
+            <div class="n">4.8 <span class="st" aria-hidden="true">&#9733;</span></div>
+            <div class="l">Google rating</div>
+          </div>
+          <div role="listitem">
+            <div class="n">44</div>
+            <div class="l">Google reviews</div>
+          </div>
+          <div role="listitem">
+            <div class="n">South Grand</div>
+            <div class="l">In the heart of South City</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">The chair menu</span>
+          <h2>What you can sit down <em>for.</em></h2>
+          <p>A consultation comes with every visit — we'd rather talk through your hair than guess. Book the service that fits, and we'll shape the rest around it.</p>
+        </div>
+        <!-- Illustrative service menu & prices for a hair salon — confirm exact offerings and prices with the owner before launch. -->
+        <div class="svc-grid">
+          <div class="svc">
+            <div class="idx">01</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14.5 4.5-9 9"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="6" r="3"/><path d="M9 15.5 20 20"/></svg>Cut &amp; Style</h3>
+              <p>A real consultation, a precise cut for your hair's texture, and a finish you can recreate at home.</p>
+            </div>
+            <div class="price">$45+</div>
+          </div>
+          <div class="svc">
+            <div class="idx">02</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0-6 6c0 4 6 12 6 12s6-8 6-12a6 6 0 0 0-6-6Z"/><circle cx="12" cy="9" r="2"/></svg>Color &amp; Gloss</h3>
+              <p>Single-process color, root touch-ups, and shine glosses mixed to suit your skin tone, not a swatch book.</p>
+            </div>
+            <div class="price">$75+</div>
+          </div>
+          <div class="svc">
+            <div class="idx">03</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12c4 0 4-6 8-6s4 6 8 6-4 6-8 6-4-6-8-6Z"/></svg>Balayage &amp; Highlights</h3>
+              <p>Hand-painted, lived-in dimension that grows out softly — so you're not back in the chair every three weeks.</p>
+            </div>
+            <div class="price">$140+</div>
+          </div>
+          <div class="svc">
+            <div class="idx">04</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20c2-6 5-9 8-9s6 3 8 9"/><path d="M12 11V3"/><path d="M9 5h6"/></svg>Blowout &amp; Finish</h3>
+              <p>Smooth, voluminous, and made to last — the standing Friday appointment plenty of our regulars keep.</p>
+            </div>
+            <div class="price">$40+</div>
+          </div>
+          <div class="svc">
+            <div class="idx">05</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13c3 0 6-2 9-2s6 2 9 2"/><path d="M5 9c2.5 0 4.5-1.5 7-1.5S16.5 9 19 9"/><path d="M5 17c2.5 0 4.5-1.5 7-1.5S16.5 17 19 17"/></svg>Smoothing &amp; Treatments</h3>
+              <p>Keratin smoothing and deep-conditioning masks for frizz, heat damage, and humidity that won't quit.</p>
+            </div>
+            <div class="price">$120+</div>
+          </div>
+          <div class="svc">
+            <div class="idx">06</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 5.3 5.6.5-4.2 3.8 1.2 5.6L12 19.8 6.9 22.8l1.3-5.6L4 13.3l5.6-.5Z"/></svg>Special-Occasion Styling</h3>
+              <p>Updos, soft waves, and bridal hair for the day that has to be right — trial run included on request.</p>
+            </div>
+            <div class="price">$85+</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Inside the salon</span>
+          <h2>A look at the <em>work.</em></h2>
+          <p>The chair, the finish, the room. This is the kind of result — and the calm — you can expect when you sit down with us.</p>
+        </div>
+        <!-- Representative stock photography from Pexels (pexels.com). Swap for Kim's Beauty Salon's own photos before launch. -->
+        <div class="gallery-grid">
+          <figure class="g-1">
+            <img src="https://images.pexels.com/photos/3993320/pexels-photo-3993320.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="1000" loading="lazy" decoding="async"
+                 alt="A client's freshly styled hair after a color and cut">
+            <figcaption>Fresh color, finished</figcaption>
+          </figure>
+          <figure class="g-2">
+            <img src="https://images.pexels.com/photos/3993467/pexels-photo-3993467.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="534" loading="lazy" decoding="async"
+                 alt="A stylist working on a client in the salon chair">
+            <figcaption>The consultation comes first</figcaption>
+          </figure>
+          <figure class="g-3">
+            <img src="https://images.pexels.com/photos/7195805/pexels-photo-7195805.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="534" loading="lazy" decoding="async"
+                 alt="Smooth, glossy hair after a blowout and finish">
+            <figcaption>The blowout finish</figcaption>
+          </figure>
+          <figure class="g-4">
+            <img src="https://images.pexels.com/photos/4783329/pexels-photo-4783329.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="534" loading="lazy" decoding="async"
+                 alt="A warm, light-filled corner of the salon">
+            <figcaption>A calm room to settle into</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT + TRUST -->
+    <section id="about">
+      <div class="wrap about-grid">
+        <div class="about-copy">
+          <span class="eyebrow">Why people keep coming back</span>
+          <h2>A South Grand chair that <em>knows your hair.</em></h2>
+          <p>Kim's Beauty Salon has been part of the South Grand stretch of South City for years — a neighborhood where no two heads of hair are the same, and we like it that way. We take the time to learn your texture, your routine, and how much effort you actually want to spend in the morning.</p>
+          <p>You'll get an honest opinion before any scissors move, color mixed for you, and a finish you can do yourself at home. Book ahead for your stylist; walk in when a chair's open.</p>
+        </div>
+        <div class="trust">
+          <div class="trust-item">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 5.3 5.6.5-4.2 3.8 1.2 5.6L12 19.8 6.9 22.8l1.3-5.6L4 13.3l5.6-.5Z"/></svg>
+            <div><div class="n">4.8 stars · 44 reviews</div><div class="l">South City keeps rating Kim's highly on Google — and keeps booking the next visit.</div></div>
+          </div>
+          <div class="trust-item">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12c4 0 4-6 8-6s4 6 8 6-4 6-8 6-4-6-8-6Z"/><circle cx="12" cy="12" r="1.6"/></svg>
+            <div><div class="n">Every hair type welcome</div><div class="l">Straight, wavy, curly, coily — we work with what grows out of your head, not against it.</div></div>
+          </div>
+          <div class="trust-item">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg>
+            <div><div class="n">Consultation, always</div><div class="l">We talk it through before we begin — no surprises in the mirror, no surprises at the desk.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews">
+      <div class="wrap">
+        <div class="rev-top">
+          <span class="big">4.8</span>
+          <span class="stars" aria-label="4.8 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="meta">based on 44 Google reviews</span>
+        </div>
+        <!-- Illustrative reviews — the rating and count are real (4.8 / 44 Google reviews); the written text below is
+             sample copy with real-sounding local names, to be replaced with Kim's actual Google reviews before launch. -->
+        <div class="rev-cards">
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>"I came in with grown-out box dye and a vague idea, and Kim actually talked me out of going too dark. The balayage she did is the most natural color I've ever had — it's growing out beautifully two months later. I finally have a salon on South Grand I trust."</p>
+            <div class="who">
+              <span class="av" style="background:#9a6f3f;">DM</span>
+              <span><span class="nm">Danielle Mercier</span><br><span class="dt">3 weeks ago</span></span>
+            </div>
+          </article>
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>"First place that knew how to cut my curls without thinning them to death. She showed me how to finish it at home and it still looks shaped a week later. Booked my next two appointments before I even left the chair."</p>
+            <div class="who">
+              <span class="av" style="background:#7c8a6e;">AO</span>
+              <span><span class="nm">Anaïs Okafor</span><br><span class="dt">a month ago</span></span>
+            </div>
+          </article>
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>"Got a blowout before my sister's wedding and it held through a full night of dancing in August humidity — which, in St. Louis, is saying something. Warm, easy room and not a rushed minute. This is my standing Friday spot now."</p>
+            <div class="who">
+              <span class="av" style="background:#7e592f;">RV</span>
+              <span><span class="nm">Renata Villanueva</span><br><span class="dt">a month ago</span></span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Book a chair</span>
+          <h2>Ready when you <em>are.</em></h2>
+          <p>Call to book the time you want, or send a request below with what you're after and we'll text you back to confirm.</p>
+        </div>
+        <div class="c-grid">
+          <div>
+            <div class="l" style="font-size:0.76rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft);">Call or text to book</div>
+            <a class="phone-xl" href="tel:+13146643990">(314) 664-3990</a>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div><div class="l">Find us</div><div class="v">3240 S Grand Blvd, St. Louis, MO 63118</div></div>
+            </div>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <div><div class="l">Hours</div><div class="v">Tue–Sat 9am–6pm · Sun &amp; Mon closed</div></div>
+            </div>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
+              <div><div class="l">Walk-ins</div><div class="v">Welcome whenever a chair is open — booking ahead is best for your stylist.</div></div>
+            </div>
+          </div>
+
+          <form aria-label="Request an appointment" onsubmit="return false;">
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" placeholder="First and last">
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone</label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(314) 000-0000">
+            </div>
+            <div class="field">
+              <label for="f-service">What are you after?</label>
+              <select id="f-service" name="service">
+                <option>Cut &amp; style</option>
+                <option>Color or gloss</option>
+                <option>Balayage / highlights</option>
+                <option>Blowout</option>
+                <option>Smoothing / treatment</option>
+                <option>Special-occasion styling</option>
+                <option>Not sure yet — need a consult</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-msg">Anything we should know?</label>
+              <textarea id="f-msg" name="message" placeholder="Days and times that work, your hair history, a photo you're chasing — anything helps."></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Request a time</button>
+            <p class="note">We'll text you back to confirm — usually the same day.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="brand">Kim's <span>Beauty</span></div>
+          <div class="tag">Cut, color, and styling on South Grand — South City's chair for hair that finally fits.</div>
+        </div>
+        <nav class="foot-links" aria-label="Footer">
+          <a href="#services">Services</a>
+          <a href="#gallery">The Salon</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Contact</a>
+          <a href="tel:+13146643990">Call</a>
+        </nav>
+      </div>
+      <div class="foot-base">
+        <span>&copy; 2026 Kim's Beauty Salon · 3240 S Grand Blvd, St. Louis, MO 63118</span>
+        <span>Tue–Sat 9am–6pm · (314) 664-3990</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
