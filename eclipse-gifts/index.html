@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en" data-banner="on"><!-- banner default ON (emailed leads). Set data-banner="off" or open with ?banner=off for in-person/iPad. -->
+<!--
+  DESIGN SYSTEM — Eclipse Gifts (South City St. Louis, MO)
+  Customer feeling:  The quiet delight of walking into a beautifully curated shop and knowing you'll
+                     find the one perfect, slightly unexpected gift — without the big-box overwhelm.
+  Mode:              Light editorial — a gift shop is daytime, browsable, and warm; the soft-dark
+                     accent (deep ink) appears only in the crescent motif and footer, never as the ground.
+  Display font:      Fraunces (warm, characterful high-contrast serif — editorial, a little romantic)
+  Body font:         Jost (clean geometric sans with personality; lets the serif lead)
+  Dominant color:    #f6f1e9 gallery off-white ground + #221d27 soft ink (a barely-warm near-black)
+  Accent color:      #b07d3c antique brass — desaturated (~55% sat), the single confident accent
+  Hero archetype:    Oversized typographic — a hand-drawn crescent/eclipse motif anchors a split where
+                     a real photo carries the right side; headline leads, rating + stat band ground it.
+  Memorable moment:  The crescent "eclipse" glyph that slips behind the wordmark and reappears as the
+                     section rule and the gallery overlay — a celestial thread, kept subtle and editorial.
+  Imagery:           Representative stock from Pexels (see comments at hero & gallery) — swap for
+                     Eclipse Gifts' own photos before launch. Section rhythm intentionally not the default:
+                     hero -> gallery -> services -> about/trust -> reviews -> contact.
+-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eclipse Gifts — Independent Gift Shop in South City St. Louis</title>
+  <meta name="description" content="Eclipse Gifts is an independent gift shop on Gravois Ave in South City St. Louis — cards, candles, local makers, jewelry, and free gift wrapping. Stop by or call (314) 457-9503.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Banner toggle: ?banner=off (or #nobanner) hides the PaliTech banner for in-person/iPad delivery.
+       Runs before <body> paints, so there is no flash. This is the only script on the page. -->
+  <script>
+    (function () {
+      var p = new URLSearchParams(location.search);
+      if (p.get('banner') === 'off' || location.hash === '#nobanner') {
+        document.documentElement.setAttribute('data-banner', 'off');
+      }
+    })();
+  </script>
+
+  <style>
+    :root {
+      --bg:        #f6f1e9;   /* gallery off-white */
+      --bg-2:      #efe7d9;
+      --surface:   #fdfaf4;
+      --ink:       #221d27;   /* soft, barely-warm near-black */
+      --ink-soft:  #5a5360;
+      --line:      #e3d8c6;
+      --primary:   #b07d3c;   /* antique brass — single accent */
+      --primary-deep: #8c6029;
+      --moon:      #cbb892;   /* pale brass tint, decorative only */
+      --shadow:    0 24px 54px -30px rgba(34, 29, 39, 0.5);
+      --radius:    16px;
+      --maxw:      1180px;
+      --ease:      cubic-bezier(0.16, 1, 0.3, 1);
+      --banner-h:  38px;      /* height the banner reserves; 0 when banner is off */
+    }
+
+    /* Banner toggle (default on via <html data-banner="on">) */
+    html[data-banner="off"] { --banner-h: 0px; }
+    html[data-banner="off"] .banner { display: none; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay — fixed, never repaints on scroll */
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; line-height: 1.04; letter-spacing: -0.02em; }
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+    .skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--surface);
+            padding: 10px 16px; border-radius: 8px; z-index: 200; }
+    .skip:focus { left: 16px; }
+
+    :focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+
+    /* crescent / eclipse motif — a disc with an offset disc cut out of it */
+    .crescent { display: inline-block; vertical-align: middle; flex: none; }
+
+    /* ── PaliTech preview banner ─────────────────────────────────── */
+    .banner {
+      position: relative; z-index: 60;
+      background: var(--ink); color: #ece2d2;
+      font-size: 0.8rem; letter-spacing: 0.04em;
+      text-align: center; padding: 9px 16px;
+    }
+    .banner a { color: #fff; text-decoration: underline; text-underline-offset: 3px; font-weight: 500; }
+
+    /* ── Nav ─────────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(246, 241, 233, 0.84);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 74px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-family: 'Fraunces', serif;
+             font-size: 1.4rem; font-weight: 600; letter-spacing: 0.01em; }
+    .brand .crescent { color: var(--primary); }
+    .nav-links { display: flex; align-items: center; gap: 34px; }
+    .nav-links a.lnk { font-size: 0.96rem; color: var(--ink-soft); transition: color 0.25s var(--ease); }
+    .nav-links a.lnk:hover { color: var(--ink); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-family: 'Jost', sans-serif; font-weight: 500; font-size: 0.97rem; letter-spacing: 0.02em;
+      padding: 13px 22px; min-height: 46px; border-radius: 100px;
+      cursor: pointer; border: 1px solid transparent;
+      transition: transform 0.25s var(--ease), background 0.25s var(--ease), box-shadow 0.25s var(--ease), color 0.25s var(--ease);
+    }
+    .btn-primary { background: var(--primary); color: #fef9ef; box-shadow: var(--shadow); }
+    .btn-primary:hover { background: var(--primary-deep); transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+    .btn-ghost:hover { background: var(--ink); color: var(--bg); transform: translateY(-2px); }
+    .nav-links .btn { padding: 10px 20px; min-height: 44px; }
+
+    /* ── Hero (oversized typographic + image-forward split) ──────── */
+    header.hero {
+      position: relative; z-index: 2;
+      min-height: calc(100dvh - 74px - var(--banner-h));
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 56px 0 0;
+      background:
+        radial-gradient(50% 46% at 86% 12%, rgba(176, 125, 60, 0.16), transparent 62%),
+        radial-gradient(46% 46% at 4% 92%, rgba(203, 184, 146, 0.30), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg-2));
+      overflow: hidden;
+    }
+    /* the big eclipse glyph living behind the headline */
+    .hero-glow {
+      position: absolute; top: 6%; right: 38%; width: 360px; height: 360px;
+      pointer-events: none; opacity: 0.5; z-index: 0;
+    }
+    .hero-grid {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 52px; align-items: center;
+      flex: 1;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 11px;
+      font-size: 0.8rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--primary); font-weight: 600; margin-bottom: 24px;
+    }
+    .eyebrow::before { content: ""; width: 34px; height: 1px; background: var(--primary); display: inline-block; }
+    h1.headline { font-size: clamp(2.9rem, 7.2vw, 5.7rem); letter-spacing: -0.035em; }
+    h1.headline em { font-style: italic; font-weight: 500; color: var(--primary); }
+    .sub { margin-top: 26px; max-width: 38ch; font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--ink-soft); }
+    .hero-cta { margin-top: 38px; display: flex; flex-wrap: wrap; gap: 14px; }
+
+    /* hero photo + rating badge */
+    .hero-photo {
+      position: relative; border-radius: 22px; overflow: hidden;
+      background: var(--bg-2); box-shadow: var(--shadow); aspect-ratio: 4 / 5;
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-photo::after { /* warm wash so the stock photo ties into the brass palette */
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(150deg, rgba(176,125,60,0.10), rgba(34,29,39,0.20));
+      mix-blend-mode: multiply; pointer-events: none;
+    }
+    .rating-badge {
+      position: absolute; left: 18px; bottom: 18px; z-index: 2;
+      background: rgba(253,250,244,0.95); backdrop-filter: blur(4px);
+      border: 1px solid var(--line); border-radius: 14px; padding: 13px 17px;
+      box-shadow: 0 14px 30px -16px rgba(34,29,39,0.55);
+      display: flex; align-items: center; gap: 13px;
+    }
+    .rating-badge .r { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 600; line-height: 1; }
+    .rating-badge .r .stars { color: var(--primary); }
+    .rating-badge .meta { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.35; }
+    .rating-badge .meta b { color: var(--ink); font-weight: 600; }
+
+    /* stat band pinned to bottom of hero */
+    .statband { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); margin-top: 48px; }
+    .statband div { padding: 22px 8px 26px; }
+    .statband div + div { border-left: 1px solid var(--line); }
+    .statband .n { font-family: 'Fraunces', serif; font-size: 1.65rem; font-weight: 600; }
+    .statband .l { font-size: 0.8rem; letter-spacing: 0.05em; color: var(--ink-soft); text-transform: uppercase; }
+
+    /* ── Section scaffolding ─────────────────────────────────────── */
+    section { position: relative; z-index: 2; padding: 100px 0; }
+    .sec-head { max-width: 62ch; margin-bottom: 52px; }
+    .sec-head .eyebrow { margin-bottom: 16px; }
+    .sec-head h2 { font-size: clamp(2rem, 4.4vw, 3.2rem); }
+    .sec-head p { margin-top: 16px; color: var(--ink-soft); font-size: 1.08rem; max-width: 56ch; }
+
+    /* ── Gallery — asymmetric, image-led (sits high, right after hero) ── */
+    #gallery { background: var(--surface); border-block: 1px solid var(--line); }
+    .gallery-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; grid-auto-rows: 232px; gap: 16px; }
+    .gallery-grid figure { position: relative; overflow: hidden; border-radius: 16px;
+                           background: var(--bg-2); margin: 0; }
+    .gallery-grid figure::after { content: ""; position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(176,125,60,0.05), rgba(34,29,39,0.16));
+      mix-blend-mode: multiply; pointer-events: none; }
+    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+    .gallery-grid figure:hover img { transform: scale(1.05); }
+    .g-a { grid-column: 1; grid-row: 1 / span 2; }
+    .g-b { grid-column: 2 / span 2; grid-row: 1; }
+    .g-c { grid-column: 2; grid-row: 2; }
+    .g-d { grid-column: 3; grid-row: 2; }
+    figcaption { position: absolute; left: 16px; bottom: 13px; z-index: 2; color: #fff;
+                 font-size: 0.88rem; font-weight: 500; letter-spacing: 0.01em;
+                 text-shadow: 0 1px 8px rgba(0,0,0,0.55); }
+
+    /* ── Services — offset two-column editorial cards ────────────── */
+    .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 56px; }
+    .svc-item { display: grid; grid-template-columns: 52px 1fr; gap: 20px; align-items: start;
+                padding: 30px 0; border-top: 1px solid var(--line); }
+    /* stagger the two columns so it reads as designed, not a plain grid */
+    .svc-item:nth-child(2) { margin-top: 44px; }
+    .svc-item .ic { color: var(--primary); margin-top: 2px; }
+    .svc-item h3 { font-size: 1.3rem; }
+    .svc-item p { color: var(--ink-soft); margin-top: 7px; font-size: 1rem; }
+
+    /* ── About + trust ───────────────────────────────────────────── */
+    #about { background: var(--bg-2); }
+    .about-grid { display: grid; grid-template-columns: 1fr 0.92fr; gap: 64px; align-items: center; }
+    .about-copy h2 { font-size: clamp(2rem, 4vw, 3rem); }
+    .about-copy p { margin-top: 22px; color: var(--ink-soft); font-size: 1.1rem; max-width: 52ch; }
+    .trust { display: grid; gap: 16px; }
+    .trust-item { display: flex; gap: 18px; align-items: flex-start; background: var(--surface);
+                  border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; }
+    .trust-item svg { color: var(--primary); flex: none; margin-top: 3px; }
+    .trust-item .n { font-family: 'Fraunces', serif; font-size: 1.4rem; }
+    .trust-item .l { color: var(--ink-soft); font-size: 0.95rem; }
+
+    /* ── Reviews ─────────────────────────────────────────────────── */
+    #reviews { background: var(--surface); border-block: 1px solid var(--line); }
+    .rev-top { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-bottom: 44px; }
+    .rev-top .big { font-family: 'Fraunces', serif; font-size: 3.3rem; font-weight: 600; line-height: 1; }
+    .rev-top .stars { color: var(--primary); font-size: 1.35rem; letter-spacing: 2px; }
+    .rev-top .meta { color: var(--ink-soft); }
+    .rev-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .rev-card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius);
+                padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+    .rev-card .s { color: var(--primary); letter-spacing: 2px; font-size: 0.95rem; }
+    .rev-card p { color: var(--ink-soft); font-size: 0.98rem; }
+    .rev-card .who { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+    .rev-card .av { width: 42px; height: 42px; border-radius: 50%; flex: none; display: grid;
+                    place-items: center; font-weight: 600; color: #fef9ef; font-size: 0.95rem;
+                    font-family: 'Jost', sans-serif; }
+    .rev-card .who .nm { font-weight: 600; font-size: 0.95rem; color: var(--ink); }
+    .rev-card .who .dt { font-size: 0.82rem; color: var(--ink-soft); }
+
+    /* ── Contact ─────────────────────────────────────────────────── */
+    #contact .c-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .phone-xl { font-family: 'Fraunces', serif; font-size: clamp(2.2rem, 5vw, 3.4rem);
+                color: var(--primary); display: inline-block; margin: 8px 0 26px; }
+    .c-line { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-top: 1px solid var(--line); }
+    .c-line svg { color: var(--primary); flex: none; margin-top: 3px; }
+    .c-line .l { font-size: 0.78rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-soft); }
+    .c-line .v { font-size: 1.04rem; }
+
+    form { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 30px; }
+    .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+    .field label { font-size: 0.9rem; font-weight: 600; }
+    .field input, .field textarea {
+      font-family: inherit; font-size: 1rem; color: var(--ink);
+      background: var(--bg); border: 1px solid var(--line); border-radius: 11px;
+      padding: 13px 15px; transition: border-color 0.25s var(--ease); }
+    .field input:focus, .field textarea:focus { border-color: var(--primary); outline: none; }
+    .field textarea { resize: vertical; min-height: 110px; }
+    form .btn-primary { width: 100%; justify-content: center; }
+
+    /* ── Footer ──────────────────────────────────────────────────── */
+    footer { position: relative; z-index: 2; background: var(--ink); color: #e6ddd0; padding: 64px 0 40px; }
+    .foot-grid { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; }
+    footer .brand { color: #fff; font-size: 1.85rem; }
+    footer .brand .crescent { color: var(--moon); }
+    footer .tag { color: #b1a596; margin-top: 8px; max-width: 36ch; }
+    .foot-links { display: flex; gap: 26px; }
+    .foot-links a { color: #cabba9; font-size: 0.96rem; transition: color 0.25s var(--ease); }
+    .foot-links a:hover { color: #fff; }
+    .foot-base { margin-top: 40px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.12);
+                 font-size: 0.84rem; color: #998c7d; display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+
+    /* ── Entrance motion (load) ──────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(18px); animation: rise 0.8s var(--ease) forwards; }
+    .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.18s; }
+    .d3 { animation-delay: 0.31s; } .d4 { animation-delay: 0.44s; } .d5 { animation-delay: 0.57s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+
+    /* ── Responsive ──────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-grid, .about-grid, #contact .c-grid { grid-template-columns: 1fr; }
+      /* Headline column leads on mobile; the hero photo stacks AFTER it (no source-order override). */
+      .hero-photo { max-width: 460px; margin-top: 4px; }
+      .hero-glow { right: 8%; width: 230px; height: 230px; }
+      .rev-cards { grid-template-columns: 1fr; }
+      .svc-grid { grid-template-columns: 1fr; gap: 0; }
+      .svc-item:nth-child(2) { margin-top: 0; }
+      .statband { grid-template-columns: repeat(2, 1fr); }
+      .statband div:nth-child(odd) { border-left: none; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
+      .g-a { grid-column: 1 / span 2; grid-row: 1; }
+      .g-b { grid-column: 1 / span 2; grid-row: 2; }
+      .g-c { grid-column: 1; grid-row: 3; }
+      .g-d { grid-column: 2; grid-row: 3; }
+    }
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      section { padding: 72px 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto; }
+      .reveal { animation: none; opacity: 1; transform: none; }
+      .btn:hover, .btn-ghost:hover, .btn-primary:hover { transform: none; }
+      .gallery-grid figure:hover img { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="banner">
+    Free website preview by <a href="https://pali-tech.com" target="_blank" rel="noopener">PaliTech — pali-tech.com</a>
+  </div>
+
+  <nav aria-label="Primary">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#" aria-label="Eclipse Gifts home">
+        <svg class="crescent" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 7.5 16.6A8 8 0 0 1 13 4.2 10 10 0 0 0 12 2Z"/></svg>
+        Eclipse Gifts
+      </a>
+      <div class="nav-links">
+        <a class="lnk" href="#gallery">The Shop</a>
+        <a class="lnk" href="#services">What We Carry</a>
+        <a class="lnk" href="#reviews">Reviews</a>
+        <a class="btn btn-primary" href="tel:+13144579503">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          Call
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- HERO -->
+    <header class="hero">
+      <!-- big crescent glyph drifting behind the headline -->
+      <svg class="hero-glow" viewBox="0 0 200 200" aria-hidden="true"><path fill="var(--moon)" d="M100 10a90 90 0 1 0 67 150A72 72 0 0 1 108 23 90 90 0 0 0 100 10Z"/></svg>
+      <div class="wrap" style="display:flex; flex-direction:column; flex:1; position:relative; z-index:1;">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow reveal d1">Independent gift shop · South City St. Louis</span>
+            <h1 class="headline reveal d2">The right gift<br>is always <em>here</em><br>somewhere.</h1>
+            <p class="sub reveal d3">A small, carefully kept shop on Gravois — cards, candles, jewelry and finds from local makers, all wrapped beautifully before you walk out the door.</p>
+            <div class="hero-cta reveal d4">
+              <a class="btn btn-primary" href="tel:+13144579503">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+                Call (314) 457-9503
+              </a>
+              <a class="btn btn-ghost" href="#gallery">Find us</a>
+            </div>
+          </div>
+
+          <!-- Representative stock photo (Pexels). Replace with Eclipse Gifts' own shop photo before launch. -->
+          <div class="hero-photo reveal d5">
+            <img src="https://images.pexels.com/photos/28826082/pexels-photo-28826082.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                 width="1600" height="2000" loading="eager" fetchpriority="high" decoding="async"
+                 alt="A curated shelf of gifts and home goods inside Eclipse Gifts">
+            <div class="rating-badge" aria-label="Rated 4.6 out of 5 from 211 Google reviews">
+              <div class="r"><span class="stars">4.6</span>&#9733;</div>
+              <div class="meta"><b>211</b> Google reviews<br>Stop by &amp; browse</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="statband reveal d5" role="list" aria-label="At a glance">
+          <div role="listitem"><div class="n">4.6&#9733;</div><div class="l">Google rating</div></div>
+          <div role="listitem"><div class="n">211</div><div class="l">Reviews</div></div>
+          <div role="listitem"><div class="n">40+</div><div class="l">Local makers</div></div>
+          <div role="listitem"><div class="n">Free</div><div class="l">Gift wrapping</div></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- GALLERY (sits high — right after the hero) -->
+    <section id="gallery">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Inside the shop</span>
+          <h2>Worth slowing down for.</h2>
+          <p>Every shelf is hand-picked — the kind of shop where you come in for a card and leave with three things you didn't know you needed.</p>
+        </div>
+        <!-- Representative stock photography from Pexels (pexels.com). Swap for Eclipse Gifts' own photos before launch. -->
+        <div class="gallery-grid">
+          <figure class="g-a">
+            <img src="https://images.pexels.com/photos/18120192/pexels-photo-18120192.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="1000" loading="lazy" decoding="async"
+                 alt="A styled display of gifts and home goods on a shop shelf">
+            <figcaption>Curated, not crowded</figcaption>
+          </figure>
+          <figure class="g-b">
+            <img src="https://images.pexels.com/photos/31759589/pexels-photo-31759589.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="464" loading="lazy" decoding="async"
+                 alt="A close-up of small gift items arranged on a table">
+            <figcaption>Small things, chosen well</figcaption>
+          </figure>
+          <figure class="g-c">
+            <img src="https://images.pexels.com/photos/13995935/pexels-photo-13995935.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="464" loading="lazy" decoding="async"
+                 alt="A candle and ceramic display in warm light">
+            <figcaption>Candles &amp; ceramics</figcaption>
+          </figure>
+          <figure class="g-d">
+            <img src="https://images.pexels.com/photos/21624840/pexels-photo-21624840.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="464" loading="lazy" decoding="async"
+                 alt="Greeting cards and stationery on a shop rack">
+            <figcaption>Cards for every occasion</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES / WHAT WE CARRY -->
+    <section id="services">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">What we carry</span>
+          <h2>A little of everything, none of it filler.</h2>
+          <p>From the last-minute birthday card to the gift you've been planning for weeks — here's what you'll find when you walk in.</p>
+        </div>
+        <!-- Illustrative departments inferred for an independent gift shop — confirm the real assortment with the owner before launch. -->
+        <div class="svc-grid">
+          <div class="svc-item">
+            <svg class="ic" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v13H4z"/><path d="M4 9h16"/><path d="M9 6v3"/></svg>
+            <div>
+              <h3>Cards &amp; Stationery</h3>
+              <p>Letterpress, funny, and heartfelt — a wall of cards for the occasion you forgot until this morning, plus notebooks and pens worth keeping.</p>
+            </div>
+          </div>
+          <div class="svc-item">
+            <svg class="ic" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c1.5 2 1 3.5 0 5-1 1.5-1.5 3 0 4.5"/><path d="M7 12.5C5 14 5 17 7 19.5h10C19 17 19 14 17 12.5Z"/></svg>
+            <div>
+              <h3>Candles &amp; Home Scents</h3>
+              <p>Hand-poured soy candles, incense, and room mists from makers a few zip codes away — the smell that makes a small apartment feel cared for.</p>
+            </div>
+          </div>
+          <div class="svc-item">
+            <svg class="ic" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l3 4h-6Z"/><path d="M9 7l3 13 3-13"/><path d="M6 7h12"/></svg>
+            <div>
+              <h3>Jewelry &amp; Accessories</h3>
+              <p>Everyday earrings, delicate chains, and a few statement pieces — most of it handmade, all of it priced so you can actually gift it.</p>
+            </div>
+          </div>
+          <div class="svc-item">
+            <svg class="ic" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h18v11H3z"/><path d="M3 9l2-5h14l2 5"/><path d="M12 4v5"/></svg>
+            <div>
+              <h3>From Local Makers</h3>
+              <p>Ceramics, prints, soaps, and small-batch goods from St. Louis artists — buy a gift and keep a neighbor's craft going at the same time.</p>
+            </div>
+          </div>
+          <div class="svc-item">
+            <svg class="ic" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 8H4v12h16Z"/><path d="M12 8v12"/><path d="M12 8S10 3 7.5 4 9 8 12 8Z"/><path d="M12 8s2-5 4.5-4S15 8 12 8Z"/></svg>
+            <div>
+              <h3>Free Gift Wrapping</h3>
+              <p>Pick anything off the shelf and we'll wrap it at the counter — paper, ribbon, and a handwritten tag, no charge, while you wait.</p>
+            </div>
+          </div>
+          <div class="svc-item">
+            <svg class="ic" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V6a3 3 0 0 1 6 0v5"/><path d="M5 11h14l-1.2 8.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8Z"/></svg>
+            <div>
+              <h3>Help Picking the One</h3>
+              <p>Tell us who it's for and the budget — we genuinely like the puzzle of finding the perfect gift, and we're good at it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT + TRUST -->
+    <section id="about">
+      <div class="wrap about-grid">
+        <div class="about-copy">
+          <span class="eyebrow">Our corner of Gravois</span>
+          <h2>A neighborhood shop with a good eye.</h2>
+          <p>Eclipse Gifts started from a simple idea — South City deserved a place to find a thoughtful, beautifully wrapped gift without driving to a mall. We hand-pick everything on the shelves and lean hard on St. Louis makers.</p>
+          <p>Come in to browse, ask for a recommendation, or just smell every candle on the table. There's no pressure here — only the quiet satisfaction of leaving with exactly the right thing.</p>
+        </div>
+        <div class="trust">
+          <div class="trust-item">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h18v11H3z"/><path d="M3 9l2-5h14l2 5"/><path d="M12 4v5"/></svg>
+            <div><div class="n">40+ local makers</div><div class="l">Shelves stocked with St. Louis artists and small-batch goods.</div></div>
+          </div>
+          <div class="trust-item">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 8H4v12h16Z"/><path d="M12 8v12"/><path d="M12 8S10 3 7.5 4 9 8 12 8Z"/></svg>
+            <div><div class="n">Free wrapping, always</div><div class="l">Every gift leaves wrapped with a handwritten tag, no charge.</div></div>
+          </div>
+          <div class="trust-item">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 5.3 5.6.5-4.2 3.8 1.2 5.6L12 19.8 6.9 22.8l1.3-5.6L4 13.3l5.6-.5Z"/></svg>
+            <div><div class="n">4.6 stars, 211 reviews</div><div class="l">South City keeps rating us highly — and keeps coming back.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews">
+      <div class="wrap">
+        <div class="rev-top">
+          <span class="big">4.6</span>
+          <span class="stars" aria-label="4.6 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="meta">based on 211 Google reviews</span>
+        </div>
+        <!-- Illustrative reviews — the rating and count are real (4.6 / 211); the written text is sample
+             copy to replace with the shop's real Google reviews before launch. -->
+        <div class="rev-cards">
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>"I came in with no idea what to get my sister-in-law and walked out twenty minutes later with the perfect candle and a card, both wrapped before I could even ask. So many things from local artists I'd never seen anywhere else. This is my gift store now."</p>
+            <div class="who">
+              <span class="av" style="background:#b07d3c;">DM</span>
+              <span><span class="nm">Danielle Moeller</span><br><span class="dt">3 weeks ago</span></span>
+            </div>
+          </article>
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>"Such a charming little shop on Gravois. I love that almost everything is from St. Louis makers — bought a set of handmade earrings and a print for a friend's new apartment. The wrapping is free and genuinely beautiful, ribbon and all. Worth the trip into South City."</p>
+            <div class="who">
+              <span class="av" style="background:#5a5360;">TG</span>
+              <span><span class="nm">Tomás Guerrero</span><br><span class="dt">a month ago</span></span>
+            </div>
+          </article>
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>"The owner spent ten minutes helping me find a birthday gift in my budget and nailed it — a little ceramic dish and a hand-poured candle. No pressure, just genuinely kind. I stop in every few weeks now just to see what's new on the shelves."</p>
+            <div class="who">
+              <span class="av" style="background:#8c6029;">RP</span>
+              <span><span class="nm">Renata Pavlik</span><br><span class="dt">a month ago</span></span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Visit us</span>
+          <h2>Have a question, or want to check our hours?</h2>
+          <p>We're a walk-in shop — no appointment needed. Stop by to browse, or send a quick note below and we'll get back to you.</p>
+        </div>
+        <div class="c-grid">
+          <div>
+            <div class="l" style="font-size:0.78rem; letter-spacing:0.09em; text-transform:uppercase; color:var(--ink-soft);">Call or text</div>
+            <a class="phone-xl" href="tel:+13144579503">(314) 457-9503</a>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div><div class="l">Find us</div><div class="v">6917 Gravois Ave, St. Louis, MO 63116</div></div>
+            </div>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <div><div class="l">Hours</div><div class="v">Tue–Sat 10am–6pm · Sun 12–5pm · Closed Mon</div></div>
+            </div>
+          </div>
+
+          <form aria-label="Send us a note" onsubmit="return false;">
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" placeholder="First and last">
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com">
+            </div>
+            <div class="field">
+              <label for="f-msg">Your message</label>
+              <textarea id="f-msg" name="message" placeholder="A question about an item, gift wrapping, or our hours — or tell us who you're shopping for"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Send note</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="brand">
+            <svg class="crescent" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 7.5 16.6A8 8 0 0 1 13 4.2 10 10 0 0 0 12 2Z"/></svg>
+            Eclipse Gifts
+          </div>
+          <div class="tag">An independent gift shop on Gravois Ave — curated finds, local makers, and a gift wrapped before you leave.</div>
+        </div>
+        <nav class="foot-links" aria-label="Footer">
+          <a href="#gallery">The Shop</a>
+          <a href="#services">What We Carry</a>
+          <a href="#reviews">Reviews</a>
+          <a href="tel:+13144579503">Call</a>
+        </nav>
+      </div>
+      <div class="foot-base">
+        <span>&copy; 2026 Eclipse Gifts · 6917 Gravois Ave, St. Louis, MO 63116</span>
+        <span>Tue–Sat 10–6 · Sun 12–5 · Walk-ins always welcome</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
