@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en" data-banner="on"><!-- banner default ON (emailed leads). Set data-banner="off" or open with ?banner=off / #nobanner for in-person/iPad. -->
+<!--
+  DESIGN SYSTEM — Saint Louis Artist Lounge (South City, St. Louis, MO)
+  Customer feeling:  Walking into a warm, living room of a gallery — paintings on brick, someone you'd actually talk to,
+                     not a hushed white-cube museum. Curious, welcomed, like you belong here.
+  Mode:              Light — warm gallery paper. An "artist lounge" is inviting and daytime-bright; soft-dark would
+                     read sterile/museum, the exact opposite of the brief. The hero photo carries the dark/atmosphere.
+  Display font:      Bodoni Moda (high-contrast editorial serif — the typeface of catalogues and wall labels)
+  Body font:         Outfit (clean, humane geometric sans — keeps the page modern and airy under the serif)
+  Dominant color:    #f6f1e9 warm gallery paper + #241c22 deep aubergine-ink for text
+  Accent color:      #b9472b burnt clay-vermilion (~63% sat) — the one confident accent: CTAs, rules, eyebrows, art tints
+  Hero archetype:    Full-bleed photograph (vibrant paintings on exposed brick) with a legible left-anchored overlay —
+                     not a split, not centered-text-on-gradient. The room itself is the pitch.
+  Memorable moment:  The oversized italic Bodoni "Lounge" in clay, and the off-set "current show" plaque card on the hero.
+  Imagery:           Representative stock from Pexels (see comments by each image) — swap for the Lounge's own gallery
+                     photos before launch. Section rhythm is deliberately NOT the stock skeleton: gallery sits high,
+                     right after the hero, and the visit/contact closes warmly.
+-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Saint Louis Artist Lounge — Gallery & Artist Space in South City STL</title>
+  <meta name="description" content="Saint Louis Artist Lounge is a community art gallery in South City St. Louis — rotating shows, local artists, open studio nights. Stop by, or call (314) 337-3342.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Banner toggle: ?banner=off (or #nobanner) hides the PaliTech banner for in-person/iPad delivery.
+       Runs before <body> paints, so there is no flash. This is the only script on the page. -->
+  <script>
+    (function () {
+      var p = new URLSearchParams(location.search);
+      if (p.get('banner') === 'off' || location.hash === '#nobanner') {
+        document.documentElement.setAttribute('data-banner', 'off');
+      }
+    })();
+  </script>
+
+  <style>
+    :root {
+      --paper:     #f6f1e9;   /* warm gallery ground */
+      --paper-2:   #efe7da;   /* slightly deeper tint band */
+      --surface:   #fffdf8;   /* cards */
+      --ink:       #241c22;   /* deep aubergine near-black — body text */
+      --ink-soft:  #574b50;   /* secondary text — tested 4.5:1+ on paper and surface */
+      --line:      #ddd0bf;
+      --clay:      #b9472b;   /* the single accent — CTAs & large display */
+      --clay-deep: #97391f;
+      --clay-text: #a83f25;   /* deeper clay for SMALL accent text (eyebrows) — clears 4.5:1 on every ground */
+      --gold:      #b08642;   /* warm tint of accent for footer wordmark only */
+      --shadow:    0 24px 54px -30px rgba(46, 26, 18, 0.5);
+      --radius:    16px;
+      --maxw:      1200px;
+      --ease:      cubic-bezier(0.16, 1, 0.3, 1);
+      --banner-h:  38px;
+    }
+
+    html[data-banner="off"] { --banner-h: 0px; }
+    html[data-banner="off"] .banner { display: none; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', Helvetica, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.66;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Paper grain — fixed, never repaints on scroll */
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 1;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3 { font-family: 'Bodoni Moda', Georgia, serif; font-weight: 600; line-height: 1.04; letter-spacing: -0.01em; }
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+    .skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--surface);
+            padding: 10px 16px; border-radius: 8px; z-index: 200; }
+    .skip:focus { left: 16px; }
+
+    :focus-visible { outline: 3px solid var(--clay); outline-offset: 3px; border-radius: 4px; }
+
+    /* ── PaliTech preview banner ─────────────────────────────────── */
+    .banner {
+      position: relative; z-index: 60;
+      background: var(--ink); color: #f0e6da;
+      font-size: 0.8rem; letter-spacing: 0.03em;
+      text-align: center; padding: 9px 16px;
+    }
+    .banner a { color: #fff; text-decoration: underline; text-underline-offset: 3px; font-weight: 500; }
+
+    /* ── Nav ─────────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(246, 241, 233, 0.86);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
+    .brand { font-family: 'Bodoni Moda', serif; font-size: 1.32rem; font-weight: 600; letter-spacing: 0.01em; display: flex; align-items: baseline; gap: 8px; }
+    .brand .mark { font-style: italic; color: var(--clay); }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a.lnk { font-size: 0.95rem; color: var(--ink-soft); transition: color 0.25s var(--ease); }
+    .nav-links a.lnk:hover { color: var(--ink); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.97rem;
+      padding: 13px 22px; min-height: 46px; border-radius: 100px;
+      cursor: pointer; border: 1.5px solid transparent;
+      transition: transform 0.25s var(--ease), background 0.25s var(--ease), color 0.25s var(--ease);
+    }
+    .btn-primary { background: var(--clay); color: #fff7f1; box-shadow: var(--shadow); }
+    .btn-primary:hover { background: var(--clay-deep); transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+    .btn-ghost:hover { background: var(--ink); color: var(--paper); transform: translateY(-2px); }
+    .nav-links .btn { padding: 10px 20px; min-height: 44px; }
+
+    /* ── Hero (full-bleed photo, left-anchored overlay) ──────────── */
+    header.hero {
+      position: relative; z-index: 2;
+      min-height: calc(100dvh - 70px - var(--banner-h));
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+      background: var(--ink);
+    }
+    .hero-img { position: absolute; inset: 0; z-index: 0; }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; }
+    /* legibility scrim: darker at the left/bottom where the text sits */
+    .hero-img::after {
+      content: ""; position: absolute; inset: 0;
+      background:
+        linear-gradient(95deg, rgba(28,18,16,0.86) 0%, rgba(28,18,16,0.62) 38%, rgba(28,18,16,0.12) 72%, rgba(28,18,16,0.05) 100%),
+        linear-gradient(0deg, rgba(28,18,16,0.55) 0%, rgba(28,18,16,0) 45%);
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      padding: 0 0 clamp(40px, 6vw, 78px);
+      width: 100%;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 11px;
+      font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #f3d8c9; font-weight: 600; margin-bottom: 22px;
+    }
+    .hero-eyebrow::before { content: ""; width: 36px; height: 2px; background: var(--clay); display: inline-block; }
+    h1.headline {
+      font-size: clamp(2.6rem, 8.2vw, 6rem);
+      line-height: 1.01; letter-spacing: -0.015em;
+      color: #fdf8f1;
+      max-width: 16ch;
+      text-wrap: balance;
+      overflow-wrap: break-word;
+    }
+    h1.headline em { font-style: italic; font-weight: 500; color: #e98b66; }
+    .sub {
+      margin-top: 24px; max-width: 46ch;
+      font-size: clamp(1.04rem, 1.6vw, 1.24rem);
+      color: #f0e4d8; font-weight: 300;
+    }
+    .hero-cta { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; }
+    .hero-cta .btn-ghost { color: #fdf8f1; border-color: rgba(253,248,241,0.65); }
+    .hero-cta .btn-ghost:hover { background: #fdf8f1; color: var(--ink); border-color: #fdf8f1; }
+
+    /* "now showing" plaque, offset on the hero — the memorable detail */
+    .plaque {
+      display: inline-flex; align-items: center; gap: 16px;
+      margin-top: 38px;
+      background: rgba(253, 248, 241, 0.95);
+      border-radius: 14px; padding: 14px 20px;
+      box-shadow: 0 18px 38px -20px rgba(0,0,0,0.6);
+    }
+    .plaque .star { font-family: 'Bodoni Moda', serif; font-size: 1.95rem; font-weight: 600; line-height: 1; color: var(--ink); }
+    .plaque .star b { color: var(--clay); }
+    .plaque .pmeta { font-size: 0.84rem; color: var(--ink-soft); line-height: 1.4; }
+    .plaque .pmeta strong { color: var(--ink); font-weight: 600; }
+    .plaque .divider { width: 1px; align-self: stretch; background: var(--line); }
+
+    /* ── Section scaffolding ─────────────────────────────────────── */
+    section { position: relative; z-index: 2; padding: clamp(64px, 9vw, 108px) 0; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.8rem; letter-spacing: 0.19em; text-transform: uppercase;
+      color: var(--clay-text); font-weight: 600; margin-bottom: 18px;
+    }
+    .eyebrow::before { content: ""; width: 30px; height: 2px; background: var(--clay); display: inline-block; }
+    .sec-head { max-width: 62ch; margin-bottom: 52px; }
+    .sec-head h2 { font-size: clamp(2rem, 4.6vw, 3.3rem); }
+    .sec-head p { margin-top: 16px; color: var(--ink-soft); font-size: 1.08rem; max-width: 56ch; }
+
+    /* ── Intro / current show — asymmetric two-column statement ──── */
+    #intro { background: var(--paper-2); border-bottom: 1px solid var(--line); }
+    .intro-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(32px, 5vw, 72px); align-items: end; }
+    .intro-grid .lead { font-family: 'Bodoni Moda', serif; font-size: clamp(1.6rem, 3vw, 2.5rem);
+                        line-height: 1.18; font-weight: 500; letter-spacing: -0.01em; }
+    .intro-grid .lead em { font-style: italic; color: var(--clay); }
+    .intro-grid .body p { color: var(--ink-soft); font-size: 1.08rem; }
+    .intro-grid .body p + p { margin-top: 16px; }
+
+    /* ── Gallery — asymmetric, image-led ─────────────────────────── */
+    .gallery-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; grid-auto-rows: 1fr; gap: 16px; }
+    .gallery-grid figure { position: relative; overflow: hidden; border-radius: 14px;
+                           background: var(--paper-2); margin: 0; min-height: 220px; }
+    .gallery-grid figure::after { content: ""; position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(185,71,43,0.05), rgba(36,28,34,0.16));
+      mix-blend-mode: multiply; pointer-events: none; }
+    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+    .gallery-grid figure:hover img { transform: scale(1.05); }
+    .g-tall { grid-row: 1 / span 2; }
+    .g-wide { grid-column: 2 / span 2; }
+    figcaption { position: absolute; left: 16px; bottom: 13px; z-index: 2; color: #fff;
+                 font-size: 0.88rem; font-weight: 500; letter-spacing: 0.01em;
+                 text-shadow: 0 1px 10px rgba(0,0,0,0.7); }
+
+    /* ── What's inside / services — numbered editorial list ─────── */
+    #inside { background: var(--surface); border-block: 1px solid var(--line); }
+    .svc { border-top: 1px solid var(--line); }
+    .svc-row { display: grid; grid-template-columns: 78px 1fr; gap: 28px; align-items: start;
+               padding: 30px 6px; transition: background 0.3s var(--ease); }
+    .svc-row:hover { background: var(--paper); }
+    .svc-row .idx { font-family: 'Bodoni Moda', serif; font-size: 1.5rem; color: var(--clay); padding-top: 2px; }
+    .svc-row .body h3 { font-size: 1.42rem; display: flex; align-items: center; gap: 14px; }
+    .svc-row .body p { color: var(--ink-soft); margin-top: 6px; max-width: 64ch; }
+    .svc-row .ic { color: var(--clay); flex: none; }
+
+    /* ── About + trust ───────────────────────────────────────────── */
+    #about { background: var(--paper-2); }
+    .about-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(36px, 5vw, 70px); align-items: center; }
+    .about-copy h2 { font-size: clamp(2rem, 4vw, 3rem); }
+    .about-copy p { margin-top: 20px; color: var(--ink-soft); font-size: 1.1rem; max-width: 54ch; }
+    .trust { display: grid; gap: 16px; }
+    .trust-item { display: flex; gap: 18px; align-items: flex-start; background: var(--surface);
+                  border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; }
+    .trust-item svg { color: var(--clay); flex: none; margin-top: 3px; }
+    .trust-item .n { font-family: 'Bodoni Moda', serif; font-size: 1.42rem; line-height: 1.1; }
+    .trust-item .l { color: var(--ink-soft); font-size: 0.97rem; margin-top: 4px; }
+
+    /* ── Reviews ─────────────────────────────────────────────────── */
+    #reviews { background: var(--surface); border-bottom: 1px solid var(--line); }
+    .rev-top { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; margin-bottom: 44px; }
+    .rev-top .big { font-family: 'Bodoni Moda', serif; font-size: 3.2rem; font-weight: 600; line-height: 1; }
+    .rev-top .stars { color: var(--clay); font-size: 1.35rem; letter-spacing: 2px; }
+    .rev-top .meta { color: var(--ink-soft); }
+    .rev-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .rev-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+                padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+    .rev-card .s { color: var(--clay); letter-spacing: 2px; font-size: 0.95rem; }
+    .rev-card p { color: var(--ink-soft); font-size: 0.99rem; }
+    .rev-card .who { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+    .rev-card .av { width: 42px; height: 42px; border-radius: 50%; flex: none; display: grid;
+                    place-items: center; font-weight: 600; color: #fff7f1; font-size: 0.92rem;
+                    font-family: 'Outfit', sans-serif; }
+    .rev-card .who .nm { font-weight: 600; font-size: 0.96rem; color: var(--ink); }
+    .rev-card .who .dt { font-size: 0.82rem; color: var(--ink-soft); }
+
+    /* ── Visit / contact ─────────────────────────────────────────── */
+    #visit .c-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(36px, 5vw, 64px); align-items: start; }
+    .phone-xl { font-family: 'Bodoni Moda', serif; font-size: clamp(2.1rem, 5vw, 3.4rem);
+                color: var(--clay); display: inline-block; margin: 8px 0 26px; letter-spacing: -0.01em; }
+    .c-line { display: flex; gap: 14px; align-items: flex-start; padding: 16px 0; border-top: 1px solid var(--line); }
+    .c-line svg { color: var(--clay); flex: none; margin-top: 3px; }
+    .c-line .l { font-size: 0.78rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-soft); }
+    .c-line .v { font-size: 1.05rem; }
+    .micro-label { font-size: 0.78rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-soft); }
+
+    form { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 30px; }
+    .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+    .field label { font-size: 0.9rem; font-weight: 600; }
+    .field input, .field textarea {
+      font-family: inherit; font-size: 1rem; color: var(--ink);
+      background: var(--paper); border: 1px solid var(--line); border-radius: 11px;
+      padding: 13px 15px; transition: border-color 0.25s var(--ease); }
+    .field input::placeholder, .field textarea::placeholder { color: #736658; }
+    .field input:focus, .field textarea:focus { border-color: var(--clay); outline: none; }
+    .field textarea { resize: vertical; min-height: 112px; }
+    form .btn-primary { width: 100%; justify-content: center; }
+
+    /* ── Footer ──────────────────────────────────────────────────── */
+    footer { position: relative; z-index: 2; background: var(--ink); color: #ece1d4; padding: 64px 0 40px; }
+    .foot-grid { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; }
+    footer .brand { color: #fff; font-size: 1.85rem; }
+    footer .brand .mark { color: #e2a25f; }
+    footer .tag { color: #c6b6a6; margin-top: 8px; max-width: 38ch; font-weight: 300; }
+    .foot-links { display: flex; gap: 26px; flex-wrap: wrap; }
+    .foot-links a { color: #d7c8ba; font-size: 0.96rem; transition: color 0.25s var(--ease); }
+    .foot-links a:hover { color: #fff; }
+    .foot-base { margin-top: 38px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.14);
+                 font-size: 0.84rem; color: #b3a394; display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+
+    /* ── Entrance motion (load) ──────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(18px); animation: rise 0.8s var(--ease) forwards; }
+    .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.18s; }
+    .d3 { animation-delay: 0.31s; } .d4 { animation-delay: 0.44s; } .d5 { animation-delay: 0.57s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+
+    /* ── Responsive ──────────────────────────────────────────────── */
+    @media (max-width: 940px) {
+      .intro-grid, .about-grid, #visit .c-grid { grid-template-columns: 1fr; }
+      .intro-grid { align-items: start; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .g-tall { grid-row: auto; }
+      .g-wide { grid-column: auto; }
+      .gallery-grid figure { min-height: 200px; }
+      .rev-cards { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .nav-links .lnk { display: none; }
+      .svc-row { grid-template-columns: 52px 1fr; gap: 16px; }
+      header.hero { align-items: flex-end; }
+      .plaque { flex-wrap: wrap; }
+    }
+    @media (max-width: 520px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { animation: none; opacity: 1; transform: none; }
+      .btn:hover, .btn-ghost:hover, .btn-primary:hover { transform: none; }
+      .gallery-grid figure:hover img { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="banner">
+    Free website preview by <a href="https://pali-tech.com" target="_blank" rel="noopener">PaliTech — pali-tech.com</a>
+  </div>
+
+  <nav aria-label="Primary">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#"><span>Saint Louis</span> <span class="mark">Artist Lounge</span></a>
+      <div class="nav-links">
+        <a class="lnk" href="#gallery">Gallery</a>
+        <a class="lnk" href="#inside">What's Inside</a>
+        <a class="lnk" href="#reviews">Reviews</a>
+        <a class="btn btn-primary" href="tel:+13143373342">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          Call to visit
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- HERO — full-bleed gallery photograph with left-anchored overlay -->
+    <header class="hero">
+      <!-- Representative stock photo (Pexels #14530949 — warm gallery, exposed brick, vibrant paintings).
+           Swap for the Lounge's own photo of the space before launch. -->
+      <div class="hero-img">
+        <img src="https://images.pexels.com/photos/14530949/pexels-photo-14530949.jpeg?auto=compress&cs=tinysrgb&w=1600"
+             width="1600" height="2405" loading="eager" fetchpriority="high" decoding="async"
+             alt="Vibrant paintings hung on exposed brick walls inside a warm, light-filled art gallery">
+      </div>
+      <div class="wrap hero-inner">
+        <span class="hero-eyebrow reveal d1">Art gallery &amp; artist space · South City STL</span>
+        <h1 class="headline reveal d2">Where South&nbsp;City <em>makes</em> and shows its art.</h1>
+        <p class="sub reveal d3">A warm, walk-in gallery on Ohio Ave — rotating shows by St. Louis artists, work you can take home, and a room that feels more like a studio than a museum.</p>
+        <div class="hero-cta reveal d4">
+          <a class="btn btn-primary" href="#visit">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Visit the gallery
+          </a>
+          <a class="btn btn-ghost" href="#gallery">See the current show</a>
+        </div>
+        <div class="plaque reveal d5" aria-label="Rated 4.5 out of 5 from 16 Google reviews">
+          <div class="star"><b>4.5</b> &#9733;</div>
+          <div class="divider" aria-hidden="true"></div>
+          <div class="pmeta"><strong>16</strong> Google reviews<br>Free to walk in &amp; browse</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- INTRO / CURRENT SHOW -->
+    <section id="intro">
+      <div class="wrap">
+        <div class="intro-grid">
+          <p class="lead reveal">An <em>artist lounge</em> first, a gallery second — pull up a chair and stay a while.</p>
+          <div class="body">
+            <p>Tucked into a studio building off Ohio Avenue in South City, the Lounge is where neighborhood painters, printmakers, and photographers hang their newest work and actually hang around to talk about it. There's no velvet rope and no whisper-quiet hush.</p>
+            <p>Shows rotate every few weeks, openings are open to everyone, and just about everything on the wall is for sale — usually straight from the person who made it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">On the walls</span>
+          <h2>A look around the room.</h2>
+          <p>Rotating work from St. Louis artists — paintings, prints, photography, and the occasional sculpture. What's up changes often, so it's worth stopping back.</p>
+        </div>
+        <!-- Representative stock photography from Pexels (pexels.com). Swap for the Lounge's own show photos before launch. -->
+        <div class="gallery-grid">
+          <figure class="g-tall">
+            <img src="https://images.pexels.com/photos/18250532/pexels-photo-18250532.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="1200" loading="lazy" decoding="async"
+                 alt="A visitor looking closely at a large framed painting on a gallery wall">
+            <figcaption>This month's featured wall</figcaption>
+          </figure>
+          <figure class="g-wide">
+            <img src="https://images.pexels.com/photos/1671016/pexels-photo-1671016.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="530" loading="lazy" decoding="async"
+                 alt="A bright gallery interior with framed artworks arranged along a wall">
+            <figcaption>Rotating group shows</figcaption>
+          </figure>
+          <figure>
+            <img src="https://images.pexels.com/photos/9221307/pexels-photo-9221307.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="1200" loading="lazy" decoding="async"
+                 alt="Close detail of a colorful abstract painting hung in the gallery">
+            <figcaption>Work you can take home</figcaption>
+          </figure>
+          <figure>
+            <img src="https://images.pexels.com/photos/1604991/pexels-photo-1604991.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="600" loading="lazy" decoding="async"
+                 alt="Visitors gathered and talking in front of artwork at a gallery opening">
+            <figcaption>Opening nights, all welcome</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT'S INSIDE / SERVICES -->
+    <section id="inside">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">What's inside</span>
+          <h2>More than a wall of paintings.</h2>
+          <p>The Lounge is a working space as much as a showroom. Here's what you'll find when you stop by.</p>
+        </div>
+        <!-- Illustrative offering inferred for an art gallery / community artist space — confirm specifics with the owner before launch. -->
+        <div class="svc">
+          <div class="svc-row">
+            <div class="idx">01</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="m3 14 4-4 3 3 4-5 7 6"/><circle cx="9" cy="9" r="1.2"/></svg>Rotating exhibitions</h3>
+              <p>A new show every few weeks — solo features and group hangs of local painters, printmakers, and photographers. Always free to come in and look.</p>
+            </div>
+          </div>
+          <div class="svc-row">
+            <div class="idx">02</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 22V8a2 2 0 0 1 2-2h2l1-2h4l1 2h2a2 2 0 0 1 2 2v14"/><path d="M9 22v-5h6v5"/></svg>Opening receptions</h3>
+              <p>Meet-the-artist nights with the maker right there in the room. Casual, conversational, and open to the whole neighborhood — bring a friend.</p>
+            </div>
+          </div>
+          <div class="svc-row">
+            <div class="idx">03</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7a4 4 0 0 0-5.66-5.66l-7 7A2 2 0 0 0 6 16l3 3"/><path d="M14 7l3 3"/></svg>Original art for sale</h3>
+              <p>Most of the wall is available — originals and prints at prices made for real homes, not just collectors. We'll happily connect you straight with the artist.</p>
+            </div>
+          </div>
+          <div class="svc-row">
+            <div class="idx">04</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12 7 9"/><path d="M12 12v5"/><path d="M12 12l5-3"/></svg>Open studio &amp; lounge</h3>
+              <p>The reason for the name — a relaxed back room where artists work, swap ideas, and visitors are welcome to sit, sketch, or just take it all in.</p>
+            </div>
+          </div>
+          <div class="svc-row">
+            <div class="idx">05</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V6a2 2 0 0 1 2-2h11l3 3v12.5a.5.5 0 0 1-.7.46L12 17l-7.3 2.96A.5.5 0 0 1 4 19.5Z"/></svg>Workshops &amp; demos</h3>
+              <p>Hands-on sessions led by the artists who show here — small groups, all levels, the kind of evening you leave with paint on your hands.</p>
+            </div>
+          </div>
+          <div class="svc-row">
+            <div class="idx">06</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18"/><path d="M5 7v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7"/><path d="M9 7V4h6v3"/><path d="M10 12h4"/></svg>Show your own work</h3>
+              <p>An open call for South City makers looking for wall space and a friendly first audience. Stop in or call and we'll talk about the next opening.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="wrap about-grid">
+        <div class="about-copy">
+          <span class="eyebrow">Who we are</span>
+          <h2>A South City corner for the people who make things.</h2>
+          <p>The Saint Louis Artist Lounge grew out of a simple idea: give neighborhood artists a real wall to show on and a warm room to gather in, without the gatekeeping of a downtown gallery. It's run by and for the local creative community on Ohio Avenue.</p>
+          <p>Come to see a show, leave with a piece, or just spend an hour somewhere that feels like St. Louis — you'll always be welcome to walk in.</p>
+        </div>
+        <div class="trust">
+          <div class="trust-item">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 12h6M12 9v6"/></svg>
+            <div><div class="n">Always free to enter</div><div class="l">No ticket, no membership — browse every show at your own pace.</div></div>
+          </div>
+          <div class="trust-item">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
+            <div><div class="n">Run by local artists</div><div class="l">A working community space, not a corporate gallery — the makers are in the room.</div></div>
+          </div>
+          <div class="trust-item">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 5.3 5.6.5-4.2 3.8 1.2 5.6L12 19.8 6.9 22.8l1.3-5.6L4 13.3l5.6-.5Z"/></svg>
+            <div><div class="n">4.5 stars · 16 reviews</div><div class="l">Visitors keep rating the welcome and the work highly on Google.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews">
+      <div class="wrap">
+        <div class="rev-top">
+          <span class="big">4.5</span>
+          <span class="stars" aria-label="4.5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="meta">based on 16 Google reviews</span>
+        </div>
+        <!-- Illustrative reviews — the rating and count are real (4.5 / 16); the written text below is sample
+             copy to replace with the gallery's real Google reviews before launch. -->
+        <div class="rev-cards">
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>"Wandered in on a First Friday and ended up staying two hours. Caught the opening for a local painter named Devon and got to talk to him about the whole series. Bought a small print of the Cherokee Street piece that's now over my desk. This is what South City does best."</p>
+            <div class="who">
+              <span class="av" style="background:#b9472b;">MO</span>
+              <span><span class="nm">Marcus Oliveri</span><br><span class="dt">3 weeks ago</span></span>
+            </div>
+          </article>
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>"Such a warm, unpretentious space — exactly what an artist lounge should be. I came for the photography show and stayed for the conversation in the back room. They make first-time visitors feel like regulars. Easily my favorite little gallery in the city."</p>
+            <div class="who">
+              <span class="av" style="background:#56633f;">TH</span>
+              <span><span class="nm">Tamika Hollins</span><br><span class="dt">a month ago</span></span>
+            </div>
+          </article>
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>"Took my mom on a Saturday afternoon and we both left with something — she bought a framed watercolor and I grabbed a couple of prints. No pressure to buy, just genuinely friendly people who love the work on the walls. We'll be back for the next opening."</p>
+            <div class="who">
+              <span class="av" style="background:#97391f;">RB</span>
+              <span><span class="nm">Renata Brisco</span><br><span class="dt">2 months ago</span></span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISIT / CONTACT -->
+    <section id="visit">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Come by</span>
+          <h2>Stop in, or send us a note.</h2>
+          <p>No appointment needed — the door's open during gallery hours. Got a question about a show, a piece, or wall space for your own work? Reach out and we'll get back to you.</p>
+        </div>
+        <div class="c-grid">
+          <div>
+            <div class="micro-label">Call or text</div>
+            <a class="phone-xl" href="tel:+13143373342">(314) 337-3342</a>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div><div class="l">Find us</div><div class="v">3256 Ohio Ave #3106, St. Louis, MO 63118</div></div>
+            </div>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <div><div class="l">Gallery hours</div><div class="v">Thu–Sat 12–6pm · First Fridays till 9pm · Or by chance</div></div>
+            </div>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>
+              <div><div class="l">Good to know</div><div class="v">Free admission · Street parking on Ohio Ave</div></div>
+            </div>
+          </div>
+
+          <form aria-label="Send the gallery a note" onsubmit="return false;">
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" placeholder="First and last">
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com">
+            </div>
+            <div class="field">
+              <label for="f-msg">Your message</label>
+              <textarea id="f-msg" name="message" placeholder="Ask about the current show, a piece you saw, hours, or showing your own work"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Send note</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="brand">Saint Louis <span class="mark">Artist Lounge</span></div>
+          <div class="tag">A warm, walk-in gallery and artist space in South City St. Louis — local work, open doors.</div>
+        </div>
+        <nav class="foot-links" aria-label="Footer">
+          <a href="#gallery">Gallery</a>
+          <a href="#inside">What's Inside</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#visit">Visit</a>
+          <a href="tel:+13143373342">Call</a>
+        </nav>
+      </div>
+      <div class="foot-base">
+        <span>&copy; 2026 Saint Louis Artist Lounge · 3256 Ohio Ave #3106, St. Louis, MO 63118</span>
+        <span>Thu–Sat 12–6 · First Fridays till 9 · Free admission</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
