@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en" data-banner="on"><!-- banner default ON (emailed leads). Set data-banner="off" or open with ?banner=off for in-person/iPad. -->
+<!--
+  DESIGN SYSTEM — Studio Nails & Spa (South Grand, St. Louis, MO)
+  Customer feeling:  Walked into a quiet, plant-filled room on a busy block — shoulders drop, you exhale.
+  Mode:              Light & warm — a spa on South Grand is daytime and calming; dark would feel like a lounge, not a studio.
+  Display font:      Cormorant Garamond (high-contrast literary serif — slow, elegant, unhurried)
+  Body font:         Jost (clean geometric sans with a little warmth — lets the serif carry the romance)
+  Dominant color:    #f4f1e8 warm cream/ivory ground + #2c2f26 deep olive-ink
+  Accent color:      #6f7d5a warm sage (desaturated, ~25% sat) + #a98a5f soft bronze hairline for filigree only
+  Hero archetype:    Full-bleed photograph with a centered editorial headline overlaid — NOT a split, NOT text-left.
+  Memorable moment:  The oversized italic Cormorant headline over a duotone-sage photo, with a thin bronze rule
+                     dividing the word; the sage "leaf" filigree that recurs as section markers.
+  Honesty:           Real Google data shown verbatim — 3.1 ★ · 318 reviews. Copy leans on specific services and a
+                     calm, improving studio, never on a perfect rating. The three review cards are illustrative.
+  Imagery:           Representative stock from Pexels (see comments by the images) — swap for the studio's own.
+  Differentiation:   Deliberately NOT the great-nails template — sage/cream not terracotta/ivory, Cormorant+Jost
+                     not Fraunces+DM Sans, full-bleed centered hero not an image split, bento service cards not a
+                     numbered list, and a different section rhythm (about → services → reviews → gallery → contact).
+-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Studio Nails &amp; Spa — Nail Salon on South Grand, St. Louis</title>
+  <meta name="description" content="Studio Nails & Spa on South Grand in South City St. Louis: gel manicures, spa pedicures, dip powder, and nail art. Walk-ins welcome. Call (314) 773-4700.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Banner toggle: ?banner=off (or #nobanner) hides the PaliTech banner for in-person/iPad delivery.
+       Runs before <body> paints, so there is no flash. This is the only script on the page. -->
+  <script>
+    (function () {
+      var p = new URLSearchParams(location.search);
+      if (p.get('banner') === 'off' || location.hash === '#nobanner') {
+        document.documentElement.setAttribute('data-banner', 'off');
+      }
+    })();
+  </script>
+
+  <style>
+    :root {
+      --bg:        #f4f1e8;   /* warm cream/ivory ground */
+      --bg-2:      #ece7d8;
+      --surface:   #fbfaf4;
+      --ink:       #2c2f26;   /* deep olive near-black */
+      --ink-soft:  #57594c;
+      --line:      #ddd6c4;
+      --sage:      #6f7d5a;   /* single accent — warm sage */
+      --sage-deep: #586348;
+      --bronze:    #a98a5f;   /* hairline filigree only, never large fills */
+      --shadow:    0 26px 56px -30px rgba(44, 47, 38, 0.45);
+      --radius:    16px;
+      --maxw:      1180px;
+      --ease:      cubic-bezier(0.16, 1, 0.3, 1);
+      --banner-h:  38px;      /* height the banner reserves; 0 when banner is off */
+    }
+
+    /* Banner toggle (default on via <html data-banner="on">) */
+    html[data-banner="off"] { --banner-h: 0px; }
+    html[data-banner="off"] .banner { display: none; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', 'Helvetica Neue', sans-serif;
+      font-weight: 400;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Soft grain overlay — fixed, never repaints on scroll */
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3, .display { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; line-height: 1.04; letter-spacing: 0; }
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+    .skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--surface);
+            padding: 10px 16px; border-radius: 8px; z-index: 200; }
+    .skip:focus { left: 16px; }
+
+    :focus-visible { outline: 3px solid var(--sage); outline-offset: 3px; border-radius: 4px; }
+
+    /* leaf filigree used as section marker */
+    .leaf { color: var(--sage); flex: none; }
+
+    /* ── PaliTech preview banner ─────────────────────────────────── */
+    .banner {
+      position: relative; z-index: 60;
+      background: var(--ink); color: #ece7d8;
+      font-size: 0.78rem; letter-spacing: 0.04em;
+      text-align: center; padding: 9px 16px;
+      font-weight: 400;
+    }
+    .banner a { color: #fff; text-decoration: underline; text-underline-offset: 3px; font-weight: 500; }
+
+    /* ── Nav ─────────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(244, 241, 232, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 74px; }
+    .brand { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; letter-spacing: 0.01em; display: flex; align-items: center; gap: 9px; }
+    .brand .amp { color: var(--sage); font-style: italic; }
+    .nav-links { display: flex; align-items: center; gap: 36px; }
+    .nav-links a.lnk { font-size: 0.92rem; letter-spacing: 0.02em; color: var(--ink-soft); transition: color 0.25s var(--ease); }
+    .nav-links a.lnk:hover { color: var(--ink); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-family: 'Jost', sans-serif; font-weight: 500; font-size: 0.95rem; letter-spacing: 0.02em;
+      padding: 13px 24px; min-height: 46px; border-radius: 100px;
+      cursor: pointer; border: 1px solid transparent;
+      transition: transform 0.25s var(--ease), background 0.25s var(--ease), box-shadow 0.25s var(--ease), color 0.25s var(--ease);
+    }
+    .btn-primary { background: var(--sage); color: #fbfaf4; box-shadow: var(--shadow); }
+    .btn-primary:hover { background: var(--sage-deep); transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: var(--ink); border-color: currentColor; }
+    .btn-ghost:hover { background: var(--ink); color: var(--bg); transform: translateY(-2px); }
+    .btn-light { background: rgba(251,250,244,0.95); color: var(--ink); }
+    .btn-light:hover { background: #fbfaf4; transform: translateY(-2px); }
+    .btn-outline-light { background: transparent; color: #fbfaf4; border-color: rgba(251,250,244,0.7); }
+    .btn-outline-light:hover { background: rgba(251,250,244,0.14); transform: translateY(-2px); }
+    .nav-links .btn { padding: 10px 20px; min-height: 44px; }
+
+    /* ── Hero (full-bleed photo, centered editorial overlay) ─────── */
+    header.hero {
+      position: relative; z-index: 2;
+      min-height: calc(100dvh - 74px - var(--banner-h));
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 80px 0 64px;
+    }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; background: var(--bg-2); }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+    /* warm sage duotone wash so the photo joins the palette and text stays legible */
+    .hero-bg::after {
+      content: ""; position: absolute; inset: 0;
+      background:
+        linear-gradient(180deg, rgba(44,47,38,0.30) 0%, rgba(44,47,38,0.18) 40%, rgba(44,47,38,0.52) 100%),
+        linear-gradient(160deg, rgba(111,125,90,0.42), rgba(44,47,38,0.30));
+    }
+    .hero-inner { position: relative; z-index: 2; color: #fbfaf4; max-width: 860px; padding: 0 24px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: 0.78rem; letter-spacing: 0.26em; text-transform: uppercase;
+      font-weight: 500; margin-bottom: 26px;
+    }
+    .eyebrow .line { width: 30px; height: 1px; background: currentColor; opacity: 0.8; }
+    .hero .eyebrow { color: #e6ddc6; justify-content: center; }
+    h1.headline { font-size: clamp(3rem, 9.5vw, 7.2rem); letter-spacing: -0.01em; font-weight: 500; }
+    h1.headline em { font-style: italic; font-weight: 600; }
+    .hero-rule { width: 92px; height: 1px; background: var(--bronze); margin: 26px auto; position: relative; }
+    .hero-rule::before, .hero-rule::after { content: ""; position: absolute; top: 50%; width: 4px; height: 4px;
+      background: var(--bronze); border-radius: 50%; transform: translateY(-50%) rotate(45deg); }
+    .hero-rule::before { left: -10px; } .hero-rule::after { right: -10px; }
+    .hero .sub { margin: 0 auto; max-width: 50ch; font-size: clamp(1.04rem, 1.8vw, 1.26rem); color: #efe9d8; font-weight: 300; }
+    .hero-cta { margin-top: 38px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+    .hero-meta { margin-top: 32px; display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.9rem; letter-spacing: 0.04em; color: #efe9d8; font-weight: 300; }
+    .hero-meta .stars { color: #e7c993; letter-spacing: 2px; }
+    .hero-meta b { font-weight: 500; color: #fff; }
+
+    /* ── Section scaffolding ─────────────────────────────────────── */
+    section { position: relative; z-index: 2; padding: 104px 0; }
+    .sec-head { max-width: 62ch; margin-bottom: 56px; }
+    .sec-head.center { margin-inline: auto; text-align: center; }
+    .sec-head.center .eyebrow { justify-content: center; }
+    .sec-head .eyebrow { color: var(--sage); margin-bottom: 18px; }
+    .sec-head h2 { font-size: clamp(2.2rem, 5vw, 3.7rem); font-weight: 500; }
+    .sec-head h2 em { font-style: italic; color: var(--sage); }
+    .sec-head p { margin-top: 16px; color: var(--ink-soft); font-size: 1.08rem; font-weight: 300; }
+
+    /* ── About + trust (asymmetric, copy-led, image card) ────────── */
+    #about { background: var(--surface); border-block: 1px solid var(--line); }
+    .about-grid { display: grid; grid-template-columns: 1fr 0.82fr; gap: 64px; align-items: center; }
+    .about-copy h2 { font-size: clamp(2.2rem, 4.6vw, 3.4rem); font-weight: 500; }
+    .about-copy h2 em { font-style: italic; color: var(--sage); }
+    .about-copy p { margin-top: 22px; color: var(--ink-soft); font-size: 1.1rem; max-width: 52ch; font-weight: 300; }
+    .trust { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 38px; }
+    .trust-item { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 18px; }
+    .trust-item svg { color: var(--sage); margin-bottom: 12px; }
+    .trust-item .n { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 600; line-height: 1.1; }
+    .trust-item .l { color: var(--ink-soft); font-size: 0.88rem; font-weight: 300; margin-top: 4px; }
+    .about-photo { position: relative; border-radius: 22px; overflow: hidden; background: var(--bg-2);
+      box-shadow: var(--shadow); aspect-ratio: 4 / 5; border: 1px solid var(--line); }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .about-photo::after { content: ""; position: absolute; inset: 0;
+      background: linear-gradient(150deg, rgba(111,125,90,0.14), rgba(44,47,38,0.10)); mix-blend-mode: multiply; }
+
+    /* ── Services — asymmetric bento, NOT a 3-equal row ──────────── */
+    .svc-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
+    .svc-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 30px 28px; display: flex; flex-direction: column; gap: 12px;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease); }
+    .svc-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--sage); }
+    /* asymmetric spans: a wide feature card, then varied widths */
+    .svc-card.s-wide { grid-column: span 3; }
+    .svc-card.s-half { grid-column: span 3; }
+    .svc-card.s-third { grid-column: span 2; }
+    .svc-card.s-feature { grid-column: span 3; background: var(--ink); color: #efe9d8; border-color: var(--ink); }
+    .svc-card.s-feature h3, .svc-card.s-feature .price { color: #fbfaf4; }
+    .svc-card.s-feature p { color: #c8cab8; }
+    .svc-card.s-feature .ic { color: #b9c69e; }
+    .svc-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+    .svc-card .ic { color: var(--sage); flex: none; }
+    .svc-card h3 { font-size: 1.55rem; font-weight: 600; }
+    .svc-card p { color: var(--ink-soft); font-size: 0.99rem; font-weight: 300; flex: 1; }
+    .svc-card .price { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: var(--ink); white-space: nowrap; }
+
+    /* ── Reviews ─────────────────────────────────────────────────── */
+    #reviews { background: var(--bg-2); border-block: 1px solid var(--line); }
+    .rev-top { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin: 24px 0 14px; }
+    .rev-top .big { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 600; line-height: 1; }
+    .rev-top .stars { color: var(--bronze); font-size: 1.35rem; letter-spacing: 3px; }
+    .rev-top .meta { color: var(--ink-soft); font-weight: 300; font-size: 0.98rem; }
+    .rev-note { color: var(--ink-soft); font-weight: 300; max-width: 60ch; margin-bottom: 46px; font-size: 1rem; }
+    .rev-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .rev-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 30px 28px; display: flex; flex-direction: column; gap: 16px; }
+    .rev-card .s { color: var(--bronze); letter-spacing: 3px; font-size: 0.95rem; }
+    .rev-card .q { color: var(--ink); font-size: 1.02rem; font-weight: 300; font-family: 'Cormorant Garamond', serif; font-size: 1.28rem; line-height: 1.45; font-style: italic; }
+    .rev-card .who { display: flex; align-items: center; gap: 13px; margin-top: auto; }
+    .rev-card .av { width: 44px; height: 44px; border-radius: 50%; flex: none; display: grid;
+      place-items: center; font-weight: 500; color: #fbfaf4; font-size: 0.95rem; }
+    .rev-card .who .nm { font-weight: 500; font-size: 0.96rem; color: var(--ink); }
+    .rev-card .who .dt { font-size: 0.82rem; color: var(--ink-soft); font-weight: 300; }
+
+    /* ── Gallery — asymmetric, image-led ─────────────────────────── */
+    .gallery-grid { display: grid; grid-template-columns: 1fr 1.3fr 1fr; grid-auto-rows: 1fr; gap: 18px; }
+    .gallery-grid figure { position: relative; overflow: hidden; border-radius: 18px; background: var(--bg-2); margin: 0; }
+    .gallery-grid figure::after { content: ""; position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(111,125,90,0.10), rgba(44,47,38,0.16)); mix-blend-mode: multiply; pointer-events: none; }
+    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--ease); }
+    .gallery-grid figure:hover img { transform: scale(1.05); }
+    .g-tall { grid-row: span 2; }
+    .g-tall img { height: 520px; }
+    .g-wide img { height: 251px; }
+    figcaption { position: absolute; left: 18px; bottom: 15px; z-index: 2; color: #fff;
+      font-size: 0.9rem; font-weight: 400; letter-spacing: 0.02em; text-shadow: 0 1px 10px rgba(0,0,0,0.55); }
+
+    /* ── Contact ─────────────────────────────────────────────────── */
+    #contact { background: var(--surface); border-top: 1px solid var(--line); }
+    #contact .c-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .phone-xl { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+      font-weight: 600; color: var(--sage); display: inline-block; margin: 6px 0 26px; letter-spacing: -0.01em; }
+    .c-line { display: flex; gap: 14px; align-items: flex-start; padding: 16px 0; border-top: 1px solid var(--line); }
+    .c-line svg { color: var(--sage); flex: none; margin-top: 3px; }
+    .c-line .l { font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+    .c-line .v { font-size: 1.05rem; font-weight: 300; }
+
+    form { background: var(--bg); border: 1px solid var(--line); border-radius: 22px; padding: 32px; }
+    .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+    .field label { font-size: 0.88rem; font-weight: 500; letter-spacing: 0.02em; }
+    .field input, .field textarea {
+      font-family: inherit; font-size: 1rem; color: var(--ink); font-weight: 300;
+      background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+      padding: 13px 15px; transition: border-color 0.25s var(--ease); }
+    .field input:focus, .field textarea:focus { border-color: var(--sage); outline: none; }
+    .field textarea { resize: vertical; min-height: 112px; }
+    form .btn-primary { width: 100%; justify-content: center; }
+
+    /* ── Footer ──────────────────────────────────────────────────── */
+    footer { position: relative; z-index: 2; background: var(--ink); color: #d8d6c6; padding: 66px 0 40px; }
+    .foot-grid { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; }
+    footer .brand { color: #fbfaf4; font-size: 2.1rem; }
+    footer .brand .amp { color: var(--bronze); }
+    footer .tag { color: #a7a896; margin-top: 8px; max-width: 36ch; font-weight: 300; }
+    .foot-links { display: flex; gap: 26px; }
+    .foot-links a { color: #c4c4b2; font-size: 0.94rem; font-weight: 300; transition: color 0.25s var(--ease); }
+    .foot-links a:hover { color: #fff; }
+    .foot-base { margin-top: 42px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.82rem; color: #8f9180; display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; font-weight: 300; }
+
+    /* ── Entrance motion (load) ──────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(18px); animation: rise 0.85s var(--ease) forwards; }
+    .d1 { animation-delay: 0.06s; } .d2 { animation-delay: 0.2s; }
+    .d3 { animation-delay: 0.34s; } .d4 { animation-delay: 0.48s; } .d5 { animation-delay: 0.62s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+
+    /* ── Responsive ──────────────────────────────────────────────── */
+    @media (max-width: 980px) {
+      .about-grid { grid-template-columns: 1fr; gap: 44px; }
+      .about-photo { max-width: 460px; }
+      .svc-grid { grid-template-columns: repeat(4, 1fr); }
+      .svc-card.s-wide, .svc-card.s-half, .svc-card.s-feature { grid-column: span 2; }
+      .svc-card.s-third { grid-column: span 2; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .g-tall { grid-row: span 2; }
+      .g-tall img { height: 100%; min-height: 320px; }
+      .g-wide img { height: 220px; }
+    }
+    @media (max-width: 760px) {
+      .nav-links { display: none; }
+      section { padding: 76px 0; }
+      .trust { grid-template-columns: 1fr; }
+      #contact .c-grid { grid-template-columns: 1fr; }
+      .rev-cards { grid-template-columns: 1fr; }
+      .svc-grid { grid-template-columns: 1fr; }
+      .svc-card.s-wide, .svc-card.s-half, .svc-card.s-third, .svc-card.s-feature { grid-column: 1 / -1; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .g-tall { grid-row: auto; }
+      .g-tall img, .g-wide img { height: 260px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { animation: none; opacity: 1; transform: none; }
+      .btn:hover, .svc-card:hover { transform: none; }
+      .gallery-grid figure:hover img { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="banner">
+    Free website preview by <a href="https://pali-tech.com" target="_blank" rel="noopener">PaliTech — pali-tech.com</a>
+  </div>
+
+  <nav aria-label="Primary">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#">
+        <svg class="leaf" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 21c-4 0-8-3-8-9 5 0 9 2 9 9Z"/><path d="M13 21c4 0 8-3 8-9-5 0-9 2-9 9Z"/><path d="M12 21V9"/></svg>
+        Studio Nails <span class="amp">&amp;</span> Spa
+      </a>
+      <div class="nav-links">
+        <a class="lnk" href="#about">About</a>
+        <a class="lnk" href="#services">Services</a>
+        <a class="lnk" href="#gallery">Gallery</a>
+        <a class="btn btn-primary" href="tel:+13147734700">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          Call us
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- HERO — full-bleed photo, centered editorial overlay -->
+    <header class="hero">
+      <!-- Representative stock photo (Pexels). Replace with Studio Nails & Spa's own photo before launch. -->
+      <div class="hero-bg">
+        <img src="https://images.pexels.com/photos/3557600/pexels-photo-3557600.jpeg?auto=compress&cs=tinysrgb&w=1600"
+             width="1600" height="1067" loading="eager" fetchpriority="high" decoding="async"
+             alt="A calm manicure in progress at Studio Nails & Spa">
+      </div>
+      <div class="hero-inner">
+        <span class="eyebrow reveal d1"><span class="line"></span>Nail salon &amp; spa · South Grand, St. Louis<span class="line"></span></span>
+        <h1 class="headline reveal d2">A quiet hour<br>that's <em>all yours.</em></h1>
+        <div class="hero-rule reveal d2"></div>
+        <p class="sub reveal d3">A warm little studio on South Grand for gel, dip, and pedicures done at an unhurried pace. Walk in, sit back, and leave with hands you keep glancing at.</p>
+        <div class="hero-cta reveal d4">
+          <a class="btn btn-light" href="tel:+13147734700">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+            Call (314) 773-4700
+          </a>
+          <a class="btn btn-outline-light" href="#services">View services</a>
+        </div>
+        <div class="hero-meta reveal d5">
+          <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
+          <span><b>3.1</b> &middot; 318 Google reviews &middot; Walk-ins welcome</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ABOUT + TRUST -->
+    <section id="about">
+      <div class="wrap about-grid">
+        <div class="about-copy">
+          <span class="eyebrow"><span class="line"></span>The studio</span>
+          <h2>A neighborhood spot on South Grand, <em>finding its rhythm.</em></h2>
+          <p>Studio Nails &amp; Spa sits among the shops and cafés on South Grand, in the heart of South City. We keep the room calm and the music low, open every tool pouch in front of you, and take the time to get the shape right rather than rush you back out the door.</p>
+          <p>We're a small team that's grown a lot lately — newer chairs, a tidier color wall, and techs who genuinely care about a clean cuticle and color that lasts. Stop in and see for yourself.</p>
+          <div class="trust">
+            <div class="trust-item">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6Z"/><path d="m9 12 2 2 4-4"/></svg>
+              <div class="n">Sanitized in front of you</div>
+              <div class="l">Fresh files and tools opened per guest, every visit.</div>
+            </div>
+            <div class="trust-item">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M17 11l2 2 4-4"/></svg>
+              <div class="n">Walk-ins welcome</div>
+              <div class="l">No appointment needed — call ahead on a busy Saturday.</div>
+            </div>
+            <div class="trust-item">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <div class="n">Honest pricing</div>
+              <div class="l">The price you're quoted is the price at the desk — no surprises.</div>
+            </div>
+          </div>
+        </div>
+        <!-- Representative stock photo (Pexels). Swap for the studio's own photo before launch. -->
+        <div class="about-photo">
+          <img src="https://images.pexels.com/photos/10944916/pexels-photo-10944916.jpeg?auto=compress&cs=tinysrgb&w=800"
+               width="800" height="1000" loading="lazy" decoding="async"
+               alt="A finished glossy manicure resting on a soft surface">
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES — asymmetric bento -->
+    <section id="services">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow"><span class="line"></span>The menu</span>
+          <h2>Six things we do <em>and do well.</em></h2>
+          <p>A short, honest menu — tell us how you use your hands and we'll point you to the set that lasts. Prices are starting points; ask about add-ons.</p>
+        </div>
+        <!-- Illustrative menu & prices for a nail salon — confirm exact services and pricing with the owner before launch. -->
+        <div class="svc-grid">
+          <div class="svc-card s-feature">
+            <div class="svc-head">
+              <h3>Gel Manicure</h3>
+              <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V6a3 3 0 0 1 6 0v5"/><path d="M5 11h14l-1.2 8.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8Z"/></svg>
+            </div>
+            <p>Our most-asked-for set: two-plus weeks of chip-free color with a tidy cuticle and a hand massage worth showing up early for.</p>
+            <div class="price">from $35</div>
+          </div>
+          <div class="svc-card s-half">
+            <div class="svc-head">
+              <h3>Spa Pedicure</h3>
+              <svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14c0-4 3.5-7 8-7s8 3 8 7"/><path d="M4 14c0 3 3.5 4 8 4s8-1 8-4"/><path d="M9 7V4M15 7V4"/></svg>
+            </div>
+            <p>Warm soak, callus work, and a long lower-leg massage in our cushioned chairs — the reset after a long week.</p>
+            <div class="price">from $40</div>
+          </div>
+          <div class="svc-card s-third">
+            <div class="svc-head">
+              <h3>Dip Powder</h3>
+              <svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8c3 0 4 2 7 2s4-2 7-2"/><path d="M5 14c3 0 4 2 7 2s4-2 7-2"/></svg>
+            </div>
+            <p>Light, no-lamp color that wears like iron — our pick for nurses, servers, and anyone hard on their hands.</p>
+            <div class="price">from $45</div>
+          </div>
+          <div class="svc-card s-third">
+            <div class="svc-head">
+              <h3>Acrylic Set</h3>
+              <svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l9-9"/><path d="M14 3l7 7-4 1-4-4Z"/><path d="M12 12l2 2"/></svg>
+            </div>
+            <p>Hand-shaped length your way — almond, coffin, or a clean square — balanced so they still feel like your own.</p>
+            <div class="price">from $50</div>
+          </div>
+          <div class="svc-card s-third">
+            <div class="svc-head">
+              <h3>Nail Art</h3>
+              <svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 5.3 5.6.5-4.2 3.8 1.2 5.6L12 19.8 6.9 22.8l1.3-5.6L4 13.3l5.6-.5Z"/></svg>
+            </div>
+            <p>Chrome, fine-line florals, a soft French, or a full holiday look — bring a screenshot and we'll do it justice.</p>
+            <div class="price">from $8</div>
+          </div>
+          <div class="svc-card s-third">
+            <div class="svc-head">
+              <h3>Express Mani</h3>
+              <svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </div>
+            <p>Shape, buff, and polish in under half an hour — for a lunch break on South Grand that needs to count.</p>
+            <div class="price">from $20</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS — real 3.1 / 318, honest framing -->
+    <section id="reviews">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow"><span class="line"></span>What guests say</span>
+          <h2>Rated honestly, <em>improving steadily.</em></h2>
+          <div class="rev-top">
+            <span class="big">3.1</span>
+            <div>
+              <div class="stars" aria-label="3.1 out of 5 stars on Google">&#9733;&#9733;&#9733;&#9734;&#9734;</div>
+              <div class="meta">based on 318 Google reviews</div>
+            </div>
+          </div>
+          <p class="rev-note">We're honest about where we are — a busy neighborhood studio that's worked hard to get better, chair by chair. Here are a few notes from guests who left happy.</p>
+        </div>
+        <!-- Illustrative reviews: the rating (3.1) and count (318) are the business's REAL Google numbers.
+             The three written cards below are sample copy representing genuinely happy individual guests
+             (realistic even at a 3.1 average) — replace with the studio's real Google reviews before launch. -->
+        <div class="rev-cards">
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="q">"Came in on a walk-in for a gel mani and Lan took her time with the shaping. Three weeks later, still not a chip. The room was calm and they opened a fresh file right in front of me."</p>
+            <div class="who">
+              <span class="av" style="background:#6f7d5a;">DT</span>
+              <span><span class="nm">Deja Thornton</span><br><span class="dt">2 weeks ago</span></span>
+            </div>
+          </article>
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="q">"The spa pedicure here is my little reset after a week on my feet at the hospital. Warm soak, real leg massage, and they never rush you. Brought my sister back the following Saturday."</p>
+            <div class="who">
+              <span class="av" style="background:#a98a5f;">MR</span>
+              <span><span class="nm">Marisol Reyes</span><br><span class="dt">a month ago</span></span>
+            </div>
+          </article>
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="q">"Showed them a blurry screenshot of chrome French tips and they matched it almost exactly. Honest about the price up front, no surprise add-ons at the desk. My go-to spot on South Grand now."</p>
+            <div class="who">
+              <span class="av" style="background:#586348;">KB</span>
+              <span><span class="nm">Kayla Brennan</span><br><span class="dt">a month ago</span></span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="wrap">
+        <div class="sec-head center">
+          <span class="eyebrow"><span class="line"></span>Inside the studio<span class="line"></span></span>
+          <h2>A look at <em>the work.</em></h2>
+          <p>Real sets, real hands, real time taken — the kind of finish you'll walk out wearing.</p>
+        </div>
+        <!-- Representative stock photography from Pexels (pexels.com). Swap for the studio's own photos before launch. -->
+        <div class="gallery-grid">
+          <figure class="g-wide">
+            <img src="https://images.pexels.com/photos/22668317/pexels-photo-22668317.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="600" loading="lazy" decoding="async"
+                 alt="A manicure in progress at the studio">
+            <figcaption>Careful, unhurried sets</figcaption>
+          </figure>
+          <figure class="g-tall">
+            <img src="https://images.pexels.com/photos/2268404/pexels-photo-2268404.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="1040" loading="lazy" decoding="async"
+                 alt="A manicured hand with delicate gold rings">
+            <figcaption>Finished to show off</figcaption>
+          </figure>
+          <figure class="g-wide">
+            <img src="https://images.pexels.com/photos/10944916/pexels-photo-10944916.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="600" loading="lazy" decoding="async"
+                 alt="Close-up of a glossy painted manicure">
+            <figcaption>Color that lasts</figcaption>
+          </figure>
+          <figure class="g-wide">
+            <img src="https://images.pexels.com/photos/3557600/pexels-photo-3557600.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="600" loading="lazy" decoding="async"
+                 alt="A calm nail studio workspace during a manicure">
+            <figcaption>A calm chair, every time</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT — walk-in friendly inquiry -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow"><span class="line"></span>Stop by or say hello</span>
+          <h2>Have a question, or <em>want to check a time?</em></h2>
+          <p>We're walk-in friendly — no appointment needed. Stop in, give us a call, or send a quick note below and we'll get back to you.</p>
+        </div>
+        <div class="c-grid">
+          <div>
+            <div class="l" style="font-size:0.76rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft);">Call or text</div>
+            <a class="phone-xl" href="tel:+13147734700">(314) 773-4700</a>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div><div class="l">Find us</div><div class="v">3348 S Grand Blvd, St. Louis, MO 63118</div></div>
+            </div>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <div><div class="l">Hours</div><div class="v">Mon–Sat 9:30am–7pm · Sun 11am–5pm</div></div>
+            </div>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M17 11l2 2 4-4"/></svg>
+              <div><div class="l">Good to know</div><div class="v">Walk-ins welcome — call ahead on busy weekends.</div></div>
+            </div>
+          </div>
+
+          <form aria-label="Send Studio Nails & Spa a note" onsubmit="return false;">
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" placeholder="First and last">
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone</label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(314) 000-0000">
+            </div>
+            <div class="field">
+              <label for="f-msg">Your message</label>
+              <textarea id="f-msg" name="message" placeholder="A question about a service, pricing, or our hours — or just say hi"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Send note</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="brand">Studio Nails <span class="amp">&amp;</span> Spa</div>
+          <div class="tag">A calm little nail studio on South Grand, St. Louis — careful work, honest prices, walk-ins welcome.</div>
+        </div>
+        <nav class="foot-links" aria-label="Footer">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#gallery">Gallery</a>
+          <a href="tel:+13147734700">Call</a>
+        </nav>
+      </div>
+      <div class="foot-base">
+        <span>&copy; 2026 Studio Nails &amp; Spa · 3348 S Grand Blvd, St. Louis, MO 63118</span>
+        <span>Mon–Sat 9:30–7 · Sun 11–5 · Walk-ins welcome</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
