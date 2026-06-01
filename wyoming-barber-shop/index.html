@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en" data-banner="on"><!-- banner default ON (emailed leads). Set data-banner="off" or open with ?banner=off / #nobanner for in-person/iPad. -->
+<!--
+  DESIGN SYSTEM — Wyoming Barber Shop (South City, St. Louis)
+  Customer feeling:  Walking into a shop that's been doing this right for years — sharp, unhurried, a chair that's yours.
+  Mode:              Warm-dark — an established barbershop reads classic and masculine; low light + brass feels like the room itself, not a clinic.
+  Display font:      Bebas Neue (tall condensed caps — the barber-pole shop-sign voice)
+  Body font:         Jost (clean geometric sans with warmth; keeps the caps from feeling shouty)
+  Dominant color:    #16130f warm near-black charcoal ground + #ece3d2 warm bone text
+  Accent color:      #b08442 aged brass — desaturated (~60% sat), only for rules, numbers, CTAs, image tints
+  Hero archetype:    Full-bleed photo hero with an oversized stacked typographic headline overlaid + a thin stat rail at the foot (NOT a split, NOT text-left/card-right)
+  Memorable moment:  "SHARP / SINCE / SOUTH CITY" stacked in towering Bebas over a dim chair photo, brass hairline rules slicing between the words
+  Imagery:           Representative stock from Pexels (see comments by the images) — swap for Wyoming Barber Shop's own photos before launch.
+  Distinction note:  Deliberately different from a warm-Latino barbershop demo: charcoal+brass (not off-white+oxblood), Bebas+Jost (not a Caslon/serif pairing),
+                     full-bleed dark photo hero (not a light split), and order hero → services → gallery → about → reviews → contact.
+  Service model:     Walk-in primary, call-ahead for the long sit-down — kept coherent. CTAs are "Call" / "See the cuts" / "Stop by"; the shop is rung to claim a chair, never an app-style "Book/Reserve" widget, so nothing contradicts.
+-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wyoming Barber Shop — Barbershop on S Grand, South City St. Louis</title>
+  <meta name="description" content="Wyoming Barber Shop on S Grand Blvd in South City St. Louis. Fades, classic cuts, hot-towel shaves and beard work. Walk in or call ahead. (314) 772-6675.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Banner toggle: ?banner=off (or #nobanner) hides the PaliTech banner for in-person/iPad delivery.
+       Runs before <body> paints, so there is no flash. This is the only script on the page. -->
+  <script>
+    (function () {
+      var p = new URLSearchParams(location.search);
+      if (p.get('banner') === 'off' || location.hash === '#nobanner') {
+        document.documentElement.setAttribute('data-banner', 'off');
+      }
+    })();
+  </script>
+
+  <style>
+    :root {
+      --bg:        #16130f;   /* warm near-black charcoal */
+      --bg-2:      #1f1b15;
+      --surface:   #221d16;
+      --bone:      #ece3d2;   /* warm bone text */
+      --bone-soft: #b3a892;
+      --line-2:    rgba(176,132,66,0.18);
+      --hair:      rgba(176,132,66,0.30);
+      --brass:     #b08442;   /* aged brass — single accent */
+      --brass-lt:  #c89b56;
+      --brass-deep:#8c6630;
+      --shadow:    0 26px 60px -30px rgba(0,0,0,0.85);
+      --radius:    4px;
+      --maxw:      1180px;
+      --ease:      cubic-bezier(0.16, 1, 0.3, 1);
+      --banner-h:  38px;      /* height the banner reserves; 0 when banner is off */
+    }
+
+    /* Banner toggle (default on via <html data-banner="on">) */
+    html[data-banner="off"] { --banner-h: 0px; }
+    html[data-banner="off"] .banner { display: none; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--bg);
+      color: var(--bone);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay — fixed, never repaints on scroll */
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    h1, h2, h3, .display {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-weight: 400; line-height: 0.92; letter-spacing: 0.01em;
+    }
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+    .skip { position: absolute; left: -999px; top: 8px; background: var(--brass); color: #16130f;
+            padding: 10px 16px; border-radius: 4px; z-index: 200; font-weight: 600; }
+    .skip:focus { left: 16px; }
+
+    :focus-visible { outline: 3px solid var(--brass-lt); outline-offset: 3px; border-radius: 2px; }
+
+    /* ── PaliTech preview banner ─────────────────────────────────── */
+    .banner {
+      position: relative; z-index: 60;
+      background: #0f0d0a; color: #cdbfa6;
+      font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+      text-align: center; padding: 9px 16px;
+      border-bottom: 1px solid var(--line-2);
+    }
+    .banner a { color: var(--brass-lt); text-decoration: underline; text-underline-offset: 3px; font-weight: 500; }
+
+    /* ── Nav ─────────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(22,19,15,0.86);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line-2);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 74px; }
+    .brand { font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; letter-spacing: 0.06em; line-height: 1;
+             display: inline-flex; align-items: center; gap: 11px; }
+    .brand .pole { width: 11px; height: 26px; border-radius: 6px; flex: none;
+                   background: repeating-linear-gradient(135deg, var(--brass) 0 5px, #6c4f24 5px 10px); }
+    .brand span { color: var(--brass-lt); }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a.lnk { font-size: 0.86rem; letter-spacing: 0.05em; color: var(--bone-soft);
+                       text-transform: uppercase; transition: color 0.25s var(--ease); }
+    .nav-links a.lnk:hover { color: var(--bone); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      font-family: 'Jost', sans-serif; font-weight: 600; font-size: 0.82rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 13px 24px; min-height: 46px; border-radius: 2px;
+      cursor: pointer; border: 1px solid transparent;
+      transition: transform 0.25s var(--ease), background 0.25s var(--ease), color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    }
+    .btn-primary { background: var(--brass); color: #16130f; box-shadow: var(--shadow); }
+    .btn-primary:hover { background: var(--brass-lt); transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: var(--bone); border-color: rgba(176,132,66,0.55); }
+    .btn-ghost:hover { background: rgba(176,132,66,0.12); border-color: var(--brass); transform: translateY(-2px); }
+    .nav-links .btn { padding: 11px 20px; min-height: 44px; }
+
+    /* ── Hero (full-bleed photo, oversized stacked type) ─────────── */
+    header.hero {
+      position: relative; z-index: 2;
+      min-height: calc(100dvh - 74px - var(--banner-h));
+      display: flex; flex-direction: column; justify-content: flex-end;
+      overflow: hidden;
+    }
+    .hero-photo { position: absolute; inset: 0; z-index: 0; background: #0d0b08; }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; opacity: 0.62; }
+    .hero-photo::after {
+      content: ""; position: absolute; inset: 0;
+      background:
+        linear-gradient(180deg, rgba(13,11,8,0.55) 0%, rgba(13,11,8,0.10) 38%, rgba(13,11,8,0.92) 100%),
+        radial-gradient(70% 60% at 80% 20%, rgba(176,132,66,0.20), transparent 60%);
+    }
+    .hero-inner { position: relative; z-index: 2; padding: 120px 0 0; flex: 1;
+                  display: flex; flex-direction: column; justify-content: flex-end; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-family: 'Jost', sans-serif; font-size: 0.8rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--brass-lt); font-weight: 600; margin-bottom: 22px;
+    }
+    .eyebrow::before { content: ""; width: 38px; height: 1px; background: var(--brass); display: inline-block; }
+
+    h1.headline { font-size: clamp(4.2rem, 16vw, 12rem); color: var(--bone); }
+    h1.headline .row { display: block; }
+    h1.headline .row.brass { color: var(--brass-lt); }
+    h1.headline .rule { display: block; width: 100%; max-width: 520px; height: 1px;
+                        background: var(--hair); margin: 8px 0; }
+    .sub { margin-top: 26px; max-width: 46ch; font-size: clamp(1.05rem, 1.5vw, 1.2rem); color: var(--bone-soft); }
+    .hero-cta { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; }
+
+    /* thin stat rail at foot of hero */
+    .hero-rail {
+      position: relative; z-index: 2;
+      margin-top: 54px; border-top: 1px solid var(--line-2);
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .hero-rail div { padding: 20px 6px 28px; }
+    .hero-rail div + div { border-left: 1px solid var(--line-2); }
+    .hero-rail .n { font-family: 'Bebas Neue', sans-serif; font-size: 2.1rem; line-height: 1; color: var(--bone); }
+    .hero-rail .n .star { color: var(--brass-lt); }
+    .hero-rail .l { font-size: 0.74rem; letter-spacing: 0.12em; color: var(--bone-soft); text-transform: uppercase; margin-top: 7px; }
+
+    /* ── Section scaffolding ─────────────────────────────────────── */
+    section { position: relative; z-index: 2; padding: 104px 0; }
+    .sec-head { max-width: 60ch; margin-bottom: 56px; }
+    .sec-head .eyebrow { margin-bottom: 18px; }
+    .sec-head h2 { font-size: clamp(2.6rem, 6vw, 4.6rem); color: var(--bone); }
+    .sec-head p { margin-top: 16px; color: var(--bone-soft); font-size: 1.06rem; max-width: 54ch; }
+
+    /* ── Services — offset two-column ledger ─────────────────────── */
+    #services { background: var(--bg-2); border-block: 1px solid var(--line-2); }
+    .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; }
+    .svc {
+      display: grid; grid-template-columns: auto 1fr auto; gap: 20px; align-items: start;
+      padding: 26px 4px; border-top: 1px solid var(--line-2);
+      transition: background 0.3s var(--ease);
+    }
+    .svc:hover { background: rgba(176,132,66,0.06); }
+    .svc .ic { color: var(--brass-lt); flex: none; margin-top: 4px; }
+    .svc h3 { font-size: 1.6rem; letter-spacing: 0.03em; color: var(--bone); }
+    .svc p { color: var(--bone-soft); margin-top: 5px; font-size: 0.97rem; max-width: 40ch; }
+    .svc .price { font-family: 'Bebas Neue', sans-serif; font-size: 1.45rem; color: var(--brass-lt);
+                  white-space: nowrap; letter-spacing: 0.02em; }
+    /* stagger the right column down for an offset ledger feel */
+    .svc-grid .col-r { margin-top: 44px; }
+
+    /* ── Gallery — asymmetric, image-led ─────────────────────────── */
+    #gallery { background: var(--bg); }
+    .gallery-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; grid-auto-rows: 230px; gap: 16px; }
+    .gallery-grid figure { position: relative; overflow: hidden; border-radius: var(--radius);
+                           background: var(--bg-2); margin: 0; border: 1px solid var(--line-2); }
+    .gallery-grid figure::after { content: ""; position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(176,132,66,0.10), rgba(13,11,8,0.30));
+      mix-blend-mode: multiply; pointer-events: none; }
+    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+    .gallery-grid figure:hover img { transform: scale(1.05); }
+    .g-tall { grid-row: span 2; }
+    .g-wide { grid-column: span 2; }
+    figcaption { position: absolute; left: 16px; bottom: 13px; z-index: 2; color: var(--bone);
+                 font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.06em; font-size: 1.1rem;
+                 text-shadow: 0 1px 10px rgba(0,0,0,0.7); }
+
+    /* ── About + trust ───────────────────────────────────────────── */
+    #about { background: var(--bg-2); border-block: 1px solid var(--line-2); }
+    .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: center; }
+    .about-copy h2 { font-size: clamp(2.4rem, 5vw, 3.8rem); color: var(--bone); }
+    .about-copy p { margin-top: 22px; color: var(--bone-soft); font-size: 1.08rem; max-width: 50ch; }
+    .trust { display: grid; gap: 16px; }
+    .trust-item { display: flex; gap: 18px; align-items: flex-start; background: var(--surface);
+                  border: 1px solid var(--line-2); border-radius: var(--radius); padding: 22px 24px; }
+    .trust-item svg { color: var(--brass-lt); flex: none; margin-top: 4px; }
+    .trust-item .n { font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; letter-spacing: 0.03em; color: var(--bone); }
+    .trust-item .l { color: var(--bone-soft); font-size: 0.94rem; line-height: 1.5; }
+
+    /* ── Reviews ─────────────────────────────────────────────────── */
+    #reviews { background: var(--bg); }
+    .rev-top { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; margin-bottom: 46px;
+               border-bottom: 1px solid var(--line-2); padding-bottom: 30px; }
+    .rev-top .big { font-family: 'Bebas Neue', sans-serif; font-size: 4.4rem; line-height: 0.85; color: var(--bone); }
+    .rev-top .stars { color: var(--brass-lt); font-size: 1.4rem; letter-spacing: 3px; }
+    .rev-top .meta { color: var(--bone-soft); }
+    .rev-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .rev-card { background: var(--surface); border: 1px solid var(--line-2); border-radius: var(--radius);
+                padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+    .rev-card .s { color: var(--brass-lt); letter-spacing: 3px; font-size: 0.95rem; }
+    .rev-card p { color: var(--bone-soft); font-size: 0.98rem; }
+    .rev-card .who { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+    .rev-card .av { width: 44px; height: 44px; border-radius: 50%; flex: none; display: grid;
+                    place-items: center; font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem;
+                    color: #16130f; letter-spacing: 0.04em; }
+    .rev-card .who .nm { font-weight: 600; font-size: 0.95rem; color: var(--bone); }
+    .rev-card .who .dt { font-size: 0.8rem; color: var(--bone-soft); }
+
+    /* ── Contact ─────────────────────────────────────────────────── */
+    #contact { background: var(--bg-2); border-top: 1px solid var(--line-2); }
+    #contact .c-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .kicker { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bone-soft); }
+    .phone-xl { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 5rem); line-height: 0.9;
+                color: var(--brass-lt); display: inline-block; margin: 8px 0 28px; letter-spacing: 0.02em; }
+    .c-line { display: flex; gap: 14px; align-items: flex-start; padding: 16px 0; border-top: 1px solid var(--line-2); }
+    .c-line svg { color: var(--brass-lt); flex: none; margin-top: 3px; }
+    .c-line .l { font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bone-soft); }
+    .c-line .v { font-size: 1.04rem; color: var(--bone); }
+
+    form { background: var(--surface); border: 1px solid var(--line-2); border-radius: var(--radius); padding: 30px; }
+    .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+    .field label { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--bone-soft); }
+    .field input, .field textarea {
+      font-family: inherit; font-size: 1rem; color: var(--bone);
+      background: var(--bg); border: 1px solid var(--line-2); border-radius: 2px;
+      padding: 13px 15px; transition: border-color 0.25s var(--ease); }
+    .field input::placeholder, .field textarea::placeholder { color: #6f6553; }
+    .field input:focus, .field textarea:focus { border-color: var(--brass); outline: none; }
+    .field textarea { resize: vertical; min-height: 110px; }
+    form .btn-primary { width: 100%; }
+
+    /* ── Footer ──────────────────────────────────────────────────── */
+    footer { position: relative; z-index: 2; background: #0f0d0a; color: var(--bone-soft); padding: 64px 0 40px;
+             border-top: 1px solid var(--line-2); }
+    .foot-grid { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; }
+    footer .brand { color: var(--bone); font-size: 2.2rem; }
+    footer .tag { color: var(--bone-soft); margin-top: 10px; max-width: 38ch; font-size: 0.96rem; }
+    .foot-links { display: flex; gap: 26px; }
+    .foot-links a { color: var(--bone-soft); font-size: 0.84rem; letter-spacing: 0.06em; text-transform: uppercase;
+                    transition: color 0.25s var(--ease); }
+    .foot-links a:hover { color: var(--brass-lt); }
+    .foot-base { margin-top: 42px; padding-top: 22px; border-top: 1px solid var(--line-2);
+                 font-size: 0.82rem; color: #7a715f; display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+
+    /* ── Entrance motion (load) ──────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(20px); animation: rise 0.8s var(--ease) forwards; }
+    .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.18s; }
+    .d3 { animation-delay: 0.31s; } .d4 { animation-delay: 0.44s; } .d5 { animation-delay: 0.57s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+
+    /* ── Responsive ──────────────────────────────────────────────── */
+    @media (max-width: 940px) {
+      .about-grid, #contact .c-grid { grid-template-columns: 1fr; }
+      .svc-grid { grid-template-columns: 1fr; gap: 0; }
+      .svc-grid .col-r { margin-top: 0; }
+      .svc-grid .col-r .svc:first-child { border-top: 1px solid var(--line-2); }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
+      .g-wide { grid-column: span 2; }
+      .g-tall { grid-row: span 1; }
+    }
+    @media (max-width: 720px) {
+      .nav-links .lnk { display: none; }
+      section { padding: 72px 0; }
+      .hero-inner { padding-top: 90px; }
+      .hero-rail { grid-template-columns: repeat(2, 1fr); }
+      .hero-rail div:nth-child(odd) { border-left: none; }
+      .hero-rail div:nth-child(3), .hero-rail div:nth-child(4) { border-top: 1px solid var(--line-2); }
+      .rev-cards { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+      .g-wide { grid-column: span 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { animation: none; opacity: 1; transform: none; }
+      .btn:hover, .btn-ghost:hover, .btn-primary:hover { transform: none; }
+      .gallery-grid figure:hover img { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="banner">
+    Free website preview by <a href="https://pali-tech.com" target="_blank" rel="noopener">PaliTech — pali-tech.com</a>
+  </div>
+
+  <nav aria-label="Primary">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#"><span class="pole" aria-hidden="true"></span>Wyoming <span>Barber Shop</span></a>
+      <div class="nav-links">
+        <a class="lnk" href="#services">Services</a>
+        <a class="lnk" href="#gallery">The Shop</a>
+        <a class="lnk" href="#reviews">Reviews</a>
+        <a class="btn btn-primary" href="tel:+13147726675">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          Call
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- HERO -->
+    <header class="hero">
+      <!-- Representative stock photo (Pexels). Replace with Wyoming Barber Shop's own photo before launch. -->
+      <div class="hero-photo">
+        <img src="https://images.pexels.com/photos/7518728/pexels-photo-7518728.jpeg?auto=compress&cs=tinysrgb&w=1600"
+             width="1600" height="1067" loading="eager" fetchpriority="high" decoding="async"
+             alt="A barber giving a clean cut in a dimly lit chair at the shop">
+      </div>
+      <div class="wrap hero-inner">
+        <span class="eyebrow reveal d1">3192 S Grand Blvd · South City St. Louis</span>
+        <h1 class="headline reveal d2">
+          <span class="row">Sharp.</span>
+          <span class="rule" aria-hidden="true"></span>
+          <span class="row">Honest.</span>
+          <span class="rule" aria-hidden="true"></span>
+          <span class="row brass">South City.</span>
+        </h1>
+        <p class="sub reveal d3">A neighborhood barbershop near Cherokee that's been keeping South City sharp for years. Walk in, or grab a chair ahead — either way you leave looking like yourself, only better.</p>
+        <div class="hero-cta reveal d4">
+          <a class="btn btn-primary" href="tel:+13147726675">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+            Call (314) 772-6675
+          </a>
+          <a class="btn btn-ghost" href="#services">See the cuts</a>
+        </div>
+
+        <div class="hero-rail reveal d5" role="list" aria-label="At a glance">
+          <div role="listitem"><div class="n">4.8<span class="star">&#9733;</span></div><div class="l">Google rating</div></div>
+          <div role="listitem"><div class="n">292</div><div class="l">Reviews</div></div>
+          <div role="listitem"><div class="n">Walk-in</div><div class="l">or call ahead</div></div>
+          <div role="listitem"><div class="n">S&nbsp;Grand</div><div class="l">South City STL</div></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">On the menu</span>
+          <h2>Cuts, shaves &amp; the works</h2>
+          <p>Old-school standards done with a steady hand. Walk in for the regulars, or call to lock in a chair for the full sit-down.</p>
+        </div>
+        <!-- Illustrative service menu & prices — confirm with the owner before launch. -->
+        <div class="svc-grid">
+          <div class="col-l">
+            <div class="svc">
+              <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88"/><path d="M14.47 14.48 20 20"/><path d="M8.12 8.12 12 12"/></svg>
+              <div>
+                <h3>Classic Haircut</h3>
+                <p>Clippers, shears, and a clean neckline — the cut your barber already knows by heart.</p>
+              </div>
+              <div class="price">$28</div>
+            </div>
+            <div class="svc">
+              <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18 18 4"/><path d="m14 4 6 6"/><path d="M3 21l4-1 0-3"/><path d="M16 6l2 2"/></svg>
+              <div>
+                <h3>Skin Fade</h3>
+                <p>A tight blend from skin up — taper, low, mid or high, faded smooth so there's not a line out of place.</p>
+              </div>
+              <div class="price">$32</div>
+            </div>
+            <div class="svc">
+              <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12c4 0 5-3 9-3s5 3 9 3"/><path d="M3 12c4 0 5 3 9 3s5-3 9-3"/><path d="M6 12v3M18 12v3"/></svg>
+              <div>
+                <h3>Beard Trim &amp; Line-Up</h3>
+                <p>Shaped, edged, and balanced to your jaw — finished with hot towel and oil so it actually feels good.</p>
+              </div>
+              <div class="price">$18</div>
+            </div>
+          </div>
+          <div class="col-r">
+            <div class="svc">
+              <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3v9a7 7 0 0 0 14 0V3"/><path d="M5 3h14"/><path d="M12 19v2"/></svg>
+              <div>
+                <h3>Hot Towel Straight Razor Shave</h3>
+                <p>Steamed towels, a proper lather, and a straight razor taken slow. The reason men still come to a barber.</p>
+              </div>
+              <div class="price">$35</div>
+            </div>
+            <div class="svc">
+              <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="13" r="6"/><path d="M9 7V3"/><path d="M7 3h4"/><path d="m13.5 8.5 4-4"/><path d="M15 4h3v3"/></svg>
+              <div>
+                <h3>Cut &amp; Shave Combo</h3>
+                <p>The full sit-down — haircut, beard work, and a hot-towel finish. Worth calling ahead to claim the time.</p>
+              </div>
+              <div class="price">$55</div>
+            </div>
+            <div class="svc">
+              <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a4 4 0 0 0-4 4c0 2 1 3 1 5h6c0-2 1-3 1-5a4 4 0 0 0-4-4Z"/><path d="M9 16h6"/><path d="M10 19h4"/></svg>
+              <div>
+                <h3>Kid's Cut (12 &amp; under)</h3>
+                <p>Patient with the wiggly ones, quick with the squirmy ones — first haircut or fiftieth, we've got them.</p>
+              </div>
+              <div class="price">$20</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">In the shop</span>
+          <h2>The chair, the tools, the finish</h2>
+          <p>The look of a real barbershop — clippers warm, towels steaming, and a fade that says somebody took their time.</p>
+        </div>
+        <!-- Representative stock photography from Pexels (pexels.com). Swap for Wyoming Barber Shop's own photos before launch. -->
+        <div class="gallery-grid">
+          <figure class="g-tall">
+            <img src="https://images.pexels.com/photos/8218487/pexels-photo-8218487.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="1000" loading="lazy" decoding="async"
+                 alt="A barber finishing a fresh cut at the chair">
+            <figcaption>In the chair</figcaption>
+          </figure>
+          <figure class="g-wide">
+            <img src="https://images.pexels.com/photos/2262802/pexels-photo-2262802.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="500" loading="lazy" decoding="async"
+                 alt="Barber tools and clippers laid out on the station">
+            <figcaption>The tools</figcaption>
+          </figure>
+          <figure>
+            <img src="https://images.pexels.com/photos/7697320/pexels-photo-7697320.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="600" loading="lazy" decoding="async"
+                 alt="A clean fade and lineup detail at the back of the head">
+            <figcaption>Clean fade</figcaption>
+          </figure>
+          <figure>
+            <img src="https://images.pexels.com/photos/16997937/pexels-photo-16997937.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="600" loading="lazy" decoding="async"
+                 alt="A barber working on a beard line-up with detail">
+            <figcaption>Beard work</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT + TRUST -->
+    <section id="about">
+      <div class="wrap about-grid">
+        <div class="about-copy">
+          <span class="eyebrow">The shop</span>
+          <h2>A South City fixture, one chair at a time</h2>
+          <p>Wyoming Barber Shop has been part of the S Grand stretch near Cherokee long enough that a lot of our chairs are filled by the same names every few weeks — and now their kids, too. We keep it simple: a real cut, a clean shave, and a barber who remembers how you take it.</p>
+          <p>No app to fight with, no rush to clear the seat. Walk in when you've got a minute, or give us a ring and we'll have a chair waiting.</p>
+        </div>
+        <div class="trust">
+          <div class="trust-item">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 5.3 5.6.5-4.2 3.8 1.2 5.6L12 19.8 6.9 22.8l1.3-5.6L4 13.3l5.6-.5Z"/></svg>
+            <div><div class="n">4.8 stars · 292 reviews</div><div class="l">South City keeps rating us highly — and keeps coming back.</div></div>
+          </div>
+          <div class="trust-item">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg>
+            <div><div class="n">Neighborhood regulars</div><div class="l">Generations of the same families in the same chairs near Cherokee &amp; Wyoming.</div></div>
+          </div>
+          <div class="trust-item">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V6a3 3 0 0 1 6 0v5"/><path d="M5 11h14l-1 9a2 2 0 0 1-2 1.8H8a2 2 0 0 1-2-1.8Z"/></svg>
+            <div><div class="n">Walk-in or call ahead</div><div class="l">Stop in on your schedule, or ring the shop to claim a time for the full sit-down.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews">
+      <div class="wrap">
+        <div class="rev-top">
+          <span class="big">4.8</span>
+          <span class="stars" aria-label="4.8 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="meta">based on 292 Google reviews</span>
+        </div>
+        <!-- Illustrative reviews — the rating and count are real (4.8 / 292); the written text below is sample
+             copy with realistic local names, to replace with the shop's real Google reviews before launch. -->
+        <div class="rev-cards">
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>"Been getting my fade here for going on six years and it's never once been off. Marcus took his time with the lineup and the hot towel at the end is the part I look forward to all week. You can walk in and still feel like a regular."</p>
+            <div class="who">
+              <span class="av" style="background:#b08442;">DR</span>
+              <span><span class="nm">Darnell Robicheaux</span><br><span class="dt">3 weeks ago</span></span>
+            </div>
+          </article>
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>"Took my eight-year-old in for his first real chair and they were so patient with him — kept him talking the whole time so he forgot to be nervous. Got the cut and shave combo for myself after and walked out feeling brand new. This is our shop now."</p>
+            <div class="who">
+              <span class="av" style="background:#7a6a4a;">AV</span>
+              <span><span class="nm">Anthony Vitale</span><br><span class="dt">a month ago</span></span>
+            </div>
+          </article>
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>"Called ahead on a Saturday and they had a chair ready right when I got there. Straight razor shave was the best I've had in the city — slow, steady, not a nick. Honest price, no upsell. Glad to have a real barbershop still on Grand."</p>
+            <div class="who">
+              <span class="av" style="background:#8c6630;">KO</span>
+              <span><span class="nm">Kevin Okafor</span><br><span class="dt">a month ago</span></span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Stop by</span>
+          <h2>Walk in, or call the shop</h2>
+          <p>No appointment needed for the regulars — just come on in. Want the full cut-and-shave? Give us a ring and we'll have a chair waiting, or drop a note below and we'll get back to you.</p>
+        </div>
+        <div class="c-grid">
+          <div>
+            <div class="kicker">Call the shop</div>
+            <a class="phone-xl" href="tel:+13147726675">(314) 772-6675</a>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div><div class="l">Find us</div><div class="v">3192 S Grand Blvd, St. Louis, MO 63118</div></div>
+            </div>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <div><div class="l">Hours</div><div class="v">Tue–Fri 9am–7pm · Sat 8am–5pm · Sun &amp; Mon closed</div></div>
+            </div>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V6a3 3 0 0 1 6 0v5"/><path d="M5 11h14l-1 9a2 2 0 0 1-2 1.8H8a2 2 0 0 1-2-1.8Z"/></svg>
+              <div><div class="l">Service</div><div class="v">Walk-ins welcome · Call ahead for the cut &amp; shave</div></div>
+            </div>
+          </div>
+
+          <form aria-label="Send the shop a note" onsubmit="return false;">
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" placeholder="First and last">
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone</label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(314) 000-0000">
+            </div>
+            <div class="field">
+              <label for="f-msg">Your message</label>
+              <textarea id="f-msg" name="message" placeholder="A question about a service, your usual time, or our hours — or just say hi"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Send note</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="brand">Wyoming Barber Shop</div>
+          <div class="tag">Sharp cuts and clean shaves on S Grand — keeping South City St. Louis looking right.</div>
+        </div>
+        <nav class="foot-links" aria-label="Footer">
+          <a href="#services">Services</a>
+          <a href="#gallery">The Shop</a>
+          <a href="#reviews">Reviews</a>
+          <a href="tel:+13147726675">Call</a>
+        </nav>
+      </div>
+      <div class="foot-base">
+        <span>&copy; 2026 Wyoming Barber Shop · 3192 S Grand Blvd, St. Louis, MO 63118</span>
+        <span>Tue–Fri 9–7 · Sat 8–5 · Walk-ins welcome</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
