@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en" data-banner="on"><!-- banner default ON (emailed leads). Set data-banner="off" or open with ?banner=off for in-person/iPad. -->
+<!--
+  DESIGN SYSTEM — Elder's Antiques (Cherokee Antique Row, St. Louis, MO)
+  Customer feeling:  The pull of a good rummage — low light, warm wood, the sense that the next shelf
+                     holds the thing you didn't know you were looking for. Heritage, patina, treasure-hunt.
+  Mode:              Warm-dark — an antique row shop is dim, lamplit and atmospheric; a bright SaaS-white
+                     ground would strip the patina. Dark earns it here the way it earns it for a bar.
+  Display font:      Fraunces (literary, characterful serif with old-catalogue warmth)
+  Body font:         Jost (clean geometric sans, quiet enough to let the wood and brass lead)
+  Dominant color:    #1c1714 warm near-black walnut ground + #f3e9d8 aged-paper text
+  Accent color:      #b08431 aged brass (desat ~71%) — used for the rule, CTAs, stars, eyebrows only
+  Hero archetype:    Full-bleed photo hero — the shop interior IS the page; headline + rating sit over a
+                     readable bottom-weighted scrim. Not a text-left split.
+  Memorable moment:  The brass hairline + italic "right now" in the headline, and the rotating-inventory
+                     framing ("the stock turns over") that makes the gallery feel alive, not a fixed catalog.
+  Imagery:           Representative stock from Pexels (see comments by the images) — swap for Elder's own
+                     shop photos before launch. Section rhythm: hero → recent finds (gallery) → what you'll
+                     find → about/trust → reviews → visit. Gallery sits high, by design, not the stock order.
+-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elder's Antiques — Cherokee Antique Row, St. Louis</title>
+  <meta name="description" content="Elder's Antiques on Cherokee Antique Row in South City St. Louis. Vintage furniture, glassware, lighting and oddities — stock turns over weekly. Walk in or call (314) 772-1436.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Banner toggle: ?banner=off (or #nobanner) hides the PaliTech banner for in-person/iPad delivery.
+       Runs before <body> paints, so there is no flash. This is the only script on the page. -->
+  <script>
+    (function () {
+      var p = new URLSearchParams(location.search);
+      if (p.get('banner') === 'off' || location.hash === '#nobanner') {
+        document.documentElement.setAttribute('data-banner', 'off');
+      }
+    })();
+  </script>
+
+  <style>
+    :root {
+      --bg:        #1c1714;   /* walnut near-black ground */
+      --bg-2:      #241d18;   /* slightly lifted panel */
+      --surface:   #2a221c;   /* cards */
+      --paper:     #f3e9d8;   /* aged-paper primary text */
+      --paper-soft:#cdbfa6;   /* secondary text — clears 4.5:1 on the dark grounds */
+      --line:      #43382e;   /* hairline borders */
+      --brass:     #b08431;   /* aged brass — single accent */
+      --brass-lit: #d0a64f;   /* brighter brass for small text on dark (clears AA) */
+      --brass-deep:#8c6624;
+      --shadow:    0 26px 60px -30px rgba(0,0,0,0.7);
+      --radius:    14px;
+      --maxw:      1200px;
+      --ease:      cubic-bezier(0.16, 1, 0.3, 1);
+      --banner-h:  38px;
+    }
+
+    html[data-banner="off"] { --banner-h: 0px; }
+    html[data-banner="off"] .banner { display: none; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', Georgia, serif;
+      background: var(--bg);
+      color: var(--paper);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay — fixed, never repaints on scroll */
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 1;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; line-height: 1.04; letter-spacing: -0.015em; }
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+    .skip { position: absolute; left: -999px; top: 8px; background: var(--brass); color: #1c1714;
+            padding: 10px 16px; border-radius: 8px; z-index: 200; font-weight: 600; }
+    .skip:focus { left: 16px; }
+
+    :focus-visible { outline: 3px solid var(--brass-lit); outline-offset: 3px; border-radius: 4px; }
+
+    /* ── PaliTech preview banner ─────────────────────────────────── */
+    .banner {
+      position: relative; z-index: 60;
+      background: #110d0b; color: #e8dcc6;
+      font-size: 0.8rem; letter-spacing: 0.04em;
+      text-align: center; padding: 9px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .banner a { color: var(--brass-lit); text-decoration: underline; text-underline-offset: 3px; font-weight: 500; }
+
+    /* ── Nav ─────────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(20, 16, 13, 0.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 74px; }
+    .brand { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.01em; color: var(--paper); }
+    .brand span { color: var(--brass-lit); font-style: italic; }
+    .nav-links { display: flex; align-items: center; gap: 34px; }
+    .nav-links a.lnk { font-size: 0.95rem; color: var(--paper-soft); transition: color 0.25s var(--ease); }
+    .nav-links a.lnk:hover { color: var(--paper); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-family: 'Jost', sans-serif; font-weight: 600; font-size: 0.97rem; letter-spacing: 0.01em;
+      padding: 13px 24px; min-height: 46px; border-radius: 4px;
+      cursor: pointer; border: 1px solid transparent;
+      transition: transform 0.25s var(--ease), background 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    }
+    .btn-primary { background: var(--brass); color: #1c1714; box-shadow: var(--shadow); }
+    .btn-primary:hover { background: var(--brass-lit); transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: var(--paper); border-color: rgba(243,233,216,0.45); }
+    .btn-ghost:hover { background: var(--paper); color: var(--bg); transform: translateY(-2px); }
+    .nav-links .btn { padding: 10px 20px; min-height: 44px; }
+
+    /* ── Hero (full-bleed photo) ─────────────────────────────────── */
+    header.hero {
+      position: relative; z-index: 2;
+      min-height: calc(100dvh - 74px - var(--banner-h));
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-img { position: absolute; inset: 0; z-index: 0; background: #14100d; }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-img::after { /* readable bottom-weighted scrim + warm brass top glow */
+      content: ""; position: absolute; inset: 0;
+      background:
+        linear-gradient(180deg, rgba(20,16,13,0.55) 0%, rgba(20,16,13,0.18) 34%, rgba(20,16,13,0.72) 78%, rgba(20,16,13,0.95) 100%),
+        radial-gradient(60% 40% at 84% 8%, rgba(176,132,49,0.20), transparent 60%);
+    }
+    .hero-inner { position: relative; z-index: 2; width: 100%; padding: 0 0 64px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--brass-lit); font-weight: 600; margin-bottom: 22px;
+    }
+    .eyebrow::before { content: ""; width: 40px; height: 1px; background: var(--brass); display: inline-block; }
+    h1.headline {
+      font-size: clamp(2.6rem, 6.4vw, 5.4rem);
+      letter-spacing: -0.025em; max-width: 17ch;
+      text-wrap: balance; overflow-wrap: break-word;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.55);
+    }
+    h1.headline em { font-style: italic; font-weight: 500; color: var(--brass-lit); }
+    .sub { margin-top: 22px; max-width: 46ch; font-size: clamp(1.05rem, 1.5vw, 1.2rem); color: var(--paper); text-shadow: 0 1px 12px rgba(0,0,0,0.6); }
+    .hero-cta { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; }
+    .hero-rating {
+      display: inline-flex; align-items: center; gap: 12px; margin-top: 30px;
+      background: rgba(20,16,13,0.66); backdrop-filter: blur(4px);
+      border: 1px solid var(--line); border-radius: 10px; padding: 11px 16px;
+    }
+    .hero-rating .stars { color: var(--brass-lit); letter-spacing: 2px; font-size: 1rem; }
+    .hero-rating .txt { font-size: 0.9rem; color: var(--paper); }
+    .hero-rating .txt b { color: var(--paper); font-weight: 600; }
+
+    /* ── Section scaffolding ─────────────────────────────────────── */
+    section { position: relative; z-index: 2; padding: 104px 0; }
+    .sec-head { max-width: 62ch; margin-bottom: 54px; }
+    .sec-head .eyebrow { margin-bottom: 16px; }
+    .sec-head h2 { font-size: clamp(2rem, 4.4vw, 3.3rem); color: var(--paper); }
+    .sec-head p { margin-top: 16px; color: var(--paper-soft); font-size: 1.08rem; }
+
+    /* ── Recent finds (gallery) — asymmetric, image-led ──────────── */
+    #finds { background: var(--bg-2); border-block: 1px solid var(--line); }
+    .finds-note {
+      display: inline-flex; align-items: center; gap: 9px; margin-bottom: 12px;
+      font-size: 0.84rem; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--brass-lit); font-weight: 600;
+    }
+    .finds-note svg { flex: none; }
+    .gallery-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; grid-auto-rows: 240px; gap: 16px; }
+    .gallery-grid figure { position: relative; overflow: hidden; border-radius: 12px;
+                           background: var(--surface); margin: 0; border: 1px solid var(--line); }
+    .gallery-grid figure::after { content: ""; position: absolute; inset: 0;
+      background: linear-gradient(165deg, rgba(176,132,49,0.05), rgba(20,16,13,0.4));
+      mix-blend-mode: multiply; pointer-events: none; }
+    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+    .gallery-grid figure:hover img { transform: scale(1.06); }
+    .g-a { grid-column: 1; grid-row: 1 / span 2; }
+    .g-b { grid-column: 2 / span 2; grid-row: 1; }
+    .g-c { grid-column: 2; grid-row: 2; }
+    .g-d { grid-column: 3; grid-row: 2; }
+    figcaption { position: absolute; left: 16px; bottom: 13px; z-index: 3; color: #fff;
+                 font-size: 0.9rem; font-weight: 500; letter-spacing: 0.01em; text-shadow: 0 1px 10px rgba(0,0,0,0.75); }
+
+    /* ── What you'll find (services) — numbered editorial list ───── */
+    .svc { border-top: 1px solid var(--line); }
+    .svc-row { display: grid; grid-template-columns: 84px 1fr; gap: 26px; align-items: start;
+               padding: 30px 6px; border-bottom: 1px solid var(--line); transition: background 0.3s var(--ease); }
+    .svc-row:hover { background: var(--bg-2); }
+    .svc-row .idx { font-family: 'Fraunces', serif; font-size: 1.4rem; color: var(--brass-lit); padding-top: 2px; }
+    .svc-row .body h3 { font-size: 1.4rem; display: flex; align-items: center; gap: 14px; color: var(--paper); }
+    .svc-row .body p { color: var(--paper-soft); margin-top: 7px; max-width: 64ch; }
+    .svc-row .ic { color: var(--brass-lit); flex: none; }
+
+    /* ── About + trust ───────────────────────────────────────────── */
+    #about { background: var(--bg-2); border-block: 1px solid var(--line); }
+    .about-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 64px; align-items: center; }
+    .about-copy h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--paper); }
+    .about-copy p { margin-top: 22px; color: var(--paper-soft); font-size: 1.1rem; max-width: 54ch; }
+    .trust { display: grid; gap: 16px; }
+    .trust-item { display: flex; gap: 18px; align-items: flex-start; background: var(--surface);
+                  border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; }
+    .trust-item svg { color: var(--brass-lit); flex: none; margin-top: 3px; }
+    .trust-item .n { font-family: 'Fraunces', serif; font-size: 1.4rem; color: var(--paper); }
+    .trust-item .l { color: var(--paper-soft); font-size: 0.96rem; line-height: 1.55; }
+
+    /* ── Reviews ─────────────────────────────────────────────────── */
+    .rev-top { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; margin-bottom: 44px; }
+    .rev-top .big { font-family: 'Fraunces', serif; font-size: 3.4rem; font-weight: 600; color: var(--paper); line-height: 1; }
+    .rev-top .stars { color: var(--brass-lit); font-size: 1.4rem; letter-spacing: 3px; }
+    .rev-top .meta { color: var(--paper-soft); }
+    .rev-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .rev-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+                padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+    .rev-card .s { color: var(--brass-lit); letter-spacing: 2px; font-size: 0.95rem; }
+    .rev-card p { color: var(--paper-soft); font-size: 1rem; line-height: 1.65; }
+    .rev-card .who { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+    .rev-card .av { width: 42px; height: 42px; border-radius: 50%; flex: none; display: grid;
+                    place-items: center; font-weight: 600; color: #1c1714; font-size: 0.95rem;
+                    font-family: 'Fraunces', serif; }
+    .rev-card .who .nm { font-weight: 600; font-size: 0.96rem; color: var(--paper); }
+    .rev-card .who .dt { font-size: 0.82rem; color: var(--paper-soft); }
+
+    /* ── Visit / contact ─────────────────────────────────────────── */
+    #visit { background: var(--bg-2); border-top: 1px solid var(--line); }
+    #visit .c-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .ph-label { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--paper-soft); }
+    .phone-xl { font-family: 'Fraunces', serif; font-size: clamp(2.2rem, 5vw, 3.4rem);
+                color: var(--brass-lit); display: inline-block; margin: 8px 0 26px; }
+    .c-line { display: flex; gap: 14px; align-items: flex-start; padding: 16px 0; border-top: 1px solid var(--line); }
+    .c-line svg { color: var(--brass-lit); flex: none; margin-top: 3px; }
+    .c-line .l { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--paper-soft); }
+    .c-line .v { font-size: 1.05rem; color: var(--paper); }
+    .c-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+
+    form { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 30px; }
+    .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+    .field label { font-size: 0.9rem; font-weight: 600; color: var(--paper); }
+    .field input, .field textarea {
+      font-family: inherit; font-size: 1rem; color: var(--paper);
+      background: var(--bg); border: 1px solid var(--line); border-radius: 9px;
+      padding: 13px 15px; transition: border-color 0.25s var(--ease); }
+    .field input::placeholder, .field textarea::placeholder { color: #9a8b73; }
+    .field input:focus, .field textarea:focus { border-color: var(--brass-lit); outline: none; }
+    .field textarea { resize: vertical; min-height: 110px; }
+    form .btn-primary { width: 100%; justify-content: center; }
+
+    /* ── Footer ──────────────────────────────────────────────────── */
+    footer { position: relative; z-index: 2; background: #14100d; color: var(--paper); padding: 64px 0 40px; border-top: 1px solid var(--line); }
+    .foot-grid { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; }
+    footer .brand { font-size: 1.9rem; }
+    footer .tag { color: var(--paper-soft); margin-top: 8px; max-width: 36ch; }
+    .foot-links { display: flex; gap: 26px; flex-wrap: wrap; }
+    .foot-links a { color: var(--paper-soft); font-size: 0.96rem; transition: color 0.25s var(--ease); }
+    .foot-links a:hover { color: var(--paper); }
+    .foot-base { margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--line);
+                 font-size: 0.84rem; color: var(--paper-soft); display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+
+    /* ── Entrance motion (load) ──────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(18px); animation: rise 0.8s var(--ease) forwards; }
+    .d1 { animation-delay: 0.06s; } .d2 { animation-delay: 0.2s; }
+    .d3 { animation-delay: 0.34s; } .d4 { animation-delay: 0.48s; } .d5 { animation-delay: 0.62s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+
+    /* ── Responsive ──────────────────────────────────────────────── */
+    @media (max-width: 920px) {
+      .about-grid, #visit .c-grid { grid-template-columns: 1fr; }
+      .rev-cards { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
+      .g-a { grid-column: 1 / span 2; grid-row: auto; }
+      .g-b { grid-column: 1 / span 2; grid-row: auto; }
+      .g-c { grid-column: 1; grid-row: auto; }
+      .g-d { grid-column: 2; grid-row: auto; }
+    }
+    @media (max-width: 680px) {
+      .nav-links .lnk { display: none; }
+      section { padding: 72px 0; }
+      .svc-row { grid-template-columns: 54px 1fr; gap: 16px; }
+      .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+      .g-a, .g-b, .g-c, .g-d { grid-column: 1; }
+      .hero-inner { padding-bottom: 48px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { animation: none; opacity: 1; transform: none; }
+      .btn:hover, .btn-ghost:hover, .btn-primary:hover { transform: none; }
+      .gallery-grid figure:hover img { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="banner">
+    Free website preview by <a href="https://pali-tech.com" target="_blank" rel="noopener">PaliTech — pali-tech.com</a>
+  </div>
+
+  <nav aria-label="Primary">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#">Elder's <span>Antiques</span></a>
+      <div class="nav-links">
+        <a class="lnk" href="#finds">Recent finds</a>
+        <a class="lnk" href="#about">The shop</a>
+        <a class="lnk" href="#reviews">Reviews</a>
+        <a class="btn btn-primary" href="tel:+13147721436">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          Call the shop
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- HERO — full-bleed shop interior. Representative stock photo (Pexels). Replace with Elder's own shop photo before launch. -->
+    <header class="hero">
+      <div class="hero-img">
+        <img src="https://images.pexels.com/photos/7454397/pexels-photo-7454397.jpeg?auto=compress&cs=tinysrgb&w=1600"
+             width="1600" height="1067" loading="eager" fetchpriority="high" decoding="async"
+             alt="Inside Elder's Antiques: shelves of vintage furniture, glassware and retro objects in warm lamplight">
+      </div>
+      <div class="wrap hero-inner">
+        <span class="eyebrow reveal d1">Cherokee Antique Row · South City St. Louis</span>
+        <h1 class="headline reveal d2">A whole room of things worth finding, <em>right now</em>.</h1>
+        <p class="sub reveal d3">Two floors of vintage furniture, glassware, lighting and honest oddities on Cherokee Street. The stock turns over constantly — what's here today probably won't be next week.</p>
+        <div class="hero-cta reveal d4">
+          <a class="btn btn-primary" href="tel:+13147721436">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+            Call (314) 772-1436
+          </a>
+          <a class="btn btn-ghost" href="#finds">See what's in now</a>
+        </div>
+        <div class="hero-rating reveal d5" aria-label="Rated 4.3 out of 5 from 123 Google reviews">
+          <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+          <span class="txt"><b>4.3</b> · 123 Google reviews</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- RECENT FINDS (gallery, sits high by design) -->
+    <section id="finds">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="finds-note">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
+            Always changing
+          </span>
+          <h2>A look at what's in the shop right now.</h2>
+          <p>A few recent finds from the floor. We don't keep a fixed catalog — pieces come and go as fast as we can clean them up, so the best way to see it all is to come browse. Spotted something here? Message or call and we'll tell you if it's still around.</p>
+        </div>
+        <!-- Representative stock photography from Pexels (pexels.com). Swap for Elder's Antiques' own shop photos before launch. -->
+        <div class="gallery-grid">
+          <figure class="g-a">
+            <img src="https://images.pexels.com/photos/10848990/pexels-photo-10848990.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="1000" loading="lazy" decoding="async"
+                 alt="A corner of vintage furniture and decor at the shop">
+            <figcaption>Furniture, lamps & the odd surprise</figcaption>
+          </figure>
+          <figure class="g-b">
+            <img src="https://images.pexels.com/photos/10519390/pexels-photo-10519390.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="533" loading="lazy" decoding="async"
+                 alt="Shelves of assorted vintage objects and glassware">
+            <figcaption>Glassware & smalls, restocked weekly</figcaption>
+          </figure>
+          <figure class="g-c">
+            <img src="https://images.pexels.com/photos/13095034/pexels-photo-13095034.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="800" loading="lazy" decoding="async"
+                 alt="A vignette of vintage decorative pieces">
+            <figcaption>Recent arrivals</figcaption>
+          </figure>
+          <figure class="g-d">
+            <img src="https://images.pexels.com/photos/15374671/pexels-photo-15374671.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="800" loading="lazy" decoding="async"
+                 alt="An eclectic display of collectible antiques">
+            <figcaption>Worth a second look</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT YOU'LL FIND (services) -->
+    <section id="services">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">What you'll find</span>
+          <h2>A little of everything, gone over by hand.</h2>
+          <p>No two visits are the same, but here's the kind of thing that tends to fill the floor. Stock turns over — come dig, or call ahead and ask.</p>
+        </div>
+        <!-- Illustrative service/category list inferred for an antique store — confirm with the owner before launch. -->
+        <div class="svc">
+          <div class="svc-row">
+            <div class="idx">01</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v4H4z"/><path d="M5 11v8M19 11v8M4 19h16"/><path d="M8 7V5h8v2"/></svg>Vintage & antique furniture</h3>
+              <p>Dressers, side tables, chairs and the occasional sideboard worth rearranging the living room for — solid wood, real age, honest wear.</p>
+            </div>
+          </div>
+          <div class="svc-row">
+            <div class="idx">02</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10l-1 9a4 4 0 0 1-8 0Z"/></svg>Glassware, china & barware</h3>
+              <p>Depression glass, mismatched stemware, old coffee tins and the kind of cocktail set that makes a shelf look lived-in.</p>
+            </div>
+          </div>
+          <div class="svc-row">
+            <div class="idx">03</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2v.3h6v-.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2Z"/></svg>Lighting & lamps</h3>
+              <p>Table lamps, hanging fixtures and shades from a few different eras — rewired and tested when we can, sold as-is when they're too good to pass up.</p>
+            </div>
+          </div>
+          <div class="svc-row">
+            <div class="idx">04</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M14 4v5h5"/></svg>Vintage prints, frames & art</h3>
+              <p>Old advertising, framed prints, mirrors and the odd original — wall-fillers and conversation pieces in roughly equal measure.</p>
+            </div>
+          </div>
+          <div class="svc-row">
+            <div class="idx">05</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 9.5h4.5a1.5 1.5 0 0 1 0 3H10a1.5 1.5 0 0 0 0 3H15"/></svg>Collectibles & oddities</h3>
+              <p>Records, old signage, costume jewelry, tins, toys and the genuinely strange — the shelf people end up spending the longest in front of.</p>
+            </div>
+          </div>
+          <div class="svc-row">
+            <div class="idx">06</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 9v11h14V9"/><path d="M10 20v-6h4v6"/></svg>Looking for something specific?</h3>
+              <p>Tell us what you're hunting — a particular maker, a missing piece of a set, a style for a room. We'll keep an eye out and give you a call if it comes through the door.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT + TRUST -->
+    <section id="about">
+      <div class="wrap about-grid">
+        <div class="about-copy">
+          <span class="eyebrow">The shop</span>
+          <h2>A fixture on Cherokee Antique Row.</h2>
+          <p>Elder's Antiques sits in the middle of one of St. Louis' great rummaging streets — the stretch of Cherokee Street where antique hunters have been wandering shop to shop for generations. We've kept our doors open the old-fashioned way: a floor packed with real pieces, fair prices on the tag, and time to talk if you want to know where something came from.</p>
+          <p>Right now you'll mostly find us on Etsy — this page is a preview of a proper home for the shop. Either way, the best of it never makes it online. For that, you walk in.</p>
+        </div>
+        <div class="trust">
+          <div class="trust-item">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 9v11h14V9"/><path d="M9 20v-5h6v5"/></svg>
+            <div><div class="n">On Cherokee Antique Row</div><div class="l">2124 Cherokee St, in the heart of South City's antique district — easy to make a half-day of.</div></div>
+          </div>
+          <div class="trust-item">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 5.3 5.6.5-4.2 3.8 1.2 5.6L12 19.8 6.9 22.8l1.3-5.6L4 13.3l5.6-.5Z"/></svg>
+            <div><div class="n">4.3 stars · 123 reviews</div><div class="l">Steady Google reviews from people who came in for one thing and left with three.</div></div>
+          </div>
+          <div class="trust-item">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
+            <div><div class="n">Fresh stock weekly</div><div class="l">New pieces come in all the time, so there's always a reason to circle back.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews">
+      <div class="wrap">
+        <div class="rev-top">
+          <span class="big">4.3</span>
+          <span class="stars" aria-label="4.3 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+          <span class="meta">based on 123 Google reviews</span>
+        </div>
+        <!-- Illustrative reviews — the rating and count are real (4.3 / 123); the written text is sample
+             copy to replace with the shop's real Google reviews before launch. -->
+        <div class="rev-cards">
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>"Walked in 'just looking' and walked out with a 1950s walnut record cabinet I'd been hunting for over a year. It was tucked in the back corner and priced way more fairly than the dealers downtown. This is now my first stop on Cherokee Street."</p>
+            <div class="who">
+              <span class="av" style="background:var(--brass);">DM</span>
+              <span><span class="nm">Dustin Mauer</span><br><span class="dt">3 weeks ago</span></span>
+            </div>
+          </article>
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>"The owner spent twenty minutes telling me the history of an old depression-glass set and never once pushed me to buy. Ended up getting it anyway because the price was honest. You can tell they actually love this stuff. Such a warm little shop."</p>
+            <div class="who">
+              <span class="av" style="background:#7d8a5e;">CV</span>
+              <span><span class="nm">Carla Vogel</span><br><span class="dt">a month ago</span></span>
+            </div>
+          </article>
+          <article class="rev-card">
+            <div class="s" aria-label="4 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+            <p>"Crammed full in the best way — you have to dig, but that's the fun of it. Found a brass lamp and a stack of old St. Louis postcards for next to nothing. It's different every time I come back, which is exactly why I keep coming back."</p>
+            <div class="who">
+              <span class="av" style="background:var(--brass-deep); color:var(--paper);">RT</span>
+              <span><span class="nm">Reggie Tillman</span><br><span class="dt">a month ago</span></span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISIT / CONTACT -->
+    <section id="visit">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Find us</span>
+          <h2>Come dig around.</h2>
+          <p>No appointment, no pressure — just walk in. Got a question about a piece, or want to check we're open before you make the trip? Call the shop, or send a quick note and we'll get back to you.</p>
+        </div>
+        <div class="c-grid">
+          <div>
+            <div class="ph-label">Call or stop by</div>
+            <a class="phone-xl" href="tel:+13147721436">(314) 772-1436</a>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div><div class="l">Find us on Cherokee St</div><div class="v">2124 Cherokee St, St. Louis, MO 63118</div></div>
+            </div>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <div><div class="l">Hours</div><div class="v">Wed–Sun 11am–5pm · Mon &amp; Tue by chance</div></div>
+            </div>
+            <div class="c-actions">
+              <a class="btn btn-primary" href="tel:+13147721436">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+                Call (314) 772-1436
+              </a>
+              <a class="btn btn-ghost" href="https://maps.google.com/?q=2124+Cherokee+St,+St.+Louis,+MO+63118" target="_blank" rel="noopener">Get directions</a>
+            </div>
+          </div>
+
+          <form aria-label="Send the shop a note" onsubmit="return false;">
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" placeholder="First and last">
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@email.com">
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone (optional)</label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(314) 000-0000">
+            </div>
+            <div class="field">
+              <label for="f-msg">What are you after?</label>
+              <textarea id="f-msg" name="message" placeholder="Asking about a piece you saw, hunting for something specific, or just want to know if we're open — drop us a line"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Send note</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="brand">Elder's <span style="color:var(--brass-lit); font-style:italic;">Antiques</span></div>
+          <div class="tag">Vintage furniture, glassware and honest oddities on Cherokee Antique Row. The stock turns over — come see what's in.</div>
+        </div>
+        <nav class="foot-links" aria-label="Footer">
+          <a href="#finds">Recent finds</a>
+          <a href="#services">What you'll find</a>
+          <a href="#about">The shop</a>
+          <a href="#reviews">Reviews</a>
+          <a href="tel:+13147721436">Call</a>
+        </nav>
+      </div>
+      <div class="foot-base">
+        <span>&copy; 2026 Elder's Antiques · 2124 Cherokee St, St. Louis, MO 63118</span>
+        <span>Wed–Sun 11am–5pm · (314) 772-1436</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
