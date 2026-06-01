@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en" data-banner="on"><!-- banner default ON (emailed leads). Set data-banner="off" or open with ?banner=off for in-person/iPad. -->
+<!--
+  DESIGN SYSTEM — City Boutique Stl (South City, St. Louis, MO)
+  Customer feeling:  The little thrill of finding one perfect thing — an unhurried, curated rack you want to flip through slowly.
+  Mode:              Light editorial — a women's boutique is daytime, welcoming, gallery-like; dark would read as a bar, not a shop.
+  Display font:      Bodoni Moda (high-contrast editorial serif — fashion-magazine masthead energy)
+  Body font:         Jost (clean geometric sans with personality; lets the Bodoni lead)
+  Dominant color:    #f7f4ee gallery off-white ground + #241c1e warm near-black ink
+  Accent color:      #7c3a4a muted claret/wine — desaturated, only for CTAs, the rule, eyebrows, image tints
+  Hero archetype:    Full-bleed photo with an editorial overlay (headline + small in-store card) — image IS the pitch
+  Memorable moment:  The oversized italic Bodoni "in store now," and the rotating-inventory framing ("stock changes weekly")
+  Group:             2 (ROTATING INVENTORY) — the gallery is framed as "a peek at what's in right now / always changing,"
+                     a conversation-opener, NOT a fixed permanent catalog.
+  Service model:     WALK-IN / SHOP. No phone in the lead — contact LEADS with the address + a Google Maps link;
+                     light name/email/message form. Never "Book/Reserve."
+  Imagery:           Representative stock from Pexels (see comments by hero & gallery) — swap for the boutique's own photos.
+  Section rhythm:    banner · nav · full-bleed hero · about+trust · in-store gallery · services/how-it-works · reviews · visit/contact · footer
+                     (intentionally NOT the stock hero→stats→services→reviews→contact skeleton)
+-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>City Boutique Stl — Women's Clothing Boutique in South City, St. Louis</title>
+  <meta name="description" content="City Boutique Stl is an independent women's clothing boutique on Jefferson Ave in South City, St. Louis. Curated, ever-changing arrivals — walk in and see what's new. 3355 Jefferson Ave, St. Louis, MO 63118.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Banner toggle: ?banner=off (or #nobanner) hides the PaliTech banner for in-person/iPad delivery.
+       Runs before <body> paints, so there is no flash. This is the only script on the page. -->
+  <script>
+    (function () {
+      var p = new URLSearchParams(location.search);
+      if (p.get('banner') === 'off' || location.hash === '#nobanner') {
+        document.documentElement.setAttribute('data-banner', 'off');
+      }
+    })();
+  </script>
+
+  <style>
+    :root {
+      --bg:        #f7f4ee;   /* gallery off-white */
+      --bg-2:      #efe7da;   /* warmer tinted band */
+      --surface:   #fffdf8;   /* card / form ground */
+      --ink:       #241c1e;   /* warm near-black */
+      --ink-soft:  #5c4f4b;   /* secondary text — 6.4:1+ on every ground used */
+      --line:      #e3d9ca;
+      --accent:    #7c3a4a;   /* muted claret — single accent */
+      --accent-deep: #642d3a;
+      --accent-soft: #c7a9ad; /* decorative tint only */
+      --shadow:    0 24px 54px -30px rgba(50, 24, 30, 0.45);
+      --radius:    16px;
+      --maxw:      1180px;
+      --ease:      cubic-bezier(0.16, 1, 0.3, 1);
+      --banner-h:  38px;      /* height the banner reserves; 0 when banner is off */
+    }
+
+    /* Banner toggle (default on via <html data-banner="on">) */
+    html[data-banner="off"] { --banner-h: 0px; }
+    html[data-banner="off"] .banner { display: none; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay — fixed, never repaints on scroll */
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3 { font-family: 'Bodoni Moda', Georgia, serif; font-weight: 500; line-height: 1.04; letter-spacing: -0.01em; }
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+    .skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--surface);
+            padding: 10px 16px; border-radius: 8px; z-index: 200; }
+    .skip:focus { left: 16px; }
+
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+    /* ── PaliTech preview banner ─────────────────────────────────── */
+    .banner {
+      position: relative; z-index: 60;
+      background: var(--ink); color: #ede0db;
+      font-size: 0.8rem; letter-spacing: 0.04em;
+      text-align: center; padding: 9px 16px;
+      min-height: var(--banner-h);
+    }
+    .banner a { color: #fff; text-decoration: underline; text-underline-offset: 3px; font-weight: 500; }
+
+    /* ── Nav ─────────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(247, 244, 238, 0.86);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
+    .brand { font-family: 'Bodoni Moda', serif; font-size: 1.35rem; font-weight: 500; letter-spacing: 0.02em; }
+    .brand i { font-style: italic; color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a.lnk { font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase;
+                       color: var(--ink-soft); transition: color 0.25s var(--ease); }
+    .nav-links a.lnk:hover { color: var(--ink); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      font-family: 'Jost', sans-serif; font-weight: 500; font-size: 0.82rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 13px 24px; min-height: 46px; border-radius: 2px;
+      cursor: pointer; border: 1px solid transparent;
+      transition: transform 0.25s var(--ease), background 0.25s var(--ease), color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    }
+    .btn-primary { background: var(--accent); color: #fff7f4; box-shadow: var(--shadow); }
+    .btn-primary:hover { background: var(--accent-deep); transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+    .btn-ghost:hover { background: var(--ink); color: var(--bg); transform: translateY(-2px); }
+    .btn-light { background: rgba(255,253,248,0.95); color: var(--ink); border-color: rgba(255,253,248,0.6); }
+    .btn-light:hover { background: #fff; transform: translateY(-2px); }
+    .nav-links .btn { padding: 11px 20px; min-height: 44px; }
+
+    /* ── Hero (full-bleed photo, editorial overlay) ──────────────── */
+    header.hero {
+      position: relative; z-index: 2;
+      min-height: calc(100dvh - 70px - var(--banner-h));
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+      background: var(--bg-2); /* tint so a slow image never flashes a gap */
+    }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+    /* legible-overlay scrim — left-weighted so text clears 4.5:1 over the photo */
+    .hero-bg::after {
+      content: ""; position: absolute; inset: 0;
+      background:
+        linear-gradient(90deg, rgba(28,18,20,0.78) 0%, rgba(28,18,20,0.55) 38%, rgba(28,18,20,0.12) 72%, rgba(28,18,20,0.04) 100%),
+        linear-gradient(0deg, rgba(28,18,20,0.55) 0%, rgba(28,18,20,0.0) 42%);
+    }
+    .hero-inner { position: relative; z-index: 2; width: 100%; padding: 0 0 64px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #f3ddd9; font-weight: 500; margin-bottom: 22px;
+    }
+    .hero-eyebrow::before { content: ""; width: 38px; height: 1px; background: var(--accent-soft); display: inline-block; }
+    h1.headline {
+      color: #fff;
+      font-weight: 500;
+      font-size: clamp(2.6rem, 7.2vw, 5.4rem);
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+      max-width: 16ch;
+      text-wrap: balance;
+      overflow-wrap: break-word;
+      text-shadow: 0 2px 26px rgba(0,0,0,0.32);
+    }
+    h1.headline em { font-style: italic; font-weight: 500; color: var(--accent-soft); }
+    .hero-sub {
+      margin-top: 22px; max-width: 42ch;
+      font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+      color: #f1e8e6; font-weight: 300;
+      text-shadow: 0 1px 14px rgba(0,0,0,0.4);
+    }
+    .hero-cta { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; }
+
+    /* small in-store card pinned bottom-right on desktop */
+    .instore {
+      position: absolute; right: 28px; bottom: 64px; z-index: 3;
+      background: rgba(255,253,248,0.95); backdrop-filter: blur(5px);
+      border: 1px solid rgba(255,253,248,0.7); border-radius: 14px;
+      padding: 18px 20px; max-width: 248px;
+      box-shadow: 0 18px 40px -20px rgba(40,20,26,0.6);
+    }
+    .instore .pulse { display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+    .instore .pulse span.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; }
+    .instore .rate { display: flex; align-items: baseline; gap: 8px; margin-top: 12px; }
+    .instore .rate b { font-family: 'Bodoni Moda', serif; font-size: 1.9rem; font-weight: 600; line-height: 1; }
+    .instore .rate .stars { color: var(--accent); letter-spacing: 1px; font-size: 0.95rem; }
+    .instore .rate small { color: var(--ink-soft); font-size: 0.82rem; }
+    .instore p.note { margin-top: 8px; font-size: 0.84rem; color: var(--ink-soft); line-height: 1.45; }
+
+    /* ── Section scaffolding ─────────────────────────────────────── */
+    section { position: relative; z-index: 2; padding: 104px 0; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 11px;
+      font-size: 0.76rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; }
+    .eyebrow::before { content: ""; width: 30px; height: 1px; background: var(--accent); display: inline-block; }
+    .sec-head { max-width: 56ch; margin-bottom: 54px; }
+    .sec-head .eyebrow { margin-bottom: 18px; }
+    .sec-head h2 { font-size: clamp(2rem, 4.6vw, 3.2rem); }
+    .sec-head p { margin-top: 16px; color: var(--ink-soft); font-size: 1.08rem; }
+
+    /* ── About + trust (asymmetric) ──────────────────────────────── */
+    #about { background: var(--bg); }
+    .about-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 64px; align-items: center; }
+    .about-copy h2 { font-size: clamp(2rem, 4.2vw, 3rem); }
+    .about-copy .eyebrow { margin-bottom: 18px; }
+    .about-copy p { margin-top: 20px; color: var(--ink-soft); font-size: 1.1rem; max-width: 54ch; }
+    .about-copy p em { font-style: italic; color: var(--ink); }
+    .trust { display: grid; gap: 16px; }
+    .trust-item { display: flex; gap: 18px; align-items: flex-start; background: var(--surface);
+                  border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; }
+    .trust-item svg { color: var(--accent); flex: none; margin-top: 3px; }
+    .trust-item .n { font-family: 'Bodoni Moda', serif; font-size: 1.3rem; font-weight: 600; }
+    .trust-item .l { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.5; }
+
+    /* ── In-store gallery — asymmetric, image-led ────────────────── */
+    #instore { background: var(--bg-2); border-block: 1px solid var(--line); }
+    .gal-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 44px; }
+    .gal-head .sec-head { margin-bottom: 0; }
+    .gal-note { font-size: 0.84rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft);
+                border: 1px solid var(--line); border-radius: 100px; padding: 9px 16px; background: var(--surface); }
+    .gallery-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; grid-auto-rows: 1fr; gap: 16px; }
+    .gallery-grid figure { position: relative; overflow: hidden; border-radius: 14px;
+                           background: var(--ink); margin: 0; }
+    .gallery-grid figure::after { content: ""; position: absolute; inset: 0;
+      background: linear-gradient(165deg, rgba(124,58,74,0.10), rgba(36,28,30,0.22));
+      mix-blend-mode: multiply; pointer-events: none; }
+    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+    .gallery-grid figure:hover img { transform: scale(1.05); }
+    .g-a { grid-row: 1 / span 2; }
+    .g-a img { min-height: 520px; }
+    .g-b img, .g-c img, .g-d img { min-height: 252px; }
+    figcaption { position: absolute; left: 16px; bottom: 14px; z-index: 2; color: #fff;
+                 font-size: 0.88rem; font-weight: 500; letter-spacing: 0.02em;
+                 text-shadow: 0 1px 10px rgba(0,0,0,0.6); }
+
+    /* ── How it works / services — numbered editorial list ───────── */
+    #shop { background: var(--surface); }
+    .svc { border-top: 1px solid var(--line); }
+    .svc-row { display: grid; grid-template-columns: 78px 1fr; gap: 28px; align-items: start;
+               padding: 30px 6px; border-top: 1px solid var(--line); transition: background 0.3s var(--ease); }
+    .svc:first-of-type .svc-row:first-child { border-top: none; }
+    .svc-row:hover { background: var(--bg); }
+    .svc-row .idx { font-family: 'Bodoni Moda', serif; font-size: 1.5rem; color: var(--accent); }
+    .svc-row .body h3 { font-size: 1.4rem; display: flex; align-items: center; gap: 14px; font-weight: 500; }
+    .svc-row .body p { color: var(--ink-soft); margin-top: 6px; max-width: 64ch; }
+    .svc-row .ic { color: var(--accent); flex: none; }
+
+    /* ── Reviews ─────────────────────────────────────────────────── */
+    #reviews { background: var(--bg); border-top: 1px solid var(--line); }
+    .rev-top { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 44px; }
+    .rev-top .big { font-family: 'Bodoni Moda', serif; font-size: 3.2rem; font-weight: 600; line-height: 1; }
+    .rev-top .stars { color: var(--accent); font-size: 1.3rem; letter-spacing: 2px; }
+    .rev-top .meta { color: var(--ink-soft); }
+    .rev-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .rev-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+                padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+    .rev-card .s { color: var(--accent); letter-spacing: 2px; font-size: 0.95rem; }
+    .rev-card p { color: var(--ink-soft); font-size: 0.99rem; }
+    .rev-card .who { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+    .rev-card .av { width: 42px; height: 42px; border-radius: 50%; flex: none; display: grid;
+                    place-items: center; font-weight: 600; color: #fff7f4; font-size: 0.92rem;
+                    font-family: 'Jost', sans-serif; }
+    .rev-card .who .nm { font-weight: 600; font-size: 0.95rem; color: var(--ink); }
+    .rev-card .who .dt { font-size: 0.82rem; color: var(--ink-soft); }
+
+    /* ── Visit / contact (address-led) ───────────────────────────── */
+    #visit { background: var(--bg-2); border-top: 1px solid var(--line); }
+    .c-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .addr-kicker { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); }
+    .addr-xl { font-family: 'Bodoni Moda', serif; font-size: clamp(1.9rem, 4.2vw, 2.9rem);
+               color: var(--ink); display: block; margin: 8px 0 8px; line-height: 1.12; }
+    .addr-xl em { font-style: italic; color: var(--accent); }
+    .map-link { display: inline-flex; align-items: center; gap: 10px; margin: 8px 0 26px;
+                font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--accent); }
+    .map-link svg { flex: none; }
+    .map-link:hover { color: var(--accent-deep); }
+    .c-line { display: flex; gap: 14px; align-items: flex-start; padding: 16px 0; border-top: 1px solid var(--line); }
+    .c-line svg { color: var(--accent); flex: none; margin-top: 3px; }
+    .c-line .l { font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+    .c-line .v { font-size: 1.04rem; color: var(--ink); }
+
+    form { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 30px; }
+    form .f-head { font-family: 'Bodoni Moda', serif; font-size: 1.35rem; margin-bottom: 4px; font-weight: 500; }
+    form .f-sub { color: var(--ink-soft); font-size: 0.94rem; margin-bottom: 22px; }
+    .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+    .field label { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.03em; }
+    .field input, .field textarea {
+      font-family: inherit; font-size: 1rem; color: var(--ink);
+      background: var(--bg); border: 1px solid var(--line); border-radius: 10px;
+      padding: 13px 15px; transition: border-color 0.25s var(--ease); }
+    .field input::placeholder, .field textarea::placeholder { color: #8b7c76; }
+    .field input:focus, .field textarea:focus { border-color: var(--accent); outline: none; }
+    .field textarea { resize: vertical; min-height: 110px; }
+    form .btn-primary { width: 100%; }
+
+    /* ── Footer ──────────────────────────────────────────────────── */
+    footer { position: relative; z-index: 2; background: var(--ink); color: #d8c9c2; padding: 64px 0 38px; }
+    .foot-grid { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; }
+    footer .brand { color: #fff; font-size: 1.8rem; }
+    footer .brand i { color: var(--accent-soft); }
+    footer .tag { color: #c9b8b1; margin-top: 10px; max-width: 38ch; font-weight: 300; }
+    .foot-links { display: flex; gap: 26px; flex-wrap: wrap; }
+    .foot-links a { color: #c9b8b1; font-size: 0.84rem; letter-spacing: 0.08em; text-transform: uppercase;
+                    transition: color 0.25s var(--ease); }
+    .foot-links a:hover { color: #fff; }
+    .foot-base { margin-top: 40px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.14);
+                 font-size: 0.84rem; color: #b3a39c; display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+
+    /* ── Entrance motion (load) ──────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(18px); animation: rise 0.8s var(--ease) forwards; }
+    .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.18s; }
+    .d3 { animation-delay: 0.31s; } .d4 { animation-delay: 0.44s; } .d5 { animation-delay: 0.57s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+
+    /* ── Responsive ──────────────────────────────────────────────── */
+    @media (max-width: 920px) {
+      .about-grid, .c-grid { grid-template-columns: 1fr; gap: 44px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .g-a { grid-row: auto; }
+      .g-a img, .g-b img, .g-c img, .g-d img { min-height: 240px; }
+      .instore { position: static; margin-top: 26px; max-width: none; backdrop-filter: none; }
+      .rev-cards { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .nav-links .lnk { display: none; }
+      section { padding: 74px 0; }
+      .hero-bg::after {
+        background:
+          linear-gradient(180deg, rgba(28,18,20,0.30) 0%, rgba(28,18,20,0.20) 30%, rgba(28,18,20,0.78) 100%);
+      }
+      .hero-inner { padding-bottom: 48px; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .g-a img, .g-b img, .g-c img, .g-d img { min-height: 260px; }
+      .svc-row { grid-template-columns: 52px 1fr; gap: 16px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { animation: none; opacity: 1; transform: none; }
+      .btn:hover, .btn-ghost:hover, .btn-primary:hover, .btn-light:hover { transform: none; }
+      .gallery-grid figure:hover img { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="banner">
+    Free website preview by <a href="https://pali-tech.com" target="_blank" rel="noopener">PaliTech — pali-tech.com</a>
+  </div>
+
+  <nav aria-label="Primary">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#">City <i>Boutique</i> Stl</a>
+      <div class="nav-links">
+        <a class="lnk" href="#about">About</a>
+        <a class="lnk" href="#instore">In Store</a>
+        <a class="lnk" href="#reviews">Reviews</a>
+        <a class="btn btn-primary" href="#visit">Visit Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- HERO — full-bleed boutique-interior photo, editorial text overlay -->
+    <header class="hero">
+      <!-- Representative stock photo (Pexels): a women's clothing boutique / rack of garments.
+           Swap for City Boutique Stl's own storefront/interior photo before launch. -->
+      <div class="hero-bg">
+        <img src="https://images.pexels.com/photos/5531709/pexels-photo-5531709.jpeg?auto=compress&cs=tinysrgb&w=1600"
+             width="1600" height="1067" loading="eager" fetchpriority="high" decoding="async"
+             alt="Racks of women's clothing inside a curated boutique interior">
+      </div>
+      <div class="wrap hero-inner">
+        <span class="hero-eyebrow reveal d1">Women's boutique · South City St. Louis</span>
+        <h1 class="headline reveal d2">A small Jefferson Ave shop with <em>new arrivals</em> every week.</h1>
+        <p class="hero-sub reveal d3">An independent women's boutique with a tight, hand-picked rack that turns over fast. Come see what just came in — there's rarely more than one of anything.</p>
+        <div class="hero-cta reveal d4">
+          <a class="btn btn-light" href="#visit">Find the shop</a>
+          <a class="btn btn-ghost" style="color:#fff;border-color:#fff;" href="#instore">See what's in now</a>
+        </div>
+      </div>
+
+      <!-- supporting in-store card — stacks AFTER the headline on mobile (static positioning < 920px) -->
+      <aside class="instore reveal d5" aria-label="At a glance">
+        <span class="pulse"><span class="dot"></span>Fresh on the rack</span>
+        <div class="rate">
+          <b>5.0</b>
+          <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <small>· 3 Google reviews</small>
+        </div>
+        <p class="note">Small, newer, and well-loved. Stock changes weekly — walk in and have a look.</p>
+      </aside>
+    </header>
+
+    <!-- ABOUT + TRUST -->
+    <section id="about">
+      <div class="wrap about-grid">
+        <div class="about-copy">
+          <span class="eyebrow">The shop</span>
+          <h2>Independently owned, on Jefferson Ave.</h2>
+          <p>City Boutique Stl is a small women's clothing shop in South City — the kind of place where the owner picks every piece herself and the rack looks different than it did last week. <em>We keep it curated, not crowded.</em></p>
+          <p>There's no online store and no endless catalog; the fun is walking in, flipping through, and finding the one thing that feels like you. If you spotted something here last visit and it's gone, that's the idea — it probably found its person.</p>
+        </div>
+        <div class="trust">
+          <div class="trust-item">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l1.5-4.5a1 1 0 0 1 .95-.7h13.1a1 1 0 0 1 .95.7L21 9"/><path d="M3 9h18v2a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0Z"/><path d="M5 11v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8"/></svg>
+            <div><div class="n">Hand-picked & rotating</div><div class="l">A tight, ever-changing rack chosen by hand — new pieces land most weeks.</div></div>
+          </div>
+          <div class="trust-item">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
+            <div><div class="n">Owner on the floor</div><div class="l">Real styling help from the person who chose the rack — not a sales script.</div></div>
+          </div>
+          <div class="trust-item">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8c3 0 4 2 7 2s4-2 7-2"/><path d="M5 14c3 0 4 2 7 2s4-2 7-2"/></svg>
+            <div><div class="n">5.0 on Google</div><div class="l">A perfect rating from the first few who found us — small numbers, kept honest.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IN-STORE GALLERY -->
+    <section id="instore">
+      <div class="wrap">
+        <div class="gal-head">
+          <div class="sec-head">
+            <span class="eyebrow">In store now</span>
+            <h2>A peek at the rack.</h2>
+            <p>A snapshot of what's hanging this week — pieces come and go fast, so think of this as a taste, not a catalog.</p>
+          </div>
+          <span class="gal-note">Always changing</span>
+        </div>
+        <!-- Representative stock photography from Pexels (pexels.com). Swap for City Boutique Stl's own photos before launch. -->
+        <div class="gallery-grid">
+          <figure class="g-a">
+            <img src="https://images.pexels.com/photos/8619007/pexels-photo-8619007.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="1040" loading="lazy" decoding="async"
+                 alt="A styled rack of women's garments inside the boutique">
+            <figcaption>This week's edit</figcaption>
+          </figure>
+          <figure class="g-b">
+            <img src="https://images.pexels.com/photos/5418892/pexels-photo-5418892.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="600" loading="lazy" decoding="async"
+                 alt="Folded knitwear and tops arranged on a boutique display">
+            <figcaption>New knits in</figcaption>
+          </figure>
+          <figure class="g-c">
+            <img src="https://images.pexels.com/photos/5531551/pexels-photo-5531551.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="600" loading="lazy" decoding="async"
+                 alt="Close-up of hanging dresses on a clothing rack">
+            <figcaption>Dresses, one of each</figcaption>
+          </figure>
+          <figure class="g-d">
+            <img src="https://images.pexels.com/photos/10689371/pexels-photo-10689371.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 width="800" height="600" loading="lazy" decoding="async"
+                 alt="A boutique interior with curated clothing and accessories">
+            <figcaption>Worth a slow flip-through</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS / WHAT YOU'LL FIND -->
+    <section id="shop">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">What you'll find</span>
+          <h2>A little of everything, none of it twice.</h2>
+          <p>No appointments, no membership, no checkout cart — just a walk-in shop with a rack worth stopping for. Here's how the visit usually goes.</p>
+        </div>
+        <!-- Illustrative service/category list inferred for a women's clothing boutique — confirm with the owner before launch. -->
+        <div class="svc">
+          <div class="svc-row">
+            <div class="idx">01</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l1.5-4.5a1 1 0 0 1 .95-.7h13.1a1 1 0 0 1 .95.7L21 9"/><path d="M3 9h18v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/><path d="M9 9a3 3 0 0 0 6 0"/></svg>Everyday & dressed-up pieces</h3>
+              <p>Tops, dresses, denim, and layering pieces for real life in the city — picked to mix with what's already in your closet.</p>
+            </div>
+          </div>
+          <div class="svc-row">
+            <div class="idx">02</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-2.7.67 1.65 1.65 0 0 0-.33 1H10.5"/><path d="M4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6"/></svg>New arrivals, most weeks</h3>
+              <p>The rack turns over often, so there's almost always something you didn't see last time. Follow along or just stop in to catch the drop.</p>
+            </div>
+          </div>
+          <div class="svc-row">
+            <div class="idx">03</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"/></svg>One-of-one finds</h3>
+              <p>We buy in small runs, so most styles come in just a piece or two. If it fits and you love it, it's likely meant to be.</p>
+            </div>
+          </div>
+          <div class="svc-row">
+            <div class="idx">04</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 5.3 5.6.5-4.2 3.8 1.2 5.6L12 19.8 6.9 22.8l1.3-5.6L4 13.3l5.6-.5Z"/></svg>Honest styling help</h3>
+              <p>Tell us where you're headed and we'll pull a few things that work together — no pressure, no pushing the priciest rack.</p>
+            </div>
+          </div>
+          <div class="svc-row">
+            <div class="idx">05</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Accessories & little extras</h3>
+              <p>The finishing touches — bags, jewelry, and the kind of small pieces that pull a whole look together.</p>
+            </div>
+          </div>
+          <div class="svc-row">
+            <div class="idx">06</div>
+            <div class="body">
+              <h3><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>A South City stop worth making</h3>
+              <p>Right on Jefferson Ave — easy to pair with a coffee and a stroll. Walk in, take your time, leave with something good.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews">
+      <div class="wrap">
+        <div class="rev-top">
+          <span class="big">5.0</span>
+          <span class="stars" aria-label="5.0 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="meta">· 3 Google reviews</span>
+        </div>
+        <!-- Illustrative reviews. The rating and count are REAL (5.0 / 3 Google reviews); the written
+             text below is sample copy (max 3 cards) to replace with the boutique's real reviews before launch. -->
+        <div class="rev-cards">
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>"Such a cute little spot on Jefferson. I went in for nothing in particular and walked out with the perfect dress for a wedding. The owner pulled a few things in my size without me even asking and none of it was pushy. I'll be back to see what's new."</p>
+            <div class="who">
+              <span class="av" style="background:#7c3a4a;">DM</span>
+              <span><span class="nm">Daniela Marquez</span><br><span class="dt">3 weeks ago</span></span>
+            </div>
+          </article>
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>"I love that the stock actually changes. Every time I stop in there's something different on the rack, and it's all stuff you won't see on everyone else. Small shop, big personality. South City needed a place like this."</p>
+            <div class="who">
+              <span class="av" style="background:#7a6a52;">KR</span>
+              <span><span class="nm">Kara Reinhardt</span><br><span class="dt">a month ago</span></span>
+            </div>
+          </article>
+          <article class="rev-card">
+            <div class="s" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>"Found this boutique on a walk down Jefferson and I'm so glad I did. Tried on a couple of tops, the fit help was honest, and the prices were fair for how unique the pieces are. It's become my go-to when I want something nobody else has."</p>
+            <div class="who">
+              <span class="av" style="background:#642d3a;">TS</span>
+              <span><span class="nm">Tierra Sanders</span><br><span class="dt">a month ago</span></span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISIT / CONTACT — address-led, walk-in, no phone -->
+    <section id="visit">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Come see us</span>
+          <h2>Walk in and have a look.</h2>
+          <p>No appointment, no online cart — the shop is the whole experience. Find us on Jefferson Ave in South City, or send a note below if you have a question first.</p>
+        </div>
+        <div class="c-grid">
+          <div>
+            <span class="addr-kicker">The shop</span>
+            <span class="addr-xl">3355 Jefferson Ave<br><em>St. Louis, MO 63118</em></span>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=3355+Jefferson+Ave+St+Louis+MO+63118" target="_blank" rel="noopener" aria-label="Open 3355 Jefferson Ave in Google Maps">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Get directions
+            </a>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/></svg>
+              <div><div class="l">Neighborhood</div><div class="v">South City · on Jefferson Ave</div></div>
+            </div>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <div><div class="l">Hours</div><div class="v">Open during posted shop hours — check the latest on our Google listing before a special trip.</div></div>
+            </div>
+            <div class="c-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l1.5-4.5a1 1 0 0 1 .95-.7h13.1a1 1 0 0 1 .95.7L21 9"/><path d="M3 9h18v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/></svg>
+              <div><div class="l">How it works</div><div class="v">Walk-in only · in-store shopping · one-of-a-kind pieces</div></div>
+            </div>
+          </div>
+
+          <form aria-label="Send the shop a note" onsubmit="return false;">
+            <div class="f-head">Have a question?</div>
+            <div class="f-sub">Want to check on hours or ask if something's still in? Drop a quick note and we'll get back to you.</div>
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" placeholder="First and last">
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com">
+            </div>
+            <div class="field">
+              <label for="f-msg">Your message</label>
+              <textarea id="f-msg" name="message" placeholder="A question about a piece, sizing, or our hours — or just say hi"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Send note</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="brand">City <i>Boutique</i> Stl</div>
+          <div class="tag">An independent women's boutique on Jefferson Ave — small rack, always changing, worth the stop.</div>
+        </div>
+        <nav class="foot-links" aria-label="Footer">
+          <a href="#about">About</a>
+          <a href="#instore">In Store</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#visit">Visit</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=3355+Jefferson+Ave+St+Louis+MO+63118" target="_blank" rel="noopener">Directions</a>
+        </nav>
+      </div>
+      <div class="foot-base">
+        <span>&copy; 2026 City Boutique Stl · 3355 Jefferson Ave, St. Louis, MO 63118</span>
+        <span>Walk-in · South City St. Louis · 5.0 &#9733; on Google</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
