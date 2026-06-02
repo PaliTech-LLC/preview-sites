@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--
+  DESIGN-SYSTEM DECLARATION
+  Customer feeling: a warm, personal boutique in The Ville — pieces picked with intention.
+  Light/dark: warm light — cream + terracotta (distinct from City's berry / Paisley's sage).
+  Display font: Fraunces (crafted serif). Body: Jost.
+  Dominant color: cocoa-ink #241a14. Desaturated accent: terracotta (#8f3f20 ink / #e0a98e light).
+  Hero archetype: full-bleed storefront photo + HEAVY scrim (the photo is a street-level shot,
+  so the scrim does double duty: contrast + masking softness).
+  Memorable moment: the "What you'll find" feature grid — leads on the goods, not a bio.
+  COMPOSITION (palitech-demo-sites — boutique): lead with WHAT YOU'LL FIND, primary CTA = Visit us
+  + hours + map (has a phone → offered as call-ahead). NO form. Review badge SUPPRESSED (only 3 reviews).
+-->
+<html lang="en" data-banner="on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>She Original Boutique — The Ville, St. Louis</title>
+<meta name="description" content="She Original Boutique on St. Louis Ave — a curated women's boutique in The Ville. Come visit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+  (function(){var p=new URLSearchParams(location.search);if(p.get('banner')==='off'||location.hash==='#nobanner'){document.documentElement.setAttribute('data-banner','off');}})();
+  document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.nav-menu a')){var t=document.getElementById('nav-toggle');if(t)t.checked=false;}});
+</script>
+<style>
+  :root{--ink:#241a14;--ink-soft:#5a4c41;--paper:#f6f0e6;--paper-2:#efe6d6;--terra:#b1542f;--terra-ink:#8f3f20;--terra-lt:#e0a98e;--line:#e0d5c2;--banner-h:38px}
+  html[data-banner="off"]{--banner-h:0px}
+  html[data-banner="off"] .banner{display:none}
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Jost",sans-serif;font-size:17px;line-height:1.7}
+  h1,h2,h3{font-family:"Fraunces",serif;font-weight:600;line-height:1.06;margin:0}
+  a{color:inherit}img{display:block}
+  .gut{padding-inline:clamp(20px,5vw,72px)}.wrap{max-width:1140px;margin:0 auto}
+  .eyebrow{font-weight:600;text-transform:uppercase;letter-spacing:.28em;font-size:.72rem;color:var(--terra-ink)}
+
+  .banner{position:fixed;inset:0 0 auto 0;height:var(--banner-h);background:#1c130d;color:#f1e6d6;display:flex;align-items:center;justify-content:center;font-size:.78rem;z-index:60}
+  .banner a{color:var(--terra-lt);font-weight:700;text-decoration:none}.banner a:hover{text-decoration:underline}
+
+  header.nav{position:fixed;top:var(--banner-h);left:0;right:0;height:66px;display:flex;align-items:center;justify-content:space-between;gap:14px;background:rgba(246,240,230,.93);z-index:50;border-bottom:1px solid var(--line)}
+  .wordmark{font-family:"Fraunces",serif;font-weight:700;font-size:1.3rem;color:var(--ink);white-space:nowrap;flex-shrink:0}
+  .wordmark span{color:var(--terra-ink);font-style:italic}
+  .nav-toggle{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+  .hamburger{display:none;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);cursor:pointer}
+  .hamburger svg{width:22px;height:22px}
+  .nav-menu{display:flex;gap:28px;align-items:center}
+  .nav-menu a{color:var(--ink-soft);text-decoration:none;font-size:.9rem;font-weight:500}
+  .nav-menu a:hover{color:var(--ink)}
+  .nav-menu .navcta{background:var(--terra-ink);color:#fff;font-weight:600;padding:11px 17px;border-radius:6px;text-decoration:none;font-size:.85rem;min-height:44px;display:inline-flex;align-items:center;max-width:100%;white-space:nowrap}
+  .nav-menu .navcta:hover{background:#76341a;color:#fff}
+  @media(max-width:820px){
+    .hamburger{display:inline-flex}
+    .nav-menu{position:fixed;top:calc(var(--banner-h) + 66px);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:#fbf6ec;border-bottom:1px solid var(--line);padding:6px 0;display:none;box-shadow:0 12px 24px rgba(36,26,20,.12)}
+    .nav-menu a{padding:14px clamp(20px,5vw,72px);min-height:44px;display:flex;align-items:center}
+    .nav-menu .navcta{margin:10px clamp(20px,5vw,72px);justify-content:center}
+    .nav-toggle:checked ~ .nav-menu{display:flex}
+  }
+
+  /* TEXTURE + TYPOGRAPHY hero (DEMO_RULES A/K): the only scraped photo is an unreliable street-level
+     shot, so instead of a mismatched/blank image we use a rich cocoa+terracotta CSS hero. No <img>. */
+  .hero{position:relative;min-height:520px;height:min(calc(100dvh - var(--banner-h) - 66px),760px);margin-top:calc(var(--banner-h) + 66px);display:flex;align-items:center;color:#fff;overflow:hidden;
+    background:radial-gradient(120% 95% at 78% 12%,rgba(193,90,52,.5),transparent 58%),linear-gradient(155deg,#2c1c12,#1c1009 62%,#140c06)}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(60% 60% at 50% 50%,transparent,rgba(18,10,6,.35)),linear-gradient(180deg,rgba(18,10,6,.12),rgba(18,10,6,.48))}
+  .hero-inner{position:relative;z-index:2;width:100%;text-align:center}
+  .hero-copy{max-width:min(92vw,44rem);margin:0 auto}
+  .hero h1{font-size:clamp(2.8rem,8vw,5.6rem);color:#fbf4e9}
+  .hero h1 em{font-style:italic;color:var(--terra-lt)}
+  .hero p.sub{font-size:clamp(1.05rem,2.3vw,1.3rem);color:#eaddcc;margin:20px auto 28px;max-width:40ch}
+  .ctas{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;text-decoration:none;border-radius:6px;padding:15px 26px;min-height:48px;font-size:.96rem;transition:transform .25s ease,background .25s ease}
+  .btn-primary{background:#fbf4e9;color:var(--terra-ink)}
+  .btn-primary:hover{background:#fff;transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.6)}
+  .btn-ghost:hover{background:rgba(255,255,255,.14)}
+
+  .section{padding-block:clamp(56px,9vw,104px)}
+  .section-head{margin-bottom:40px;max-width:32ch}
+  .section-head h2{font-size:clamp(2.1rem,5.5vw,3.6rem);margin-top:8px}
+
+  /* LEAD: what you'll find — feature grid */
+  .find-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+  .tile{background:#fff;border:1px solid var(--line);border-radius:12px;padding:26px 24px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between}
+  .tile:nth-child(1){grid-column:span 3;background:var(--terra-ink);color:#fff;border-color:var(--terra-ink)}
+  .tile:nth-child(2){grid-column:span 3}
+  .tile:nth-child(3){grid-column:span 2}
+  .tile:nth-child(4){grid-column:span 2}
+  .tile:nth-child(5){grid-column:span 2}
+  .tile .k{font-family:"Fraunces";font-size:1.45rem;color:var(--terra-ink)}
+  .tile:nth-child(1) .k{color:#fff}
+  .tile p{margin:8px 0 0;color:var(--ink-soft);font-size:.95rem}
+  .tile:nth-child(1) p{color:#fbe6da}
+  @media(max-width:820px){.find-grid{grid-template-columns:1fr 1fr}.tile,.tile:nth-child(n){grid-column:auto}}
+  @media(max-width:520px){.find-grid{grid-template-columns:1fr}}
+
+  /* about */
+  .about{background:var(--ink);color:var(--paper)}
+  .about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
+  .about h2{color:#fbf4e9;font-size:clamp(1.9rem,5vw,3rem)}
+  .about p{color:#d8c9b9}
+  .about .quote{font-family:"Fraunces";font-style:italic;font-size:clamp(1.3rem,3vw,1.9rem);color:var(--terra-lt);line-height:1.35}
+  @media(max-width:760px){.about .wrap{grid-template-columns:1fr}}
+
+  /* hours */
+  .hours{background:var(--paper-2)}
+  .hours .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(28px,5vw,60px);align-items:center}
+  .hours table{width:100%;border-collapse:collapse}
+  .hours td{padding:12px 4px;border-bottom:1px solid var(--line)}
+  .hours td.day{font-weight:600}
+  .hours td.time{text-align:right;font-variant-numeric:tabular-nums}
+  @media(max-width:760px){.hours .wrap{grid-template-columns:1fr;gap:24px}}
+
+  /* VISIT band — map + hours + call-ahead (NO form) */
+  .visit .wrap{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+  .visit-copy{padding:clamp(32px,5vw,54px);display:flex;flex-direction:column;gap:6px;justify-content:center}
+  .visit-copy h2{font-size:clamp(2rem,5vw,3.2rem)}
+  .visit-copy .addr{font-style:normal;font-size:1.25rem;margin:14px 0 2px;line-height:1.5}
+  .visit-copy p{color:var(--ink-soft);margin:0 0 18px}
+  .visit-copy .phone-line{font-size:1.05rem;margin:0 0 18px}
+  .visit-copy .phone-line a{color:var(--terra-ink);font-weight:700;text-decoration:none}
+  .visit-copy .btn-primary{align-self:flex-start;background:var(--terra-ink);color:#fff}
+  .visit-copy .btn-primary:hover{background:#76341a}
+  .map{position:relative;min-height:300px;background:repeating-linear-gradient(0deg,rgba(177,84,47,.1) 0 1px,transparent 1px 32px),repeating-linear-gradient(90deg,rgba(177,84,47,.1) 0 1px,transparent 1px 32px),radial-gradient(circle at 50% 45%,#efe6d6,#e3d6c2);display:flex;align-items:center;justify-content:center}
+  .map .pin{text-align:center}
+  .map .pin svg{width:34px;height:34px;color:var(--terra-ink)}
+  .map .pin span{display:block;margin-top:6px;font-weight:600;font-size:.85rem}
+  @media(max-width:760px){.visit .wrap{grid-template-columns:1fr}.map{min-height:200px}}
+
+  footer{background:#1c130d;color:#d3c4b4;padding-block:46px}
+  .foot{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
+  .foot .wordmark{color:#fbf4e9}.foot .wordmark span{color:var(--terra-lt);font-style:italic}
+  .foot nav{display:flex;gap:20px}.foot nav a{color:#d3c4b4;text-decoration:none;font-size:.9rem}.foot nav a:hover{color:#fff}
+  .foot small{width:100%;color:#90806f}
+
+  a:focus-visible,.btn:focus-visible{outline:3px solid var(--terra);outline-offset:3px}
+  .reveal{opacity:0;transform:translateY(18px);animation:rise .7s ease forwards}.d1{animation-delay:.1s}.d2{animation-delay:.22s}.d3{animation-delay:.34s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="banner">Free website preview by PaliTech —&nbsp;<a href="https://pali-tech.com">pali-tech.com</a></div>
+
+<header class="nav gut">
+  <span class="wordmark">She <span>Original</span></span>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="hamburger" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></label>
+  <nav class="nav-menu">
+    <a href="#find">What you'll find</a>
+    <a href="#about">The boutique</a>
+    <a href="#hours">Hours</a>
+    <a class="navcta" href="#visit">Visit us</a>
+  </nav>
+</header>
+
+<section class="hero gut">
+  <div class="hero-inner wrap">
+    <div class="hero-copy">
+      <span class="eyebrow reveal" style="color:var(--terra-lt)">St. Louis Ave · The Ville</span>
+      <h1 class="reveal d1">Originally <em>you.</em></h1>
+      <p class="sub reveal d2">A women's boutique in The Ville — curated looks, accessories and the kind of pieces that feel made for you.</p>
+      <div class="ctas reveal d3">
+        <a class="btn btn-primary" href="#visit">Visit the boutique</a>
+        <a class="btn btn-ghost" href="#find">What you'll find</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- review badge suppressed: only 3 Google reviews (< 20 threshold, DEMO_RULES J) -->
+
+<!-- LEAD SECTION: what you'll find -->
+<section class="section gut" id="find">
+  <div class="wrap">
+    <div class="section-head"><span class="eyebrow">On the racks</span><h2>What you'll find.</h2></div>
+    <div class="find-grid">
+      <div class="tile"><span class="k">The look</span><p>Curated women's apparel — everyday staples and the standout piece for the night out.</p></div>
+      <div class="tile"><span class="k">Accessories</span><p>Bags, jewelry and the details that pull a fit together.</p></div>
+      <div class="tile"><span class="k">New in</span><p>Fresh arrivals, often.</p></div>
+      <div class="tile"><span class="k">Sizes for real life</span><p>Looks that fit and flatter, picked with you in mind.</p></div>
+      <div class="tile"><span class="k">Gifts</span><p>Easy to love, easy to give.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section about gut" id="about">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" style="color:var(--terra-lt)">The boutique</span>
+      <h2>Picked with intention.</h2>
+      <p>She Original is a small boutique with a big point of view — pieces chosen one at a time so you find something that actually feels like you, not like everyone else. Come in, get styled, leave feeling original.</p>
+    </div>
+    <p class="quote">"You shouldn't have to choose between unique and wearable."</p>
+  </div>
+</section>
+
+<section class="section hours gut" id="hours">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">When we're open</span>
+      <h2 style="font-size:clamp(2rem,5vw,3.2rem);margin:8px 0 14px">Hours.</h2>
+      <p style="color:var(--ink-soft);margin:0;max-width:32ch">Open seven days — late till 7 most evenings, so you can stop by after work.</p>
+    </div>
+    <table aria-label="Opening hours">
+      <tr><td class="day">Monday</td><td class="time">11:00 AM – 7:00 PM</td></tr>
+      <tr><td class="day">Tuesday</td><td class="time">11:00 AM – 7:00 PM</td></tr>
+      <tr><td class="day">Wednesday</td><td class="time">11:00 AM – 7:00 PM</td></tr>
+      <tr><td class="day">Thursday</td><td class="time">11:00 AM – 7:00 PM</td></tr>
+      <tr><td class="day">Friday</td><td class="time">11:00 AM – 7:00 PM</td></tr>
+      <tr><td class="day">Saturday</td><td class="time">11:00 AM – 7:00 PM</td></tr>
+      <tr><td class="day">Sunday</td><td class="time">12:00 – 7:00 PM</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- testimonial: filled with the client's words after they sign — never scraped reviews -->
+
+<section class="section visit gut" id="visit">
+  <div class="wrap">
+    <div class="visit-copy">
+      <span class="eyebrow">Come see us</span>
+      <h2>Visit the boutique.</h2>
+      <address class="addr">3521 St Louis Ave<br>St. Louis, MO 63106</address>
+      <p class="phone-line">Call ahead: <a href="tel:+13142406238">(314) 240-6238</a></p>
+      <p>Best way to shop She Original is in person — stop in during open hours and we'll help you find it.</p>
+      <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=She+Original+Boutique+3521+St+Louis+Ave+St+Louis+MO+63106" target="_blank" rel="noopener">Get directions</a>
+    </div>
+    <div class="map" role="img" aria-label="Map location of She Original Boutique on St. Louis Avenue">
+      <div class="pin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>3521 St Louis Ave</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="gut">
+  <div class="wrap foot">
+    <span class="wordmark">She <span>Original</span> Boutique</span>
+    <nav><a href="#find">Shop</a><a href="#about">About</a><a href="#hours">Hours</a><a href="#visit">Visit</a></nav>
+    <small>© She Original Boutique · 3521 St Louis Ave, St. Louis, MO 63106 · A curated women's boutique in The Ville.</small>
+  </div>
+</footer>
+
+</body>
+</html>
