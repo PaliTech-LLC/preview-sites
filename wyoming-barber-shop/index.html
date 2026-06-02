@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<!--
+  DESIGN-SYSTEM DECLARATION
+  Customer feeling: a South Grand institution — the chair the neighborhood has trusted for years.
+  Light/dark: LIGHT with strong contrast (distinct from the darker barber demos).
+  Display font: Archivo Black (heavy, blocky, confident). Body: Jost.
+  Dominant color: warm cream #f7f3ec. Desaturated accent: oxblood #8c2f2a.
+  Hero archetype: full-bleed shop photo + scrim, headline bottom-left.
+  Memorable moment: the heavy oxblood price list — old-school shop pricing, proudly plain.
+  COMPOSITION (palitech-demo-sites — barber): lead with SERVICES, primary CTA = Call to book
+  (tap-to-call) + hours/map, NO form. 1 real photo folded into the hero.
+-->
+<html lang="en" data-banner="on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wyoming Barber Shop — South Grand, St. Louis</title>
+<meta name="description" content="Wyoming Barber Shop on South Grand — classic cuts, fades and beard work. Call to book.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  (function(){var p=new URLSearchParams(location.search);if(p.get('banner')==='off'||location.hash==='#nobanner'){document.documentElement.setAttribute('data-banner','off');}})();
+  document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.nav-menu a')){var t=document.getElementById('nav-toggle');if(t)t.checked=false;}});
+</script>
+<style>
+  :root{--ink:#20140f;--ink-soft:#574841;--paper:#f7f3ec;--paper-2:#efe7da;--ox:#8c2f2a;--ox-deep:#6f2420;--line:#ddd2c2;--banner-h:38px}
+  html[data-banner="off"]{--banner-h:0px}
+  html[data-banner="off"] .banner{display:none}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Jost",sans-serif;font-size:17px;line-height:1.65}
+  h1,h2,h3{font-family:"Archivo Black",sans-serif;font-weight:400;line-height:1.02;margin:0;letter-spacing:-.01em}
+  a{color:inherit}img{display:block}
+  .gut{padding-inline:clamp(20px,5vw,72px)}
+  .wrap{max-width:1160px;margin:0 auto}
+  .eyebrow{font-weight:700;text-transform:uppercase;letter-spacing:.2em;font-size:.74rem;color:var(--ox)}
+
+  .banner{position:fixed;inset:0 0 auto 0;height:var(--banner-h);background:#1a100c;color:#f0e2d8;display:flex;align-items:center;justify-content:center;font-size:.78rem;z-index:60}
+  .banner a{color:#e7a59f;font-weight:700;text-decoration:none}.banner a:hover{text-decoration:underline}
+
+  header.nav{position:fixed;top:var(--banner-h);left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;gap:14px;background:rgba(247,243,236,.95);z-index:50;border-bottom:1px solid var(--line)}
+  .wordmark{font-family:"Archivo Black",sans-serif;font-size:1.15rem;color:var(--ink);white-space:nowrap;flex-shrink:0;letter-spacing:-.02em}
+  .wordmark span{color:var(--ox)}
+  .nav-toggle{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+  .hamburger{display:none;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);cursor:pointer}
+  .hamburger svg{width:22px;height:22px}
+  .nav-menu{display:flex;gap:26px;align-items:center}
+  .nav-menu a{color:var(--ink-soft);text-decoration:none;font-size:.92rem;font-weight:600}
+  .nav-menu a:hover{color:var(--ink)}
+  .nav-menu .navcta{background:var(--ox);color:#fff;font-weight:700;padding:10px 16px;border-radius:6px;text-decoration:none;font-size:.88rem;min-height:44px;display:inline-flex;align-items:center;gap:7px;max-width:100%;white-space:nowrap}
+  .nav-menu .navcta:hover{background:var(--ox-deep);color:#fff}
+  @media(max-width:820px){
+    .hamburger{display:inline-flex}
+    .nav-menu{position:fixed;top:calc(var(--banner-h) + 64px);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:#fbf8f2;border-bottom:1px solid var(--line);padding:6px 0;display:none;box-shadow:0 12px 24px rgba(32,20,15,.12)}
+    .nav-menu a{padding:14px clamp(20px,5vw,72px);min-height:44px;display:flex;align-items:center}
+    .nav-menu .navcta{margin:10px clamp(20px,5vw,72px);justify-content:center}
+    .nav-toggle:checked ~ .nav-menu{display:flex}
+  }
+
+  .hero{position:relative;min-height:520px;height:min(calc(100dvh - var(--banner-h) - 64px),860px);margin-top:calc(var(--banner-h) + 64px);display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(16,9,6,.94),rgba(16,9,6,.78) 50%,rgba(16,9,6,.5)),linear-gradient(0deg,rgba(16,9,6,.9),rgba(16,9,6,.2) 55%)}
+  .hero-inner{position:relative;z-index:2;width:100%;padding-block:clamp(34px,7vh,80px);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+  .hero-copy{max-width:min(92vw,40rem)}
+  .hero h1{font-size:clamp(2.7rem,8vw,5.6rem);color:#fdf8f2}
+  .hero h1 span{color:#e7a59f}
+  .hero p.sub{font-family:"Jost";font-size:clamp(1.05rem,2.3vw,1.28rem);color:#f0ddd4;margin:18px 0 26px;max-width:36ch}
+  .ctas{display:flex;flex-wrap:wrap;gap:13px}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;text-decoration:none;border-radius:7px;padding:14px 22px;min-height:48px;font-size:1rem;transition:transform .25s ease,background .25s ease}
+  .btn-primary{background:#fff;color:var(--ox-deep)}
+  .btn-primary:hover{background:#f3e2dd;transform:translateY(-2px)}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.5)}
+  .btn-ghost:hover{background:rgba(255,255,255,.16)}
+  .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(16,9,6,.6);border:1px solid rgba(231,165,159,.5);color:#f7e4e0;padding:9px 14px;border-radius:999px;font-size:.84rem}
+  .badge .stars{color:#e7a59f;letter-spacing:2px}
+
+  .section{padding-block:clamp(54px,9vw,100px)}
+  .section-head{margin-bottom:38px}
+  .section-head h2{font-size:clamp(2.1rem,5.5vw,3.6rem);margin-top:8px}
+
+  /* LEAD: services as a heavy price list */
+  .price-list{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(30px,6vw,80px)}
+  .pl-row{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:14px;padding:18px 0;border-bottom:2px solid var(--line)}
+  .pl-row .nm{font-family:"Archivo Black";font-size:1.15rem}
+  .pl-row .ds{grid-column:1;color:var(--ink-soft);font-size:.94rem;margin-top:2px}
+  .pl-row .pr{font-family:"Archivo Black";font-size:1.3rem;color:var(--ox)}
+  @media(max-width:760px){.price-list{grid-template-columns:1fr}}
+
+  /* about + trust on dark band */
+  .about{background:var(--ink);color:var(--paper)}
+  .about .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(28px,5vw,60px);align-items:center}
+  .about h2{color:#fdf8f2;font-size:clamp(1.9rem,5vw,3rem)}
+  .about p{color:#d7c8bf}
+  .trust{display:grid;gap:14px}
+  .trust .t{display:flex;gap:14px;align-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:16px 18px}
+  .trust .t svg{width:24px;height:24px;color:#e7a59f;flex:none}
+  .trust .t b{font-family:"Archivo Black";font-size:1.2rem;display:block;line-height:1.05}
+  .trust .t span{color:#d7c8bf;font-size:.88rem}
+  @media(max-width:760px){.about .wrap{grid-template-columns:1fr}}
+
+  /* hours */
+  .hours{background:var(--paper-2)}
+  .hours .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(28px,5vw,60px);align-items:center}
+  .hours table{width:100%;border-collapse:collapse}
+  .hours td{padding:12px 4px;border-bottom:1px solid var(--line)}
+  .hours td.day{font-weight:600}
+  .hours td.time{text-align:right;font-variant-numeric:tabular-nums}
+  .hours tr.closed td.time{color:var(--ox)}
+  @media(max-width:760px){.hours .wrap{grid-template-columns:1fr;gap:26px}}
+
+  /* CTA call band + map */
+  .cta{background:var(--ink);color:var(--paper)}
+  .cta .wrap{display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(231,165,159,.3);border-radius:16px;overflow:hidden}
+  .cta-call{padding:clamp(32px,5vw,54px);display:flex;flex-direction:column;gap:12px;justify-content:center}
+  .cta-call h2{color:#fdf8f2;font-size:clamp(2rem,5vw,3.2rem)}
+  .cta-call p{color:#d7c8bf;margin:0}
+  .phone-big{font-family:"Archivo Black";font-size:clamp(2rem,6vw,3.4rem);color:#e7a59f;text-decoration:none;line-height:1}
+  .phone-big:hover{color:#f0bfba}
+  .cta-call .btn-primary{align-self:flex-start;margin-top:6px}
+  .map{position:relative;min-height:280px;background:repeating-linear-gradient(0deg,rgba(231,165,159,.08) 0 1px,transparent 1px 34px),repeating-linear-gradient(90deg,rgba(231,165,159,.08) 0 1px,transparent 1px 34px),radial-gradient(circle at 55% 45%,#2c1b14,#20140f);display:flex;align-items:center;justify-content:center;padding:26px}
+  .map .pin{background:rgba(16,9,6,.85);border:1px solid rgba(231,165,159,.5);border-radius:12px;padding:20px;max-width:300px;text-align:center}
+  .map .pin svg{width:30px;height:30px;color:#e7a59f;margin-bottom:8px}
+  .map .pin address{font-style:normal;color:#f0ddd4;line-height:1.5}
+  .map .pin a{display:inline-block;margin-top:12px;color:#e7a59f;font-weight:700;text-decoration:none}
+  .map .pin a:hover{text-decoration:underline}
+  @media(max-width:760px){.cta .wrap{grid-template-columns:1fr}}
+
+  footer{background:#1a100c;color:#cdbcb2;padding-block:44px}
+  .foot{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
+  .foot .wordmark{color:#fdf8f2}.foot .wordmark span{color:#e7a59f}
+  .foot nav{display:flex;gap:20px}.foot nav a{color:#cdbcb2;text-decoration:none;font-size:.9rem}.foot nav a:hover{color:#fff}
+  .foot small{width:100%;color:#9a877d}
+
+  a:focus-visible,.btn:focus-visible{outline:3px solid var(--ox);outline-offset:3px}
+  .reveal{opacity:0;transform:translateY(18px);animation:rise .7s ease forwards}.d1{animation-delay:.1s}.d2{animation-delay:.22s}.d3{animation-delay:.34s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="banner">Free website preview by PaliTech —&nbsp;<a href="https://pali-tech.com">pali-tech.com</a></div>
+
+<header class="nav gut">
+  <span class="wordmark">WYOMING <span>BARBER</span></span>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="hamburger" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></label>
+  <nav class="nav-menu">
+    <a href="#services">Services</a>
+    <a href="#hours">Hours</a>
+    <a href="#visit">Visit</a>
+    <a class="navcta" href="tel:+13147726675">Call to book</a>
+  </nav>
+</header>
+
+<section class="hero gut">
+  <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAFVkXJVRZYbg3F4A0ppmHg0WhEgzud_gqQ_wClkGmFSjVmKdUShG3swQz_dycngejLmX5448m_v0wayaoP3SDIwB7HBJVFoOsGgctnZixI8tWCEdK3zU7Vgp6oKmXEl4boJsObcJA=w800-h500-k-no"
+       alt="Inside Wyoming Barber Shop on South Grand, St. Louis" width="1600" height="1000" decoding="async" fetchpriority="high" loading="eager">
+  <div class="hero-inner wrap">
+    <div class="hero-copy">
+      <span class="eyebrow reveal" style="color:#f0bfba">South Grand · St. Louis</span>
+      <h1 class="reveal d1">The shop<br>South Grand <span>trusts.</span></h1>
+      <p class="sub reveal d2">Classic cuts, clean fades and beard work — done right, no rush. A neighborhood chair for the whole family.</p>
+      <div class="ctas reveal d3">
+        <a class="btn btn-primary" href="tel:+13147726675">Call to book</a>
+        <a class="btn btn-ghost" href="#hours">See hours</a>
+      </div>
+    </div>
+    <div class="badge reveal d3"><span class="stars">★★★★★</span> 4.8 · 292 Google reviews</div>
+  </div>
+</section>
+
+<!-- LEAD SECTION: services price list -->
+<section class="section gut" id="services">
+  <div class="wrap">
+    <div class="section-head"><span class="eyebrow">The list</span><h2>Cuts &amp; pricing.</h2></div>
+    <div class="price-list">
+      <div class="pl-row"><span class="nm">Haircut</span><span class="pr">$25</span><span class="ds">Scissor or clipper, cleaned up and styled.</span></div>
+      <div class="pl-row"><span class="nm">Skin Fade</span><span class="pr">$30</span><span class="ds">Tight, blended fade shaped to your line.</span></div>
+      <div class="pl-row"><span class="nm">Beard Trim</span><span class="pr">$15</span><span class="ds">Shaped, edged and lined up.</span></div>
+      <div class="pl-row"><span class="nm">Cut + Beard</span><span class="pr">$38</span><span class="ds">The full tune-up, head to chin.</span></div>
+      <div class="pl-row"><span class="nm">Kids (10 &amp; under)</span><span class="pr">$18</span><span class="ds">Quick, patient and clean.</span></div>
+      <div class="pl-row"><span class="nm">Senior Cut</span><span class="pr">$20</span><span class="ds">Same care, neighbor's rate.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section about gut">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" style="color:#e7a59f">On South Grand</span>
+      <h2>Years in the same chair.</h2>
+      <p>Wyoming Barber Shop has been a South Grand fixture — the kind of place where the barber knows your name and your kid's first cut happened in the same seat. We keep it classic, keep it clean, and keep the line moving.</p>
+    </div>
+    <div class="trust">
+      <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><div><b>4.8 ★</b><span>292 Google reviews</span></div></div>
+      <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><div><b>Walk-ins</b><span>Welcome, or call ahead</span></div></div>
+      <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><div><b>6 days</b><span>Open Monday–Saturday</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section hours gut" id="hours">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Stop by</span>
+      <h2 style="font-size:clamp(2rem,5vw,3.2rem);margin:8px 0 14px">Hours.</h2>
+      <p style="color:var(--ink-soft);margin:0;max-width:32ch">Open early most days. Friday runs late to 7. Closed Sundays.</p>
+    </div>
+    <table aria-label="Opening hours">
+      <tr><td class="day">Monday</td><td class="time">8:30 AM – 5:00 PM</td></tr>
+      <tr><td class="day">Tuesday</td><td class="time">8:30 AM – 5:00 PM</td></tr>
+      <tr><td class="day">Wednesday</td><td class="time">8:30 AM – 5:00 PM</td></tr>
+      <tr><td class="day">Thursday</td><td class="time">8:30 AM – 5:00 PM</td></tr>
+      <tr><td class="day">Friday</td><td class="time">8:30 AM – 7:00 PM</td></tr>
+      <tr><td class="day">Saturday</td><td class="time">8:30 AM – 3:00 PM</td></tr>
+      <tr class="closed"><td class="day">Sunday</td><td class="time">Closed</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- testimonial: filled with the client's words after they sign — never scraped reviews -->
+
+<section class="section cta gut" id="visit">
+  <div class="wrap">
+    <div class="cta-call">
+      <span class="eyebrow" style="color:#e7a59f">Book your chair</span>
+      <h2>Give the shop a call.</h2>
+      <p>Quickest way in — ring us and we'll set you up.</p>
+      <a class="phone-big" href="tel:+13147726675">(314) 772-6675</a>
+      <a class="btn btn-primary" href="tel:+13147726675">Tap to call</a>
+    </div>
+    <div class="map" role="img" aria-label="Map location of Wyoming Barber Shop on South Grand Blvd">
+      <div class="pin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <address>3192 S Grand Blvd<br>St. Louis, MO 63118</address>
+        <a href="https://www.google.com/maps/search/?api=1&query=Wyoming+Barber+Shop+3192+S+Grand+Blvd+St+Louis+MO" target="_blank" rel="noopener">Get directions →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="gut">
+  <div class="wrap foot">
+    <span class="wordmark">WYOMING <span>BARBER SHOP</span></span>
+    <nav><a href="#services">Services</a><a href="#hours">Hours</a><a href="#visit">Visit</a><a href="tel:+13147726675">Call</a></nav>
+    <small>© Wyoming Barber Shop · 3192 S Grand Blvd, St. Louis, MO 63118 · Classic cuts on South Grand.</small>
+  </div>
+</footer>
+
+</body>
+</html>
