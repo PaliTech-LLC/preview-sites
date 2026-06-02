@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<!--
+  DESIGN-SYSTEM DECLARATION
+  Customer feeling: walk out sharper than you walked in — a neighborhood chair you trust.
+  Light/dark: warm-dark. A barbershop reads best low-lit and confident, not clinical.
+  Display font: Bebas Neue (tall, barber-pole condensed, masculine-but-warm).
+  Body font: DM Sans (clean, legible, no fuss).
+  Dominant color: charcoal #15110d. Desaturated accent: brass #c79a4e.
+  Hero archetype: full-bleed shop photo + scrim, headline left.
+  Memorable moment: the brass "Open till 7:30" hours card — the thing a cold-call owner sees first.
+  COMPOSITION (palitech-demo-sites skill — Barber): lead with HOURS, primary CTA = Call to book
+  (tap-to-call) + map, NO contact form. 1 real photo → folded into hero, no standalone gallery.
+-->
+<html lang="en" data-banner="on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Cut Barbers — St. Louis, MO</title>
+<meta name="description" content="Golden Cut Barbers on Gravois Ave — fades, beard work and hot-towel shaves. Open till 7:30. Call to book.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+  // Runtime banner toggle so the same file shows banner-off in person (?banner=off / #nobanner).
+  (function () {
+    var p = new URLSearchParams(location.search);
+    if (p.get('banner') === 'off' || location.hash === '#nobanner') {
+      document.documentElement.setAttribute('data-banner', 'off');
+    }
+  })();
+  // close the mobile menu after tapping any link in it
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('.nav-menu a')) {
+      var t = document.getElementById('nav-toggle'); if (t) t.checked = false;
+    }
+  });
+</script>
+<style>
+  :root{
+    --ink:#15110d; --ink-soft:#3a332b; --paper:#f5efe4; --paper-2:#ece3d3;
+    --brass:#946a23; --brass-bright:#c79a4e;
+    --line:#d6c8af;
+    --banner-h:38px;
+  }
+  html[data-banner="off"]{--banner-h:0px}
+  html[data-banner="off"] .banner{display:none}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.display{font-family:"Bebas Neue",sans-serif;font-weight:400;letter-spacing:.01em;line-height:.95;margin:0}
+  a{color:inherit}
+  img{display:block}
+  .gut{padding-inline:clamp(20px,5vw,72px)}
+  /* eyebrow defaults to a DARK brass for light-background sections (clears 4.5:1);
+     eyebrows that sit on dark/photo backgrounds override to --brass-bright inline. */
+  .eyebrow{font-family:"DM Sans",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.22em;font-size:.74rem;color:#6f4e15}
+
+  /* banner */
+  .banner{position:fixed;inset:0 0 auto 0;height:var(--banner-h);background:#0e0b08;color:#e9dcc2;display:flex;align-items:center;justify-content:center;font-size:.78rem;letter-spacing:.02em;z-index:60}
+  .banner a{color:var(--brass-bright);font-weight:700;text-decoration:none}
+  .banner a:hover{text-decoration:underline}
+
+  /* nav */
+  /* no backdrop-filter: it would make the header a containing block for the fixed menu and offset it by the banner height */
+  header.nav{position:fixed;top:var(--banner-h);left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;gap:14px;background:#100b08;z-index:50;border-bottom:1px solid rgba(199,154,78,.25)}
+  .wordmark{font-family:"Bebas Neue",sans-serif;font-size:1.55rem;color:var(--paper);letter-spacing:.06em;white-space:nowrap;flex-shrink:0}
+  .wordmark b{color:var(--brass-bright)}
+  .nav-toggle{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+  .hamburger{display:none;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid rgba(199,154,78,.4);border-radius:8px;background:transparent;color:#e7dcc8;cursor:pointer}
+  .hamburger svg{width:22px;height:22px}
+  .nav-menu{display:flex;gap:30px;align-items:center}
+  .nav-menu a{color:#e7dcc8;text-decoration:none;font-size:.92rem;font-weight:500}
+  .nav-menu a:hover{color:#fff}
+  .nav-menu .navcta{display:inline-flex;align-items:center;gap:7px;background:var(--brass-bright);color:#1a1206;font-weight:700;padding:10px 16px;border-radius:6px;text-decoration:none;font-size:.9rem;min-height:44px;max-width:100%;white-space:nowrap}
+  .nav-menu .navcta:hover{background:#d8ab5d;color:#1a1206}
+  @media(max-width:820px){
+    .hamburger{display:inline-flex}
+    .nav-menu{position:fixed;top:calc(var(--banner-h) + 64px);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(14,11,8,.98);border-bottom:1px solid rgba(199,154,78,.25);padding:6px 0;display:none}
+    .nav-menu a{padding:14px clamp(20px,5vw,72px);min-height:44px;display:flex;align-items:center}
+    .nav-menu .navcta{margin:10px clamp(20px,5vw,72px);justify-content:center}
+    .nav-toggle:checked ~ .nav-menu{display:flex}
+  }
+
+  /* hero */
+  /* min-height for short screens; height caps at 860px so a single ~800px photo isn't upscaled across a tall hero */
+  .hero{position:relative;min-height:520px;height:min(calc(100dvh - var(--banner-h) - 64px),860px);margin-top:calc(var(--banner-h) + 64px);display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(8,6,4,.95) 0%,rgba(8,6,4,.82) 45%,rgba(8,6,4,.5) 100%),linear-gradient(0deg,rgba(8,6,4,.9) 0%,rgba(8,6,4,.55) 45%,rgba(8,6,4,.25) 100%)}
+  .hero-inner{position:relative;z-index:2;width:100%;max-width:1180px;margin:0 auto;padding-block:clamp(36px,8vh,90px);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end}
+  .hero-copy{max-width:min(92vw,42rem)}
+  .hero h1{font-size:clamp(3.2rem,9vw,7rem);color:#fdf7ea}
+  .hero h1 .accent{color:var(--brass-bright)}
+  .hero p.sub{font-size:clamp(1.05rem,2.4vw,1.3rem);color:#ecdfca;margin:18px 0 26px;max-width:34ch}
+  .hero .ctas{display:flex;flex-wrap:wrap;gap:14px}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;text-decoration:none;border-radius:7px;padding:14px 22px;min-height:48px;font-size:1rem;transition:transform .25s ease,background .25s ease,box-shadow .25s ease}
+  .btn-primary{background:var(--brass-bright);color:#1a1206}
+  .btn-primary:hover{background:#d8ab5d;transform:translateY(-2px)}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.4)}
+  .btn-ghost:hover{background:rgba(255,255,255,.16)}
+  .rating-chip{display:inline-flex;align-items:center;gap:9px;background:rgba(20,15,10,.6);border:1px solid rgba(199,154,78,.5);padding:9px 15px;border-radius:999px;font-size:.86rem;color:#f1e6d2;align-self:flex-end}
+  .rating-chip .stars{color:var(--brass-bright);letter-spacing:2px}
+  @media(max-width:780px){
+    .hero-inner{grid-template-columns:1fr}
+    .rating-chip{justify-self:start}
+  }
+
+  /* hours — LEAD section */
+  .hours{background:var(--ink);color:var(--paper);padding-block:clamp(46px,8vw,86px)}
+  .hours-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
+  .hours h2{font-size:clamp(2.4rem,6vw,4rem);color:#fdf7ea}
+  .hours .lead-note{color:#cdbfa6;margin-top:14px;max-width:38ch}
+  .hours table{width:100%;border-collapse:collapse;margin-top:6px}
+  .hours td{padding:13px 4px;border-bottom:1px solid rgba(214,200,175,.16);font-size:1.02rem}
+  .hours td.day{color:#e9ddc7;font-weight:500}
+  .hours td.time{text-align:right;color:#fff;font-variant-numeric:tabular-nums}
+  .hours tr.closed td.time{color:#b9886b}
+  .hours tr.today td{color:var(--brass-bright);font-weight:700}
+  .hours tr.today td.day::before{content:"●  ";color:var(--brass-bright)}
+  @media(max-width:780px){.hours-grid{grid-template-columns:1fr;gap:30px}}
+
+  /* services */
+  .section{padding-block:clamp(54px,9vw,104px)}
+  .section-head{max-width:1180px;margin:0 auto 40px}
+  .section-head h2{font-size:clamp(2.4rem,6vw,4.2rem);margin-top:8px}
+  .svc{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .svc .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:26px 24px;display:flex;flex-direction:column;gap:10px}
+  .svc .card:nth-child(1){grid-row:span 2;background:var(--ink);color:var(--paper);justify-content:space-between}
+  .svc .card:nth-child(1) .price{color:var(--brass-bright)}
+  .svc .card svg{width:30px;height:30px;color:var(--brass)}
+  .svc .card:nth-child(1) svg{color:var(--brass-bright)}
+  .svc .card:nth-child(1) p{color:#dccba8}
+  .svc h3{font-size:1.7rem;letter-spacing:.02em}
+  .svc .price{font-family:"Bebas Neue";font-size:1.5rem;color:var(--ink)}
+  .svc p{margin:0;color:var(--ink-soft);font-size:.96rem}
+  @media(max-width:900px){.svc{grid-template-columns:1fr 1fr}.svc .card:nth-child(1){grid-row:auto}}
+  @media(max-width:560px){.svc{grid-template-columns:1fr}}
+
+  /* about + trust */
+  .about{background:var(--paper-2)}
+  .about-wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(28px,5vw,60px);align-items:center}
+  .about p{color:var(--ink-soft);font-size:1.08rem}
+  .trust{display:grid;gap:14px}
+  .trust .t{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:flex;gap:14px;align-items:center}
+  .trust .t svg{width:26px;height:26px;color:var(--brass);flex:none}
+  .trust .t b{font-family:"Bebas Neue";font-size:1.7rem;display:block;line-height:1}
+  .trust .t span{color:var(--ink-soft);font-size:.9rem}
+  @media(max-width:780px){.about-wrap{grid-template-columns:1fr}}
+
+  /* CTA band — Call to book + map (NO FORM) */
+  .cta{background:var(--ink);color:var(--paper)}
+  .cta-wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(199,154,78,.3);border-radius:16px;overflow:hidden}
+  .cta-call{padding:clamp(34px,5vw,56px);display:flex;flex-direction:column;justify-content:center;gap:14px}
+  .cta-call h2{font-size:clamp(2.2rem,5vw,3.6rem);color:#fdf7ea}
+  .cta-call p{color:#cdbfa6;margin:0}
+  .phone-big{font-family:"Bebas Neue";font-size:clamp(2.6rem,7vw,4.4rem);color:var(--brass-bright);text-decoration:none;letter-spacing:.02em;line-height:1}
+  .phone-big:hover{color:#d8ab5d}
+  .cta-call .btn-primary{align-self:flex-start;margin-top:6px}
+  .map{position:relative;min-height:280px;background:
+     repeating-linear-gradient(0deg,rgba(199,154,78,.08) 0 1px,transparent 1px 34px),
+     repeating-linear-gradient(90deg,rgba(199,154,78,.08) 0 1px,transparent 1px 34px),
+     radial-gradient(circle at 60% 45%,#241c12,#15110d);display:flex;align-items:center;justify-content:center;text-align:center;padding:28px}
+  .map .pin{background:rgba(14,11,8,.85);border:1px solid rgba(199,154,78,.5);border-radius:12px;padding:20px 22px;max-width:320px}
+  .map .pin svg{width:30px;height:30px;color:var(--brass-bright);margin-bottom:8px}
+  .map .pin address{font-style:normal;color:#ecdfca;font-size:1rem;line-height:1.5}
+  .map .pin a{display:inline-block;margin-top:12px;color:var(--brass-bright);font-weight:700;text-decoration:none}
+  .map .pin a:hover{text-decoration:underline}
+  @media(max-width:780px){.cta-wrap{grid-template-columns:1fr}}
+
+  /* footer */
+  footer{background:#0e0b08;color:#cdbfa6;padding-block:46px}
+  .foot{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center}
+  .foot .wordmark{font-size:1.7rem}
+  .foot nav{display:flex;gap:22px}
+  .foot nav a{color:#cdbfa6;text-decoration:none;font-size:.9rem}
+  .foot nav a:hover{color:#fff}
+  .foot small{color:#8a7c63;width:100%}
+
+  /* motion + a11y */
+  a:focus-visible,.btn:focus-visible{outline:3px solid var(--brass-bright);outline-offset:3px}
+  .reveal{opacity:0;transform:translateY(18px);animation:rise .7s ease forwards}
+  .d1{animation-delay:.1s}.d2{animation-delay:.22s}.d3{animation-delay:.34s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="banner">Free website preview by PaliTech —&nbsp;<a href="https://pali-tech.com">pali-tech.com</a></div>
+
+<header class="nav gut">
+  <span class="wordmark">GOLDEN<b>CUT</b></span>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="hamburger" aria-label="Open menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </label>
+  <nav class="nav-menu">
+    <a href="#hours">Hours</a>
+    <a href="#services">Services</a>
+    <a href="#visit">Visit</a>
+    <a class="navcta" href="tel:+13143331663">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92z"/></svg>
+      Call to book
+    </a>
+  </nav>
+</header>
+
+<section class="hero">
+  <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAEzjdQKdEq3KnNNokL5uZuy7AYYqyUcvR-eZBcj4XuVNa3l_sweV4CPwUJnMECC2HeXGgxFZ7LsbktfxlNc2iNzNkJabF9nIPw8lAZdTywjcbtC9xI6vqoSehc1VIfZVpMFo9812C3bNpIN=w800-h500-k-no"
+       alt="Inside Golden Cut Barbers on Gravois Avenue, St. Louis" width="1600" height="1000" decoding="async" fetchpriority="high" loading="eager">
+  <div class="hero-inner gut">
+    <div class="hero-copy">
+      <span class="eyebrow reveal" style="color:var(--brass-bright)">Gravois Ave · South City St. Louis</span>
+      <h1 class="reveal d1">A clean cut,<br><span class="accent">every</span> time.</h1>
+      <p class="sub reveal d2">Fades, beard work and hot-towel shaves from the chair South City already trusts. Open six days, late till 7:30.</p>
+      <div class="ctas reveal d3">
+        <a class="btn btn-primary" href="tel:+13143331663">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92z"/></svg>
+          Call to book
+        </a>
+        <a class="btn btn-ghost" href="#hours">See today's hours</a>
+      </div>
+    </div>
+    <div class="rating-chip reveal d3"><span class="stars">★★★★★</span> 5.0 · 1,158 Google reviews</div>
+  </div>
+</section>
+
+<!-- LEAD SECTION: hours (barber → hours-led per palitech-demo-sites) -->
+<section class="hours gut" id="hours">
+  <div class="hours-grid">
+    <div>
+      <span class="eyebrow" style="color:var(--brass-bright)">Walk in or call ahead</span>
+      <h2>Open late,<br>six days a week.</h2>
+      <p class="lead-note">Closed Mondays — every other day the chair's open till 7:30, so you can stop by after work. Call <a href="tel:+13143331663" style="color:var(--brass-bright);font-weight:700;text-decoration:none">(314) 333-1663</a> to lock a time.</p>
+    </div>
+    <table aria-label="Opening hours">
+      <tr class="closed"><td class="day">Monday</td><td class="time">Closed</td></tr>
+      <tr><td class="day">Tuesday</td><td class="time">10:00 AM – 7:30 PM</td></tr>
+      <tr><td class="day">Wednesday</td><td class="time">10:00 AM – 7:30 PM</td></tr>
+      <tr><td class="day">Thursday</td><td class="time">10:00 AM – 7:30 PM</td></tr>
+      <tr><td class="day">Friday</td><td class="time">10:00 AM – 7:30 PM</td></tr>
+      <tr><td class="day">Saturday</td><td class="time">10:00 AM – 7:30 PM</td></tr>
+      <tr><td class="day">Sunday</td><td class="time">10:00 AM – 7:30 PM</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="section gut" id="services">
+  <div class="section-head">
+    <span class="eyebrow">The menu</span>
+    <h2>What we do best.</h2>
+  </div>
+  <div class="svc">
+    <div class="card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+      <div>
+        <h3>Skin Fade</h3>
+        <p>Tight, blended and shaped to your line. The house specialty.</p>
+      </div>
+      <span class="price">$35</span>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v4H4z"/><path d="M6 8v9a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V8"/></svg>
+      <h3>Classic Cut</h3>
+      <p>Scissor or clipper, washed and styled. Clean and timeless.</p>
+      <span class="price">$30</span>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6c4 0 4 4 9 4s5-4 9-4"/><path d="M3 12c4 0 4 5 9 5s5-5 9-5"/></svg>
+      <h3>Beard Trim &amp; Line-up</h3>
+      <p>Shaped, edged and oiled so the beard frames the cut.</p>
+      <span class="price">$20</span>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s5 5 5 11a5 5 0 0 1-10 0c0-6 5-11 5-11z"/></svg>
+      <h3>Hot Towel Shave</h3>
+      <p>Straight-razor finish with a hot towel. The full reset.</p>
+      <span class="price">$30</span>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg>
+      <h3>Kids Cut</h3>
+      <p>Patient, quick and clean for the little ones (10 &amp; under).</p>
+      <span class="price">$25</span>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12V8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v4"/><path d="M2 12h20v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/></svg>
+      <h3>Cut + Beard Combo</h3>
+      <p>The full service — fade and beard, dialed in together.</p>
+      <span class="price">$50</span>
+    </div>
+  </div>
+</section>
+
+<section class="section about gut">
+  <div class="about-wrap">
+    <div>
+      <span class="eyebrow">The shop</span>
+      <h2 style="font-size:clamp(2.2rem,5vw,3.4rem);margin:8px 0 16px">Sharp work, no rush, on Gravois.</h2>
+      <p>Golden Cut has built its name one fade at a time — a chair where regulars send their kids and first-timers leave looking like regulars. We keep it simple: take our time, get the line right, send you out sharp.</p>
+      <p>Stop in or call ahead — we keep walk-ins moving and appointments on time.</p>
+    </div>
+    <div class="trust">
+      <div class="t">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <div><b>5.0 ★</b><span>1,158 Google reviews</span></div>
+      </div>
+      <div class="t">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <div><b>Walk-ins</b><span>Welcome — or call to reserve</span></div>
+      </div>
+      <div class="t">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div><b>Till 7:30</b><span>Open late, Tuesday–Sunday</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- testimonial: filled with the client's words after they sign — never scraped reviews -->
+
+<section class="cta gut section" id="visit">
+  <div class="cta-wrap">
+    <div class="cta-call">
+      <span class="eyebrow" style="color:var(--brass-bright)">Ready when you are</span>
+      <h2>Call the shop, book your chair.</h2>
+      <p>Quickest way in — give us a ring and we'll get you set.</p>
+      <a class="phone-big" href="tel:+13143331663">(314) 333-1663</a>
+      <a class="btn btn-primary" href="tel:+13143331663">Tap to call</a>
+    </div>
+    <div class="map" role="img" aria-label="Map location of Golden Cut Barbers on Gravois Avenue">
+      <div class="pin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <address>5457 Gravois Ave, Unit A<br>St. Louis, MO 63116</address>
+        <a href="https://www.google.com/maps/search/?api=1&query=Golden+Cut+Barbers+5457+Gravois+Ave+St+Louis+MO" target="_blank" rel="noopener">Get directions →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="gut">
+  <div class="foot">
+    <span class="wordmark">GOLDEN<b>CUT</b> BARBERS</span>
+    <nav>
+      <a href="#hours">Hours</a>
+      <a href="#services">Services</a>
+      <a href="#visit">Visit</a>
+      <a href="tel:+13143331663">Call</a>
+    </nav>
+    <small>© Golden Cut Barbers LLC · 5457 Gravois Ave, St. Louis, MO 63116 · Sharp cuts, six days a week.</small>
+  </div>
+</footer>
+
+</body>
+</html>
