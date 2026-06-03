@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<!--
+  DESIGN-SYSTEM DECLARATION
+  Customer feeling: a Dogtown corner shop with character — unhurried, old-school, welcoming.
+  Light/dark: warm-dark teal (distinct from the other barber demos' charcoal/cream/gold).
+  Display font: Libre Caslon Display (characterful serif). Body: DM Sans.
+  Dominant color: deep teal-black #0f1f1d. Desaturated accent: pine teal #2f6f63.
+  Hero archetype: full-bleed shop photo + scrim, headline bottom-left.
+  Memorable moment: the VISIT panel — appointment-only shop with NO phone in the data, so booking
+  is "by appointment, find us on Google to call ahead." We never invent a number.
+  COMPOSITION (palitech-demo-sites — barber, appointment-only, no phone): lead with the SHOP STORY
+  (about), then services, hours, and a VISIT band (map + directions + book-on-Google). NO form, NO phone.
+-->
+<html lang="en" data-banner="on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Southtown Barbershop — McCausland Ave, St. Louis</title>
+<meta name="description" content="Southtown Barbershop on McCausland Ave (Dogtown) — classic cuts and fades, by appointment.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+  (function(){var p=new URLSearchParams(location.search);if(p.get('banner')==='off'||location.hash==='#nobanner'){document.documentElement.setAttribute('data-banner','off');}})();
+  document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.nav-menu a')){var t=document.getElementById('nav-toggle');if(t)t.checked=false;}});
+</script>
+<style>
+  :root{--ink:#0f1f1d;--ink-soft:#42514e;--paper:#f3efe6;--paper-2:#e8e2d4;--teal:#2f6f63;--teal-deep:#1f4f47;--teal-lt:#8fcabf;--line:#d6cdbd;--banner-h:38px}
+  html[data-banner="off"]{--banner-h:0px}
+  html[data-banner="off"] .banner{display:none}
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif;font-size:17px;line-height:1.65}
+  h1,h2,h3{font-family:"Libre Caslon Display",serif;font-weight:400;line-height:1.08;margin:0}
+  a{color:inherit}img{display:block}
+  .gut{padding-inline:clamp(20px,5vw,72px)}.wrap{max-width:1140px;margin:0 auto}
+  .eyebrow{font-family:"DM Sans";font-weight:700;text-transform:uppercase;letter-spacing:.2em;font-size:.74rem;color:var(--teal-deep)}
+
+  .banner{position:fixed;inset:0 0 auto 0;height:var(--banner-h);background:#0a1413;color:#dfeae7;display:flex;align-items:center;justify-content:center;font-size:.78rem;z-index:60}
+  .banner a{color:var(--teal-lt);font-weight:700;text-decoration:none}.banner a:hover{text-decoration:underline}
+
+  header.nav{position:fixed;top:var(--banner-h);left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;gap:14px;background:rgba(10,20,19,.92);z-index:50;border-bottom:1px solid rgba(143,202,191,.22)}
+  .wordmark{font-family:"Libre Caslon Display",serif;font-size:1.35rem;color:var(--paper);white-space:nowrap;flex-shrink:0}
+  .wordmark span{color:var(--teal-lt)}
+  .nav-toggle{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+  .hamburger{display:none;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid rgba(143,202,191,.4);border-radius:8px;background:transparent;color:#dfeae7;cursor:pointer}
+  .hamburger svg{width:22px;height:22px}
+  .nav-menu{display:flex;gap:26px;align-items:center}
+  .nav-menu a{color:#dfeae7;text-decoration:none;font-size:.92rem;font-weight:500}
+  .nav-menu a:hover{color:#fff}
+  .nav-menu .navcta{background:var(--teal-lt);color:#0c1a18;font-weight:700;padding:10px 16px;border-radius:6px;text-decoration:none;font-size:.88rem;min-height:44px;display:inline-flex;align-items:center;max-width:100%;white-space:nowrap}
+  .nav-menu .navcta:hover{background:#a6d6cd;color:#0c1a18}
+  @media(max-width:820px){
+    .hamburger{display:inline-flex}
+    .nav-menu{position:fixed;top:calc(var(--banner-h) + 64px);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(10,20,19,.98);border-bottom:1px solid rgba(143,202,191,.22);padding:6px 0;display:none}
+    .nav-menu a{padding:14px clamp(20px,5vw,72px);min-height:44px;display:flex;align-items:center}
+    .nav-menu .navcta{margin:10px clamp(20px,5vw,72px);justify-content:center}
+    .nav-toggle:checked ~ .nav-menu{display:flex}
+  }
+
+  .hero{position:relative;min-height:520px;height:min(calc(100dvh - var(--banner-h) - 64px),860px);margin-top:calc(var(--banner-h) + 64px);display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(8,16,15,.94),rgba(8,16,15,.78) 50%,rgba(8,16,15,.5)),linear-gradient(0deg,rgba(8,16,15,.9),rgba(8,16,15,.2) 55%)}
+  .hero-inner{position:relative;z-index:2;width:100%;padding-block:clamp(34px,7vh,80px);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+  .hero-copy{max-width:min(92vw,40rem)}
+  .hero h1{font-size:clamp(2.8rem,8vw,5.8rem);color:#fbf8f1}
+  .hero p.sub{font-size:clamp(1.05rem,2.3vw,1.28rem);color:#e4ddcf;margin:18px 0 26px;max-width:36ch}
+  .ctas{display:flex;flex-wrap:wrap;gap:13px}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;text-decoration:none;border-radius:7px;padding:14px 22px;min-height:48px;font-size:1rem;transition:transform .25s ease,background .25s ease}
+  .btn-primary{background:var(--teal-lt);color:#0c1a18}
+  .btn-primary:hover{background:#a6d6cd;transform:translateY(-2px)}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.5)}
+  .btn-ghost:hover{background:rgba(255,255,255,.16)}
+  .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(8,16,15,.6);border:1px solid rgba(143,202,191,.5);color:#e7f1ee;padding:9px 14px;border-radius:999px;font-size:.84rem}
+  .badge .stars{color:var(--teal-lt);letter-spacing:2px}
+
+  .section{padding-block:clamp(54px,9vw,100px)}
+  .section-head{margin-bottom:36px}
+  .section-head h2{font-size:clamp(2.1rem,5.5vw,3.6rem);margin-top:8px}
+
+  /* LEAD: about story, asymmetric */
+  .story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,70px);align-items:center}
+  .story h2{font-size:clamp(2.1rem,5vw,3.4rem)}
+  .story p{color:var(--ink-soft);font-size:1.06rem}
+  .story .pull{font-family:"Libre Caslon Display";font-size:clamp(1.4rem,3vw,2rem);color:var(--teal-deep);line-height:1.3;border-left:3px solid var(--teal);padding-left:20px}
+  @media(max-width:760px){.story .wrap{grid-template-columns:1fr}}
+
+  /* services cards */
+  .svc{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .svc .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px}
+  .svc .card svg{width:28px;height:28px;color:var(--teal);margin-bottom:10px}
+  .svc h3{font-size:1.4rem;margin-bottom:6px}
+  .svc p{margin:0;color:var(--ink-soft);font-size:.95rem}
+  @media(max-width:820px){.svc{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.svc{grid-template-columns:1fr}}
+
+  /* hours band */
+  .hours{background:var(--ink);color:var(--paper)}
+  .hours .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(28px,5vw,60px);align-items:center}
+  .hours h2{color:#fbf8f1}
+  .hours p{color:#bcd0cb}
+  .hours table{width:100%;border-collapse:collapse}
+  .hours td{padding:12px 4px;border-bottom:1px solid rgba(143,202,191,.18)}
+  .hours td.day{color:#e7f1ee;font-weight:500}
+  .hours td.time{text-align:right;color:#fff;font-variant-numeric:tabular-nums}
+  .hours tr.closed td.time{color:var(--teal-lt)}
+  @media(max-width:760px){.hours .wrap{grid-template-columns:1fr;gap:24px}}
+
+  /* VISIT band — map + directions, NO phone */
+  .visit .wrap{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+  .visit-copy{padding:clamp(32px,5vw,54px);display:flex;flex-direction:column;gap:8px;justify-content:center}
+  .visit-copy h2{font-size:clamp(2rem,5vw,3.2rem)}
+  .visit-copy .addr{font-style:normal;font-size:1.25rem;margin:14px 0 2px;line-height:1.5}
+  .visit-copy p{color:var(--ink-soft);margin:0 0 18px}
+  .visit-copy .btn-primary{align-self:flex-start;background:var(--teal);color:#fff}
+  .visit-copy .btn-primary:hover{background:var(--teal-deep)}
+  .map{position:relative;min-height:280px;background:repeating-linear-gradient(0deg,rgba(47,111,99,.1) 0 1px,transparent 1px 32px),repeating-linear-gradient(90deg,rgba(47,111,99,.1) 0 1px,transparent 1px 32px),radial-gradient(circle at 50% 45%,#e8e2d4,#dcd3c2);display:flex;align-items:center;justify-content:center}
+  .map .pin{text-align:center}
+  .map .pin svg{width:34px;height:34px;color:var(--teal-deep)}
+  .map .pin span{display:block;margin-top:6px;font-weight:600;font-size:.85rem}
+  @media(max-width:760px){.visit .wrap{grid-template-columns:1fr}.map{min-height:200px}}
+
+  footer{background:#0a1413;color:#bcd0cb;padding-block:44px}
+  .foot{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
+  .foot .wordmark{color:#fbf8f1}.foot .wordmark span{color:var(--teal-lt)}
+  .foot nav{display:flex;gap:20px}.foot nav a{color:#bcd0cb;text-decoration:none;font-size:.9rem}.foot nav a:hover{color:#fff}
+  .foot small{width:100%;color:#7e928d}
+
+  a:focus-visible,.btn:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+  .reveal{opacity:0;transform:translateY(18px);animation:rise .7s ease forwards}.d1{animation-delay:.1s}.d2{animation-delay:.22s}.d3{animation-delay:.34s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="banner">Free website preview by PaliTech —&nbsp;<a href="https://pali-tech.com">pali-tech.com</a></div>
+
+<header class="nav gut">
+  <span class="wordmark">Southtown <span>Barbershop</span></span>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="hamburger" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></label>
+  <nav class="nav-menu">
+    <a href="#about">The shop</a>
+    <a href="#services">Services</a>
+    <a href="#hours">Hours</a>
+    <a class="navcta" href="#visit">Book a chair</a>
+  </nav>
+</header>
+
+<section class="hero gut">
+  <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAF_16vej3pDp5txLk4u1M84LxWkVYOY5fv48shsExWpa9W3g2GdpRf6PURYPfNbGIfvzl4ud5P0tdq0JiOd6Em3DP7t-YH45_KjrHd3p32bfCoJFrlVCmFwR7m53lafrHPEtvRm0wfSF6rI=w800-h500-k-no"
+       alt="Inside Southtown Barbershop on McCausland Ave, St. Louis" width="1600" height="1000" decoding="async" fetchpriority="high" loading="eager">
+  <div class="hero-inner wrap">
+    <div class="hero-copy">
+      <span class="eyebrow reveal" style="color:var(--teal-lt)">McCausland Ave · Dogtown</span>
+      <h1 class="reveal d1">Your corner barbershop.</h1>
+      <p class="sub reveal d2">Classic cuts and clean fades in the heart of Dogtown. Pull up a chair — by appointment.</p>
+      <div class="ctas reveal d3">
+        <a class="btn btn-primary" href="#visit">Book a chair</a>
+        <a class="btn btn-ghost" href="#hours">See hours</a>
+      </div>
+    </div>
+    <div class="badge reveal d3"><span class="stars">★★★★★</span> 4.7 · 100 Google reviews</div>
+  </div>
+</section>
+
+<!-- LEAD SECTION: the shop story (about-led) -->
+<section class="section story gut" id="about">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">The shop</span>
+      <h2>A real neighborhood barbershop.</h2>
+      <p>Southtown has been cutting Dogtown's hair the honest way — take your time, get the line right, talk a little ball. No apps, no fuss. Just a good chair, a sharp cut, and a shop that feels like the block it sits on.</p>
+      <p>Come as you are. First-timers leave regulars.</p>
+    </div>
+    <p class="pull">"Sit down, get it right, send you out sharp — that's the whole job."</p>
+  </div>
+</section>
+
+<section class="section gut" id="services">
+  <div class="wrap">
+    <div class="section-head"><span class="eyebrow">What we do</span><h2>The chair menu.</h2></div>
+    <div class="svc">
+      <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg><h3>Cuts &amp; Fades</h3><p>Scissor work, tapers and skin fades, shaped to you.</p></div>
+      <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6c4 0 4 4 9 4s5-4 9-4"/><path d="M3 12c4 0 4 5 9 5s5-5 9-5"/></svg><h3>Beard Work</h3><p>Trims, line-ups and a hot-towel finish.</p></div>
+      <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg><h3>Kids &amp; Seniors</h3><p>Patient cuts and a neighbor's rate for the regulars.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section hours gut" id="hours">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" style="color:var(--teal-lt)">When we're open</span>
+      <h2 style="font-size:clamp(2rem,5vw,3.2rem);margin:8px 0 14px">Hours.</h2>
+      <p style="max-width:32ch">Tuesday through Saturday. Closed Sunday and Monday — see you the rest of the week.</p>
+    </div>
+    <table aria-label="Opening hours">
+      <tr class="closed"><td class="day">Monday</td><td class="time">Closed</td></tr>
+      <tr><td class="day">Tuesday</td><td class="time">10:00 AM – 6:00 PM</td></tr>
+      <tr><td class="day">Wednesday</td><td class="time">10:00 AM – 6:00 PM</td></tr>
+      <tr><td class="day">Thursday</td><td class="time">10:00 AM – 6:00 PM</td></tr>
+      <tr><td class="day">Friday</td><td class="time">10:00 AM – 5:00 PM</td></tr>
+      <tr><td class="day">Saturday</td><td class="time">10:00 AM – 3:00 PM</td></tr>
+      <tr class="closed"><td class="day">Sunday</td><td class="time">Closed</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- testimonial: filled with the client's words after they sign — never scraped reviews -->
+
+<section class="section visit gut" id="visit">
+  <div class="wrap">
+    <div class="visit-copy">
+      <span class="eyebrow">Come by</span>
+      <h2>By appointment.</h2>
+      <address class="addr">3625 McCausland Ave<br>St. Louis, MO 63109</address>
+      <p>Southtown runs by appointment — find the shop on Google to call ahead and book your chair. Best parking is right out front on McCausland.</p>
+      <!-- placeholder: owner to add a direct booking number / link once they make the site theirs -->
+      <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Southtown+Barbershop+3625+McCausland+Ave+St+Louis+MO+63109" target="_blank" rel="noopener">Book on Google</a>
+    </div>
+    <div class="map" role="img" aria-label="Map location of Southtown Barbershop on McCausland Ave">
+      <div class="pin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>3625 McCausland Ave</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="gut">
+  <div class="wrap foot">
+    <span class="wordmark">Southtown <span>Barbershop</span></span>
+    <nav><a href="#about">The shop</a><a href="#services">Services</a><a href="#hours">Hours</a><a href="#visit">Visit</a></nav>
+    <small>© Southtown Barbershop · 3625 McCausland Ave, St. Louis, MO 63109 · Dogtown's corner barbershop.</small>
+  </div>
+</footer>
+
+</body>
+</html>
