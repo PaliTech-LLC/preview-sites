@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<!--
+  DESIGN-SYSTEM DECLARATION
+  Customer feeling: a yard you're proud of, handled by people who show up.
+  Light/dark: light + natural — sunlit, grounded, outdoorsy.
+  Display font: Fraunces (crafted serif, a little soft — not corporate).
+  Body font: Mulish (clean, friendly humanist sans).
+  Dominant color: deep forest #1c2418. Desaturated accent: moss green #4f7a3f.
+  Hero archetype: full-bleed yard photo + scrim, headline left.
+  Memorable moment: the "Request a free quote" form band — this trade closes on the quote, not a call alone.
+  COMPOSITION (palitech-demo-sites skill — lead-gen service): lead with SERVICES, add a how-it-works
+  step band, primary CTA = a QUOTE FORM (with phone as backup). 1 real photo folded into hero.
+-->
+<html lang="en" data-banner="on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Affordable Lawn Care STL — Greater St. Louis</title>
+<meta name="description" content="Affordable Lawn Care STL — mowing, cleanups, mulch and seasonal care across the St. Louis area. Request a free quote.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Mulish:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+  (function () {
+    var p = new URLSearchParams(location.search);
+    if (p.get('banner') === 'off' || location.hash === '#nobanner') {
+      document.documentElement.setAttribute('data-banner', 'off');
+    }
+  })();
+  // close the mobile menu after tapping any link in it
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('.nav-menu a')) {
+      var t = document.getElementById('nav-toggle'); if (t) t.checked = false;
+    }
+  });
+</script>
+<style>
+  :root{
+    --ink:#1c2418; --ink-soft:#42503a; --paper:#f4f1e8; --paper-2:#ebe5d4;
+    --moss:#4f7a3f; --moss-deep:#365a2a; --sand:#d9cfb4;
+    --line:#ddd4be;
+    --banner-h:38px;
+  }
+  html[data-banner="off"]{--banner-h:0px}
+  html[data-banner="off"] .banner{display:none}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Mulish",sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:"Fraunces",serif;font-weight:600;line-height:1.05;margin:0;letter-spacing:-.01em}
+  a{color:inherit}
+  img{display:block}
+  .gut{padding-inline:clamp(20px,5vw,72px)}
+  /* eyebrow defaults to a DARK green for light sections (clears 4.5:1); eyebrows on dark/photo
+     backgrounds override to a light green (#bfe0a6) inline. */
+  .eyebrow{font-weight:700;text-transform:uppercase;letter-spacing:.2em;font-size:.74rem;color:#3d6330}
+  .wrap{max-width:1160px;margin:0 auto}
+
+  .banner{position:fixed;inset:0 0 auto 0;height:var(--banner-h);background:var(--moss-deep);color:#eaf3e2;display:flex;align-items:center;justify-content:center;font-size:.78rem;z-index:60}
+  .banner a{color:#d6e8c5;font-weight:700;text-decoration:none}
+  .banner a:hover{text-decoration:underline}
+
+  header.nav{position:fixed;top:var(--banner-h);left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;gap:14px;background:rgba(244,241,232,.94);z-index:50;border-bottom:1px solid var(--line)}
+  .wordmark{font-family:"Fraunces",serif;font-weight:700;font-size:1.3rem;color:var(--ink);white-space:nowrap;flex-shrink:0}
+  .wordmark span{color:var(--moss-deep)}
+  .nav-toggle{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+  .hamburger{display:none;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);cursor:pointer}
+  .hamburger svg{width:22px;height:22px}
+  .nav-menu{display:flex;gap:26px;align-items:center}
+  .nav-menu a{color:var(--ink-soft);text-decoration:none;font-size:.92rem;font-weight:600}
+  .nav-menu a:hover{color:var(--ink)}
+  .nav-menu .navcta{background:var(--moss);color:#fff;font-weight:700;padding:10px 16px;border-radius:7px;text-decoration:none;font-size:.88rem;min-height:44px;display:inline-flex;align-items:center;max-width:100%;white-space:nowrap}
+  .nav-menu .navcta:hover{background:var(--moss-deep);color:#fff}
+  @media(max-width:820px){
+    .hamburger{display:inline-flex}
+    .nav-menu{position:fixed;top:calc(var(--banner-h) + 64px);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:#fbf9f3;border-bottom:1px solid var(--line);padding:6px 0;display:none;box-shadow:0 12px 24px rgba(28,36,24,.12)}
+    .nav-menu a{padding:14px clamp(20px,5vw,72px);min-height:44px;display:flex;align-items:center}
+    .nav-menu .navcta{margin:10px clamp(20px,5vw,72px);justify-content:center}
+    .nav-toggle:checked ~ .nav-menu{display:flex}
+  }
+
+  /* min-height for short screens; height caps at 860px so a single ~800px photo isn't upscaled across a tall hero */
+  .hero{position:relative;min-height:520px;height:min(calc(100dvh - var(--banner-h) - 64px),860px);margin-top:calc(var(--banner-h) + 64px);display:flex;align-items:center;color:#fff;overflow:hidden}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(15,22,11,.93),rgba(15,22,11,.8) 58%,rgba(15,22,11,.62) 100%),linear-gradient(0deg,rgba(15,22,11,.75),transparent 62%)}
+  .hero-inner{position:relative;z-index:2;width:100%}
+  .hero-copy{max-width:min(92vw,40rem)}
+  .hero h1{font-size:clamp(2.8rem,7.5vw,5.6rem);color:#fbfdf7}
+  .hero h1 em{font-style:italic;color:#bfe0a6}
+  .hero p.sub{font-size:clamp(1.05rem,2.3vw,1.3rem);color:#e6efdc;margin:20px 0 28px;max-width:40ch}
+  .ctas{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;text-decoration:none;border-radius:8px;padding:14px 24px;min-height:48px;font-size:1rem;transition:transform .25s ease,background .25s ease;cursor:pointer;border:0}
+  .btn-primary{background:#74b14f;color:#13210b}
+  .btn-primary:hover{background:#82c25b;transform:translateY(-2px)}
+  .btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.45)}
+  .btn-ghost:hover{background:rgba(255,255,255,.18)}
+  .rating-chip{display:inline-flex;gap:8px;align-items:center;color:#e6efdc;font-size:.9rem;margin-left:4px}
+  .rating-chip .stars{color:#bfe0a6;letter-spacing:2px}
+
+  .section{padding-block:clamp(54px,9vw,104px)}
+  .section-head{margin-bottom:42px;max-width:30ch}
+  .section-head h2{font-size:clamp(2.2rem,5.5vw,3.8rem);margin-top:8px}
+
+  /* LEAD SECTION: services — numbered list, NOT a card grid (distinct from other demos) */
+  .svc-list{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(30px,5vw,72px)}
+  .svc-item{display:grid;grid-template-columns:auto 1fr;gap:20px;padding:24px 0;border-top:1px solid var(--line);align-items:start}
+  .svc-item .no{font-family:"Fraunces",serif;font-weight:600;font-size:1.6rem;color:var(--moss);font-variant-numeric:tabular-nums}
+  .svc-item h3{font-size:1.35rem;margin-bottom:4px}
+  .svc-item p{margin:0;color:var(--ink-soft);font-size:.98rem}
+  @media(max-width:760px){.svc-list{grid-template-columns:1fr}}
+
+  /* about + trust */
+  .about{background:var(--ink);color:var(--paper)}
+  .about .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(30px,5vw,64px);align-items:center}
+  .about h2{color:#fbfdf7;font-size:clamp(2rem,5vw,3.2rem)}
+  .about p{color:#cdd6c2}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:20px}
+  .stat b{font-family:"Fraunces",serif;font-size:2.2rem;display:block;line-height:1;color:#bfe0a6}
+  .stat span{color:#cdd6c2;font-size:.9rem}
+  @media(max-width:760px){.about .wrap{grid-template-columns:1fr}}
+
+  /* how it works — 3 step band */
+  .steps{background:var(--paper-2)}
+  .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:s}
+  .step{position:relative;padding-top:18px}
+  .step::before{counter-increment:s;content:"0" counter(s);font-family:"Fraunces",serif;font-size:1rem;color:var(--moss);font-weight:700;letter-spacing:.1em}
+  .step h3{font-size:1.3rem;margin:8px 0 6px}
+  .step p{margin:0;color:var(--ink-soft);font-size:.96rem}
+  .step svg{width:26px;height:26px;color:var(--moss);margin-bottom:8px}
+  @media(max-width:760px){.steps-grid{grid-template-columns:1fr;gap:14px}}
+
+  /* CTA — QUOTE FORM */
+  .quote{background:linear-gradient(160deg,#23301c,#16210f);color:var(--paper)}
+  .quote .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(30px,5vw,64px);align-items:center}
+  .quote h2{color:#fbfdf7;font-size:clamp(2.2rem,5vw,3.4rem)}
+  .quote p{color:#cdd6c2}
+  .quote .phone-alt{margin-top:18px;font-size:1.05rem}
+  .quote .phone-alt a{color:#bfe0a6;font-weight:700;text-decoration:none}
+  form{background:var(--paper);color:var(--ink);border-radius:16px;padding:clamp(22px,3vw,34px);display:grid;gap:14px}
+  form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .field{display:flex;flex-direction:column;gap:6px}
+  .field label{font-size:.82rem;font-weight:700;color:var(--ink-soft)}
+  .field input,.field select,.field textarea{font-family:inherit;font-size:1rem;padding:12px 14px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);min-height:46px}
+  .field textarea{min-height:84px;resize:vertical}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:3px solid #74b14f;outline-offset:1px;border-color:var(--moss)}
+  form button{justify-content:center;background:var(--moss);color:#fff;margin-top:4px}
+  form button:hover{background:var(--moss-deep)}
+  .thanks{display:none;background:#e7f0dd;border:1px solid #bcd6a6;color:#2c4a1e;border-radius:10px;padding:14px;font-weight:600}
+  @media(max-width:760px){.quote .wrap{grid-template-columns:1fr}form .row{grid-template-columns:1fr}}
+
+  footer{background:var(--ink);color:#cdd6c2;padding-block:44px;border-top:1px solid rgba(255,255,255,.08)}
+  .foot{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
+  .foot .wordmark{color:#fbfdf7;font-size:1.3rem}
+  .foot .wordmark span{color:#bfe0a6}
+  .foot nav{display:flex;gap:20px}
+  .foot nav a{color:#cdd6c2;text-decoration:none;font-size:.9rem}
+  .foot nav a:hover{color:#fff}
+  .foot small{width:100%;color:#8ea07f}
+
+  a:focus-visible,.btn:focus-visible,button:focus-visible{outline:3px solid #74b14f;outline-offset:3px}
+  .reveal{opacity:0;transform:translateY(18px);animation:rise .7s ease forwards}
+  .d1{animation-delay:.1s}.d2{animation-delay:.22s}.d3{animation-delay:.34s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="banner">Free website preview by PaliTech —&nbsp;<a href="https://pali-tech.com">pali-tech.com</a></div>
+
+<header class="nav gut">
+  <span class="wordmark">Affordable Lawn Care <span>STL</span></span>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="hamburger" aria-label="Open menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </label>
+  <nav class="nav-menu">
+    <a href="#services">Services</a>
+    <a href="#how">How it works</a>
+    <a href="#quote">Free quote</a>
+    <a class="navcta" href="#quote">Get a free quote</a>
+  </nav>
+</header>
+
+<section class="hero gut">
+  <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAEiWdeWkbilZAnoBKUz3W4_3BVrg6lELAp4UYD4zvF3XP6w5KYfaIfxUAqiYtjsKGTc1E198Y-pbrABbasp_PQDDRYjI-kJytDF2OEyITNyo0ll73fVDL3xYbsHiS35xWyMXrr47Q=w800-h500-k-no"
+       alt="A freshly cut, healthy green lawn maintained by Affordable Lawn Care STL" width="1600" height="1000" decoding="async" fetchpriority="high" loading="eager">
+  <div class="hero-inner wrap">
+    <div class="hero-copy">
+      <span class="eyebrow reveal" style="color:#bfe0a6">Greater St. Louis, MO</span>
+      <h1 class="reveal d1">A yard you're<br><em>proud</em> to pull up to.</h1>
+      <p class="sub reveal d2">Reliable mowing, cleanups and seasonal care from a local crew that actually shows up. Tell us about your yard and we'll send a free quote.</p>
+      <div class="ctas reveal d3">
+        <a class="btn btn-primary" href="#quote">Get a free quote</a>
+        <a class="btn btn-ghost" href="tel:+13143381828">Or call (314) 338-1828</a>
+        <span class="rating-chip"><span class="stars">★★★★★</span> 4.8 · 29 reviews</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD SECTION: services (lead-gen service → services-led per palitech-demo-sites) -->
+<section class="section gut" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What we handle</span>
+      <h2>Full-service lawn care, one local crew.</h2>
+    </div>
+    <div class="svc-list">
+      <div class="svc-item"><span class="no">01</span><div><h3>Weekly &amp; bi-weekly mowing</h3><p>Clean, even cuts on a schedule that keeps the yard sharp all season.</p></div></div>
+      <div class="svc-item"><span class="no">02</span><div><h3>Edging &amp; trimming</h3><p>Crisp lines along walks, beds and the driveway — the detail that makes it look done.</p></div></div>
+      <div class="svc-item"><span class="no">03</span><div><h3>Spring &amp; fall cleanups</h3><p>Leaves, sticks and winter debris hauled off so the lawn can breathe.</p></div></div>
+      <div class="svc-item"><span class="no">04</span><div><h3>Mulch &amp; bed refresh</h3><p>Fresh mulch and tidy beds that frame the whole property.</p></div></div>
+      <div class="svc-item"><span class="no">05</span><div><h3>Hedge &amp; shrub trimming</h3><p>Shaped and cleaned up so the greenery looks cared for, not overgrown.</p></div></div>
+      <div class="svc-item"><span class="no">06</span><div><h3>Fertilization &amp; weed control</h3><p>Seasonal treatments that thicken the turf and keep the weeds down.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section about gut">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" style="color:#bfe0a6">Local &amp; dependable</span>
+      <h2>Affordable doesn't mean cutting corners.</h2>
+      <p>We're a small local crew that built our name on showing up when we say we will and leaving your yard looking better than we found it. No contracts you can't read, no surprise charges — just steady, honest lawn care at a fair price.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>4.8★</b><span>across 29 Google reviews</span></div>
+      <div class="stat"><b>6 days</b><span>Mon–Sat 9–7, Sun till 4</span></div>
+      <div class="stat"><b>Local</b><span>Greater St. Louis</span></div>
+      <div class="stat"><b>Free</b><span>quotes, every time</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section steps gut" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Simple from the start</span>
+      <h2>How it works.</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h6"/></svg>
+        <h3>Tell us about your yard</h3>
+        <p>Fill out the quick form or call. Address, what you need, how often.</p>
+      </div>
+      <div class="step">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <h3>Get a free quote</h3>
+        <p>We send a fair, written price — usually same day. No pressure.</p>
+      </div>
+      <div class="step">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <h3>We keep it sharp</h3>
+        <p>Crew shows up on schedule and the yard stays looking great.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- testimonial: filled with the client's words after they sign — never scraped reviews -->
+
+<section class="section quote gut" id="quote">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" style="color:#bfe0a6">No cost, no pressure</span>
+      <h2>Request your free quote.</h2>
+      <p>Tell us a little about the property and what you're after. We'll get back to you — usually the same day — with a fair price.</p>
+      <p class="phone-alt">Prefer to talk? Call <a href="tel:+13143381828">(314) 338-1828</a>.</p>
+    </div>
+    <form id="quoteForm" novalidate>
+      <div class="row">
+        <div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
+      </div>
+      <div class="field"><label for="address">Property address</label><input id="address" name="address" type="text" autocomplete="street-address"></div>
+      <div class="field"><label for="service">What do you need?</label>
+        <select id="service" name="service">
+          <option>Regular mowing</option>
+          <option>One-time cleanup</option>
+          <option>Mulch &amp; beds</option>
+          <option>Hedge / shrub trimming</option>
+          <option>Fertilization &amp; weed control</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div class="field"><label for="msg">Anything else? (optional)</label><textarea id="msg" name="msg"></textarea></div>
+      <button class="btn" type="submit">Request my free quote</button>
+      <div class="thanks" id="thanks">Thanks! For the fastest answer, give the crew a call at (314) 338-1828 and we'll get you a quote.</div>
+    </form>
+  </div>
+</section>
+
+<footer class="gut">
+  <div class="wrap foot">
+    <span class="wordmark">Affordable Lawn Care <span>STL</span></span>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#how">How it works</a>
+      <a href="#quote">Free quote</a>
+      <a href="tel:+13143381828">Call</a>
+    </nav>
+    <small>© Affordable Lawn Care STL, LLC · Serving the St. Louis area · Mon–Sat 9–7, Sun 9–4.</small>
+  </div>
+</footer>
+
+<script>
+  // Demo-only: keep the quote form from navigating away; show a friendly note.
+  document.getElementById('quoteForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById('thanks').style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
