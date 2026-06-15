@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<!--
+  DESIGN SYSTEM — Akwa Pressure Washing
+  Customer feeling:  "These people are serious about clean — I can already picture my driveway looking new." Fresh, satisfying, trustworthy.
+  Mode:              light — exterior cleaning is a daylight, water-and-sky trade; a bright crisp page reads clean and approachable, not nocturnal.
+  Display font:      Archivo (Google Fonts) — confident, slightly industrial grotesque, fits a hard-working service trade
+  Body font:         DM Sans (Google Fonts) — clean, modern, airy companion
+  Dominant color:    #0f2233 deep navy — sets a deep-water atmosphere across nav, hero scrim, footer, dark bands
+  Accent color:      #3f93b3 desaturated power-blue/aqua (~57% sat) — water, used sparingly; #1c6685 deep-aqua ink for small text/links on light
+  Hero archetype:    image-forward full-bleed — pressure-washing-in-action photo, headline-left over a navy scrim, "Get a free quote" CTA
+  Memorable moment:  the oversized "AKWA" wordmark riding a thin water-line rule, plus the diagonal-cut deep-navy "before / after the wand" band that splits the page like a clean edge across dirty siding
+  NOTE: Akwa has no website and 0 of its own photos. Hero + secondary images are REPRESENTATIVE PRESSURE-WASHING STOCK
+        (Pexels, hotlink-permitted, verified loading) to be swapped for the owner's real job photos before launch.
+        Rating SUPPRESSED per quality bar (only 1 review, below the 5-review floor) — no stars / count shown anywhere.
+        Service area generalized to "the St. Louis area" (no street address in lead). City: Florissant, MO is confirmable.
+-->
+<html lang="en" data-banner="on">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Akwa Pressure Washing — Pressure &amp; Power Washing in the St. Louis Area</title>
+<meta name="description" content="Akwa Pressure Washing — residential and commercial pressure washing serving the St. Louis area. Driveways, siding soft wash, decks, fences, gutters and storefronts. Call 314-825-0326 for a free quote.">
+<!-- Runtime banner override: ?banner=off or #nobanner hides the PaliTech bar for in-person showings -->
+<script>
+  (function () {
+    try {
+      var p = new URLSearchParams(location.search);
+      if (p.get('banner') === 'off' || location.hash === '#nobanner') {
+        document.documentElement.setAttribute('data-banner', 'off');
+      }
+    } catch (e) {}
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:        #0f2233;   /* dominant deep-water navy */
+    --navy-2:      #163349;   /* slightly lifted navy panel */
+    --ink:         #16242f;   /* off-black body ink on light */
+    --paper:       #f4f8fa;   /* off-white, faint cool cast */
+    --paper-2:     #e6eef2;   /* tinted card / image bg */
+    --accent:      #3f93b3;   /* desaturated power-blue/aqua */
+    --accent-ink:  #1c6685;   /* deep aqua — small text/links/icons on light (≥4.5:1 on paper) */
+    --accent-soft: #d6e6ec;   /* faint aqua wash */
+    --on-navy:     #eef5f8;   /* near-white text on navy (high contrast) */
+    --on-navy-mut: #b9cdd8;   /* muted-but-legible text on navy (>4.5:1) */
+    --line:        #cddbe2;   /* hairline on light */
+    --line-navy:   rgba(255,255,255,.16);
+    --banner-h:    38px;
+    --maxw:        1200px;
+    --gutter:      clamp(20px, 5vw, 64px);
+    --r:           14px;
+    --shadow:      0 18px 44px -22px rgba(15,34,51,.45);
+  }
+  html[data-banner="off"] { --banner-h: 0px; }
+  html[data-banner="off"] .banner { display: none; }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 { font-family: "Archivo", sans-serif; line-height: 1.04; margin: 0; letter-spacing: -0.01em; }
+  p { margin: 0 0 1em; }
+  a { color: var(--accent-ink); }
+  img { display: block; max-width: 100%; }
+
+  .wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
+
+  /* visible focus ring everywhere */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, label:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  .skip {
+    position: absolute; left: 8px; top: -60px; z-index: 1200;
+    background: var(--navy); color: var(--on-navy);
+    padding: 10px 16px; border-radius: 8px; text-decoration: none; font-weight: 700;
+    transition: top .15s ease;
+  }
+  .skip:focus { top: 8px; }
+
+  /* ---------- PaliTech banner ---------- */
+  .banner {
+    background: var(--navy);
+    color: var(--on-navy);
+    height: var(--banner-h);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; letter-spacing: .01em;
+    border-bottom: 1px solid var(--line-navy);
+    position: relative; z-index: 1100;
+    text-align: center;
+    padding-inline: 16px;
+  }
+  .banner a { color: #cfe6f0; text-decoration: underline; text-underline-offset: 2px; font-weight: 600; }
+  .banner a:hover { color: #fff; }
+
+  /* ---------- Nav ---------- */
+  .nav-shell {
+    position: sticky; top: 0; z-index: 1000;
+    background: rgba(15,34,51,.96);
+    backdrop-filter: saturate(140%) blur(6px);
+    border-bottom: 1px solid var(--line-navy);
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px;
+    min-height: 66px;
+  }
+  .wordmark {
+    display: inline-flex; align-items: baseline; gap: 2px;
+    font-family: "Archivo", sans-serif; font-weight: 800;
+    font-size: 1.34rem; letter-spacing: .02em;
+    color: var(--on-navy); text-decoration: none; white-space: nowrap;
+    min-width: 0;
+  }
+  .wordmark .drop { color: var(--accent); }
+  .wordmark small {
+    display: block; font-family: "DM Sans", sans-serif; font-weight: 500;
+    font-size: .56rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--on-navy-mut); margin-top: 2px;
+  }
+
+  .nav-toggle { display: none; }            /* the hidden checkbox */
+  .hamburger {
+    display: none;                          /* hidden on desktop */
+    align-items: center; justify-content: center;
+    width: 46px; height: 46px; border-radius: 10px;
+    background: transparent; border: 1px solid var(--line-navy);
+    color: var(--on-navy); cursor: pointer;
+  }
+  .hamburger svg { width: 22px; height: 22px; }
+
+  .nav-links { display: flex; align-items: center; gap: 26px; }
+  .nav-links a:not(.cta) {
+    color: var(--on-navy); text-decoration: none; font-weight: 500;
+    font-size: .95rem; white-space: nowrap;
+    padding: 8px 2px; position: relative;
+  }
+  .nav-links a:not(.cta)::after {
+    content: ""; position: absolute; left: 0; right: 100%; bottom: 2px;
+    height: 2px; background: var(--accent); transition: right .25s ease;
+  }
+  .nav-links a:not(.cta):hover::after { right: 0; }
+
+  .cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--accent); color: #06222f;
+    font-weight: 700; text-decoration: none;
+    border: 0; border-radius: 10px; cursor: pointer;
+    min-height: 44px; padding: 10px 18px; font-size: .9rem;
+    letter-spacing: .01em; white-space: nowrap; max-width: 100%;
+    transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+    touch-action: manipulation;
+  }
+  .cta:hover { background: #4fa6c7; transform: translateY(-1px); box-shadow: 0 10px 24px -12px rgba(63,147,179,.9); }
+  .cta.big { min-height: 54px; padding: 15px 28px; font-size: 1.02rem; border-radius: 12px; }
+  .cta.ghost {
+    background: transparent; color: var(--on-navy);
+    border: 1.5px solid rgba(255,255,255,.4);
+  }
+  .cta.ghost:hover { background: rgba(255,255,255,.08); box-shadow: none; }
+  .cta.ink {
+    background: var(--navy); color: var(--on-navy);
+  }
+  .cta.ink:hover { background: var(--navy-2); }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; isolation: isolate; }
+  .hero-media {
+    position: absolute; inset: 0; z-index: -2;
+    background: var(--navy-2);   /* tint so a slow image never flashes a gap */
+    overflow: hidden;
+  }
+  .hero-media img {
+    width: 100%; height: 100%; object-fit: cover; object-position: 60% 38%;
+  }
+  /* scrim tuned to the LIGHTEST pixels (bright sky upper-right); strong at the TOP where eyebrow sits */
+  .hero-scrim {
+    position: absolute; inset: 0; z-index: -1;
+    background:
+      linear-gradient(102deg, rgba(10,26,40,.95) 0%, rgba(11,28,42,.9) 42%, rgba(12,30,45,.66) 72%, rgba(12,30,45,.44) 100%),
+      linear-gradient(to top, rgba(10,24,38,.62) 0%, rgba(10,24,38,0) 32%),
+      linear-gradient(to bottom, rgba(10,24,38,.52) 0%, rgba(10,24,38,0) 26%);
+  }
+  .hero-inner {
+    min-height: calc(100dvh - var(--banner-h) - 66px);
+    max-height: 880px;
+    display: flex; align-items: flex-end;
+    padding-top: clamp(48px, 9vh, 110px);
+    padding-bottom: clamp(40px, 8vh, 84px);
+  }
+  .hero-col { max-width: min(92vw, 41rem); color: var(--on-navy); }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: "DM Sans", sans-serif; font-weight: 700;
+    font-size: .76rem; letter-spacing: .2em; text-transform: uppercase;
+    color: #d7ecf4; margin-bottom: 20px;
+  }
+  .eyebrow .tick { width: 26px; height: 2px; background: var(--accent); display: inline-block; }
+  .hero h1 {
+    font-size: clamp(2.6rem, 7.2vw, 5.25rem);
+    font-weight: 800; letter-spacing: -0.02em;
+    text-wrap: balance;
+    margin-bottom: 22px;
+  }
+  .hero h1 em { font-style: normal; color: #aedcec; text-shadow: 0 2px 18px rgba(7,20,32,.6); }
+  .hero-sub {
+    font-size: clamp(1.04rem, 2vw, 1.28rem);
+    color: var(--on-navy); max-width: 38rem; margin-bottom: 30px;
+    text-shadow: 0 1px 16px rgba(7,20,32,.5);
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .hero-meta {
+    display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 30px;
+    font-size: .92rem; color: #e3f0f6;
+  }
+  .hero-meta span { display: inline-flex; align-items: center; gap: 9px; }
+  .hero-meta svg { width: 17px; height: 17px; stroke: var(--accent); flex: none; }
+
+  /* ---------- Section scaffolding ---------- */
+  section { padding-block: clamp(64px, 9vw, 116px); }
+  .kicker {
+    font-family: "DM Sans", sans-serif; font-weight: 700;
+    font-size: .78rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--accent-ink); margin-bottom: 14px;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .kicker .tick { width: 24px; height: 2px; background: var(--accent); }
+  .sec-head h2 { font-size: clamp(1.9rem, 4.2vw, 3rem); font-weight: 800; letter-spacing: -0.02em; max-width: 22ch; }
+  .sec-head p { color: #41525c; max-width: 56ch; margin-top: 16px; font-size: 1.06rem; }
+
+  /* ---------- Services ---------- */
+  .services { background: var(--paper); }
+  .svc-grid {
+    margin-top: clamp(34px, 5vw, 56px);
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px;
+  }
+  .svc {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--r);
+    padding: 30px 26px; position: relative; overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  /* asymmetric bento: first card spans wide, others fill */
+  .svc:nth-child(1) { grid-column: span 4; }
+  .svc:nth-child(2) { grid-column: span 2; }
+  .svc:nth-child(3) { grid-column: span 2; }
+  .svc:nth-child(4) { grid-column: span 2; }
+  .svc:nth-child(5) { grid-column: span 2; }
+  .svc:nth-child(6) { grid-column: span 6; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 22px; }
+  .svc:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--accent); }
+  .svc-icon {
+    width: 50px; height: 50px; border-radius: 12px; flex: none;
+    background: var(--accent-soft); color: var(--accent-ink);
+    display: grid; place-items: center; margin-bottom: 18px;
+  }
+  .svc:nth-child(6) .svc-icon { margin-bottom: 0; }
+  .svc-icon svg { width: 26px; height: 26px; stroke: var(--accent-ink); }
+  .svc h3 { font-size: 1.24rem; font-weight: 700; margin-bottom: 8px; color: var(--ink); }
+  .svc p { color: #45565f; font-size: .98rem; margin: 0; }
+  .svc:nth-child(1) h3 { font-size: 1.5rem; }
+  .svc:nth-child(6) .svc-cta {
+    color: var(--accent-ink); font-weight: 700; white-space: nowrap; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .svc:nth-child(6) .svc-cta svg { width: 18px; height: 18px; stroke: var(--accent-ink); }
+
+  /* ---------- Process band (diagonal navy) ---------- */
+  .band {
+    background: var(--navy); color: var(--on-navy);
+    position: relative;
+    clip-path: polygon(0 3.2vw, 100% 0, 100% 100%, 0 calc(100% - 3.2vw));
+    margin-block: clamp(20px, 5vw, 64px);
+    padding-block: clamp(92px, 12vw, 150px);
+  }
+  .band .wrap { position: relative; }
+  .band .kicker { color: #9fd0e0; }
+  .band h2 { color: var(--on-navy); font-size: clamp(1.8rem, 4vw, 2.7rem); max-width: 20ch; }
+  .band-lede { color: var(--on-navy-mut); max-width: 52ch; margin-top: 14px; font-size: 1.05rem; }
+  .steps {
+    margin-top: clamp(36px, 5vw, 56px);
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+  }
+  .step { border-top: 2px solid var(--line-navy); padding-top: 20px; }
+  .step .n { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 1rem; color: var(--accent); letter-spacing: .08em; }
+  .step h3 { font-size: 1.18rem; font-weight: 700; margin: 8px 0 8px; color: var(--on-navy); }
+  .step p { color: var(--on-navy-mut); font-size: .97rem; margin: 0; }
+
+  /* ---------- About / split ---------- */
+  .about-grid {
+    display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: clamp(28px, 5vw, 64px); align-items: center;
+  }
+  .about-fig {
+    position: relative; border-radius: var(--r); overflow: hidden;
+    background: var(--paper-2); aspect-ratio: 4 / 5; box-shadow: var(--shadow);
+  }
+  .about-fig img { width: 100%; height: 100%; object-fit: cover; }
+  .about-fig figcaption {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 30px 22px 18px; color: #fff; font-size: .9rem; font-weight: 600;
+    background: linear-gradient(to top, rgba(8,22,34,.97) 0%, rgba(8,22,34,.95) 30%, rgba(8,22,34,.7) 62%, rgba(8,22,34,0) 100%);
+  }
+  .about-body h2 { font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 800; }
+  .about-body p { color: #41525c; margin-top: 16px; font-size: 1.06rem; }
+  .trust {
+    margin-top: 30px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+  .trust-item {
+    background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px;
+  }
+  .trust-item svg { width: 24px; height: 24px; stroke: var(--accent-ink); margin-bottom: 10px; }
+  .trust-item .t { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 1.12rem; color: var(--ink); line-height: 1.15; }
+  .trust-item .d { color: #4a5a63; font-size: .9rem; margin-top: 4px; }
+
+  /* ---------- Contact ---------- */
+  .contact { background: var(--paper-2); }
+  .contact-grid {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(30px, 5vw, 64px); align-items: start;
+  }
+  .phone-cta {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: "Archivo", sans-serif; font-weight: 800;
+    font-size: clamp(1.7rem, 4.5vw, 2.55rem); letter-spacing: -0.02em;
+    color: var(--ink); text-decoration: none; margin: 14px 0 6px;
+  }
+  .phone-cta svg { width: clamp(28px, 5vw, 38px); height: clamp(28px, 5vw, 38px); stroke: var(--accent-ink); flex: none; }
+  .phone-cta:hover { color: var(--accent-ink); }
+  .contact-meta { margin-top: 22px; display: grid; gap: 14px; }
+  .contact-meta .row { display: flex; gap: 13px; align-items: flex-start; color: #3c4d56; }
+  .contact-meta svg { width: 20px; height: 20px; stroke: var(--accent-ink); flex: none; margin-top: 3px; }
+  .contact-meta .row b { color: var(--ink); font-weight: 700; }
+
+  .form-card {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--r);
+    padding: clamp(24px, 4vw, 38px); box-shadow: var(--shadow);
+  }
+  .form-card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; }
+  .form-card .fc-sub { color: #4a5a63; font-size: .96rem; margin-bottom: 22px; }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-weight: 700; font-size: .86rem; color: var(--ink); margin-bottom: 7px; }
+  .field label .req { color: var(--accent-ink); }
+  .field input, .field select, .field textarea {
+    width: 100%; font: inherit; font-size: 1rem; color: var(--ink);
+    background: var(--paper); border: 1.5px solid var(--line); border-radius: 10px;
+    padding: 12px 14px; transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    border-color: var(--accent); box-shadow: 0 0 0 3px rgba(63,147,179,.18); outline: none;
+  }
+  .field textarea { min-height: 104px; resize: vertical; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-card button { width: 100%; margin-top: 6px; }
+  .form-note { margin-top: 14px; font-size: .84rem; color: #56666e; }
+  .form-ok {
+    margin-top: 16px; background: var(--accent-soft); color: #0c3a4d;
+    border: 1px solid #aacedd; border-radius: 10px; padding: 14px 16px;
+    font-size: .95rem; font-weight: 600; display: none;
+  }
+  .form-ok.show { display: block; }
+
+  /* ---------- Footer ---------- */
+  footer { background: var(--navy); color: var(--on-navy); padding-block: clamp(48px, 7vw, 80px); }
+  .foot-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; }
+  .foot-brand { max-width: 30rem; }
+  .foot-brand .wordmark { font-size: 1.5rem; }
+  .foot-brand p { color: var(--on-navy-mut); margin-top: 14px; font-size: .98rem; }
+  .foot-nav { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: flex-start; }
+  .foot-nav a { color: var(--on-navy); text-decoration: none; font-weight: 500; font-size: .96rem; }
+  .foot-nav a:hover { color: var(--accent); }
+  .foot-base {
+    border-top: 1px solid var(--line-navy); margin-top: 38px; padding-top: 22px;
+    display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between;
+    color: var(--on-navy-mut); font-size: .86rem;
+  }
+
+  /* ---------- Motion (one staggered entrance) ---------- */
+  @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .reveal { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+  .d1 { animation-delay: .05s; } .d2 { animation-delay: .18s; }
+  .d3 { animation-delay: .31s; } .d4 { animation-delay: .44s; } .d5 { animation-delay: .57s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { animation: none; }
+    * { transition: none !important; }
+    .cta:hover, .svc:hover { transform: none; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px) {
+    .svc-grid { grid-template-columns: repeat(2, 1fr); }
+    .svc:nth-child(1), .svc:nth-child(2), .svc:nth-child(3),
+    .svc:nth-child(4), .svc:nth-child(5) { grid-column: span 1; }
+    .svc:nth-child(6) { grid-column: span 2; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-fig { aspect-ratio: 16 / 11; max-height: 460px; order: 2; }
+    .about-body { order: 1; }
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 760px) {
+    /* MOBILE NAV: wordmark + hamburger only; links/CTA revealed on toggle */
+    .hamburger { display: inline-flex; }
+    .nav-links {
+      position: absolute; left: 0; right: 0; top: 100%;
+      flex-direction: column; align-items: stretch; gap: 4px;
+      background: var(--navy); border-bottom: 1px solid var(--line-navy);
+      padding: 12px var(--gutter) 20px;
+      max-height: 0; overflow: hidden; opacity: 0; pointer-events: none; visibility: hidden;
+      transition: max-height .3s ease, opacity .25s ease, padding .3s ease, visibility .3s ease;
+    }
+    .nav-links a:not(.cta) { padding: 13px 2px; font-size: 1.04rem; border-bottom: 1px solid var(--line-navy); }
+    .nav-links a:not(.cta)::after { display: none; }
+    .nav-links .cta { margin-top: 12px; }
+    .nav-toggle:checked ~ .nav-links {
+      max-height: 420px; opacity: 1; pointer-events: auto; visibility: visible;
+      padding-top: 12px; padding-bottom: 20px;
+    }
+    .hamburger .x { display: none; }
+    .nav-toggle:checked ~ .hamburger .bars { display: none; }
+    .nav-toggle:checked ~ .hamburger .x { display: block; }
+
+    .steps { grid-template-columns: 1fr; }
+    .svc-grid { grid-template-columns: 1fr; }
+    .svc:nth-child(6) { grid-column: span 1; grid-template-columns: 1fr; gap: 14px; text-align: left; }
+    .trust { grid-template-columns: 1fr; }
+    .field-row { grid-template-columns: 1fr; }
+    .hero-inner { min-height: calc(100dvh - var(--banner-h) - 66px); }
+    body { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<!-- 0. PaliTech preview banner -->
+<div class="banner">
+  <span>Free website preview by <a href="https://pali-tech.com" target="_blank" rel="noopener" aria-label="PaliTech — pali-tech.com (opens in a new tab)">PaliTech — pali-tech.com</a></span>
+</div>
+
+<!-- 1. Navigation -->
+<header class="nav-shell">
+  <div class="wrap">
+    <nav class="nav" aria-label="Primary">
+      <a class="wordmark" href="#top" aria-label="Akwa Pressure Washing home">
+        AKW<span class="drop">A</span>
+        <small>Pressure&nbsp;Washing</small>
+      </a>
+
+      <input type="checkbox" id="navtog" class="nav-toggle" aria-hidden="true">
+      <label class="hamburger" for="navtog" aria-label="Open navigation menu">
+        <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </label>
+
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#process">How it works</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="cta" href="#contact">Get a free quote</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <span id="top"></span>
+
+  <!-- 2. Hero — image-forward, pressure-washing in action -->
+  <section class="hero" aria-label="Akwa Pressure Washing">
+    <div class="hero-media">
+      <!-- REPRESENTATIVE STOCK (Pexels, verified loads, hotlink-permitted) — swap for Akwa's own job photo before launch.
+           Depicts residential siding soft-wash in action: gloved tech + visible water spray on house siding. -->
+      <img
+        src="https://images.pexels.com/photos/5652626/pexels-photo-5652626.jpeg?auto=compress&cs=tinysrgb&w=1400"
+        alt="A technician in protective gear pressure washing the siding of a house, with a visible spray of water hitting the wall"
+        width="1400" height="1750"
+        loading="eager" fetchpriority="high" decoding="async">
+    </div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <div class="hero-col">
+        <p class="eyebrow reveal d1"><span class="tick"></span> Serving the St. Louis area<!-- INFERRED: verify service area with owner; lead has city (Florissant, MO) but no street address --></p>
+        <h1 class="reveal d2">Grime doesn't stand a chance against <em>clean water,&nbsp;done right.</em></h1>
+        <p class="hero-sub reveal d3">Akwa Pressure Washing brings driveways, siding, decks and storefronts back to life — residential and commercial, with the right pressure for every surface. No streaks, no damage, just the satisfying before-and-after.</p>
+        <div class="hero-actions reveal d4">
+          <a class="cta big" href="#contact">Get a free quote</a>
+          <a class="cta big ghost" href="tel:+13148250326">Call 314-825-0326</a>
+        </div>
+        <div class="hero-meta reveal d5">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg> Residential &amp; commercial</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"/></svg> Safe soft-wash on siding</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Free, no-pressure quotes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Services — 6 specific, asymmetric bento (not a 3-card row) -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker"><span class="tick"></span> What we wash</span>
+        <h2>Every dirty surface around your home or shopfront — handled the right way.</h2>
+        <p>Different surfaces need different pressure. We dial it in so concrete gets blasted clean and delicate siding gets a gentle soft-wash that lifts the grime without ever forcing water behind it.</p>
+      </div>
+
+      <div class="svc-grid">
+        <article class="svc reveal d1">
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18"/><path d="M5 17l2-9h10l2 9"/><path d="M9 8l-.6 9M15 8l.6 9M12 8v9"/></svg></div>
+          <h3>Driveways &amp; concrete</h3>
+          <p>Oil stains, tire marks, algae and that grey film that creeps over a driveway — lifted off concrete, pavers and walkways until the surface looks freshly poured. The single most satisfying before-and-after we do.</p>
+        </article>
+
+        <article class="svc reveal d2">
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M3 12h18M9 21v-6h6v6"/></svg></div>
+          <h3>House &amp; siding soft wash</h3>
+          <p>A low-pressure soft wash that clears mildew, dirt and cobwebs from vinyl, brick and stucco — safely, without driving water behind the panels.</p>
+        </article>
+
+        <article class="svc reveal d2">
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18M3 14h18M6 9v10M18 9v10M3 19h18M3 5l9-2 9 2"/></svg></div>
+          <h3>Decks &amp; patios</h3>
+          <p>Wood and composite decks, stone patios and pool surrounds cleaned of grey weathering and slick algae so they're ready for the season — and safer underfoot.</p>
+        </article>
+
+        <article class="svc reveal d3">
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16M9 4v16M14 4v16M19 4v16M2 9h20M2 15h20"/></svg></div>
+          <h3>Fences</h3>
+          <p>Wood and vinyl fencing brought back from green and grimy to clean and bright — a quick way to lift the whole look of a yard.</p>
+        </article>
+
+        <article class="svc reveal d3">
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18l-2 4H5L3 7z"/><path d="M5 11v7M19 11v5a3 3 0 0 1-3 3h-3"/></svg></div>
+          <h3>Gutters</h3>
+          <p>Faces of gutters scrubbed clear of the dark tiger-striping, plus a flush-out so water runs where it should instead of down your siding.</p>
+        </article>
+
+        <article class="svc reveal d4">
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l6-4 6 4v14"/><path d="M15 21V11h6v10M3 21h18M7 11h2M7 15h2"/></svg></div>
+          <div>
+            <h3>Commercial &amp; storefronts</h3>
+            <p>Sidewalks, entryways, dumpster pads and building exteriors kept presentable for your customers — scheduled on your terms, before you open or after you close.</p>
+          </div>
+          <a class="svc-cta" href="#contact">Request a quote
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Process band — diagonal navy, breaks symmetry -->
+  <section class="band" id="process">
+    <div class="wrap">
+      <span class="kicker"><span class="tick"></span> How it works</span>
+      <h2>From dirty to done in three easy steps.</h2>
+      <p class="band-lede">No deposits, no surprises. You tell us the surface, we tell you the price, and you only book when you're happy with the number.</p>
+      <div class="steps">
+        <div class="step reveal d1">
+          <span class="n">STEP 01</span>
+          <h3>Tell us what needs cleaning</h3>
+          <p>Call or send the quick form — driveway, siding, deck, the whole exterior. A photo or two helps us nail the quote.</p>
+        </div>
+        <div class="step reveal d2">
+          <span class="n">STEP 02</span>
+          <h3>Get a clear, free quote</h3>
+          <p>We confirm the surfaces and the right method, then give you a straight, no-pressure price. No hourly guessing games.</p>
+        </div>
+        <div class="step reveal d3">
+          <span class="n">STEP 03</span>
+          <h3>We show up and make it shine</h3>
+          <p>We arrive on schedule, protect your plants and fixtures, and leave you with a result you'll want to show the neighbors.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. About / trust — split, headline-side leads; second verified pressure-wash photo earns the right side -->
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div class="about-body">
+        <span class="kicker"><span class="tick"></span> About Akwa</span>
+        <h2>Local, careful, and a little obsessed with a clean finish.</h2>
+        <p>Akwa Pressure Washing is a St. Louis-area exterior cleaning crew that treats your property like our own. The name says it: it all comes down to water — the right pressure, the right angle, and the patience to do it without damaging what's underneath.</p>
+        <p>We work residential and commercial alike, from a single mossy driveway to a row of storefronts that need to look sharp every morning. Tell us the job and we'll tell you straight whether pressure washing is even the right call.</p>
+
+        <div class="trust">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M3 12h18"/></svg>
+            <div class="t">Homes &amp; businesses</div>
+            <div class="d">One crew for driveways and storefronts alike</div>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"/><path d="M9 12l2 2 4-4"/></svg>
+            <div class="t">Surface-safe methods</div>
+            <div class="d">Soft-wash where high pressure would do harm</div>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <div class="t">Free, honest quotes</div>
+            <div class="d">A clear price before any work begins</div>
+          </div>
+        </div>
+      </div>
+
+      <figure class="about-fig reveal d2">
+        <!-- REPRESENTATIVE STOCK (Pexels, verified loads) — swap for Akwa's own job photo before launch.
+             Depicts commercial flatwork pressure washing in action: wand + foam + clean/dirty contrast. -->
+        <img
+          src="https://images.pexels.com/photos/12919779/pexels-photo-12919779.jpeg?auto=compress&cs=tinysrgb&w=1000"
+          alt="A worker using a pressure washer to clean a commercial walkway, with soap and a clear clean-versus-dirty line across the pavement"
+          width="1000" height="1250" loading="lazy" decoding="async">
+        <figcaption>The line between clean and dirty — that's the whole job.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!--
+  ====================================================================
+  TESTIMONIAL SLOT — intentionally EMPTY.
+  Rating block is SUPPRESSED (DEMO_RULES J): Akwa has 4.0★ / 1 review,
+  below the 5-review quality floor. Do NOT show stars, a count, or a
+  "new business" placeholder, and do NOT invent review prose.
+  Fill this with the client's REAL words after they sign and approve.
+
+  <section class="reviews" id="reviews">
+    <div class="wrap"> ... real testimonials go here ... </div>
+  </section>
+  ====================================================================
+  -->
+
+  <!-- 6. Contact — appointment/quote model; phone huge + inert quote form -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="kicker"><span class="tick"></span> Get a free quote</span>
+        <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,2.7rem);letter-spacing:-0.02em;">Ready to see the before-and-after?</h2>
+        <p style="color:#41525c;margin-top:14px;max-width:46ch;">Tell us what needs cleaning and we'll get you a clear price. Fastest answer is always a phone call.</p>
+
+        <a class="phone-cta" href="tel:+13148250326" aria-label="Call Akwa Pressure Washing at 314-825-0326">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          314-825-0326
+        </a>
+
+        <div class="contact-meta">
+          <div class="row">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div><b>Based in Florissant, MO</b><br>Serving Florissant &amp; the greater St. Louis area<!-- INFERRED service area: city is confirmable; specific sub-areas not in lead --></div>
+          </div>
+          <div class="row">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <div><b>Hours: Call for availability</b><br>Daytime and weekend appointments — ask when you call<!-- No hours in lead; do NOT invent a precise table --></div>
+          </div>
+          <div class="row">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+            <div><b>Prefer to write?</b><br>Send the quote form and we'll get right back to you</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3>Request your free quote</h3>
+        <p class="fc-sub">A few details get you a faster, more accurate price.</p>
+        <form id="quoteForm" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
+              <input id="name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="phone">Phone <span class="req" aria-hidden="true">*</span></label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="service">What needs washing?</label>
+            <select id="service" name="service">
+              <option>Driveway or concrete</option>
+              <option>House / siding soft wash</option>
+              <option>Deck or patio</option>
+              <option>Fence</option>
+              <option>Gutters</option>
+              <option>Commercial / storefront</option>
+              <option>A few of these</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="details">Anything else? <span style="font-weight:400;color:#6b7a82;">(surface, size, address)</span></label>
+            <textarea id="details" name="details" placeholder="e.g. Two-car concrete driveway with oil stains, plus vinyl siding on the front of the house."></textarea>
+          </div>
+          <button class="cta big ink" type="submit" style="width:100%;">Send my quote request</button>
+          <p class="form-note">We'll only use your details to get back to you about your quote.</p>
+          <div class="form-ok" id="formOk" role="status" aria-live="polite">
+            Thanks — your request is in. For the fastest answer, give us a call at <a href="tel:+13148250326" style="color:#0c3a4d;font-weight:700;">314-825-0326</a>.
+          </div>
+          <!-- DEMO NOTE (internal, not prospect-facing): form is inert. Wire to the client's email at signup; no backend built now. -->
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 7. Footer — business only, no PaliTech -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="wordmark" style="color:var(--on-navy);">AKW<span class="drop">A</span> <small style="color:var(--on-navy-mut);">Pressure Washing</small></span>
+        <p>Residential and commercial pressure &amp; power washing, serving Florissant and the St. Louis area. The right pressure for every surface — and a clean finish you'll actually notice.</p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="#services">Services</a>
+        <a href="#process">How it works</a>
+        <a href="#about">About</a>
+        <a href="#contact">Free quote</a>
+        <a href="tel:+13148250326">314-825-0326</a>
+      </nav>
+    </div>
+    <div class="foot-base">
+      <span>&copy; 2026 Akwa Pressure Washing. All rights reserved.</span>
+      <span>Florissant, MO &middot; Serving the St. Louis area</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Inert quote form: friendly confirmation that points to the phone. (Only site JS besides the banner toggle.)
+  (function () {
+    var f = document.getElementById('quoteForm');
+    if (!f) return;
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!f.checkValidity()) { f.reportValidity(); return; }
+      document.getElementById('formOk').classList.add('show');
+      f.querySelector('button[type="submit"]').textContent = 'Request received';
+    });
+  })();
+</script>
+</body>
+</html>
