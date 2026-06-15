@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<!--
+  DESIGN SYSTEM — Dan's Pool Services
+  Customer feeling:  "These are the dependable local people who'll get my backyard pool right — clear water, no headaches." Calm, summery, trustworthy.
+  Mode:              light — a pool business is sun, clear water, and bright backyards; dark would feel nocturnal and wrong for the trade.
+  Display font:      Fraunces (Google Fonts) — warm, crafted serif; reads as a hand-built local outfit, not a faceless template.
+  Body font:         DM Sans (Google Fonts) — clean, friendly, highly legible.
+  Dominant color:    #1f6f6b deep pool-teal — sets the "clear water" atmosphere across the page.
+  Accent color:      #b07a37 warm sand/limestone (desaturated) — sun-warmed deck stone; --accent-ink #8a5a22 for small text on light.
+  Hero archetype:    diagonal/bottom-anchored — full-bleed pool photo, headline pinned to the lower-left over a tuned scrim (NOT centered-everything).
+  Memorable moment:  the Fraunces headline anchored bottom-left over real water, with a sand-stone underline tick, and the "calm water" teal trust band.
+  Service model:     APPOINTMENT — free on-site quote. The quote form IS the conversion (inert, friendly thank-you pointing to the phone). No "Book/Reserve" walk-in language.
+  NOTE: 2.5★ / 8 reviews is below the 20-review badge threshold AND weak — no rating shown anywhere. Lead on the work + free quote.
+-->
+<html lang="en" data-banner="on">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dan's Pool Services — Pool Contractor in St. Louis &amp; South County</title>
+<meta name="description" content="Dan's Pool Services builds, services, and repairs swimming pools across St. Louis and South County. Licensed local pool contractor. Free on-site quote — call 314-849-5699.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<script>
+  // Runtime banner override: ?banner=off or #nobanner hides the PaliTech bar in-person without regenerating.
+  (function () {
+    try {
+      var p = new URLSearchParams(location.search);
+      if (p.get('banner') === 'off' || location.hash === '#nobanner') {
+        document.documentElement.setAttribute('data-banner', 'off');
+      }
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root{
+    --teal:#1f6f6b;          /* dominant pool-teal */
+    --teal-deep:#15514e;     /* darker teal for fills/contrast */
+    --teal-ink:#103b39;      /* deepest teal */
+    --accent:#b07a37;        /* warm sand — large use only */
+    --accent-ink:#8a5a22;    /* darker sand for SMALL text on light (clears 4.5:1) */
+    --ink:#15201f;           /* off-black */
+    --ink-soft:#3b4948;      /* secondary text on light (clears 4.5:1 on cream) */
+    --cream:#f7f3ec;         /* off-white */
+    --cream-2:#efe7d8;       /* warm sand-tint surface */
+    --paper:#fbf9f4;         /* lightest surface */
+    --on-dark:#f3efe6;       /* text on teal */
+    --on-dark-soft:#cfe0de;  /* muted text on teal (clears 4.5:1) */
+    --line:#ddd2bf;          /* hairline on cream */
+    --banner-h:38px;
+    --maxw:1180px;
+    --gutter:clamp(20px,5vw,64px);
+    --radius:14px;
+    --shadow:0 18px 50px -24px rgba(16,59,57,.45);
+  }
+  html[data-banner="off"]{--banner-h:0px}
+  html[data-banner="off"] .banner{display:none}
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:"DM Sans",sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:"Fraunces",serif;line-height:1.05;margin:0;font-weight:600;letter-spacing:-.01em}
+  p{margin:0}
+  a{color:inherit}
+  img{display:block;max-width:100%}
+
+  .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+  section{padding-block:clamp(56px,8vw,108px)}
+
+  :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+  /* ---------- PaliTech banner ---------- */
+  .banner{
+    background:var(--teal-ink);
+    color:var(--on-dark);
+    font-size:.8rem;
+    letter-spacing:.01em;
+    text-align:center;
+    height:var(--banner-h);
+    display:flex;align-items:center;justify-content:center;
+    padding-inline:16px;
+  }
+  .banner a{color:#fff;text-decoration:underline;text-underline-offset:2px;font-weight:600}
+
+  /* ---------- Header / Nav ---------- */
+  header.site{
+    position:sticky;top:0;z-index:100;
+    background:rgba(247,243,236,.92);
+    backdrop-filter:saturate(140%) blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    min-height:66px;
+  }
+  .brand{display:flex;align-items:center;gap:11px;min-width:0;text-decoration:none;color:var(--ink)}
+  .brand svg{flex:0 0 auto}
+  .brand .wm{font-family:"Fraunces",serif;font-weight:600;font-size:1.18rem;letter-spacing:-.01em;line-height:1.05;white-space:nowrap}
+  .brand .wm small{display:block;font-family:"DM Sans",sans-serif;font-weight:500;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);margin-top:1px}
+
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a{
+    text-decoration:none;color:var(--ink);font-weight:500;font-size:.96rem;
+    padding:6px 2px;position:relative;
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:0;right:100%;bottom:-1px;height:2px;background:var(--accent);
+    transition:right .25s ease;
+  }
+  .nav-links a:hover::after{right:0}
+
+  .cta{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--accent);color:#1f1405;font-weight:700;text-decoration:none;
+    border:none;border-radius:999px;cursor:pointer;
+    min-height:44px;padding:10px 20px;font-size:.92rem;letter-spacing:.005em;
+    max-width:100%;white-space:nowrap;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    touch-action:manipulation;
+  }
+  .cta:hover{background:#c2873e;transform:translateY(-1px);box-shadow:0 10px 24px -12px rgba(138,90,34,.7)}
+  .cta.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+  .cta.ghost:hover{background:var(--ink);color:var(--cream);box-shadow:none}
+  .cta.on-dark{background:var(--accent);color:#1f1405}
+  .cta.ghost-dark{background:transparent;color:var(--on-dark);border:1.5px solid rgba(243,239,230,.7)}
+  .cta.ghost-dark:hover{background:var(--on-dark);color:var(--teal-ink)}
+
+  .header-cta{min-width:0}
+
+  /* hamburger (pure CSS) */
+  .nav-toggle{display:none}
+  .hamb{
+    display:none;align-items:center;justify-content:center;
+    width:44px;height:44px;border:1px solid var(--line);border-radius:10px;
+    background:var(--paper);cursor:pointer;flex:0 0 auto;
+  }
+  .hamb svg{display:block}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;min-height:calc(100dvh - var(--banner-h) - 66px);display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate}
+  .hero-media{position:absolute;inset:0;z-index:-2;background:#0c2e2c}
+  .hero-media img{width:100%;height:100%;object-fit:cover;max-height:880px;min-height:100%}
+  /* scrim tuned to clear contrast at lower-left where text sits, AND across the top eyebrow */
+  .hero-scrim{position:absolute;inset:0;z-index:-1;
+    background:
+      linear-gradient(180deg, rgba(8,20,19,.62) 0%, rgba(8,20,19,.22) 22%, rgba(8,20,19,0) 44%),
+      linear-gradient(8deg, rgba(8,20,19,.93) 0%, rgba(8,20,19,.88) 30%, rgba(8,20,19,.62) 54%, rgba(8,20,19,.30) 74%, rgba(8,20,19,.10) 88%);
+  }
+  .hero-inner{padding-block:clamp(34px,6vw,70px);width:100%}
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    color:#fff;font-weight:600;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(176,122,55,.3)}
+  .hero h1{
+    color:#fff;
+    font-size:clamp(2.5rem,7.4vw,5.4rem);
+    font-weight:600;
+    max-width:min(92vw,40rem);
+    text-wrap:balance;
+    text-shadow:0 2px 30px rgba(6,24,23,.45);
+  }
+  .hero h1 .uline{
+    background-image:linear-gradient(transparent 64%, rgba(176,122,55,.95) 64%, rgba(176,122,55,.95) 92%, transparent 92%);
+    padding-inline:2px;
+  }
+  .hero-sub{
+    color:var(--on-dark);max-width:min(92vw,34rem);margin-top:20px;font-size:clamp(1.02rem,1.6vw,1.22rem);
+    text-shadow:0 1px 14px rgba(6,24,23,.5);
+  }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+  .hero-actions .cta{min-height:50px;padding:13px 26px;font-size:1rem}
+  .hero-trust{
+    display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:30px;
+  }
+  .hero-trust span{
+    display:inline-flex;align-items:center;gap:8px;color:#fff;font-weight:500;font-size:.9rem;
+  }
+  .hero-trust svg{flex:0 0 auto;color:var(--accent)}
+
+  /* ---------- Trust / calm-water band ---------- */
+  .band{background:var(--teal);color:var(--on-dark);position:relative;overflow:hidden}
+  .band::before{
+    content:"";position:absolute;inset:0;opacity:.5;
+    background:
+      radial-gradient(120% 90% at 12% -10%, rgba(255,255,255,.10), transparent 60%),
+      radial-gradient(80% 70% at 92% 120%, rgba(176,122,55,.22), transparent 60%);
+    pointer-events:none;
+  }
+  .band .wrap{position:relative}
+  .band-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,4vw,52px)}
+  .band-item h3{font-size:1.32rem;color:#fff;margin-bottom:6px;font-weight:600}
+  .band-item p{color:var(--on-dark);font-size:.98rem;max-width:34ch}
+  .band-item .ic{
+    width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.12);
+    display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--accent)
+  }
+  .band-item svg{display:block}
+
+  /* ---------- Section heading ---------- */
+  .sec-head{max-width:54rem;margin-bottom:clamp(34px,5vw,56px)}
+  .sec-eyebrow{
+    display:inline-flex;align-items:center;gap:10px;color:var(--accent-ink);
+    font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px;
+  }
+  .sec-eyebrow::before{content:"";width:26px;height:2px;background:var(--accent)}
+  .sec-head h2{font-size:clamp(2rem,4.4vw,3.1rem);color:var(--ink);font-weight:600}
+  .sec-head p{margin-top:16px;color:var(--ink-soft);font-size:1.08rem;max-width:42rem}
+
+  /* ---------- Services (asymmetric — first card spans, not 3 equal cards) ---------- */
+  .services{background:var(--paper)}
+  .svc-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+  .svc{
+    background:var(--cream);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px 26px;grid-column:span 2;display:flex;flex-direction:column;gap:14px;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .svc:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#cdbf9f}
+  .svc.feature{grid-column:span 3;background:var(--teal);border-color:var(--teal);color:var(--on-dark)}
+  .svc.feature h3,.svc.feature .svc-num{color:#fff}
+  .svc.feature p{color:var(--on-dark)}
+  .svc.feature .svc-ic{background:rgba(255,255,255,.14);color:var(--accent)}
+  .svc.wide{grid-column:span 3}
+  .svc-ic{
+    width:50px;height:50px;border-radius:13px;background:var(--cream-2);
+    display:flex;align-items:center;justify-content:center;color:var(--teal-deep);flex:0 0 auto;
+  }
+  .svc-ic svg{display:block}
+  .svc h3{font-size:1.32rem;font-weight:600}
+  .svc p{color:var(--ink-soft);font-size:.99rem}
+  .svc.feature p{color:var(--on-dark)}
+
+  /* ---------- About (split, photo earns its space) ---------- */
+  .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,64px);align-items:center}
+  .about-copy h2{font-size:clamp(1.9rem,4vw,2.9rem);color:var(--ink);margin-bottom:20px;font-weight:600}
+  .about-copy p + p{margin-top:16px}
+  .about-copy p{color:var(--ink-soft);font-size:1.06rem}
+  .about-trust{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+  .pill{
+    display:inline-flex;align-items:center;gap:9px;background:var(--cream-2);
+    border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-weight:600;font-size:.9rem;color:var(--teal-ink);
+  }
+  .pill svg{color:var(--accent-ink);flex:0 0 auto}
+  .about-photo{
+    position:relative;border-radius:18px;overflow:hidden;background:#163f3d;box-shadow:var(--shadow);
+    aspect-ratio:4/5;
+  }
+  .about-photo img{width:100%;height:100%;object-fit:cover}
+  .about-photo .tag{
+    position:absolute;left:18px;bottom:18px;right:18px;
+    background:rgba(13,46,44,.78);backdrop-filter:blur(2px);
+    color:#fff;border-radius:12px;padding:13px 16px;font-size:.92rem;font-weight:500;line-height:1.4;
+  }
+  .about-photo .tag b{font-weight:700}
+
+  /* ---------- Process (offset numbered, not section scaffolding) ---------- */
+  .process{background:var(--cream-2)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:step}
+  .step{position:relative;padding-top:26px}
+  .step::before{
+    counter-increment:step;content:"0" counter(step);
+    font-family:"Fraunces",serif;font-weight:600;font-size:1.05rem;color:var(--accent-ink);
+    display:block;margin-bottom:10px;letter-spacing:.04em;
+  }
+  .step h3{font-size:1.22rem;color:var(--ink);margin-bottom:8px;font-weight:600}
+  .step p{color:var(--ink-soft);font-size:.96rem}
+  .step{border-top:2px solid var(--line)}
+
+  /* ---------- Quote / contact ---------- */
+  .contact{background:var(--teal);color:var(--on-dark);position:relative;overflow:hidden}
+  .contact::before{
+    content:"";position:absolute;inset:0;opacity:.6;pointer-events:none;
+    background:radial-gradient(90% 80% at 100% 0%, rgba(176,122,55,.20), transparent 60%);
+  }
+  .contact .wrap{position:relative}
+  .contact-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(34px,5vw,68px);align-items:start}
+  .contact h2{font-size:clamp(2rem,4.2vw,3rem);color:#fff;font-weight:600}
+  .contact-lede{color:var(--on-dark);margin-top:16px;font-size:1.08rem;max-width:38ch}
+  .phone-big{
+    display:inline-flex;align-items:center;gap:14px;margin-top:28px;text-decoration:none;color:#fff;
+    font-family:"Fraunces",serif;font-weight:600;font-size:clamp(1.7rem,4vw,2.5rem);letter-spacing:-.01em;
+  }
+  .phone-big .pic{
+    width:54px;height:54px;border-radius:14px;background:var(--accent);color:#1f1405;
+    display:flex;align-items:center;justify-content:center;flex:0 0 auto;
+  }
+  .phone-big:hover{text-decoration:underline;text-underline-offset:5px}
+  .contact-meta{margin-top:26px;display:grid;gap:16px}
+  .cmeta{display:flex;gap:13px;align-items:flex-start}
+  .cmeta svg{flex:0 0 auto;color:var(--accent);margin-top:3px}
+  .cmeta b{color:#fff;display:block;font-weight:700;font-size:.95rem}
+  .cmeta span{color:var(--on-dark);font-size:.96rem}
+
+  /* form card */
+  .qform{background:var(--cream);border-radius:18px;padding:clamp(24px,3vw,36px);box-shadow:var(--shadow)}
+  .qform h3{font-size:1.5rem;color:var(--ink);font-weight:600;margin-bottom:6px}
+  .qform .fhint{color:var(--ink-soft);font-size:.96rem;margin-bottom:22px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-weight:600;font-size:.88rem;color:var(--ink);margin-bottom:7px}
+  .field label .req{color:var(--accent-ink)}
+  .field input,.field select,.field textarea{
+    width:100%;font-family:inherit;font-size:1rem;color:var(--ink);
+    background:var(--paper);border:1.5px solid var(--line);border-radius:11px;
+    padding:12px 14px;transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .field textarea{resize:vertical;min-height:96px}
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(31,111,107,.18)
+  }
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .qform .cta{width:100%;min-height:52px;font-size:1.02rem;margin-top:6px}
+  .form-thanks{
+    display:none;background:var(--cream-2);border:1px solid var(--line);border-radius:12px;
+    padding:18px 18px;color:var(--ink);font-size:.98rem;line-height:1.55;margin-top:4px;
+  }
+  .form-thanks.show{display:block}
+  .form-thanks b{color:var(--teal-ink)}
+  .form-thanks a{color:var(--accent-ink);font-weight:700}
+
+  /* ---------- Footer ---------- */
+  footer.site{background:var(--ink);color:#e8e3d8}
+  footer.site .wrap{padding-block:clamp(40px,5vw,60px)}
+  .foot-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px;align-items:flex-start}
+  .foot-brand .wm{font-family:"Fraunces",serif;font-weight:600;font-size:1.4rem;color:#fff}
+  .foot-brand p{color:#bcb8ad;margin-top:8px;max-width:34ch;font-size:.96rem}
+  .foot-nav{display:flex;flex-wrap:wrap;gap:14px 26px}
+  .foot-nav a{color:#e8e3d8;text-decoration:none;font-weight:500;font-size:.96rem}
+  .foot-nav a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+  .foot-bottom{
+    border-top:1px solid rgba(255,255,255,.12);margin-top:30px;padding-top:20px;
+    display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between;color:#a9a59a;font-size:.86rem;
+  }
+
+  /* ---------- Motion ---------- */
+  .reveal{opacity:0;transform:translateY(22px);animation:rise .7s cubic-bezier(.22,.7,.3,1) forwards}
+  .hero .reveal{animation-duration:.8s}
+  .d1{animation-delay:.05s}.d2{animation-delay:.18s}.d3{animation-delay:.31s}
+  .d4{animation-delay:.44s}.d5{animation-delay:.56s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;animation:none}
+    html{scroll-behavior:auto}
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:980px){
+    .about-grid{grid-template-columns:1fr;gap:32px}
+    .about-photo{aspect-ratio:16/11;max-width:560px}
+    .contact-grid{grid-template-columns:1fr;gap:34px}
+    .steps{grid-template-columns:1fr 1fr}
+    .band-grid{grid-template-columns:1fr;gap:26px}
+  }
+  @media (max-width:760px){
+    .nav-links{
+      position:absolute;top:100%;left:0;right:0;
+      flex-direction:column;align-items:stretch;gap:0;
+      background:var(--teal-ink);border-bottom:1px solid var(--teal-deep);
+      padding:8px var(--gutter) 18px;
+      box-shadow:0 22px 40px -28px rgba(16,59,57,.5);
+      max-height:0;overflow:hidden;visibility:hidden;
+      transition:max-height .3s ease, padding .3s ease, visibility 0s linear .3s;
+    }
+    .nav-toggle:checked ~ .nav-links{max-height:420px;padding-top:10px;visibility:visible;transition:max-height .3s ease, padding .3s ease, visibility 0s}
+    .nav-links a{padding:13px 4px;border-bottom:1px solid rgba(243,239,230,.16);font-size:1.02rem;color:var(--on-dark)}
+    .nav-links a.cta{background:var(--accent);color:#1f1405;border-bottom:none}
+    .nav-links a::after{display:none}
+    .nav-links .cta{margin-top:14px;width:100%}
+    .hamb{display:flex}
+    .header-cta-desktop{display:none}
+    .svc-grid{grid-template-columns:1fr}
+    .svc,.svc.feature,.svc.wide{grid-column:auto}
+  }
+  @media (max-width:520px){
+    .frow{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .hero-actions{flex-direction:column;align-items:stretch}
+    .hero-actions .cta{width:100%}
+    .brand .wm small{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ PaliTech banner (default ON; ?banner=off / #nobanner hides) ============ -->
+<div class="banner">
+  <span>Free website preview by PaliTech —&nbsp;<a href="https://pali-tech.com" target="_blank" rel="noopener">pali-tech.com</a></span>
+</div>
+
+<!-- ============ Header / Nav ============ -->
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Dan's Pool Services — home">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+        <rect x="1" y="1" width="32" height="32" rx="9" fill="#1f6f6b"/>
+        <path d="M7 22c2.2 0 2.2 2 4.4 2s2.2-2 4.4-2 2.2 2 4.4 2 2.2-2 4.4-2" stroke="#b07a37" stroke-width="2.1" stroke-linecap="round"/>
+        <path d="M7 16.5c2.2 0 2.2 2 4.4 2s2.2-2 4.4-2 2.2 2 4.4 2 2.2-2 4.4-2" stroke="#f3efe6" stroke-width="2.1" stroke-linecap="round"/>
+        <path d="M12.5 12.5V9.2A2.2 2.2 0 0 1 14.7 7M21 12.5V9.2A2.2 2.2 0 0 1 23.2 7" stroke="#f3efe6" stroke-width="2.1" stroke-linecap="round"/>
+      </svg>
+      <span class="wm">Dan's Pool Services<small>St. Louis pool contractor</small></span>
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+    <label class="hamb" for="nav-toggle" aria-label="Open navigation menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="#15201f" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </label>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#process">How it works</a>
+      <a href="#quote">Contact</a>
+      <a class="cta" href="#quote">Free on-site quote</a>
+    </nav>
+
+    <a class="cta header-cta header-cta-desktop" href="tel:+13148495699">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6.5 4h3l1.5 4-2 1.4a11 11 0 0 0 5.1 5.1L15.5 13l4 1.5v3a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4.5 6.2 2 2 0 0 1 6.5 4Z" stroke="#1f1405" stroke-width="1.8" stroke-linejoin="round"/>
+      </svg>
+      Call (314) 849-5699
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ Hero ============ -->
+  <section class="hero" aria-label="Dan's Pool Services">
+    <div class="hero-media">
+      <!-- Representative pool stock; swap for the owner's own job photos before launch. Business's only scraped photo is a Street View of a house — not used. -->
+      <img src="https://images.pexels.com/photos/261327/pexels-photo-261327.jpeg?auto=compress&cs=tinysrgb&w=1600"
+           alt="A clean backyard swimming pool with clear blue water and stone deck on a bright day"
+           width="1600" height="1067" decoding="async" loading="eager" fetchpriority="high">
+    </div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <span class="hero-eyebrow reveal d1"><span class="dot"></span>Serving St. Louis &amp; South County</span>
+      <!-- INFERRED: verify service area with owner (address is Sappington 63126) -->
+      <h1 class="reveal d2">The St. Louis backyard you keep <span class="uline">putting off</span>, finally built right.</h1>
+      <p class="hero-sub reveal d3">From a brand-new pool to a Monday-morning repair, Dan's handles the build, the upkeep, and everything in the water between. Local, licensed, and straight with you.</p>
+      <!-- INFERRED: "licensed" claim — verify license details with owner -->
+      <div class="hero-actions reveal d4">
+        <a class="cta on-dark" href="#quote">Get my free on-site quote</a>
+        <a class="cta ghost-dark" href="tel:+13148495699">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6.5 4h3l1.5 4-2 1.4a11 11 0 0 0 5.1 5.1L15.5 13l4 1.5v3a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4.5 6.2 2 2 0 0 1 6.5 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+          (314) 849-5699
+        </a>
+      </div>
+      <div class="hero-trust reveal d5">
+        <span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 12.5 11 14.5 15.5 9.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/></svg>
+          Free on-site quote
+        </span>
+        <span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 4 6.5v5c0 4.6 3.2 7.8 8 9.5 4.8-1.7 8-4.9 8-9.5v-5L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          Licensed pool contractor
+        </span>
+        <span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-5.2 7-10.5A7 7 0 0 0 5 10.5C5 15.8 12 21 12 21Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10.5" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg>
+          Built &amp; serviced locally
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Trust / calm-water band ============ -->
+  <section class="band" aria-label="Why homeowners call Dan's">
+    <div class="wrap">
+      <div class="band-grid">
+        <div class="band-item reveal d1">
+          <div class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 18c2.5 0 2.5 2 5 2s2.5-2 5-2 2.5 2 5 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M4 13c2.5 0 2.5 2 5 2s2.5-2 5-2 2.5 2 5 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 9V6a2 2 0 0 1 2-2M16 9V6a2 2 0 0 1 2-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <h3>One crew, start to finish</h3>
+          <p>The same local hands that pour your pool keep it running — so nothing falls through the cracks between contractors.</p>
+        </div>
+        <div class="band-item reveal d2">
+          <div class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Quick on a callback</h3>
+          <p>A green pool or a dead pump doesn't wait for next week. Call and we'll get you a real answer and a time fast.</p>
+        </div>
+        <div class="band-item reveal d3">
+          <div class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 11.5 10 16.5 19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Straight pricing, no surprises</h3>
+          <p>You get a clear on-site quote before a shovel moves. What we say it costs is what it costs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Services (asymmetric — feature card + mixed spans, not 3 equal cards) ============ -->
+  <section class="services" id="services" aria-labelledby="svc-h">
+    <div class="wrap">
+      <div class="sec-head reveal d1">
+        <span class="sec-eyebrow">What we do</span>
+        <h2 id="svc-h">Everything your pool needs, under one roof</h2>
+        <p>New builds, seasonal work, and the repairs nobody else wants to touch — Dan's covers the whole life of a St. Louis pool.</p>
+      </div>
+      <div class="svc-grid">
+        <article class="svc feature reveal d1">
+          <div class="svc-ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 20h18M5 20v-7l7-4 7 4v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 20v-5h6v5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>New pool construction</h3>
+          <p>From the first chalk line to clear water, we design and build in-ground pools that fit your yard, your family, and your budget — done by the crew that'll service it for years after.</p>
+        </article>
+        <article class="svc wide reveal d2">
+          <div class="svc-ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 8h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4 8l3-3h10l3 3" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 13h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <h3>Liner replacement</h3>
+          <p>A torn or faded liner ages a whole backyard. We measure, fit, and install a fresh one that makes the water look new again.</p>
+        </article>
+
+        <article class="svc reveal d1">
+          <div class="svc-ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3v4M12 17v4M3 12h4M17 12h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/></svg></div>
+          <h3>Openings &amp; closings</h3>
+          <p>We get the pool swim-ready each spring and buttoned-up safe each fall — no scrambling on the first warm weekend.</p>
+        </article>
+        <article class="svc reveal d2">
+          <div class="svc-ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="2"/><path d="M12 6.5v5.5l3.5 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Weekly maintenance</h3>
+          <p>Skim, brush, balance, repeat. We keep the chemistry right so you just walk out and jump in all summer.</p>
+        </article>
+        <article class="svc reveal d3">
+          <div class="svc-ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.6L5 16v3h3l4.9-4.9a3.5 3.5 0 0 0 4.6-4.6l-2 2-2-2 2-2Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg></div>
+          <h3>Pump &amp; equipment repair</h3>
+          <p>Pumps, filters, heaters, and plumbing — we diagnose what's actually wrong and fix it, instead of selling you the whole system.</p>
+        </article>
+        <article class="svc reveal d1">
+          <div class="svc-ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M11 8v3l2 1.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Leak detection</h3>
+          <p>Losing water and don't know why? We track down the leak and seal it before it eats your bill or undermines the deck.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ About (split — photo earns its space) ============ -->
+  <section class="about" id="about" aria-labelledby="about-h">
+    <div class="wrap about-grid">
+      <div class="about-copy reveal d1">
+        <span class="sec-eyebrow">About Dan's</span>
+        <h2 id="about-h">A local pool guy you can actually get on the phone</h2>
+        <p>Dan's Pool Services is a Sappington-based pool contractor working backyards across St. Louis and South County. No call center, no rotating subs — when you book a build or a repair, you're dealing with the people who'll be standing at your pool.</p>
+        <p>We'd rather do a handful of jobs right than rush through dozens. That means honest timelines, clean work, and a pool you can stop thinking about and start enjoying.</p>
+        <!-- INFERRED: "Sappington-based / South County" inferred from address 9400 Dennison Grove Ct, Sappington 63126 — verify with owner -->
+        <div class="about-trust">
+          <span class="pill"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 4 6.5v5c0 4.6 3.2 7.8 8 9.5 4.8-1.7 8-4.9 8-9.5v-5L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Licensed pool contractor</span>
+          <span class="pill"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-5.2 7-10.5A7 7 0 0 0 5 10.5C5 15.8 12 21 12 21Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10.5" r="2.2" stroke="currentColor" stroke-width="1.8"/></svg>Serving South County</span>
+          <span class="pill"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 11.5 10 16.5 19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Free on-site quotes</span>
+        </div>
+        <!-- INFERRED: "Licensed" trust claim — verify license/credential details with owner before launch -->
+      </div>
+      <figure class="about-photo reveal d2">
+        <img src="https://images.pexels.com/photos/261101/pexels-photo-261101.jpeg?auto=compress&cs=tinysrgb&w=1200"
+             alt="Clear turquoise swimming pool water beside a tidy poolside deck"
+             width="1200" height="1500" decoding="async" loading="lazy">
+        <figcaption class="tag"><b>Clear water, kept that way.</b> Representative of the work — your own pool goes here before launch.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!--
+    testimonial: filled with the client's words after they sign.
+    No review text is written or quoted here. Rating 2.5 / 8 reviews is below the 20-review badge threshold
+    and weak — no rating or count is shown anywhere on the page (per spec J). Lead on the work + free quote.
+  -->
+
+  <!-- ============ Process ============ -->
+  <section class="process" id="process" aria-labelledby="proc-h">
+    <div class="wrap">
+      <div class="sec-head reveal d1">
+        <span class="sec-eyebrow">How it works</span>
+        <h2 id="proc-h">Four simple steps to a pool you don't have to babysit</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal d1">
+          <h3>You call</h3>
+          <p>Tell us what's going on — a dream build or a pump that quit. We listen and set a time to come look.</p>
+        </div>
+        <div class="step reveal d2">
+          <h3>Free on-site quote</h3>
+          <p>We see the pool in person, talk options, and hand you clear pricing with no pressure.</p>
+        </div>
+        <div class="step reveal d3">
+          <h3>We get to work</h3>
+          <p>Clean, careful work on a timeline we actually keep — you always know where things stand.</p>
+        </div>
+        <div class="step reveal d4">
+          <h3>You enjoy it</h3>
+          <p>Crystal water, dependable equipment, and a crew that's a phone call away when you need them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Quote / Contact ============ -->
+  <section class="contact" id="quote" aria-labelledby="contact-h">
+    <div class="wrap contact-grid">
+      <div class="reveal d1">
+        <span class="sec-eyebrow" style="color:#f6e7cb">Free on-site quote</span>
+        <h2 id="contact-h">Let's get your pool sorted</h2>
+        <p class="contact-lede">Tell us a little about the job and we'll set up a free visit — or just call and we'll pick up.</p>
+
+        <a class="phone-big" href="tel:+13148495699">
+          <span class="pic" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6.5 4h3l1.5 4-2 1.4a11 11 0 0 0 5.1 5.1L15.5 13l4 1.5v3a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4.5 6.2 2 2 0 0 1 6.5 4Z" stroke="#1f1405" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </span>
+          (314) 849-5699
+        </a>
+
+        <div class="contact-meta">
+          <div class="cmeta">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-5.2 7-10.5A7 7 0 0 0 5 10.5C5 15.8 12 21 12 21Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10.5" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg>
+            <div><b>Where we are</b><span>9400 Dennison Grove Ct, Sappington, MO 63126</span></div>
+          </div>
+          <div class="cmeta">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div><b>Hours</b><span>Call to schedule — free on-site quote</span></div>
+          </div>
+          <div class="cmeta">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6.5h16v11a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 17.5v-11Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 7l7 5 7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div><b>Service area</b><span>St. Louis &amp; South County</span></div>
+            <!-- INFERRED: verify exact service area with owner -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Inert demo form: shows a friendly thank-you on submit and points to the phone.
+           No backend wired during demo generation; wiring to an email endpoint is a per-client task at signup. -->
+      <form class="qform reveal d2" id="quoteForm" novalidate>
+        <h3>Request your free quote</h3>
+        <p class="fhint">Drop your details and what you need. We'll call to set up a visit.</p>
+
+        <div class="frow">
+          <div class="field">
+            <label for="qf-name">Name <span class="req" aria-hidden="true">*</span></label>
+            <input id="qf-name" name="name" type="text" autocomplete="name" required placeholder="Your name">
+          </div>
+          <div class="field">
+            <label for="qf-phone">Phone <span class="req" aria-hidden="true">*</span></label>
+            <input id="qf-phone" name="phone" type="tel" autocomplete="tel" required placeholder="(314) 000-0000">
+          </div>
+        </div>
+        <div class="field">
+          <label for="qf-email">Email</label>
+          <input id="qf-email" name="email" type="email" autocomplete="email" placeholder="you@email.com">
+        </div>
+        <div class="field">
+          <label for="qf-service">What do you need?</label>
+          <select id="qf-service" name="service">
+            <option value="">Choose a service…</option>
+            <option>New pool construction</option>
+            <option>Liner replacement</option>
+            <option>Opening / closing</option>
+            <option>Weekly maintenance</option>
+            <option>Pump / equipment repair</option>
+            <option>Leak detection</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="qf-msg">Tell us about the pool</label>
+          <textarea id="qf-msg" name="message" placeholder="In-ground or above? What's going on?"></textarea>
+        </div>
+        <button type="submit" class="cta">Request my free quote</button>
+
+        <div class="form-thanks" id="formThanks" role="status" aria-live="polite">
+          <b>Thanks — your request is in.</b> We'll reach out to set up your free on-site visit. Need it sooner? Call us at <a href="tel:+13148495699">(314) 849-5699</a>.
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ Footer (no PaliTech branding) ============ -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="wm">Dan's Pool Services</span>
+        <p>Building, servicing, and repairing backyard pools across St. Louis &amp; South County.</p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#process">How it works</a>
+        <a href="#quote">Free quote</a>
+        <a href="tel:+13148495699">(314) 849-5699</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Dan's Pool Services · Sappington, MO 63126</span>
+      <span>Licensed pool contractor · Free on-site quotes</span>
+      <!-- INFERRED: "Licensed" — verify credential with owner -->
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Only JS beyond the runtime banner toggle: keep the demo form inert with a friendly thank-you.
+  (function () {
+    var form = document.getElementById('quoteForm');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = document.getElementById('qf-name');
+      var phone = document.getElementById('qf-phone');
+      if (!name.value.trim()) { name.focus(); return; }
+      if (!phone.value.trim()) { phone.focus(); return; }
+      var thanks = document.getElementById('formThanks');
+      thanks.classList.add('show');
+      form.querySelector('button[type="submit"]').textContent = 'Request received';
+      thanks.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    });
+  })();
+</script>
+</body>
+</html>
