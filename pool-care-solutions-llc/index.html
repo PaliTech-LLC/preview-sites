@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<!--
+  DESIGN SYSTEM — Pool Care Solutions LLC
+  Customer feeling:  "Someone reliable has this handled — I don't have to think about my pool again."
+  Mode:              light — a pool-care service should feel clean, calm and trustworthy; deep-water
+                     navy/teal carries the depth without the dark-site moodiness a contractor sometimes uses.
+  Display font:      Fraunces (Google Fonts) — warm, confident, characterful; not a generic geometric.
+  Body font:         DM Sans (Google Fonts) — clean, airy, modern; pairs cleanly with Fraunces.
+  Dominant color:    #0d3b46 (deep teal/navy water) — sets the calm, dependable atmosphere everywhere.
+  Accent color:      #c08a3e (restrained warm gold, ~63% sat) — sparingly; a warm signal against cool water.
+  Hero archetype:    full-bleed own pool photo, headline overlaid to the LEFT (not centered-everything),
+                     a small "worry-free / weekly" info card on the right that stacks AFTER the headline on mobile.
+  Memorable moment:  the headline set in Fraunces over the real glass-clear blue water, with a thin gold
+                     rule and the calm "set-it-and-forget-it" maintenance promise — a maintenance site that
+                     reads deep and dependable, not the usual bright aqua+sand pool-builder template.
+-->
+<html lang="en" data-banner="on">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pool Care Solutions LLC — Worry-Free Pool Maintenance | St. Louis Area</title>
+<meta name="description" content="Dependable weekly pool cleaning, chemical balancing, openings & closings, and equipment service across the St. Louis area. Request your free quote.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  // Runtime banner override: ?banner=off or #nobanner hides the PaliTech bar (for in-person iPad demos).
+  (function () {
+    try {
+      var p = new URLSearchParams(location.search);
+      if (p.get('banner') === 'off' || location.hash === '#nobanner') {
+        document.documentElement.setAttribute('data-banner', 'off');
+      }
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --water:      #0d3b46;  /* deep teal/navy — dominant */
+    --water-deep: #082930;  /* darker water for footers / deep panels */
+    --water-mid:  #14525f;  /* mid teal for tints */
+    --paper:      #f6f3ec;  /* off-white (never #fff) */
+    --paper-soft: #ece6d9;  /* warm panel */
+    --ink:        #14201f;  /* off-black body ink */
+    --ink-soft:   #3b4a48;  /* secondary ink (4.5:1 on paper) */
+    --gold:       #c08a3e;  /* accent, large sizes / fills */
+    --gold-ink:   #8a5a1c;  /* darker accent for SMALL text on paper (clears 4.5:1) */
+    --on-water:   #f6f3ec;  /* text on the deep water */
+    --on-water-soft: #cdd9d6;/* muted text on water (clears 4.5:1) */
+    --line:       #d8d0c2;  /* hairlines on paper */
+    --banner-h:   38px;
+    --gutter:     clamp(20px, 5vw, 64px);
+    --maxw:       1200px;
+    --r:          14px;
+  }
+  html[data-banner="off"] { --banner-h: 0px; }
+  html[data-banner="off"] .banner { display: none; }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "DM Sans", sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 { font-family: "Fraunces", serif; font-weight: 600; line-height: 1.04; margin: 0; }
+  p { margin: 0; }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+
+  .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
+
+  /* skip link */
+  .skip {
+    position: absolute; left: 8px; top: -60px; z-index: 1200;
+    background: var(--water); color: var(--on-water);
+    padding: 10px 16px; border-radius: 8px; text-decoration: none; font-weight: 600;
+    transition: top .2s ease;
+  }
+  .skip:focus { top: 8px; }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, .btn:focus-visible, label:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* ---------- PaliTech banner ---------- */
+  .banner {
+    position: fixed; inset: 0 0 auto 0; height: var(--banner-h); z-index: 1100;
+    background: var(--water-deep); color: var(--on-water);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.78rem; letter-spacing: 0.01em;
+    border-bottom: 1px solid rgba(192,138,62,.35);
+    padding-inline: 14px; text-align: center;
+  }
+  .banner a { color: #e8c98c; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* ---------- header ---------- */
+  .site-head {
+    position: sticky; top: var(--banner-h); z-index: 1000;
+    background: rgba(246,243,236,.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav { display: flex; align-items: center; gap: 20px; min-height: 66px; }
+  .wordmark {
+    display: flex; align-items: center; gap: 10px; text-decoration: none;
+    font-family: "Fraunces", serif; font-weight: 600; font-size: 1.22rem; color: var(--ink);
+    min-width: 0; flex: 0 1 auto; line-height: 1.05;
+  }
+  .wordmark .mk { color: var(--water); }
+  .wordmark svg { flex: none; }
+  .nav-links { display: flex; gap: 28px; margin-left: auto; align-items: center; }
+  .nav-links a {
+    text-decoration: none; color: var(--ink); font-weight: 500; font-size: 0.97rem;
+    padding: 6px 2px; position: relative;
+  }
+  .nav-links a::after {
+    content: ""; position: absolute; left: 0; right: 100%; bottom: 0; height: 2px;
+    background: var(--gold); transition: right .25s ease;
+  }
+  .nav-links a:hover::after { right: 0; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: "DM Sans", sans-serif; font-weight: 600; text-decoration: none;
+    border-radius: 999px; cursor: pointer; border: 0;
+    max-width: 100%; touch-action: manipulation; transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  .btn-primary {
+    background: var(--gold); color: #2a1a05;
+    padding: 13px 24px; font-size: 1rem;
+    box-shadow: 0 8px 20px -10px rgba(138,90,28,.7);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 26px -10px rgba(138,90,28,.75); }
+  .btn-ghost {
+    background: transparent; color: var(--on-water); border: 1.5px solid rgba(246,243,236,.55);
+    padding: 12px 22px; font-size: 1rem;
+  }
+  .btn-ghost:hover { background: rgba(246,243,236,.12); transform: translateY(-2px); }
+  .nav-cta { margin-left: 4px; }
+  .nav-cta.btn-primary { padding: 10px 18px; font-size: 0.92rem; min-height: 44px; }
+
+  /* hamburger (pure CSS) */
+  .nav-toggle, .nav-check { display: none; }
+  .hamburger {
+    display: none; margin-left: auto; cursor: pointer;
+    width: 46px; height: 46px; border-radius: 10px;
+    align-items: center; justify-content: center;
+    border: 1px solid var(--line); background: var(--paper);
+  }
+  .hamburger svg { color: var(--water); }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative;
+    min-height: calc(100dvh - var(--banner-h) - 66px);
+    max-height: 880px;
+    display: flex; align-items: center;
+    overflow: hidden;
+    background: var(--water);
+    scroll-margin-top: calc(var(--banner-h) + 66px);
+  }
+  .hero-img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; z-index: 0;
+  }
+  /* strong scrim tuned to the LIGHTEST (bright pool) pixels: left-anchored + top/bottom for nav+card */
+  .hero::before {
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background:
+      linear-gradient(90deg, rgba(8,41,48,.94) 0%, rgba(8,41,48,.82) 42%, rgba(8,41,48,.55) 78%, rgba(8,41,48,.5) 100%),
+      linear-gradient(180deg, rgba(8,41,48,.5) 0%, rgba(8,41,48,.25) 40%, rgba(8,41,48,.5) 100%);
+  }
+  .hero .wrap { position: relative; z-index: 2; width: 100%; }
+  .hero-grid {
+    display: grid; grid-template-columns: minmax(0, 40rem) minmax(0, 18rem);
+    gap: 40px; align-items: center; padding-block: 56px;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #f0d9a8; font-weight: 600; font-size: 0.82rem;
+    letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 18px;
+    background: rgba(8,41,48,.78); padding: 7px 13px; border-radius: 999px;
+    border: 1px solid rgba(232,201,140,.3);
+  }
+  .hero-eyebrow .rule { width: 34px; height: 2px; background: var(--gold); display: inline-block; }
+  .hero h1 {
+    color: var(--on-water);
+    font-size: clamp(2.5rem, 1.4rem + 5vw, 4.6rem);
+    font-weight: 600; letter-spacing: -0.01em;
+    max-width: 18ch;
+  }
+  .hero h1 em { font-style: italic; color: #e8c98c; font-weight: 500; }
+  .hero-sub {
+    color: var(--on-water); margin-top: 22px; font-size: clamp(1.05rem, 0.98rem + 0.5vw, 1.22rem);
+    max-width: 46ch; line-height: 1.6;
+  }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+  .hero-meta {
+    margin-top: 30px; display: flex; flex-wrap: wrap; gap: 10px 26px;
+    color: var(--on-water-soft); font-size: 0.92rem; font-weight: 500;
+  }
+  .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+  .hero-meta svg { color: #e8c98c; flex: none; }
+
+  .hero-card {
+    background: var(--paper); border-radius: var(--r);
+    padding: 26px 24px; box-shadow: 0 30px 60px -28px rgba(0,0,0,.55);
+    border-top: 4px solid var(--gold);
+  }
+  .hero-card h2 {
+    font-size: 1.32rem; color: var(--water); margin-bottom: 6px;
+  }
+  .hero-card p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 18px; }
+  .hero-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .hero-card li { display: flex; gap: 11px; align-items: flex-start; font-size: 0.95rem; color: var(--ink); }
+  .hero-card li svg { color: var(--gold-ink); flex: none; margin-top: 3px; }
+
+  /* ---------- section scaffolding ---------- */
+  section { padding-block: clamp(64px, 8vw, 108px); }
+  .sec-head { max-width: 50ch; margin-bottom: clamp(34px, 5vw, 54px); }
+  .kicker {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: var(--gold-ink); font-weight: 700; font-size: 0.8rem;
+    letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 14px;
+  }
+  .kicker .rule { width: 28px; height: 2px; background: var(--gold); }
+  h2.title { font-size: clamp(1.9rem, 1.3rem + 2.6vw, 3rem); color: var(--water); letter-spacing: -0.01em; }
+  .sec-head p { color: var(--ink-soft); margin-top: 16px; font-size: 1.08rem; }
+
+  /* ---------- how it works (steps) ---------- */
+  .steps { background: var(--water); color: var(--on-water); }
+  .steps h2.title { color: var(--on-water); }
+  .steps .kicker { color: #e8c98c; }
+  .steps .sec-head p { color: var(--on-water-soft); }
+  .step-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  .step {
+    border: 1px solid rgba(246,243,236,.18); border-radius: var(--r);
+    padding: 30px 26px; background: rgba(246,243,236,.04);
+  }
+  .step .num {
+    font-family: "Fraunces", serif; font-size: 1.05rem; font-weight: 600;
+    color: #e8c98c; display: flex; align-items: center; gap: 12px; margin-bottom: 18px;
+  }
+  .step .num .dot { width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid var(--gold);
+    display: flex; align-items: center; justify-content: center; color: #e8c98c; flex: none; }
+  .step h3 { font-size: 1.32rem; color: var(--on-water); margin-bottom: 10px; }
+  .step p { color: var(--on-water-soft); font-size: 0.98rem; }
+
+  /* ---------- services ---------- */
+  .svc-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 22px;
+  }
+  .svc {
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--r);
+    padding: 30px 26px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  /* asymmetric spans — NOT a uniform 3-card row */
+  .svc:nth-child(1) { grid-column: span 4; background: var(--paper-soft); }
+  .svc:nth-child(2) { grid-column: span 2; }
+  .svc:nth-child(3) { grid-column: span 2; }
+  .svc:nth-child(4) { grid-column: span 4; background: var(--paper-soft); }
+  .svc:nth-child(5) { grid-column: span 3; }
+  .svc:nth-child(6) { grid-column: span 3; }
+  .svc:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -26px rgba(13,59,70,.55); border-color: var(--gold); }
+  .svc-ico {
+    width: 52px; height: 52px; border-radius: 12px; background: var(--water);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
+  }
+  .svc-ico svg { color: #e8c98c; }
+  .svc h3 { font-size: 1.28rem; color: var(--water); margin-bottom: 8px; }
+  .svc p { color: var(--ink-soft); font-size: 0.99rem; }
+
+  /* ---------- about + care photo split ---------- */
+  .about-grid {
+    display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(30px, 5vw, 64px); align-items: center;
+  }
+  .about-figure {
+    position: relative; border-radius: var(--r); overflow: hidden;
+    background: var(--water-mid); aspect-ratio: 4 / 3.2; box-shadow: 0 30px 60px -34px rgba(13,59,70,.6);
+  }
+  .about-figure img { width: 100%; height: 100%; object-fit: cover; }
+  .about-body p + p { margin-top: 16px; }
+  .about-body p { color: var(--ink-soft); font-size: 1.06rem; }
+  .about-body p.lead { color: var(--ink); font-size: 1.12rem; }
+  .trust {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 34px;
+  }
+  .trust div {
+    border-left: 1px solid var(--line); padding-left: 16px;
+  }
+  .trust .t-ico { color: var(--gold-ink); margin-bottom: 8px; }
+  .trust strong { display: block; font-family: "Fraunces", serif; font-size: 1.5rem; color: var(--water); line-height: 1.1; }
+  .trust span { color: var(--ink-soft); font-size: 0.92rem; }
+
+  /* ---------- hours band ---------- */
+  .hours-sec { background: var(--paper-soft); }
+  .hours-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(30px, 5vw, 60px); align-items: center; }
+  .hours-list { list-style: none; margin: 0; padding: 0; }
+  .hours-list li {
+    display: flex; justify-content: space-between; gap: 16px;
+    padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 1.02rem;
+  }
+  .hours-list li:last-child { border-bottom: 0; }
+  .hours-list .day { font-weight: 600; color: var(--ink); }
+  .hours-list .time { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .hours-list li.closed .time { color: var(--gold-ink); font-weight: 600; }
+  .hours-note { display: flex; align-items: center; gap: 10px; margin-top: 18px; color: var(--ink-soft); font-size: 0.95rem; }
+  .hours-note svg { color: var(--gold-ink); flex: none; }
+
+  /* ---------- contact / request service ---------- */
+  .contact-sec { background: var(--water-deep); color: var(--on-water); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(34px, 5vw, 64px); align-items: start; }
+  .contact-info .kicker { color: #e8c98c; }
+  .contact-info h2 { color: var(--on-water); font-size: clamp(1.9rem, 1.3rem + 2.4vw, 2.9rem); }
+  .contact-info > p { color: var(--on-water-soft); margin-top: 16px; font-size: 1.08rem; max-width: 42ch; }
+  .phone-cta {
+    display: inline-flex; align-items: center; gap: 14px; margin-top: 28px;
+    text-decoration: none; color: var(--on-water);
+  }
+  .phone-cta .ph-ico {
+    width: 56px; height: 56px; border-radius: 50%; background: var(--gold);
+    display: flex; align-items: center; justify-content: center; flex: none;
+  }
+  .phone-cta .ph-ico svg { color: #2a1a05; }
+  .phone-cta .ph-label { display: block; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--on-water-soft); }
+  .phone-cta .ph-num { font-family: "Fraunces", serif; font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.1rem); font-weight: 600; color: var(--on-water); line-height: 1.1; }
+  .contact-extra { margin-top: 26px; display: grid; gap: 12px; }
+  .contact-extra div { display: flex; gap: 12px; align-items: flex-start; color: var(--on-water-soft); font-size: 0.98rem; }
+  .contact-extra svg { color: #e8c98c; flex: none; margin-top: 2px; }
+
+  .form-card {
+    background: var(--paper); color: var(--ink); border-radius: var(--r);
+    padding: clamp(26px, 4vw, 38px); box-shadow: 0 40px 70px -30px rgba(0,0,0,.6);
+  }
+  .form-card h3 { font-size: 1.5rem; color: var(--water); margin-bottom: 6px; }
+  .form-card .fc-sub { color: var(--ink-soft); font-size: 0.96rem; margin-bottom: 22px; }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 7px; color: var(--ink); }
+  .field label .req { color: var(--gold-ink); }
+  .field input, .field select, .field textarea {
+    width: 100%; font-family: "DM Sans", sans-serif; font-size: 1rem; color: var(--ink);
+    padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 10px; background: #fff;
+  }
+  .field textarea { resize: vertical; min-height: 96px; }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); outline: none; box-shadow: 0 0 0 3px rgba(192,138,62,.22); }
+  .form-card .btn-primary { width: 100%; margin-top: 6px; min-height: 50px; }
+  .form-msg { margin-top: 14px; font-size: 0.96rem; color: var(--water); font-weight: 600; display: none; }
+  .form-msg.show { display: block; }
+
+  /* ---------- footer ---------- */
+  .site-foot { background: var(--ink); color: var(--paper); padding-block: 48px; }
+  .foot-grid { display: flex; flex-wrap: wrap; gap: 28px 48px; align-items: flex-start; justify-content: space-between; }
+  .foot-brand { max-width: 34ch; }
+  .foot-brand .fb-name { font-family: "Fraunces", serif; font-size: 1.4rem; font-weight: 600; margin-bottom: 8px; }
+  .foot-brand p { color: #b9c4c2; font-size: 0.96rem; }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 10px 26px; }
+  .foot-links a { color: #cdd9d6; text-decoration: none; font-size: 0.96rem; font-weight: 500; }
+  .foot-links a:hover { color: #e8c98c; }
+  .foot-bottom { margin-top: 34px; padding-top: 22px; border-top: 1px solid rgba(246,243,236,.14);
+    color: #9aa9a6; font-size: 0.86rem; display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: space-between; }
+
+  /* ---------- entrance motion ---------- */
+  .reveal { opacity: 0; transform: translateY(18px); animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
+  .d1 { animation-delay: .08s; } .d2 { animation-delay: .2s; } .d3 { animation-delay: .32s; }
+  .d4 { animation-delay: .44s; } .d5 { animation-delay: .56s; }
+  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 980px) {
+    /* tall mobile hero: top-align so content never tucks under the sticky header */
+    .hero { align-items: flex-start; max-height: none; }
+    .hero-grid { grid-template-columns: 1fr; gap: 30px; padding-block: 40px 56px; }
+    .hero-card { order: 2; max-width: 30rem; }
+    .step-grid { grid-template-columns: 1fr; }
+    .svc-grid { grid-template-columns: repeat(2, 1fr); }
+    .svc:nth-child(n) { grid-column: span 1; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-figure { order: -1; aspect-ratio: 16 / 10; }
+    .hours-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 760px) {
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .nav-check:checked ~ .nav-links {
+      display: flex; flex-direction: column; position: absolute; left: 0; right: 0;
+      top: 100%; background: var(--paper); border-bottom: 1px solid var(--line);
+      gap: 0; padding: 8px var(--gutter) 18px; box-shadow: 0 24px 40px -24px rgba(0,0,0,.3);
+    }
+    .nav-check:checked ~ .nav-links a { padding: 14px 0; border-bottom: 1px solid var(--line); width: 100%; }
+    .nav-check:checked ~ .nav-links .nav-cta { display: inline-flex; margin: 14px 0 0; width: 100%; }
+    .site-head .nav { position: relative; flex-wrap: wrap; }
+  }
+  @media (max-width: 560px) {
+    .svc-grid { grid-template-columns: 1fr; }
+    .trust { grid-template-columns: 1fr; gap: 14px; }
+    .trust div { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 12px; }
+    .hero-ctas .btn { flex: 1 1 auto; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; animation: none; }
+    html { scroll-behavior: auto; }
+    .btn, .svc, .phone-cta { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 0. PaliTech preview banner (default ON; CSS-hideable via data-banner + ?banner=off / #nobanner) -->
+<div class="banner">
+  <span>Free website preview by PaliTech&nbsp;—&nbsp;<a href="https://pali-tech.com" target="_blank" rel="noopener">pali-tech.com</a></span>
+</div>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- 1. Navigation -->
+<header class="site-head">
+  <div class="wrap">
+    <nav class="nav" aria-label="Primary">
+      <a class="wordmark" href="#top" aria-label="Pool Care Solutions LLC home">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 2c3.5 4 5.5 6.8 5.5 9.6A5.5 5.5 0 0 1 12 17a5.5 5.5 0 0 1-5.5-5.4C6.5 8.8 8.5 6 12 2Z" stroke="#0d3b46" stroke-width="1.7" stroke-linejoin="round"/>
+          <path d="M3 21c1.6-1.3 3-1.3 4.5 0s2.9 1.3 4.5 0 2.9-1.3 4.5 0 2.9 1.3 4.5 0" stroke="#c08a3e" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+        <span>Pool&nbsp;Care&nbsp;<span class="mk">Solutions</span></span>
+      </a>
+
+      <input type="checkbox" id="nav-check" class="nav-check">
+      <label for="nav-check" class="hamburger" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </label>
+
+      <div class="nav-links">
+        <a href="#how">How it works</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#hours">Hours</a>
+        <a class="btn btn-primary nav-cta" href="#contact">Get a free quote</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<span id="top"></span>
+
+<!-- 2. Hero — full-bleed own pool photo, headline LEFT, info card RIGHT (stacks after headline on mobile) -->
+<section class="hero" aria-label="Worry-free pool care across the St. Louis area">
+  <!-- Business's OWN Google photo: real clean blue pool. Hero, object-fit:cover + strong scrim. -->
+  <img class="hero-img"
+       src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAHdI0bAxIdANOAIz3z3epRqqvVUIUZk1iVKo5_3kPEcrnkNFJPCTa6C518b_K5HXZgxqF96Dy80XUffb78Xjbb18MnXyvOokmJftSX6BQWPeLMsEtN7qWDfsToptWYXD7hNMcU36vat3SOC=w800-h500-k-no"
+       alt="A clean, clear blue swimming pool maintained by Pool Care Solutions"
+       width="1600" height="900" decoding="async" loading="eager" fetchpriority="high">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-eyebrow reveal d1"><span class="rule"></span>Pool Care Solutions LLC · St. Louis area</span>
+        <h1 class="reveal d2">Crystal-clear water, <em>handled for you</em> — every single week.</h1>
+        <p class="hero-sub reveal d3">Dependable weekly maintenance and equipment service for homeowners who'd rather enjoy their pool than fight with it. We keep it balanced, clean, and swim-ready — you just dive in.</p>
+        <div class="hero-ctas reveal d4">
+          <a class="btn btn-primary" href="#contact">Get a free quote</a>
+          <a class="btn btn-ghost" href="#services">See what we do</a>
+        </div>
+        <div class="hero-meta reveal d5">
+          <span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Licensed &amp; insured
+          </span>
+          <span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Weekly &amp; one-time service
+          </span>
+          <span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Free quotes
+          </span>
+        </div>
+      </div>
+
+      <aside class="hero-card reveal d5" aria-label="What worry-free service includes">
+        <h2>Worry-free, weekly</h2>
+        <p>One steady visit a week keeps your water safe and balanced — no guessing, no test strips.</p>
+        <ul>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Skim, brush &amp; vacuum every visit
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Chemicals tested &amp; balanced
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Equipment checked, photos &amp; notes left
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- 3. How it works — leading section (breaks the usual hero→services skeleton) -->
+<section class="steps" id="how" aria-labelledby="how-title">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="rule"></span>How it works</span>
+      <h2 class="title" id="how-title">Three steps to a pool you never have to think about</h2>
+      <p>No long contracts, no surprises. We make it easy to hand the maintenance off and get your weekends back.</p>
+    </div>
+    <div class="step-grid">
+      <div class="step reveal d1">
+        <div class="num"><span class="dot">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 5h18M3 12h18M3 19h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </span>Step one</div>
+        <h3>Tell us about your pool</h3>
+        <p>Call or send a quick note with your pool size and what's going on. We'll talk through it and give you a straight, free quote.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="num"><span class="dot">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2M5 7h14l-1 13H6L5 7Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>Step two</div>
+        <h3>We set your schedule</h3>
+        <p>Pick weekly, bi-weekly, or a one-time clean. We show up on the same day each week so you always know when to expect us.</p>
+      </div>
+      <div class="step reveal d3">
+        <div class="num"><span class="dot">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12a8 8 0 1 1 16 0 8 8 0 0 1-16 0Z" stroke="currentColor" stroke-width="1.6"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>Step three</div>
+        <h3>Just swim</h3>
+        <p>We handle the cleaning, the chemistry, and the equipment. You get a clear, swim-ready pool and a note after every visit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Services — 6 specific, asymmetric spans (NOT a uniform 3-card row) -->
+<section id="services" aria-labelledby="svc-title">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="rule"></span>Our services</span>
+      <h2 class="title" id="svc-title">Everything your pool needs, from one team</h2>
+      <p>Routine care or a full recovery — we cover the whole season so your pool stays healthy from open to close.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc reveal d1">
+        <div class="svc-ico">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 16c1.5-1.2 2.6-1.2 4 0s2.6 1.2 4 0 2.6-1.2 4 0 2.6 1.2 4 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M7 13l2-7 3 1.5L14 5l3 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Weekly cleaning &amp; chemical balancing</h3>
+        <p>Skim, brush, and vacuum every visit, plus a full water test so chlorine, pH, and alkalinity stay exactly where they should be. Your water stays clear and safe without you lifting a finger.</p>
+      </article>
+      <article class="svc reveal d2">
+        <div class="svc-ico">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v6m0 6v6M3 12h6m6 0h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/></svg>
+        </div>
+        <h3>Pool openings &amp; closings</h3>
+        <p>Seasonal opening in spring and a proper winterization in fall, done right so you're swim-ready fast and protected through the cold months.</p>
+      </article>
+      <article class="svc reveal d3">
+        <div class="svc-ico">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="7" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 7V5h8v2M9 11v3m6-3v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Filter &amp; pump service</h3>
+        <p>Filter cleans, cartridge swaps, and pump repairs that keep water moving and your energy bill in check — caught early before it becomes a bigger fix.</p>
+      </article>
+      <article class="svc reveal d1">
+        <div class="svc-ico">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-7-4.4-7-9.5A7 7 0 0 1 12 4.5 7 7 0 0 1 19 11.5C19 16.6 12 21 12 21Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Green-to-clean recovery</h3>
+        <p>Pool turned green over a break or a storm? We shock, filter, and rebalance it back to clear, sparkling water — a full recovery instead of draining and starting over.</p>
+      </article>
+      <article class="svc reveal d2">
+        <div class="svc-ico">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8h16M4 8l1.5-3h13L20 8M4 8v11h16V8" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8v11m6-11v11" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <h3>Tile &amp; skimmer cleaning</h3>
+        <p>Scale and grime scrubbed off the waterline tile, with skimmer baskets and lines cleared so the surface stays bright and the water keeps circulating cleanly.</p>
+      </article>
+      <article class="svc reveal d3">
+        <div class="svc-ico">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14.5 4.5a4 4 0 0 0-5 5l-6 6 2.5 2.5 6-6a4 4 0 0 0 5-5l-2.4 2.4-1.8-.3-.3-1.8 2.3-2.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Equipment checks &amp; tune-ups</h3>
+        <p>Heaters, valves, automation, and seals inspected on every visit so small issues get spotted and handled before they leave you with a cold, cloudy pool on a hot day.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 5. About + care photo split (asymmetric) with 3 trust indicators -->
+<section id="about" aria-labelledby="about-title">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-body reveal d1">
+        <span class="kicker"><span class="rule"></span>About us</span>
+        <h2 class="title" id="about-title">Local, reliable, and genuinely into clean water</h2>
+        <p class="lead">Pool Care Solutions LLC is a St. Louis-area pool service built on one simple promise: show up when we say we will, and leave your water perfect every time.</p>
+        <p>We treat every pool like it's our own — careful with your equipment, honest about what it actually needs, and always ready to explain what we did and why. No upsells you don't need, no mystery charges, just steady, dependable care.</p>
+        <div class="trust">
+          <div>
+            <div class="t-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l8 3v5c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6l8-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <strong>Licensed<br>&amp; insured</strong>
+            <span>Covered work, every visit</span>
+          </div>
+          <div>
+            <div class="t-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <strong>On-time,<br>same day</strong>
+            <span>A schedule you can count on</span>
+          </div>
+          <div>
+            <div class="t-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 16c1.5-1.2 2.6-1.2 4 0s2.6 1.2 4 0 2.6-1.2 4 0 2.6 1.2 4 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M3 11c1.5-1.2 2.6-1.2 4 0s2.6 1.2 4 0 2.6-1.2 4 0 2.6 1.2 4 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+            <strong>Clear water,<br>guaranteed</strong>
+            <span>We make it right, fast</span>
+          </div>
+        </div>
+      </div>
+      <figure class="about-figure reveal d2">
+        <!-- Representative stock (Pexels, verified) of a clean pool surface — swap for the owner's own photos before launch. -->
+        <img src="https://images.pexels.com/photos/261101/pexels-photo-261101.jpeg?auto=compress&cs=tinysrgb&w=1200"
+             alt="Sunlit swimming pool with clean, clear blue water"
+             width="1200" height="800" decoding="async" loading="lazy">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL SLOT — intentionally empty. Fill with the client's REAL words after they sign.
+     Rating block SUPPRESSED per DEMO_RULES J (5 stars but only 2 reviews — below the 5-review floor).
+     Do NOT add stars, a review count, invented quotes, or a "new business" placeholder here. -->
+
+<!-- 6. Hours -->
+<section class="hours-sec" id="hours" aria-labelledby="hours-title">
+  <div class="wrap">
+    <div class="hours-grid">
+      <div class="reveal d1">
+        <span class="kicker"><span class="rule"></span>Hours</span>
+        <h2 class="title" id="hours-title">When we're out on the water</h2>
+        <p style="color:var(--ink-soft);margin-top:14px;font-size:1.05rem;max-width:34ch;">Routes run six days a week. Call during business hours and we'll get you on the schedule.</p>
+        <div class="hours-note">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-7-4.4-7-9.5A7 7 0 0 1 12 4.5 7 7 0 0 1 19 11.5C19 16.6 12 21 12 21Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="11" r="2.4" stroke="currentColor" stroke-width="1.6"/></svg>
+          <!-- INFERRED: no street address in lead data — generalized to confirmable metro level. Verify service area with owner. -->
+          Serving the St. Louis area
+        </div>
+      </div>
+      <div class="reveal d2">
+        <ul class="hours-list">
+          <li><span class="day">Monday</span><span class="time">7:00 AM – 5:00 PM</span></li>
+          <li><span class="day">Tuesday</span><span class="time">7:00 AM – 5:00 PM</span></li>
+          <li><span class="day">Wednesday</span><span class="time">7:00 AM – 5:00 PM</span></li>
+          <li><span class="day">Thursday</span><span class="time">7:00 AM – 5:00 PM</span></li>
+          <li><span class="day">Friday</span><span class="time">7:00 AM – 5:00 PM</span></li>
+          <li><span class="day">Saturday</span><span class="time">7:00 AM – 12:00 PM</span></li>
+          <li class="closed"><span class="day">Sunday</span><span class="time">Closed</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Contact — appointment / request-service model: phone huge + inert request form -->
+<section class="contact-sec" id="contact" aria-labelledby="contact-title">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info reveal d1">
+        <span class="kicker"><span class="rule"></span>Free quote</span>
+        <h2 id="contact-title">Ready to hand off your pool?</h2>
+        <p>Tell us a little about it and we'll get back to you with a free, no-pressure quote — usually the same day.</p>
+        <a class="phone-cta" href="tel:+13147243540" aria-label="Call Pool Care Solutions at 314-724-3540">
+          <span class="ph-ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 4h3l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          </span>
+          <span>
+            <span class="ph-label">Call or text</span>
+            <span class="ph-num">(314) 724-3540</span>
+          </span>
+        </a>
+        <div class="contact-extra">
+          <div>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-7-4.4-7-9.5A7 7 0 0 1 12 4.5 7 7 0 0 1 19 11.5C19 16.6 12 21 12 21Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="11" r="2.4" stroke="currentColor" stroke-width="1.6"/></svg>
+            <span>Serving Florissant &amp; the greater St. Louis area</span>
+          </div>
+          <div>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Mon–Fri 7AM–5PM · Sat 7AM–12PM</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card reveal d2">
+        <h3>Request your free quote</h3>
+        <p class="fc-sub">No obligation — we'll reach out to confirm details and timing.</p>
+        <form id="quote-form" novalidate>
+          <div class="field">
+            <label for="f-name">Name <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" required>
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="f-service">What do you need?</label>
+            <select id="f-service" name="service">
+              <option>Weekly cleaning &amp; chemical balancing</option>
+              <option>Pool opening or closing</option>
+              <option>Filter or pump service</option>
+              <option>Green-to-clean recovery</option>
+              <option>Tile &amp; skimmer cleaning</option>
+              <option>Equipment check / tune-up</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-msg">Tell us about your pool</label>
+            <textarea id="f-msg" name="message" placeholder="Size, in-ground or above-ground, and what's going on"></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Send my request</button>
+          <p class="form-msg" id="form-msg" role="status" aria-live="polite">Thanks — we've got your request. For the fastest response, call or text (314) 724-3540.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- 8. Footer — business only, no PaliTech branding -->
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="fb-name">Pool Care Solutions LLC</div>
+        <p>Worry-free weekly pool maintenance and equipment service for the St. Louis area. Clear water, handled for you.</p>
+      </div>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="#how">How it works</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact">Free quote</a>
+        <a href="tel:+13147243540">(314) 724-3540</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr">2026</span> Pool Care Solutions LLC. All rights reserved.</span>
+      <span>Serving Florissant &amp; the greater St. Louis area · Licensed &amp; insured</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Inert quote form: friendly confirmation that points to the phone. No backend (wired per-client at signup).
+  (function () {
+    var f = document.getElementById('quote-form');
+    var msg = document.getElementById('form-msg');
+    if (f) {
+      f.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = document.getElementById('f-name');
+        var phone = document.getElementById('f-phone');
+        if (!name.value.trim() || !phone.value.trim()) {
+          name.focus();
+          return;
+        }
+        msg.classList.add('show');
+        f.reset();
+      });
+    }
+    var yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>
