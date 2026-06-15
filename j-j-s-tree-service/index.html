@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<!--
+  DESIGN SYSTEM — J.J's Tree Service
+  Customer feeling:  "These guys are fast, fearless, and won't drop a limb on my roof." Confidence + relief.
+  Mode:              light — a tree/arborist service is outdoor, daytime, sunlit work; a dark site would
+                     read as moody/nocturnal, wrong for "we show up and get it down safely."
+  Display font:      Archivo (Google Fonts) — heavy condensed-ish grotesque, chainsaw energy
+  Body font:         DM Sans (Google Fonts) — clean, calm, legible
+  Dominant color:    #21311f deep pine/olive — sets the whole atmosphere
+  Accent color:      #c2622a desaturated safety-orange (sat ~63%) — arborist/chainsaw, used sparingly
+  Hero archetype:    full-bleed own tree-work photo + punchy left-anchored headline (split: headline left, estimate card right)
+  Memorable moment:  the oversized condensed headline "WE TAKE THE BIG ONES DOWN." reversed out of a real
+                     take-down photo, with the orange rule and the 4.9 stars chip — feels like a crew, not a template.
+-->
+<html lang="en" data-banner="on">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>J.J's Tree Service — St. Louis Tree Removal, Trimming &amp; 24/7 Storm Response</title>
+<meta name="description" content="Fast, safe tree removal, trimming, stump grinding and 24/7 storm response in St. Louis. 4.9 stars across 42 Google reviews. Call J.J's Tree Service for a free estimate.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<script>
+  // Runtime banner override: ?banner=off or #nobanner hides the PaliTech bar for in-person demos.
+  (function(){
+    try{
+      var p = new URLSearchParams(location.search);
+      if (p.get('banner') === 'off' || location.hash === '#nobanner') {
+        document.documentElement.setAttribute('data-banner','off');
+      }
+    }catch(e){}
+  })();
+</script>
+<style>
+  :root{
+    --pine:#21311f;        /* dominant deep pine/olive */
+    --pine-deep:#172218;   /* darker pine for footers/scrims */
+    --olive:#3a4d33;       /* mid olive */
+    --bone:#f4f1e9;        /* off-white */
+    --bone-soft:#ece7da;   /* warm tint for cards */
+    --ink:#1c2419;         /* off-black text on light */
+    --ink-soft:#46513f;    /* muted body that still clears 4.5:1 on bone */
+    --accent:#c2622a;      /* desaturated safety orange */
+    --accent-ink:#9a4717;  /* darker accent for small text / links on light */
+    --accent-deep:#823a12; /* deepest accent for button labels if needed */
+    --on-pine:#f4f1e9;     /* text on pine */
+    --on-pine-soft:#cdd3c2;/* muted text on pine — clears 4.5:1 */
+    --gold:#e8b53a;        /* stars */
+    --banner-h:38px;
+    --gutter:clamp(20px,5vw,64px);
+    --maxw:1200px;
+    --radius:14px;
+    --focus:#f0a35e;
+  }
+  html[data-banner="off"]{--banner-h:0px;}
+  html[data-banner="off"] .banner{display:none;}
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"DM Sans",sans-serif;
+    color:var(--ink);
+    background:var(--bone);
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:"Archivo",sans-serif;line-height:1.02;margin:0;letter-spacing:-0.01em;}
+  p{margin:0 0 1rem;}
+  a{color:var(--accent-ink);}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter);}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+
+  /* focus */
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,label.ham:focus-visible,select:focus-visible{
+    outline:3px solid var(--focus);outline-offset:2px;border-radius:6px;
+  }
+
+  /* ---------- PaliTech banner ---------- */
+  .banner{
+    background:var(--pine-deep);
+    color:var(--on-pine);
+    height:var(--banner-h);
+    display:flex;align-items:center;justify-content:center;
+    font-size:.78rem;letter-spacing:.02em;
+    position:relative;z-index:60;
+    text-align:center;padding-inline:12px;
+  }
+  .banner a{color:#f3c98f;text-decoration:underline;text-underline-offset:2px;font-weight:600;}
+
+  /* ---------- header ---------- */
+  .header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(33,49,31,.97);
+    backdrop-filter:saturate(120%);
+    border-bottom:1px solid rgba(244,241,233,.12);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px;}
+  .wordmark{display:flex;align-items:center;gap:10px;min-width:0;text-decoration:none;color:var(--on-pine);}
+  .wordmark .leaf{flex:none;}
+  .wordmark b{font-family:"Archivo";font-weight:800;font-size:1.12rem;letter-spacing:-.01em;line-height:1;white-space:nowrap;}
+  .wordmark small{display:block;font-family:"DM Sans";font-weight:500;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--on-pine-soft);}
+  .nav-links{display:flex;align-items:center;gap:28px;}
+  .nav-links a{color:var(--on-pine);text-decoration:none;font-weight:500;font-size:.96rem;}
+  .nav-links a:hover{color:#f3c98f;}
+  .nav-links a.cta{color:#1a1206;}
+  .nav-links a.cta:hover{color:#1a1206;}
+  .cta{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--accent);color:#1a1206;font-weight:700;
+    border:none;border-radius:999px;cursor:pointer;text-decoration:none;
+    font-family:"DM Sans";line-height:1;
+    touch-action:manipulation;max-width:100%;
+  }
+  .cta:hover{background:#d2702f;}
+  .cta.header-cta{min-height:44px;padding:10px 16px;font-size:.85rem;}
+  .cta.big{padding:16px 26px;font-size:1.02rem;}
+  .ham,.nav-toggle{display:none;}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:calc(100dvh - var(--banner-h) - 64px);display:flex;align-items:stretch;}
+  .hero-media{position:absolute;inset:0;background:var(--olive);overflow:hidden;}
+  .hero-media img{width:100%;height:100%;object-fit:cover;max-height:880px;}
+  .hero-scrim{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(90deg, rgba(13,19,12,.95) 0%, rgba(13,19,12,.86) 46%, rgba(13,19,12,.55) 74%, rgba(13,19,12,.62) 100%),
+      linear-gradient(180deg, rgba(13,19,12,.62) 0%, rgba(13,19,12,.30) 35%, rgba(13,19,12,.66) 100%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,360px);gap:40px;align-items:center;padding-block:clamp(40px,7vh,90px);}
+  .hero-text{max-width:min(92vw,40rem);}
+  .stars-chip{
+    display:inline-flex;align-items:center;gap:9px;
+    background:rgba(15,22,14,.66);border:1px solid rgba(244,241,233,.18);
+    padding:8px 14px;border-radius:999px;margin-bottom:22px;
+    color:var(--on-pine);font-size:.9rem;font-weight:500;
+  }
+  .stars-chip .stars{color:var(--gold);letter-spacing:1px;font-size:1rem;}
+  .stars-chip b{font-weight:700;}
+  h1.hero-h{
+    color:var(--on-pine);
+    font-weight:900;text-transform:uppercase;letter-spacing:-.02em;line-height:.96;
+    font-size:clamp(2.6rem,8.2vw,5.4rem);
+    text-wrap:balance;overflow-wrap:break-word;
+    margin-bottom:.4em;
+  }
+  h1.hero-h .acc{color:#f4ac6a;}
+  .hero-rule{width:84px;height:5px;background:var(--accent);margin:0 0 22px;border-radius:3px;}
+  .hero-sub{color:var(--on-pine);font-size:clamp(1.02rem,2.2vw,1.22rem);max-width:34rem;margin-bottom:28px;}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:14px;}
+  .btn-ghost{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    border:1.5px solid rgba(244,241,233,.55);color:var(--on-pine);
+    background:transparent;border-radius:999px;padding:15px 24px;font-weight:600;
+    text-decoration:none;font-size:1rem;cursor:pointer;touch-action:manipulation;
+  }
+  .btn-ghost:hover{background:rgba(244,241,233,.12);}
+
+  /* estimate card (hero right) */
+  .est-card{
+    background:rgba(23,34,24,.86);
+    border:1px solid rgba(244,241,233,.16);
+    border-radius:var(--radius);
+    padding:26px;color:var(--on-pine);
+    backdrop-filter:blur(2px);
+  }
+  .est-card h2{font-size:1.32rem;font-weight:800;margin-bottom:6px;color:var(--on-pine);}
+  .est-card p{color:var(--on-pine-soft);font-size:.94rem;margin-bottom:18px;}
+  .est-card .phone-row{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+  .est-card .phone-row svg{flex:none;color:var(--accent);}
+  .est-card .phone-row a{color:var(--on-pine);text-decoration:none;font-family:"Archivo";font-weight:700;font-size:1.34rem;letter-spacing:-.01em;}
+  .est-card .hours-line{display:flex;align-items:center;gap:9px;font-size:.9rem;color:var(--on-pine-soft);border-top:1px solid rgba(244,241,233,.14);padding-top:14px;}
+  .est-card .hours-line .dot{width:9px;height:9px;border-radius:50%;background:#79c36a;flex:none;box-shadow:0 0 0 3px rgba(121,195,106,.25);}
+
+  /* ---------- section scaffolding ---------- */
+  section{padding-block:clamp(56px,8vw,104px);}
+  .eyebrow{font-family:"DM Sans";font-weight:600;text-transform:uppercase;letter-spacing:.16em;font-size:.78rem;color:var(--accent-ink);margin-bottom:14px;}
+  .sec-head h2{font-size:clamp(2rem,5vw,3.1rem);font-weight:800;letter-spacing:-.02em;color:var(--ink);max-width:24ch;}
+  .sec-head p.lede{color:var(--ink-soft);max-width:54ch;margin-top:14px;font-size:1.05rem;}
+
+  /* ---------- services (asymmetric / not 3-equal-cards) ---------- */
+  .services{background:var(--bone);}
+  .svc-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin-top:46px;}
+  .svc{
+    background:var(--bone-soft);border:1px solid #ddd6c5;border-radius:var(--radius);
+    padding:26px;display:flex;flex-direction:column;gap:12px;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .svc:hover{transform:translateY(-4px);box-shadow:0 16px 34px -22px rgba(28,36,25,.6);}
+  /* asymmetric spans */
+  .svc.lg{grid-column:span 4;background:var(--pine);color:var(--on-pine);border-color:transparent;}
+  .svc.sm{grid-column:span 2;}
+  .svc .ic{width:46px;height:46px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:rgba(194,98,42,.14);color:var(--accent-ink);flex:none;}
+  .svc.lg .ic{background:rgba(244,241,233,.14);color:#f3a967;}
+  .svc h3{font-size:1.22rem;font-weight:700;letter-spacing:-.01em;}
+  .svc.lg h3{font-size:1.6rem;color:var(--on-pine);}
+  .svc p{margin:0;color:var(--ink-soft);font-size:.97rem;}
+  .svc.lg p{color:var(--on-pine-soft);font-size:1.04rem;max-width:46ch;}
+  .svc .tag{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#1a1206;background:var(--accent);padding:5px 11px;border-radius:999px;align-self:flex-start;}
+
+  /* ---------- about / trust split ---------- */
+  .about{background:var(--pine);color:var(--on-pine);position:relative;overflow:hidden;}
+  .about .wrap{position:relative;z-index:2;}
+  .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(34px,5vw,72px);align-items:center;}
+  .about h2{color:var(--on-pine);font-size:clamp(2rem,4.6vw,3rem);font-weight:800;max-width:18ch;}
+  .about p{color:var(--on-pine);opacity:.95;font-size:1.06rem;}
+  .about .eyebrow{color:#f3a967;}
+  .about-photo{border-radius:var(--radius);overflow:hidden;background:var(--olive);aspect-ratio:4/3;box-shadow:0 30px 60px -30px rgba(0,0,0,.6);}
+  .about-photo img{width:100%;height:100%;object-fit:cover;}
+  .trust-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:38px;border-top:1px solid rgba(244,241,233,.16);padding-top:30px;}
+  .trust .n{font-family:"Archivo";font-weight:900;font-size:2.3rem;line-height:1;color:#f3a967;letter-spacing:-.02em;}
+  .trust .l{font-size:.92rem;color:var(--on-pine-soft);margin-top:6px;display:flex;align-items:center;gap:8px;}
+  .trust .l svg{flex:none;color:#f3a967;}
+
+  /* ---------- proof band (rating) ---------- */
+  .proof{background:var(--bone-soft);}
+  .proof-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px;}
+  .proof .rate{display:flex;align-items:center;gap:18px;}
+  .proof .rate .num{font-family:"Archivo";font-weight:900;font-size:3.4rem;line-height:1;color:var(--ink);letter-spacing:-.02em;}
+  .proof .rate .meta{font-size:.98rem;color:var(--ink-soft);}
+  .proof .rate .stars{display:inline-flex;color:var(--gold);font-size:1.05rem;letter-spacing:2px;background:var(--pine);padding:5px 11px;border-radius:999px;margin-bottom:7px;}
+  .proof .gword{font-weight:700;color:var(--ink);}
+  .proof .est-line{font-size:1.05rem;color:var(--ink);max-width:34ch;}
+  .proof .est-line b{color:var(--accent-ink);}
+
+  /* ---------- contact ---------- */
+  .contact{background:var(--bone);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,5vw,68px);align-items:start;}
+  .contact .phone-huge{font-family:"Archivo";font-weight:900;font-size:clamp(2.2rem,6.4vw,3.6rem);letter-spacing:-.02em;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:14px;line-height:1;}
+  .contact .phone-huge svg{color:var(--accent-ink);flex:none;}
+  .contact .phone-huge:hover{color:var(--accent-ink);}
+  .info-block{margin-top:26px;display:grid;gap:18px;}
+  .info-item{display:flex;gap:14px;align-items:flex-start;}
+  .info-item svg{flex:none;color:var(--accent-ink);margin-top:3px;}
+  .info-item h3{font-family:"DM Sans";font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft);font-weight:600;margin-bottom:3px;}
+  .info-item p{margin:0;color:var(--ink);font-size:1rem;}
+  .hours-grid{margin-top:6px;font-size:.97rem;color:var(--ink-soft);}
+  .hours-grid .h247{color:var(--ink);font-weight:600;}
+
+  form{background:var(--bone-soft);border:1px solid #ddd6c5;border-radius:var(--radius);padding:clamp(22px,3vw,32px);}
+  form h3{font-family:"Archivo";font-weight:800;font-size:1.4rem;color:var(--ink);margin-bottom:6px;}
+  form .sub{color:var(--ink-soft);font-size:.95rem;margin-bottom:20px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-weight:600;font-size:.86rem;color:var(--ink);margin-bottom:6px;}
+  .field label .req{color:var(--accent-ink);}
+  .field input,.field textarea,.field select{
+    width:100%;padding:13px 14px;border:1.5px solid #cfc8b6;border-radius:10px;
+    font-family:"DM Sans";font-size:1rem;color:var(--ink);background:#fbf9f3;
+  }
+  .field textarea{resize:vertical;min-height:108px;}
+  .form-note{font-size:.84rem;color:var(--ink-soft);margin-top:4px;}
+  .form-status{display:none;margin-top:14px;padding:14px 16px;border-radius:10px;background:rgba(58,77,51,.12);border:1px solid var(--olive);color:var(--ink);font-size:.96rem;}
+  .form-status.show{display:block;}
+
+  /* ---------- footer ---------- */
+  .footer{background:var(--pine-deep);color:var(--on-pine);padding-block:48px;}
+  .footer-grid{display:flex;flex-wrap:wrap;gap:26px;justify-content:space-between;align-items:flex-start;}
+  .footer .wordmark b{color:var(--on-pine);}
+  .footer p.tag{color:var(--on-pine-soft);max-width:34ch;margin-top:12px;font-size:.95rem;}
+  .footer-links{display:flex;flex-wrap:wrap;gap:20px;}
+  .footer-links a{color:var(--on-pine);text-decoration:none;font-size:.94rem;}
+  .footer-links a:hover{color:#f3c98f;}
+  .footer .legal{margin-top:30px;border-top:1px solid rgba(244,241,233,.14);padding-top:18px;font-size:.84rem;color:var(--on-pine-soft);}
+
+  /* ---------- motion ---------- */
+  .reveal{opacity:0;transform:translateY(16px);animation:rise .7s ease forwards;}
+  .d1{animation-delay:.05s;}.d2{animation-delay:.18s;}.d3{animation-delay:.31s;}.d4{animation-delay:.44s;}.d5{animation-delay:.57s;}
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    .hero-inner{grid-template-columns:1fr;gap:26px;}
+    .hero-text{order:1;}
+    .est-card{order:2;}
+    .about-grid{grid-template-columns:1fr;}
+    .about-photo{order:-1;}
+    .contact-grid{grid-template-columns:1fr;}
+    .svc-grid{grid-template-columns:repeat(2,1fr);}
+    .svc.lg{grid-column:span 2;}
+    .svc.sm{grid-column:span 1;}
+    .trust-row{grid-template-columns:1fr;gap:24px;}
+  }
+  @media (max-width:760px){
+    .nav-links{
+      position:absolute;top:100%;left:0;right:0;
+      flex-direction:column;align-items:stretch;gap:0;
+      background:var(--pine);
+      border-bottom:1px solid rgba(244,241,233,.14);
+      padding:8px var(--gutter) 20px;
+      transform:translateY(-12px);opacity:0;pointer-events:none;visibility:hidden;
+      transition:opacity .2s ease, transform .2s ease, visibility .2s ease;
+    }
+    .nav-links a{padding:14px 0;border-bottom:1px solid rgba(244,241,233,.1);font-size:1.05rem;}
+    .nav-links a.cta{margin-top:14px;width:100%;padding:14px 16px;font-size:1rem;background:var(--accent);color:#1a1206;border-bottom:none;}
+    .nav-toggle:checked ~ .nav-links{opacity:1;transform:none;pointer-events:auto;visibility:visible;}
+    .ham{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:44px;height:44px;border-radius:10px;cursor:pointer;
+      color:var(--on-pine);background:rgba(244,241,233,.08);
+    }
+    .proof .rate .num{font-size:2.8rem;}
+  }
+  @media (max-width:420px){
+    .svc-grid{grid-template-columns:1fr;}
+    .svc.lg,.svc.sm{grid-column:span 1;}
+    .hero-ctas .btn-ghost,.hero-ctas .cta{flex:1 1 100%;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto;}
+    .reveal{animation:none;opacity:1;transform:none;}
+    .svc{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- 0. PaliTech preview banner (default ON; CSS-hideable via data-banner + ?banner=off / #nobanner) -->
+<div class="banner">
+  <span>Free website preview by PaliTech —&nbsp;<a href="https://pali-tech.com" target="_blank" rel="noopener">pali-tech.com</a></span>
+</div>
+
+<!-- 1. Navigation -->
+<header class="header">
+  <div class="wrap nav">
+    <a class="wordmark" href="#top" aria-label="J.J's Tree Service home">
+      <svg class="leaf" width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2C8 6 5 9 5 13a7 7 0 0 0 6 6.9V22h2v-2.1A7 7 0 0 0 19 13c0-4-3-7-7-11Z" fill="#c2622a"/>
+        <path d="M12 8v9" stroke="#21311f" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <span>
+        <b>J.J's Tree Service</b>
+        <small>St. Louis &middot; Arborists</small>
+      </span>
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+    <label class="ham" for="nav-toggle" tabindex="0" role="button" aria-label="Open navigation menu" aria-controls="nav-toggle">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </label>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#about">Why us</a>
+      <a href="#contact">Contact</a>
+      <a class="cta header-cta" href="tel:+13144842825">Free estimate</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 2. Hero — own tree-work photo, headline left, estimate card right -->
+  <section class="hero" aria-label="J.J's Tree Service introduction">
+    <div class="hero-media">
+      <!-- Business's OWN Google photo: real take-down / crew work in St. Louis -->
+      <img
+        src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAHEYpgzo7H5b0HiYa5Kg70gdE80fZe3RofvdYKx6xpToFyLicXVDWpzW1GlGx0InF5eKEyXlbPZgdoDLq8CNxShEU49EsGP7T-kGesFgA4uOZ6wYqQGK-TcE7OBvzxQPrXGFbC2Qg=w800-h500-k-no"
+        alt="J.J's Tree Service crew taking down a large tree in St. Louis"
+        width="800" height="500" decoding="async" loading="eager" fetchpriority="high">
+    </div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+
+    <div class="wrap hero-inner">
+      <div class="hero-text">
+        <span class="stars-chip reveal d1">
+          <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <b>4.9</b>&nbsp;&middot;&nbsp;42 Google reviews
+        </span>
+        <h1 class="hero-h reveal d2">We take the <span class="acc">big ones</span> down — safely.</h1>
+        <div class="hero-rule reveal d3" aria-hidden="true"></div>
+        <p class="hero-sub reveal d3">Tree removals, trimming, and stump grinding done fast and clean across St. Louis — plus storm crews on call around the clock when a limb won't wait.</p>
+        <div class="hero-ctas reveal d4">
+          <a class="cta big" href="tel:+13144842825">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.24 1Z" fill="currentColor"/></svg>
+            Call for a free estimate
+          </a>
+          <a class="btn-ghost" href="#services">See our work</a>
+        </div>
+      </div>
+
+      <aside class="est-card reveal d5" aria-label="Request an estimate">
+        <h2>Get a free estimate</h2>
+        <p>No-pressure quote on removals, trimming, and storm work. Most calls answered same day.</p>
+        <div class="phone-row">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.24 1Z" fill="currentColor"/></svg>
+          <a href="tel:+13144842825">(314) 484-2825</a>
+        </div>
+        <a class="cta" href="#contact" style="width:100%;padding:13px 16px;font-size:.95rem;">Request service online</a>
+        <div class="hours-line"><span class="dot" aria-hidden="true"></span>Open 24/7 for storm &amp; emergency calls</div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 3. Services — six specific tree services, asymmetric grid (not a 3-equal-card row) -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">What we do</p>
+        <h2>Six trades, one crew, the whole tree.</h2>
+        <p class="lede">From a single overgrown limb to a 70-foot removal next to your house — J.J's handles the cut, the cleanup, and everything in between.</p>
+      </div>
+
+      <div class="svc-grid">
+        <!-- lead service, wide -->
+        <article class="svc lg reveal">
+          <div class="ic" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2 8 8h2.5L7 14h3l-3 6h10l-3-6h3l-3.5-6H16L12 2Z" fill="currentColor"/><rect x="10.5" y="20" width="3" height="2" rx=".5" fill="currentColor"/></svg>
+          </div>
+          <span class="tag">Most requested</span>
+          <h3>Tree removals</h3>
+          <p>Hazardous, dead, or just too close to the house — we drop and section big trees with rigging and care, then leave the lot raked clean. Roof, fence, and flowerbed all left standing.</p>
+        </article>
+
+        <article class="svc sm reveal">
+          <div class="ic" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 3a4 4 0 0 1 4 4 4 4 0 0 1-1 8 4 4 0 0 1-7 0 4 4 0 0 1-1-8 4 4 0 0 1 4-4Z" stroke="currentColor" stroke-width="1.8"/><path d="M3 21 9 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Trimming &amp; pruning</h3>
+          <p>Shaping and crown work that keeps trees healthy and away from your roof and lines.</p>
+        </article>
+
+        <article class="svc sm reveal">
+          <div class="ic" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="9" rx="8" ry="4" stroke="currentColor" stroke-width="1.8"/><path d="M4 9c0 5 3.5 8 8 8s8-3 8-8" stroke="currentColor" stroke-width="1.8"/><path d="M12 13v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Stump grinding</h3>
+          <p>Old stumps ground below grade so you can reseed, replant, or just mow right over.</p>
+        </article>
+
+        <article class="svc sm reveal">
+          <div class="ic" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" fill="currentColor"/></svg>
+          </div>
+          <span class="tag">24/7</span>
+          <h3>Storm response</h3>
+          <p>Limb on the roof at 2 a.m.? Our emergency crew clears the danger and tarps the gap, day or night.</p>
+        </article>
+
+        <article class="svc sm reveal">
+          <div class="ic" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 20h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6 20V9m6 11V6m6 14v-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6 9 12 6l6 6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Lot clearing</h3>
+          <p>Brush, scrub, and overgrowth cleared to open up a build site, view, or back acre.</p>
+        </article>
+
+        <article class="svc sm reveal">
+          <div class="ic" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3v18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M5 8c3 0 4 2 7 2s4-2 7-2" stroke="currentColor" stroke-width="1.8"/><path d="M5 14c3 0 4 2 7 2s4-2 7-2" stroke="currentColor" stroke-width="1.8"/></svg>
+          </div>
+          <h3>Cabling &amp; bracing</h3>
+          <p>Support systems for split trunks and heavy limbs so a favorite tree can stay standing safely.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. About / trust — pine band, photo right (own photo, second placement) -->
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="reveal">
+          <p class="eyebrow">Why J.J's</p>
+          <h2>Local, insured, and not afraid of the tall ones.</h2>
+          <p>J.J's Tree Service is a St. Louis crew that has built its name on the jobs other companies pass on — the leaners over the garage, the 80-footer in the back corner, the storm-snapped limb hanging over the driveway.</p>
+          <p>We rig it, we drop it, we clean it up, and we tell you straight what it'll cost before we start. That's how a 4.9-star reputation gets built one yard at a time.</p>
+
+          <div class="trust-row">
+            <div class="trust">
+              <div class="n">4.9&#9733;</div>
+              <div class="l">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 17-5.8 3 1.1-6.4L2.6 9l6.5-.9L12 2l2.9 6.1 6.5.9-4.7 4.6 1.1 6.4z" fill="currentColor"/></svg>
+                42 Google reviews
+              </div>
+            </div>
+            <div class="trust">
+              <div class="n">24/7</div>
+              <div class="l">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Storm crews on call
+              </div>
+            </div>
+            <div class="trust">
+              <div class="n">Free</div>
+              <div class="l">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16v12H4z" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+                Up-front estimates
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-photo reveal">
+          <!-- Business's OWN Google photo (single distinct photo; folded here per <3-photos rule, no standalone gallery) -->
+          <img
+            src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAHEYpgzo7H5b0HiYa5Kg70gdE80fZe3RofvdYKx6xpToFyLicXVDWpzW1GlGx0InF5eKEyXlbPZgdoDLq8CNxShEU49EsGP7T-kGesFgA4uOZ6wYqQGK-TcE7OBvzxQPrXGFbC2Qg=w800-h500-k-no"
+            alt="J.J's Tree Service removing a large tree on a residential lot"
+            width="800" height="600" decoding="async" loading="lazy">
+          <!-- OPTIONAL verified secondary (Pexels, arborist with chainsaw up a tree) — swap to client's own once available:
+               https://images.pexels.com/photos/6231880/pexels-photo-6231880.jpeg?auto=compress&cs=tinysrgb&w=1200 -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Proof band — real 4.9 / 42 rating (qualifies: >=4.0 & >=5). Rating + count only, no review text. -->
+  <!-- testimonial: filled with the client's words after they sign -->
+  <section class="proof" aria-label="Customer rating">
+    <div class="wrap proof-inner reveal">
+      <div class="rate">
+        <div class="num">4.9</div>
+        <div>
+          <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="meta">Rated <strong>4.9</strong> across <strong>42</strong> <span class="gword">Google</span> reviews</div>
+        </div>
+      </div>
+      <p class="est-line">Neighbors across St. Louis call J.J's first — and they tell their friends. <b>Your tree's next.</b></p>
+    </div>
+  </section>
+
+  <!-- 6. Contact — appointment / request-an-estimate model; phone huge + inert quote form -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="reveal">
+          <p class="eyebrow">Get in touch</p>
+          <h2 class="sec-head" style="margin-bottom:18px;"><span style="font-size:clamp(2rem,5vw,3.1rem);font-weight:800;color:var(--ink);">Call the crew — or ask for a quote.</span></h2>
+          <a class="phone-huge" href="tel:+13144842825">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.24 1Z" fill="currentColor"/></svg>
+            (314) 484-2825
+          </a>
+
+          <div class="info-block">
+            <div class="info-item">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+              <div>
+                <h3>Where we are</h3>
+                <p>2933 Endicott Ave, St. Louis, MO 63114</p>
+                <!-- INFERRED: verify service area with owner — based on the St. Louis address (63114), likely serving St. Louis City & County / North County -->
+                <p style="color:var(--ink-soft);font-size:.94rem;margin-top:4px;">Serving the greater St. Louis area</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <div>
+                <h3>Hours</h3>
+                <div class="hours-grid">
+                  <span class="h247">Open 24 hours, 7 days a week</span> — emergency &amp; storm calls answered any time.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inert quote form (no backend wired now — per-client at signup). No "preview" wording shown. -->
+        <form id="quote-form" novalidate>
+          <h3>Request an estimate</h3>
+          <p class="sub">Tell us about the tree and we'll get back to you, usually the same day.</p>
+
+          <div class="field">
+            <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone <span class="req" aria-hidden="true">*</span></label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" required>
+          </div>
+          <div class="field">
+            <label for="service">What do you need?</label>
+            <select id="service" name="service">
+              <option>Tree removal</option>
+              <option>Trimming &amp; pruning</option>
+              <option>Stump grinding</option>
+              <option>Storm / emergency</option>
+              <option>Lot clearing</option>
+              <option>Cabling &amp; bracing</option>
+              <option>Not sure — need advice</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="details">Details</label>
+            <textarea id="details" name="details" placeholder="How many trees, roughly how tall, anything close by (house, fence, lines)?"></textarea>
+            <p class="form-note">Required fields are marked <span style="color:var(--accent-ink);">*</span></p>
+          </div>
+          <button type="submit" class="cta big" style="width:100%;">Send my request</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite">Thanks — your request is in. For anything urgent, call us now at (314) 484-2825 and we'll get a crew moving.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 7. Footer — business only, no PaliTech -->
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div>
+      <span class="wordmark" style="color:var(--on-pine);">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C8 6 5 9 5 13a7 7 0 0 0 6 6.9V22h2v-2.1A7 7 0 0 0 19 13c0-4-3-7-7-11Z" fill="#c2622a"/><path d="M12 8v9" stroke="#f4f1e9" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span><b style="font-family:'Archivo';font-weight:800;">J.J's Tree Service</b></span>
+      </span>
+      <p class="tag">Fast, safe tree removal, trimming, and 24/7 storm response in St. Louis.</p>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#services">Services</a>
+      <a href="#about">Why us</a>
+      <a href="#contact">Contact</a>
+      <a href="tel:+13144842825">(314) 484-2825</a>
+    </nav>
+  </div>
+  <div class="wrap legal">
+    &copy; <span id="yr"></span> J.J's Tree Service &middot; 2933 Endicott Ave, St. Louis, MO 63114 &middot; Open 24/7
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  var qf = document.getElementById('quote-form');
+  if (qf) {
+    qf.addEventListener('submit', function(e){
+      e.preventDefault();
+      var name = document.getElementById('name');
+      var phone = document.getElementById('phone');
+      if (!name.value.trim() || !phone.value.trim()) {
+        (name.value.trim() ? phone : name).focus();
+        return;
+      }
+      document.getElementById('form-status').classList.add('show');
+      qf.querySelector('button[type=submit]').textContent = 'Request sent';
+    });
+  }
+</script>
+</body>
+</html>
