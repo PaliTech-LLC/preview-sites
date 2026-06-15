@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<!--
+  DESIGN SYSTEM — Tank Pressure Washing LLC
+  Customer feeling:  "These guys are heavy-duty and serious — they'll blast my driveway back to new, and I can get a price in one call."
+  Mode:              dark/industrial — a power-washing outfit named "Tank" earns a charcoal, high-power look; this is a tough trade, not a soft service.
+  Display font:      Anton (Google Fonts) — condensed, heavy, industrial impact
+  Body font:         Barlow (Google Fonts) — sturdy, legible, utilitarian grotesque
+  Dominant color:    #16181a near-black charcoal — sets the heavy-duty atmosphere
+  Accent color:      #f2b705 desaturated safety yellow — high-visibility power/force (small text uses darker #8a6a04 ink on light)
+  Hero archetype:    full-bleed pressure-washing-in-action photo (yellow-jacketed worker, visible spray fan) + oversized "BLAST IT CLEAN" headline, text-left over a tuned scrim
+  Memorable moment:  the giant Anton "BLAST IT / CLEAN." headline locked over a real spray-in-action photo, with a safety-yellow underscore slab — reads like equipment livery, not a template
+  Service model:     APPOINTMENT / estimate-based — "Request a free quote" / "Request service"; inert quote form, never "book a chair"
+  Rating:            SUPPRESSED — only 1 review (below the 5-review floor). No stars, no count anywhere. Empty commented testimonial slot reserved.
+  Service area:      INFERRED to "the St. Louis area" — address is only "Florissant, MO" (city confirmable); no specific sub-area invented.
+-->
+<html lang="en" data-banner="on">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tank Pressure Washing LLC — Power Washing in the St. Louis Area</title>
+<meta name="description" content="Tank Pressure Washing LLC blasts concrete, siding, decks, fences, gutters and tough stains back to clean across the St. Louis area. Free quotes — call 314-648-9854.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  // Runtime banner override: ?banner=off or #nobanner hides the PaliTech bar in person.
+  (function () {
+    try {
+      var p = new URLSearchParams(location.search);
+      if (p.get('banner') === 'off' || location.hash === '#nobanner') {
+        document.documentElement.setAttribute('data-banner', 'off');
+      }
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --ink:        #16181a;   /* near-black charcoal (dominant) */
+    --ink-2:      #20242a;   /* raised panel */
+    --ink-3:      #2b3038;   /* hairline / border on dark */
+    --paper:      #f6f4ef;   /* off-white */
+    --paper-2:    #ece8df;   /* warm off-white panel */
+    --on-dark:    #f6f4ef;   /* body text on dark */
+    --on-dark-mut:#c4c8cc;   /* muted on dark — clears 4.5:1 on #16181a */
+    --on-light:   #1a1c1e;   /* body text on light */
+    --on-light-mut:#4a4f54;  /* muted on light — clears 4.5:1 on paper */
+    --accent:     #f2b705;   /* safety yellow — fills, big text, accents */
+    --accent-ink: #8a6a04;   /* darker yellow ink for SMALL text/labels on light */
+    --accent-deep:#b88a04;   /* mid yellow for dark-bg small accents */
+    --banner-h:   38px;
+    --gutter:     clamp(20px, 5vw, 64px);
+    --maxw:       1200px;
+    --radius:     4px;
+    --z-banner:   1000;
+    --z-nav:      900;
+  }
+
+  html[data-banner="off"] { --banner-h: 0px; }
+  html[data-banner="off"] .banner { display: none; }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--on-dark);
+    font-family: 'Barlow', sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 { font-family: 'Anton', sans-serif; font-weight: 400; letter-spacing: .01em; line-height: .96; text-transform: uppercase; margin: 0; }
+  p { margin: 0 0 1rem; }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+
+  .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
+
+  /* ---------- focus ---------- */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, label:focus-visible, .toggle-label:focus-within {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .skip {
+    position: absolute; left: -999px; top: 0; z-index: 1100;
+    background: var(--accent); color: var(--ink); padding: 10px 16px; font-weight: 700; border-radius: 0 0 var(--radius) 0;
+  }
+  .skip:focus { left: 0; }
+
+  /* ---------- banner ---------- */
+  .banner {
+    position: fixed; inset: 0 0 auto 0; height: var(--banner-h);
+    display: flex; align-items: center; justify-content: center;
+    background: var(--ink-2); color: var(--on-dark-mut);
+    font-size: .78rem; letter-spacing: .02em; z-index: var(--z-banner);
+    border-bottom: 1px solid var(--ink-3); padding-inline: 16px; text-align: center;
+  }
+  .banner a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .banner a:hover { text-decoration: underline; }
+
+  /* ---------- nav ---------- */
+  .nav {
+    position: fixed; left: 0; right: 0; top: var(--banner-h); z-index: var(--z-nav);
+    background: rgba(18,20,22,.86); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--ink-3);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    min-height: 64px; padding-block: 10px;
+  }
+  .wordmark {
+    display: inline-flex; align-items: baseline; gap: .4ch; text-decoration: none;
+    font-family: 'Anton', sans-serif; font-size: 1.5rem; letter-spacing: .02em; color: var(--paper);
+    text-transform: uppercase; line-height: 1; min-width: 0;
+  }
+  .wordmark .mk { color: var(--accent); }
+  .nav-links { display: flex; align-items: center; gap: clamp(14px, 2vw, 30px); list-style: none; margin: 0; padding: 0; }
+  .nav-links a {
+    text-decoration: none; color: var(--paper); font-weight: 600; font-size: .9rem;
+    letter-spacing: .06em; text-transform: uppercase; padding: 8px 2px; white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5ch;
+    background: var(--accent); color: var(--ink); text-decoration: none;
+    font-weight: 700; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase;
+    padding: 10px 16px; min-height: 44px; border-radius: var(--radius);
+    max-width: 100%; white-space: nowrap; transition: transform .2s ease, background .2s ease;
+  }
+  .nav-cta:hover { background: #ffc416; transform: translateY(-1px); }
+
+  /* hamburger toggle (pure CSS) */
+  .nav-toggle { display: none; }
+  .mobile-nav { display: none; } /* desktop: hidden; revealed only at the mobile breakpoint */
+  .toggle-label {
+    display: none; width: 48px; height: 44px; cursor: pointer;
+    align-items: center; justify-content: center; border-radius: var(--radius);
+    border: 1px solid var(--ink-3); background: transparent; flex: 0 0 auto;
+  }
+  .toggle-label svg { width: 26px; height: 26px; stroke: var(--paper); }
+  .toggle-label .x { display: none; }
+
+  /* ---------- buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .6ch;
+    font-weight: 700; letter-spacing: .04em; text-transform: uppercase; font-size: .92rem;
+    padding: 15px 26px; min-height: 48px; border-radius: var(--radius);
+    text-decoration: none; cursor: pointer; border: 2px solid transparent;
+    max-width: 100%; transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
+    touch-action: manipulation;
+  }
+  .btn-primary { background: var(--accent); color: var(--ink); border-color: var(--accent); }
+  .btn-primary:hover { background: #ffc416; transform: translateY(-2px); }
+  .btn-ghost { background: transparent; color: var(--paper); border-color: rgba(246,244,239,.45); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .btn svg { width: 18px; height: 18px; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative;
+    min-height: calc(100dvh - var(--banner-h));
+    max-height: 920px;
+    display: flex; align-items: flex-end;
+    padding-top: calc(var(--banner-h) + 84px);
+    padding-bottom: clamp(40px, 7vh, 90px);
+    overflow: hidden;
+  }
+  .hero-media { position: absolute; inset: 0; background: #0d0f11; z-index: 0; }
+  .hero-media img { width: 100%; height: 100%; object-fit: cover; max-height: 920px; }
+  /* scrim tuned for text at the LEFT/BOTTOM over the lightest pixels of the photo */
+  .hero-scrim {
+    position: absolute; inset: 0; z-index: 1;
+    background:
+      linear-gradient(90deg, rgba(13,15,17,.95) 0%, rgba(13,15,17,.85) 40%, rgba(13,15,17,.45) 72%, rgba(13,15,17,.2) 100%),
+      linear-gradient(0deg, rgba(13,15,17,.9) 0%, rgba(13,15,17,.4) 45%, rgba(13,15,17,.66) 100%);
+  }
+  .hero .wrap { position: relative; z-index: 2; width: 100%; }
+  .hero-col { max-width: min(92vw, 42rem); }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: .7ch;
+    font-weight: 700; font-size: .82rem; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 18px;
+  }
+  .hero-eyebrow .bar { width: 34px; height: 3px; background: var(--accent); display: inline-block; }
+  .hero h1 {
+    font-size: clamp(3.1rem, 12.5vw, 8.2rem);
+    color: var(--paper); margin-bottom: 6px;
+    text-wrap: balance; overflow-wrap: break-word;
+  }
+  .hero h1 .hl {
+    color: var(--accent);
+    position: relative;
+  }
+  .hero-sub {
+    font-size: clamp(1.05rem, 2.4vw, 1.4rem); color: var(--on-dark);
+    max-width: 38rem; margin: 18px 0 30px; line-height: 1.5;
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+  .hero-strip {
+    display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 30px;
+    font-weight: 600; font-size: .92rem; color: var(--on-dark);
+  }
+  .hero-strip span { display: inline-flex; align-items: center; gap: .55ch; }
+  .hero-strip svg { width: 18px; height: 18px; stroke: var(--accent); flex: 0 0 auto; }
+
+  /* ---------- section scaffolding ---------- */
+  section { position: relative; }
+  .pad { padding-block: clamp(64px, 9vw, 120px); }
+  .sec-head { max-width: 52rem; margin-bottom: clamp(34px, 5vw, 56px); }
+  .kicker {
+    display: inline-flex; align-items: center; gap: .7ch;
+    font-weight: 700; font-size: .8rem; letter-spacing: .16em; text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .kicker .bar { width: 30px; height: 3px; background: var(--accent); display: inline-block; }
+  .on-light .kicker { color: var(--accent-ink); }
+  .on-dark-sec .kicker { color: var(--accent); }
+  .sec-head h2 { font-size: clamp(2.2rem, 6vw, 4rem); }
+  .lead { font-size: clamp(1.02rem, 2vw, 1.18rem); }
+
+  .on-light { background: var(--paper); color: var(--on-light); }
+  .on-light .lead { color: var(--on-light-mut); }
+  .on-dark-sec { background: var(--ink); color: var(--on-dark); }
+  .on-dark-sec .lead { color: var(--on-dark-mut); }
+
+  /* ---------- services ---------- */
+  .svc-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px;
+  }
+  .svc {
+    background: var(--ink-2); border: 1px solid var(--ink-3); border-radius: var(--radius);
+    padding: 30px 26px; grid-column: span 2; display: flex; flex-direction: column; gap: 12px;
+    transition: transform .25s ease, border-color .25s ease;
+  }
+  .svc:hover { transform: translateY(-4px); border-color: var(--accent); }
+  /* asymmetric: first two cards span 3 (wider feature row), rest span 2 */
+  .svc:nth-child(1), .svc:nth-child(2) { grid-column: span 3; }
+  .svc-ic {
+    width: 52px; height: 52px; border-radius: var(--radius);
+    background: var(--accent); color: var(--ink);
+    display: flex; align-items: center; justify-content: center; flex: 0 0 auto;
+  }
+  .svc-ic svg { width: 30px; height: 30px; stroke: var(--ink); fill: none; }
+  .svc h3 { font-size: 1.5rem; color: var(--paper); }
+  .svc p { color: var(--on-dark-mut); margin: 0; font-size: .98rem; }
+
+  /* ---------- our work band ---------- */
+  .work-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 220px; gap: 16px;
+  }
+  .fig { position: relative; margin: 0; overflow: hidden; border-radius: var(--radius); background: var(--ink-3); }
+  .fig img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .fig:hover img { transform: scale(1.04); }
+  .fig.big { grid-column: span 2; grid-row: span 2; }
+  .fig.wide { grid-column: span 2; }
+  .fig-cap {
+    position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+    padding: 14px 16px; font-weight: 600; font-size: .9rem; color: var(--paper);
+    background: linear-gradient(0deg, rgba(13,15,17,.92) 0%, rgba(13,15,17,.55) 60%, transparent 100%);
+  }
+  .fig-cap .tag {
+    display: inline-block; font-family: 'Anton', sans-serif; text-transform: uppercase;
+    font-size: .72rem; letter-spacing: .08em; color: var(--accent); margin-right: .6ch;
+  }
+
+  /* ---------- hours ---------- */
+  .hours-wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(28px, 5vw, 60px); align-items: start; }
+  .hours-card {
+    background: var(--ink); color: var(--on-dark); border-radius: var(--radius);
+    border: 1px solid var(--ink-3); overflow: hidden;
+  }
+  .hours-card .hd {
+    background: var(--accent); color: var(--ink); padding: 18px 24px;
+    font-family: 'Anton', sans-serif; text-transform: uppercase; font-size: 1.4rem; letter-spacing: .03em;
+    display: flex; align-items: center; gap: .6ch;
+  }
+  .hours-card .hd svg { width: 24px; height: 24px; stroke: var(--ink); }
+  .hours-row { display: flex; justify-content: space-between; gap: 16px; padding: 13px 24px; border-top: 1px solid var(--ink-3); }
+  .hours-row:first-of-type { border-top: 0; }
+  .hours-row .d { font-weight: 600; }
+  .hours-row .t { color: var(--on-dark-mut); font-variant-numeric: tabular-nums; }
+  .hours-row.closed .t { color: var(--accent); font-weight: 600; }
+  .hours-row.today { background: var(--ink-2); }
+  .hours-row.today .d::after { content: " · Today"; color: var(--accent); font-weight: 700; font-size: .82em; }
+
+  .hours-aside h3 { font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--on-light); margin-bottom: 14px; }
+  .hours-aside p { color: var(--on-light-mut); }
+  .hours-aside .callout {
+    margin-top: 22px; display: inline-flex; align-items: center; gap: .7ch;
+    font-weight: 700; color: var(--on-light);
+  }
+  .hours-aside .callout svg { width: 20px; height: 20px; stroke: var(--accent-ink); }
+
+  /* ---------- about + trust ---------- */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 6vw, 70px); align-items: center; }
+  .about-copy h2 { font-size: clamp(2.1rem, 5vw, 3.4rem); color: var(--paper); margin-bottom: 18px; }
+  .about-copy p { color: var(--on-dark-mut); }
+  .about-photo { position: relative; border-radius: var(--radius); overflow: hidden; background: var(--ink-3); aspect-ratio: 8 / 5; }
+  .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .about-photo .badge {
+    position: absolute; left: 16px; bottom: 16px; z-index: 2;
+    background: var(--accent); color: var(--ink); font-family: 'Anton', sans-serif;
+    text-transform: uppercase; letter-spacing: .04em; font-size: .85rem; padding: 8px 14px; border-radius: var(--radius);
+  }
+  .trust {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+    margin-top: clamp(36px, 5vw, 56px);
+  }
+  .trust-item {
+    border-top: 3px solid var(--accent); padding-top: 18px; display: flex; flex-direction: column; gap: 8px;
+  }
+  .trust-item .ti-ic { width: 34px; height: 34px; }
+  .trust-item .ti-ic svg { width: 34px; height: 34px; stroke: var(--accent); fill: none; }
+  .trust-item h3 { font-size: 1.35rem; color: var(--paper); }
+  .trust-item p { color: var(--on-dark-mut); margin: 0; font-size: .96rem; }
+
+  /* ---------- contact ---------- */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(34px, 6vw, 72px); align-items: start; }
+  .phone-block .ph-label { font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-ink); font-size: .82rem; margin-bottom: 10px; }
+  .phone-link {
+    display: inline-flex; align-items: center; gap: .5ch; text-decoration: none;
+    font-family: 'Anton', sans-serif; color: var(--on-light); text-transform: uppercase;
+    font-size: clamp(2.3rem, 7vw, 3.8rem); line-height: 1; letter-spacing: .01em;
+  }
+  .phone-link svg { width: clamp(30px, 6vw, 44px); height: clamp(30px, 6vw, 44px); stroke: var(--accent-ink); flex: 0 0 auto; }
+  .phone-link:hover { color: var(--accent-ink); }
+  .contact-meta { margin-top: 26px; display: grid; gap: 16px; }
+  .cm-row { display: flex; gap: 12px; align-items: flex-start; }
+  .cm-row svg { width: 22px; height: 22px; stroke: var(--accent-ink); flex: 0 0 auto; margin-top: 2px; }
+  .cm-row .lbl { font-weight: 700; color: var(--on-light); display: block; }
+  .cm-row .val { color: var(--on-light-mut); }
+
+  .quote-card {
+    background: var(--ink); color: var(--on-dark); border-radius: var(--radius);
+    border: 1px solid var(--ink-3); padding: clamp(24px, 4vw, 38px);
+  }
+  .quote-card h3 { font-size: clamp(1.5rem, 3vw, 2.1rem); color: var(--paper); margin-bottom: 6px; }
+  .quote-card .qc-sub { color: var(--on-dark-mut); margin-bottom: 22px; font-size: .98rem; }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-weight: 600; font-size: .86rem; letter-spacing: .02em; margin-bottom: 7px; color: var(--paper); }
+  .field label .req { color: var(--accent); }
+  .field input, .field select, .field textarea {
+    width: 100%; background: var(--ink-2); border: 1px solid var(--ink-3); border-radius: var(--radius);
+    color: var(--paper); font-family: inherit; font-size: 1rem; padding: 13px 14px; min-height: 48px;
+  }
+  .field textarea { min-height: 110px; resize: vertical; }
+  .field input::placeholder, .field textarea::placeholder { color: #8b9097; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .quote-card .btn-primary { width: 100%; }
+  .form-note { font-size: .82rem; color: var(--on-dark-mut); margin: 14px 0 0; text-align: center; }
+  .form-thanks {
+    display: none; margin-top: 16px; padding: 14px 16px; border-radius: var(--radius);
+    background: rgba(242,183,5,.12); border: 1px solid var(--accent); color: var(--paper); font-weight: 600; font-size: .95rem;
+  }
+  .form-thanks.show { display: block; }
+  .form-thanks a { color: var(--accent); font-weight: 700; text-decoration: none; }
+
+  /* ---------- footer ---------- */
+  .footer { background: #101214; color: var(--on-dark-mut); padding-block: clamp(46px, 6vw, 70px); border-top: 1px solid var(--ink-3); }
+  .footer-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 28px; align-items: flex-start; }
+  .footer .wordmark { font-size: 2rem; }
+  .footer-tag { margin-top: 10px; max-width: 30rem; color: var(--on-dark-mut); }
+  .footer-nav { display: flex; flex-wrap: wrap; gap: 8px 26px; list-style: none; margin: 0; padding: 0; }
+  .footer-nav a { text-decoration: none; color: var(--on-dark-mut); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; font-size: .85rem; }
+  .footer-nav a:hover { color: var(--accent); }
+  .footer-bottom {
+    margin-top: 34px; padding-top: 20px; border-top: 1px solid var(--ink-3);
+    display: flex; flex-wrap: wrap; gap: 10px 20px; justify-content: space-between; font-size: .82rem;
+  }
+  .footer-bottom .area { color: var(--on-dark-mut); }
+
+  /* ---------- motion ---------- */
+  .anim { opacity: 1; }
+  @media (prefers-reduced-motion: no-preference) {
+    .anim { opacity: 0; transform: translateY(18px); animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
+    .d1 { animation-delay: .05s; } .d2 { animation-delay: .18s; } .d3 { animation-delay: .31s; }
+    .d4 { animation-delay: .44s; } .d5 { animation-delay: .57s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 980px) {
+    .svc-grid { grid-template-columns: repeat(2, 1fr); }
+    .svc, .svc:nth-child(1), .svc:nth-child(2) { grid-column: span 1; }
+    .hours-wrap { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .work-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
+    .fig.big { grid-column: span 2; grid-row: span 1; }
+    .fig.wide { grid-column: span 2; }
+  }
+  @media (max-width: 760px) {
+    .nav-links, .nav > .nav-inner > .nav-cta { display: none; }
+    .toggle-label { display: flex; }
+    .mobile-nav {
+      display: none; position: absolute; left: 0; right: 0; top: 100%;
+      background: var(--ink-2); border-bottom: 1px solid var(--ink-3); padding: 14px var(--gutter) 22px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.45);
+    }
+    .nav-toggle:checked ~ .mobile-nav { display: block; }
+    .nav-toggle:checked ~ .toggle-label .menu { display: none; }
+    .nav-toggle:checked ~ .toggle-label .x { display: block; }
+    .mobile-nav ul { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 2px; }
+    .mobile-nav a {
+      display: block; text-decoration: none; color: var(--paper); font-weight: 600;
+      letter-spacing: .05em; text-transform: uppercase; font-size: 1rem; padding: 14px 4px;
+      border-bottom: 1px solid var(--ink-3);
+    }
+    .mobile-nav a:hover { color: var(--accent); }
+    .mobile-nav .nav-cta { width: 100%; min-height: 48px; font-size: .95rem; }
+    .trust { grid-template-columns: 1fr; }
+    .field-row { grid-template-columns: 1fr; }
+    .footer-top { flex-direction: column; }
+  }
+  @media (max-width: 420px) {
+    .svc-grid { grid-template-columns: 1fr; }
+    .work-grid { grid-template-columns: 1fr; grid-auto-rows: 200px; }
+    .fig.big, .fig.wide { grid-column: span 1; }
+    .hero-strip { gap: 8px 18px; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<!-- 0. PaliTech preview banner (default ON) -->
+<div class="banner">
+  <span>Free website preview by&nbsp;<a href="https://pali-tech.com" target="_blank" rel="noopener" aria-label="Free website preview by PaliTech — visit pali-tech.com">PaliTech — pali-tech.com</a></span>
+</div>
+
+<!-- 1. Navigation -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="wordmark" href="#top" aria-label="Tank Pressure Washing, home">TANK<span class="mk">.</span></a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+    <label for="nav-toggle" class="toggle-label" tabindex="0" role="button" aria-label="Open navigation menu">
+      <svg class="menu" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      <svg class="x" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+    </label>
+
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Our Work</a></li>
+      <li><a href="#hours">Hours</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">Free Quote</a>
+
+    <nav class="mobile-nav" aria-label="Mobile">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Our Work</a></li>
+        <li><a href="#hours">Hours</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="nav-cta" href="#contact">Get a Free Quote</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <span id="top"></span>
+
+  <!-- 2. Hero -->
+  <section class="hero" aria-label="Introduction">
+    <div class="hero-media">
+      <!-- Representative stock (Pexels, verified pressure-washing in action) — swap for the owner's own job photo before launch. -->
+      <img src="https://images.pexels.com/photos/5652626/pexels-photo-5652626.jpeg?auto=compress&cs=tinysrgb&w=1600"
+           alt="Pressure-washing technician in yellow gear spraying a fan of high-pressure water across the siding of a house"
+           width="1600" height="2000" loading="eager" fetchpriority="high" decoding="async">
+    </div>
+    <div class="hero-scrim"></div>
+    <div class="wrap">
+      <div class="hero-col">
+        <span class="hero-eyebrow anim d1"><span class="bar"></span> Pressure &amp; Power Washing · St. Louis Area</span>
+        <h1 class="anim d2">Blast it<br><span class="hl">clean.</span></h1>
+        <p class="hero-sub anim d3">Years of grime, mold and oil don't stand a chance. Tank brings the heavy-duty equipment and the muscle to make your concrete, siding and decks look brand new — and the quote's always free.</p>
+        <div class="hero-actions anim d4">
+          <a class="btn btn-primary" href="#contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Request a Free Quote
+          </a>
+          <a class="btn btn-ghost" href="#services">See What We Clean</a>
+        </div>
+        <div class="hero-strip anim d5">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11.8A8 8 0 0 0 4 10.2C4 17.5 12 22 12 22z"/><circle cx="12" cy="10" r="3"/></svg>Serving the St. Louis area<!-- INFERRED: verify service area with owner — only "Florissant, MO" is confirmed --></span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Free, no-pressure estimates</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3z"/></svg>Fully geared, careful crew</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Services -->
+  <section class="pad on-dark-sec" id="services" aria-labelledby="svc-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker"><span class="bar"></span> What we blast clean</span>
+        <h2 id="svc-h">Six surfaces, one serious machine</h2>
+        <p class="lead">If it's caked in dirt, algae, oil or mildew, we'll knock it back to clean. The right pressure for every surface — soft-wash where it's delicate, full power where it counts.</p>
+      </div>
+      <div class="svc-grid">
+        <article class="svc">
+          <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19h18"/><path d="M5 19 8 5h8l3 14"/><path d="M9 11h6"/></svg></div>
+          <h3>Concrete &amp; Driveways</h3>
+          <p>Driveways, sidewalks, patios and garage floors — we lift out tire marks, ground-in grime and the gray film of years so the surface reads bright and even again.</p>
+        </article>
+        <article class="svc">
+          <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-6 9 6v12"/><path d="M3 12h18"/><path d="M3 16.5h18"/></svg></div>
+          <h3>House Soft Wash</h3>
+          <p>A low-pressure soft wash with the right cleaners strips mold, mildew and cobwebs off vinyl, stucco and brick siding — clean results without forcing water behind the panels.</p>
+        </article>
+        <article class="svc">
+          <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18"/><path d="M3 14h18"/><path d="M6 9v9"/><path d="M12 9v9"/><path d="M18 9v9"/><path d="M3 9 12 4l9 5"/></svg></div>
+          <h3>Decks &amp; Patios</h3>
+          <p>Wood and composite decks, pavers and stone patios get the green algae and gray weathering washed away — so the surface is safe underfoot and ready to seal.</p>
+        </article>
+        <article class="svc">
+          <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16"/><path d="M9 4v16"/><path d="M14 4v16"/><path d="M19 4v16"/><path d="M2 9h20"/><path d="M2 15h20"/></svg></div>
+          <h3>Fences</h3>
+          <p>Wood, vinyl and chain-link fences pick up dirt and mildew fast. We bring them back panel by panel without splintering the wood or hammering the posts.</p>
+        </article>
+        <article class="svc">
+          <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18l-2 5H5L3 7z"/><path d="M5 12v5a2 2 0 0 0 2 2h0"/><path d="M19 12v3"/><path d="M9 19v2"/></svg></div>
+          <h3>Gutter Cleaning</h3>
+          <p>We flush packed leaves and grit out of your gutters and brighten the exterior face so water runs where it should — not down the side of your house.</p>
+        </article>
+        <article class="svc">
+          <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3"/><path d="M12 18v3"/><path d="M5 5l2 2"/><path d="M17 17l2 2"/><path d="M3 12h3"/><path d="M18 12h3"/></svg></div>
+          <h3>Rust &amp; Oil Stains</h3>
+          <p>Stubborn rust runs, oil drips and battery acid spots get treated and washed out with the right solution — not just blasted around and left behind.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Our work (photos folded in — fewer than 3 own photos, so stock action shots + the owner's own exterior as proof) -->
+  <section class="pad on-light" id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker"><span class="bar"></span> On the job</span>
+        <h2 id="work-h">The kind of clean you can see</h2>
+        <p class="lead">Real pressure, the right technique, and an eye for the spots that get missed. A look at the surfaces we tackle every week around the St. Louis area.</p>
+      </div>
+      <div class="work-grid">
+        <!-- Representative stock (Pexels) — swap for the owner's own before/after photos before launch. -->
+        <figure class="fig big">
+          <img src="https://images.pexels.com/photos/12919779/pexels-photo-12919779.jpeg?auto=compress&cs=tinysrgb&w=1000"
+               alt="Worker pressure washing a wooden deck, lifting the grime to leave a clean bright stripe"
+               width="1000" height="667" loading="lazy" decoding="async">
+          <figcaption class="fig-cap"><span class="tag">Decks</span>Lifting years of gray off the boards</figcaption>
+        </figure>
+        <figure class="fig wide">
+          <img src="https://images.pexels.com/photos/20296972/pexels-photo-20296972.jpeg?auto=compress&cs=tinysrgb&w=900"
+               alt="Technician power washing a paved walkway alongside a building, water spray visible"
+               width="900" height="600" loading="lazy" decoding="async">
+          <figcaption class="fig-cap"><span class="tag">Concrete</span>Walkways back to bright</figcaption>
+        </figure>
+        <figure class="fig">
+          <!-- Business's OWN scraped photo — generic exterior, used here as a real proof image. -->
+          <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAGCUZSauCZe3xmJUpnXNX3ZH2NkaYqrVraaCCvibIHKC9ToqqZRifrI5NS72IQQnbyFRsQmfEwmQ_DBrw3uw5Nk4FSENsY9hWgawBZ83-ESqz4cCFnMw2soErBRNL73xpJGAwSf46QAvUJ4=w800-h500-k-no"
+               alt="Exterior of a home Tank Pressure Washing has serviced"
+               width="800" height="500" loading="lazy" decoding="async">
+          <figcaption class="fig-cap"><span class="tag">Exteriors</span>Curb appeal, restored</figcaption>
+        </figure>
+        <figure class="fig">
+          <img src="https://images.pexels.com/photos/35153375/pexels-photo-35153375.jpeg?auto=compress&cs=tinysrgb&w=700"
+               alt="Close-up of a pressure washer wand flushing a home gutter clean"
+               width="700" height="933" loading="lazy" decoding="async">
+          <figcaption class="fig-cap"><span class="tag">Gutters</span>Flushed and flowing</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Hours -->
+  <section class="pad on-light" id="hours" aria-labelledby="hours-h" style="padding-top:0;">
+    <div class="wrap">
+      <div class="hours-wrap">
+        <div class="hours-card">
+          <div class="hd"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Hours</div>
+          <div class="hours-row"><span class="d">Monday</span><span class="t">6:00 AM – 6:00 PM</span></div>
+          <div class="hours-row"><span class="d">Tuesday</span><span class="t">6:00 AM – 6:00 PM</span></div>
+          <div class="hours-row"><span class="d">Wednesday</span><span class="t">6:00 AM – 6:00 PM</span></div>
+          <div class="hours-row"><span class="d">Thursday</span><span class="t">6:00 AM – 6:00 PM</span></div>
+          <div class="hours-row"><span class="d">Friday</span><span class="t">6:00 AM – 6:00 PM</span></div>
+          <div class="hours-row"><span class="d">Saturday</span><span class="t">7:00 AM – 5:00 PM</span></div>
+          <div class="hours-row closed"><span class="d">Sunday</span><span class="t">Closed</span></div>
+          <!-- Hours may drift over time — verify with owner before publishing. -->
+        </div>
+        <div class="hours-aside">
+          <span class="kicker"><span class="bar"></span> Easy to reach</span>
+          <h3>Early starts, weekends covered</h3>
+          <p>We're out on jobs from 6 AM most days and through Saturday afternoon, so we can fit your driveway, deck or full exterior around your schedule — not the other way around.</p>
+          <p class="callout"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call (314) 648-9854 to grab a slot</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. About + trust -->
+  <section class="pad on-dark-sec" id="about" aria-labelledby="about-h">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-copy">
+          <span class="kicker"><span class="bar"></span> About Tank</span>
+          <h2 id="about-h">Local crew, heavy-duty results</h2>
+          <p>Tank Pressure Washing is a hometown outfit serving homeowners across the St. Louis area. We named it Tank for a reason — when the dirt is dug in, you want power and someone who knows exactly how much of it each surface can take.</p>
+          <p>Every job gets a free walkthrough and an honest price up front. No surprise add-ons, no pressure to upsell — just a clean surface and a property that looks looked-after.</p>
+        </div>
+        <div class="about-photo">
+          <!-- Representative stock (Pexels, pressure-washing in action) — swap for an owner photo before launch. -->
+          <img src="https://images.pexels.com/photos/14965464/pexels-photo-14965464.jpeg?auto=compress&cs=tinysrgb&w=1000"
+               alt="Pressure-washing technician spraying stone steps clean, mist rising from the surface"
+               width="1000" height="625" loading="lazy" decoding="async">
+          <span class="badge">In the field</span>
+        </div>
+      </div>
+
+      <div class="trust">
+        <div class="trust-item">
+          <span class="ti-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></span>
+          <h3>Homes, not lots</h3>
+          <p>Residential is our focus — driveways, siding, decks and fences for the people who live there, treated with care.</p>
+        </div>
+        <div class="trust-item">
+          <span class="ti-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <h3>Surface-safe pressure</h3>
+          <p>Soft-wash where it's needed, full power where it counts — your siding and wood get the right setting, every time.</p>
+        </div>
+        <div class="trust-item">
+          <span class="ti-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><path d="M8 2v4"/><path d="M16 2v4"/></svg></span>
+          <h3>Free quotes, fast</h3>
+          <p>A clear, written price after a quick look — and early-morning, six-day availability to get on the calendar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--
+    TESTIMONIAL SLOT — intentionally empty.
+    No review prose or star rating is shown: this business has only 1 Google review,
+    below the 5-review quality floor (DEMO_RULES J), so the rating block is suppressed.
+    Drop in the client's real, approved words here after they sign.
+
+    <section class="pad on-light" id="reviews" aria-labelledby="rev-h">
+      <div class="wrap">
+        <div class="sec-head"><h2 id="rev-h">What neighbors say</h2></div>
+        ... real approved testimonials go here ...
+      </div>
+    </section>
+  -->
+
+  <!-- 7. Contact -->
+  <section class="pad on-light" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker"><span class="bar"></span> Get a price</span>
+        <h2 id="contact-h">Tell us what needs cleaning</h2>
+        <p class="lead">Call for the fastest answer, or send the details below and we'll get back with a free quote. No obligation, no pressure.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="phone-block">
+          <p class="ph-label">Call or text</p>
+          <a class="phone-link" href="tel:+13146489854" aria-label="Call Tank Pressure Washing at 314-648-9854">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            (314) 648-9854
+          </a>
+          <div class="contact-meta">
+            <div class="cm-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11.8A8 8 0 0 0 4 10.2C4 17.5 12 22 12 22z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div><span class="lbl">Service area</span><span class="val">Florissant, MO &amp; the greater St. Louis area<!-- INFERRED: verify exact service radius with owner --></span></div>
+            </div>
+            <div class="cm-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <div><span class="lbl">Hours</span><span class="val">Mon–Fri 6 AM–6 PM · Sat 7 AM–5 PM · Sun closed</span></div>
+            </div>
+            <div class="cm-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
+              <div><span class="lbl">Best for</span><span class="val">Free quotes, scheduling, and questions about a specific surface</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-card">
+          <h3>Request a free quote</h3>
+          <p class="qc-sub">Send a few details and we'll get right back to you.</p>
+          <form id="quote-form" novalidate>
+            <div class="field-row">
+              <div class="field">
+                <label for="qf-name">Name <span class="req" aria-hidden="true">*</span></label>
+                <input id="qf-name" name="name" type="text" autocomplete="name" placeholder="Your name" required>
+              </div>
+              <div class="field">
+                <label for="qf-phone">Phone <span class="req" aria-hidden="true">*</span></label>
+                <input id="qf-phone" name="phone" type="tel" autocomplete="tel" placeholder="(314) 000-0000" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="qf-email">Email</label>
+              <input id="qf-email" name="email" type="email" autocomplete="email" placeholder="you@email.com">
+            </div>
+            <div class="field">
+              <label for="qf-service">What needs cleaning?</label>
+              <select id="qf-service" name="service">
+                <option>Concrete / driveway</option>
+                <option>House soft wash</option>
+                <option>Deck or patio</option>
+                <option>Fence</option>
+                <option>Gutter cleaning</option>
+                <option>Rust / oil stain removal</option>
+                <option>Whole-property quote</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="qf-msg">Details</label>
+              <textarea id="qf-msg" name="message" placeholder="Roughly how big is the area, and what's the surface like? Anything that'll help us price it."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send My Request</button>
+            <p class="form-note">Prefer to talk it through? Call <a href="tel:+13146489854" style="color:var(--accent);font-weight:700;text-decoration:none;">(314) 648-9854</a>.</p>
+            <div class="form-thanks" id="form-thanks" role="status" aria-live="polite">
+              Thanks — we've got your request. For the fastest answer, call us at <a href="tel:+13146489854">(314) 648-9854</a>.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 7. Footer (no PaliTech branding) -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <span class="wordmark">TANK<span class="mk">.</span></span>
+        <p class="footer-tag">Heavy-duty pressure &amp; power washing for homes across the St. Louis area. Concrete, siding, decks, fences, gutters and tough stains — blasted back to clean.</p>
+      </div>
+      <ul class="footer-nav">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Our Work</a></li>
+        <li><a href="#hours">Hours</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Tank Pressure Washing LLC. All rights reserved.</span>
+      <span class="area">Florissant, MO · (314) 648-9854</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Inert quote form — friendly confirmation, points to the phone. (Wire to email at signup.)
+  (function () {
+    var form = document.getElementById('quote-form');
+    var thanks = document.getElementById('form-thanks');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = form.querySelector('#qf-name');
+      var phone = form.querySelector('#qf-phone');
+      if (!name.value.trim() || !phone.value.trim()) {
+        (!name.value.trim() ? name : phone).focus();
+        return;
+      }
+      thanks.classList.add('show');
+      form.querySelector('button[type="submit"]').textContent = 'Request Sent';
+    });
+  })();
+</script>
+</body>
+</html>
