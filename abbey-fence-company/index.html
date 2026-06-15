@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<!--
+  DESIGN SYSTEM — Abbey Fence Company
+  Customer feeling:  "These people have been doing this for decades. My yard is in safe hands." Quiet confidence, heritage craft, no hard sell.
+  Mode:              light — a fence contractor is an outdoor, daylight trade; cream-and-green reads established and family-run, not the charcoal+amber look every other fence site defaults to.
+  Display font:      Fraunces (Google Fonts) — warm, characterful serif with old-world weight
+  Body font:         DM Sans (Google Fonts) — clean, grounded, modern sans for legibility
+  Dominant color:    #1c2e25 — deep hunter/forest green; sets a settled, woodland-edge atmosphere across the page
+  Accent color:      #9a7636 — restrained brass (desaturated, ~50% sat); #7c5d24 ink variant for small text on cream
+  Hero archetype:    centered/bottom-anchored editorial over a full-bleed wood privacy-fence photo (NOT an overlay-on-own-photo) — content stacked in the lower third on a tuned scrim
+  Memorable moment:  the brass hairline rule that splits the wordmark "ABBEY / FENCE CO." and recurs as a thin brass underscore beneath every section heading — a quiet maker's-mark running the length of the page
+-->
+<html lang="en" data-banner="on">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abbey Fence Company — Fence Installation &amp; Repair in St. Louis, MO</title>
+<meta name="description" content="Abbey Fence Company builds and repairs wood, vinyl, aluminum and chain-link fences across the St. Louis area. Family-run, 4.6 stars on Google. Request a free estimate.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  // Runtime banner override: ?banner=off or #nobanner hides the PaliTech bar in person (iPad) without regenerating.
+  (function () {
+    try {
+      var p = new URLSearchParams(location.search);
+      if (p.get('banner') === 'off' || location.hash === '#nobanner') {
+        document.documentElement.setAttribute('data-banner', 'off');
+      }
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --green:        #1c2e25;  /* dominant off-black green */
+    --green-deep:   #14211a;  /* darker green for footer / deep bands */
+    --green-soft:   #24382e;  /* card surface on dark */
+    --cream:        #f5f0e6;  /* off-white */
+    --cream-dim:    #ebe3d3;  /* tinted image bg / subtle band */
+    --ink:          #20241f;  /* body text on cream (>=12:1) */
+    --ink-soft:     #4c5a4f;  /* secondary text on cream (~5.6:1) */
+    --on-green:     #f4efe4;  /* text on green (~11:1) */
+    --on-green-dim: #cdd6c9;  /* secondary text on green (~6.5:1) */
+    --brass:        #a8823f;  /* accent — used at large sizes / button fills (dark label clears 4.5:1) */
+    --accent-ink:   #7c5d24;  /* darker brass for SMALL text on cream (>=4.7:1) */
+    --brass-on-grn: #d8b066;  /* brass tuned to read on dark green (~6.2:1) */
+    --line:         #d9cfba;  /* hairline on cream */
+    --banner-h:     38px;
+    --gutter:       clamp(20px, 5vw, 64px);
+    --maxw:         1200px;
+    --radius:       4px;
+    --shadow:       0 18px 50px -24px rgba(20, 33, 26, .55);
+  }
+
+  html[data-banner="off"] { --banner-h: 0px; }
+  html[data-banner="off"] .banner { display: none; }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 500; line-height: 1.05; margin: 0; }
+  p { margin: 0; }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+
+  .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding-inline: var(--gutter); }
+
+  /* ---------- focus ---------- */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, label:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--brass-on-grn);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .skip {
+    position: absolute; left: -9999px; top: 0; z-index: 1200;
+    background: var(--green); color: var(--on-green);
+    padding: 10px 16px; border-radius: 0 0 4px 0; font-weight: 600;
+  }
+  .skip:focus { left: 0; }
+
+  /* ---------- PaliTech banner ---------- */
+  .banner {
+    position: fixed; top: 0; left: 0; right: 0; height: var(--banner-h);
+    z-index: 1100;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--green-deep);
+    color: var(--on-green-dim);
+    font-size: 13px; letter-spacing: .01em;
+    padding-inline: 14px;
+  }
+  .banner a { color: var(--brass-on-grn); font-weight: 600; text-decoration: none; white-space: nowrap; }
+  .banner a:hover { text-decoration: underline; }
+  .banner .b-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* ---------- header / nav ---------- */
+  header.site {
+    position: sticky; top: var(--banner-h); z-index: 1000;
+    background: rgba(28, 46, 37, .97);
+    backdrop-filter: saturate(1.1);
+    border-bottom: 1px solid rgba(216, 176, 102, .25);
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; min-height: 70px;
+  }
+  .wordmark {
+    display: inline-flex; align-items: center; gap: 12px;
+    text-decoration: none; color: var(--on-green); min-width: 0;
+  }
+  .wordmark .mk {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    line-height: .92; font-size: 17px; letter-spacing: .02em; text-transform: uppercase;
+  }
+  .wordmark .mk small { display: block; font-size: 17px; }
+  .wordmark .rule { width: 1px; height: 30px; background: var(--brass-on-grn); flex: none; }
+  .wordmark .est { font-size: 10px; letter-spacing: .22em; color: var(--on-green-dim); text-transform: uppercase; }
+
+  .nav-links { display: flex; align-items: center; gap: 30px; }
+  .nav-links a {
+    color: var(--on-green); text-decoration: none; font-weight: 500; font-size: 15px;
+    letter-spacing: .01em; position: relative; padding: 6px 0;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; bottom: 0; height: 2px; width: 0;
+    background: var(--brass-on-grn); transition: width .25s ease;
+  }
+  .nav-links a:hover::after, .nav-links a:focus-visible::after { width: 100%; }
+
+  .nav-actions { display: flex; align-items: center; gap: 14px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: .95rem;
+    border-radius: var(--radius); text-decoration: none; cursor: pointer;
+    border: 1px solid transparent; transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+    max-width: 100%; touch-action: manipulation; line-height: 1.1;
+  }
+  .btn-brass { background: var(--brass); color: #20180a; font-weight: 700; padding: 13px 22px; min-height: 44px; }
+  .btn-brass:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -10px rgba(154, 118, 54, .8); }
+  .btn-outline {
+    background: transparent; color: var(--on-green);
+    border-color: rgba(216, 176, 102, .55); padding: 12px 22px; min-height: 44px;
+  }
+  .btn-outline:hover { background: rgba(216, 176, 102, .14); transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent; color: var(--accent-ink); border-color: var(--line);
+    padding: 12px 22px; min-height: 44px;
+  }
+  .btn-ghost:hover { background: var(--cream-dim); transform: translateY(-2px); }
+
+  .header-cta { padding: 10px 16px; font-size: .85rem; min-height: 44px; }
+
+  /* hamburger (pure CSS) */
+  .nav-toggle, .nav-toggle-label { display: none; }
+  .hamburger { display: none; }
+  /* mobile dropdown panel is hidden on desktop; only revealed inside the mobile breakpoint */
+  .nav-panel { display: none; }
+
+  /* ---------- entrance motion ---------- */
+  .reveal { opacity: 0; transform: translateY(16px); animation: rise .7s ease forwards; }
+  .d1 { animation-delay: .05s; } .d2 { animation-delay: .18s; }
+  .d3 { animation-delay: .31s; } .d4 { animation-delay: .44s; } .d5 { animation-delay: .57s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative; isolation: isolate;
+    min-height: calc(100dvh - var(--banner-h) - 70px);
+    max-height: 880px;
+    display: flex; align-items: flex-end;
+    background: var(--green-deep);
+    overflow: hidden;
+  }
+  .hero-img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; z-index: -2;
+    background: var(--green-soft);
+  }
+  /* Scrim tuned to the LIGHTEST part of the wood/hedge photo. The content sits in the LOWER
+     portion, so the gradient is heavily weighted there; a base wash + a deep lower band keep
+     every line >=4.5:1 even over the brightest wood plank. */
+  .hero::before {
+    content: ''; position: absolute; inset: 0; z-index: -1;
+    background:
+      linear-gradient(180deg, rgba(13,20,16,.55) 0%, rgba(13,20,16,.45) 38%, rgba(13,20,16,.74) 70%, rgba(11,17,13,.95) 100%),
+      linear-gradient(0deg, rgba(13,20,16,.45), rgba(13,20,16,.45));
+  }
+  .hero-inner { padding-block: clamp(40px, 9vh, 110px); width: 100%; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: var(--brass-on-grn); font-weight: 600; font-size: .8rem;
+    letter-spacing: .22em; text-transform: uppercase; margin-bottom: 20px;
+  }
+  .hero-eyebrow .tick { width: 26px; height: 1px; background: var(--brass-on-grn); }
+  .hero h1 {
+    color: var(--on-green);
+    font-size: clamp(2.7rem, 7.2vw, 5.6rem);
+    font-weight: 500; letter-spacing: -.015em;
+    max-width: min(92vw, 40rem);
+    text-wrap: balance;
+    margin-bottom: 22px;
+  }
+  .hero h1 em { font-style: italic; color: var(--brass-on-grn); }
+  .hero-sub {
+    color: var(--on-green-dim); font-size: clamp(1.02rem, 1.6vw, 1.2rem);
+    max-width: 38rem; margin-bottom: 30px;
+  }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+  .hero-trust {
+    display: inline-flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    margin-top: 30px;
+  }
+  .rating-chip {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(13, 20, 16, .82); border: 1px solid rgba(216, 176, 102, .4);
+    padding: 9px 15px; border-radius: 999px;
+  }
+  .stars { display: inline-flex; gap: 2px; }
+  .stars svg { width: 16px; height: 16px; }
+  .rating-chip .num { color: var(--on-green); font-weight: 700; font-size: .95rem; }
+  .rating-chip .src { color: var(--on-green-dim); font-size: .82rem; }
+
+  /* ---------- section scaffolding ---------- */
+  section { padding-block: clamp(64px, 9vw, 116px); }
+  .kicker {
+    display: inline-block; color: var(--accent-ink); font-weight: 600;
+    font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 14px;
+  }
+  .h-rule { /* the recurring brass maker's-mark underscore */
+    width: 46px; height: 2px; background: var(--brass); margin-top: 18px; border-radius: 2px;
+  }
+  .sec-title { font-size: clamp(2rem, 4.4vw, 3.2rem); color: var(--green); max-width: 22ch; }
+  .lead { color: var(--ink-soft); font-size: 1.08rem; max-width: 56ch; margin-top: 18px; }
+
+  /* ---------- about (asymmetric split, own crew photo) ---------- */
+  .about { background: var(--cream); }
+  .about-grid {
+    display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+    gap: clamp(28px, 5vw, 70px); align-items: center;
+  }
+  .about-copy p + p { margin-top: 16px; }
+  .about-figure {
+    position: relative; border-radius: var(--radius);
+    overflow: hidden; background: var(--cream-dim);
+    aspect-ratio: 8 / 5; box-shadow: var(--shadow);
+    border: 1px solid var(--line);
+  }
+  .about-figure img { width: 100%; height: 100%; object-fit: cover; }
+  .about-figure figcaption {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    background:
+      linear-gradient(180deg, rgba(13,20,16,0) 0%, rgba(13,20,16,.97) 30px),
+      rgba(13,20,16,.97);
+    color: var(--on-green); font-size: .82rem; letter-spacing: .02em;
+    padding: 30px 16px 13px;
+  }
+  .about-stats {
+    margin-top: 30px; display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 18px; border-top: 1px solid var(--line); padding-top: 26px;
+  }
+  .about-stats .n { font-family: 'Fraunces', serif; font-size: clamp(1.7rem, 3.4vw, 2.3rem); color: var(--green); line-height: 1; }
+  .about-stats .l { color: var(--ink-soft); font-size: .9rem; margin-top: 6px; }
+
+  /* ---------- services (asymmetric: one feature + list) ---------- */
+  .services { background: var(--green); color: var(--on-green); }
+  .services .kicker { color: var(--brass-on-grn); }
+  .services .sec-title { color: var(--on-green); }
+  .services .lead { color: var(--on-green-dim); }
+  .svc-grid {
+    margin-top: 48px; display: grid; gap: 1px;
+    grid-template-columns: repeat(3, 1fr);
+    background: rgba(216, 176, 102, .26);
+    border: 1px solid rgba(216, 176, 102, .26);
+    border-radius: var(--radius); overflow: hidden;
+  }
+  .svc {
+    background: var(--green); padding: 30px 26px;
+    transition: background .25s ease;
+  }
+  .svc:hover { background: var(--green-soft); }
+  .svc .ic {
+    width: 46px; height: 46px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(216, 176, 102, .55); margin-bottom: 18px;
+  }
+  .svc .ic svg { width: 24px; height: 24px; stroke: var(--brass-on-grn); }
+  .svc h3 { font-size: 1.3rem; color: var(--on-green); margin-bottom: 9px; font-weight: 500; }
+  .svc p { color: var(--on-green-dim); font-size: .96rem; }
+
+  /* ---------- trust band ---------- */
+  .band {
+    background: var(--cream-dim);
+    border-block: 1px solid var(--line);
+  }
+  .band-inner {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 28px;
+  }
+  .band-quote { max-width: 30ch; }
+  .band-quote .sm { color: var(--accent-ink); font-weight: 600; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; }
+  .band-quote h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); color: var(--green); margin-top: 10px; }
+  .band-rating { display: flex; align-items: center; gap: 18px; }
+  .band-rating .big { font-family: 'Fraunces', serif; font-size: clamp(3rem, 7vw, 4.4rem); color: var(--green); line-height: .9; }
+  .band-rating .meta .stars svg { width: 18px; height: 18px; }
+  .band-rating .meta .cnt { color: var(--ink-soft); font-size: .92rem; margin-top: 4px; }
+
+  /* ---------- our work (2 photos folded in, asymmetric) ---------- */
+  .work-grid {
+    margin-top: 46px; display: grid; gap: 18px;
+    grid-template-columns: 1.4fr 1fr;
+  }
+  .work-fig {
+    position: relative; border-radius: var(--radius); overflow: hidden;
+    background: var(--cream-dim); border: 1px solid var(--line);
+  }
+  .work-fig.tall { aspect-ratio: 7 / 5; }
+  .work-fig.std  { aspect-ratio: 5 / 5; }
+  .work-fig img { width: 100%; height: 100%; object-fit: cover; }
+  .work-fig figcaption {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    /* solid dark band behind the text (clears 4.5:1 for cream) with a short fade above it
+       so the chip edge blends into the photo rather than cutting hard */
+    background:
+      linear-gradient(180deg, rgba(13,20,16,0) 0%, rgba(13,20,16,.97) 34px),
+      rgba(13,20,16,.97);
+    color: var(--on-green); font-size: .85rem; padding: 34px 16px 14px; font-weight: 500;
+  }
+
+  /* ---------- hours ---------- */
+  .hours-grid {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: clamp(28px, 5vw, 64px); align-items: center;
+  }
+  .hours-list { margin-top: 26px; border-top: 1px solid var(--line); }
+  .hours-list .row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 13px 2px; border-bottom: 1px solid var(--line);
+    font-size: 1rem;
+  }
+  .hours-list .row .day { font-weight: 500; color: var(--ink); }
+  .hours-list .row .time { color: var(--ink-soft); font-variant-numeric: tabular-nums; letter-spacing: .01em; }
+  .hours-list .row.closed .time { color: var(--accent-ink); font-weight: 600; }
+  .hours-list .row.today { background: var(--cream-dim); margin-inline: -10px; padding-inline: 12px; border-radius: 3px; }
+  .hours-note { margin-top: 16px; color: var(--ink-soft); font-size: .9rem; }
+
+  /* ---------- contact / estimate form ---------- */
+  .contact { background: var(--green); color: var(--on-green); }
+  .contact .kicker { color: var(--brass-on-grn); }
+  .contact-grid {
+    display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+    gap: clamp(34px, 6vw, 80px); align-items: start;
+  }
+  .contact h2 { color: var(--on-green); font-size: clamp(2rem, 4.4vw, 3.1rem); }
+  .contact .lead { color: var(--on-green-dim); }
+  .phone-line {
+    display: inline-flex; align-items: center; gap: 14px;
+    margin-top: 30px; text-decoration: none; color: var(--on-green);
+  }
+  .phone-line .ic {
+    width: 50px; height: 50px; border-radius: 50%; flex: none;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(216, 176, 102, .5);
+  }
+  .phone-line .ic svg { width: 24px; height: 24px; stroke: var(--brass-on-grn); }
+  .phone-line .num { font-family: 'Fraunces', serif; font-size: clamp(1.7rem, 4vw, 2.5rem); line-height: 1; }
+  .phone-line .lbl { display: block; font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; color: var(--on-green-dim); margin-bottom: 4px; font-family: 'DM Sans', sans-serif; }
+  .contact-info { margin-top: 26px; display: grid; gap: 14px; }
+  .info-row { display: flex; gap: 13px; align-items: flex-start; color: var(--on-green-dim); font-size: .98rem; }
+  .info-row svg { width: 20px; height: 20px; stroke: var(--brass-on-grn); flex: none; margin-top: 3px; }
+
+  .form-card {
+    background: var(--cream); color: var(--ink);
+    border-radius: var(--radius); padding: clamp(24px, 4vw, 38px);
+    box-shadow: var(--shadow); border: 1px solid var(--line);
+  }
+  .form-card h3 { font-size: 1.5rem; color: var(--green); }
+  .form-card .fc-sub { color: var(--ink-soft); font-size: .94rem; margin-top: 6px; margin-bottom: 22px; }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-weight: 600; font-size: .86rem; color: var(--ink); margin-bottom: 6px; }
+  .field label .req { color: var(--accent-ink); }
+  .field input, .field select, .field textarea {
+    width: 100%; font-family: 'DM Sans', sans-serif; font-size: 1rem;
+    padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius);
+    background: #fffdf8; color: var(--ink); min-height: 46px;
+  }
+  .field textarea { min-height: 104px; resize: vertical; }
+  .field input::placeholder, .field textarea::placeholder { color: #8c8a82; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-card button[type="submit"] { width: 100%; margin-top: 6px; }
+  .form-msg {
+    display: none; margin-top: 16px; padding: 14px 16px; border-radius: var(--radius);
+    background: #eaf0e6; border: 1px solid #cdddbf; color: #2c3f27; font-size: .94rem;
+  }
+  .form-msg.show { display: block; }
+
+  /* ---------- footer ---------- */
+  footer.site { background: var(--green-deep); color: var(--on-green-dim); padding-block: 56px; }
+  .foot-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; align-items: flex-start; }
+  .foot-mk { font-family: 'Fraunces', serif; font-size: 1.5rem; color: var(--on-green); letter-spacing: .02em; }
+  .foot-tag { margin-top: 8px; font-size: .95rem; max-width: 34ch; color: var(--on-green-dim); }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 22px; }
+  .foot-links a { color: var(--on-green-dim); text-decoration: none; font-size: .92rem; }
+  .foot-links a:hover { color: var(--brass-on-grn); }
+  .foot-bottom {
+    margin-top: 36px; padding-top: 22px; border-top: 1px solid rgba(216, 176, 102, .2);
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
+    font-size: .84rem; color: var(--on-green-dim);
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 900px) {
+    .svc-grid { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .hours-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 760px) {
+    .nav-links, .nav-actions .header-cta { display: none; }
+    .hamburger {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 46px; height: 46px; border-radius: var(--radius);
+      background: transparent; border: 1px solid rgba(216, 176, 102, .5);
+      cursor: pointer; color: var(--on-green); touch-action: manipulation;
+    }
+    .hamburger svg { width: 24px; height: 24px; stroke: var(--on-green); }
+    .nav-toggle:checked ~ .nav-panel { display: block; }
+    .nav-panel {
+      display: none; position: absolute; left: 0; right: 0; top: 100%;
+      background: var(--green-deep); border-top: 1px solid rgba(216, 176, 102, .25);
+      padding: 14px var(--gutter) 26px;
+    }
+    .nav-panel a.pl {
+      display: block; color: var(--on-green); text-decoration: none;
+      font-size: 1.05rem; font-weight: 500; padding: 14px 0;
+      border-bottom: 1px solid rgba(216, 176, 102, .16);
+    }
+    .nav-panel .btn-brass { display: flex; margin-top: 18px; width: 100%; }
+
+    .about-grid { grid-template-columns: 1fr; }
+    .about-figure { order: 2; }
+    .about-stats { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .work-grid { grid-template-columns: 1fr; }
+    .band-inner { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 460px) {
+    .svc-grid { grid-template-columns: 1fr; }
+    .about-stats .l { font-size: .82rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero h1 { font-size: clamp(2.5rem, 11vw, 3.4rem); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { scroll-behavior: auto; }
+    .reveal { opacity: 1 !important; transform: none !important; animation: none !important; }
+    .btn, .svc, .nav-links a::after { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to main content</a>
+
+<!-- 0. PaliTech preview banner (default ON; CSS-hideable via data-banner + ?banner=off / #nobanner) -->
+<div class="banner">
+  <span class="b-label">Free website preview by PaliTech —
+    <a href="https://pali-tech.com" target="_blank" rel="noopener" aria-label="Visit PaliTech at pali-tech.com">pali-tech.com</a>
+  </span>
+</div>
+
+<!-- 1. Navigation -->
+<header class="site">
+  <div class="wrap nav">
+    <a class="wordmark" href="#top" aria-label="Abbey Fence Company home">
+      <span class="mk">Abbey<br><small>Fence Co.</small></span>
+      <span class="rule" aria-hidden="true"></span>
+      <span class="est">Est. in<br>St. Louis</span>
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#services">Fencing</a>
+      <a href="#work">Our Work</a>
+      <a href="#hours">Hours</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="btn btn-brass header-cta" href="#contact">Free Estimate</a>
+      <label for="nav-toggle" class="hamburger" aria-label="Open navigation menu" role="button" tabindex="0">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="7" x2="21" y2="7"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="17" x2="21" y2="17"></line>
+        </svg>
+      </label>
+    </div>
+
+    <div class="nav-panel">
+      <a class="pl" href="#services">Fencing</a>
+      <a class="pl" href="#work">Our Work</a>
+      <a class="pl" href="#hours">Hours</a>
+      <a class="pl" href="#contact">Contact</a>
+      <a class="btn btn-brass" href="#contact">Request a Free Estimate</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<span id="top"></span>
+
+<!-- 2. Hero — bottom-anchored editorial over a wood privacy-fence photo (representative stock) -->
+<section class="hero" aria-label="Introduction">
+  <!-- HERO IMAGE: representative stock (Pexels #113726, hotlink-permitted) depicting a wood privacy fence;
+       swap for the business's own hero shot before launch. Verified 200/image/jpeg. -->
+  <img class="hero-img"
+       src="https://images.pexels.com/photos/113726/pexels-photo-113726.jpeg?auto=compress&cs=tinysrgb&w=1600"
+       alt="A solid wood privacy fence with a green hedge growing above it"
+       width="1600" height="1067" decoding="async" loading="eager" fetchpriority="high">
+  <div class="wrap hero-inner">
+    <span class="hero-eyebrow reveal d1"><span class="tick" aria-hidden="true"></span>Family-run fence builders · St. Louis, MO</span>
+    <h1 class="reveal d2">Good fences,<br>built to <em>stand for years.</em></h1>
+    <p class="hero-sub reveal d3">Wood, vinyl, aluminum, and chain-link — installed straight, set deep, and finished clean. We've spent decades putting up fences across the St. Louis area that homeowners stop worrying about.</p>
+    <div class="hero-cta reveal d4">
+      <a class="btn btn-brass" href="#contact">Request a Free Estimate</a>
+      <a class="btn btn-outline" href="#services">See What We Build</a>
+    </div>
+    <!-- Rating block QUALIFIES (4.6 >= 4.0, 19 >= 5): rating + count only, no review text -->
+    <div class="hero-trust reveal d5">
+      <span class="rating-chip">
+        <span class="stars" role="img" aria-label="Rated 4.6 out of 5 stars">
+          <svg viewBox="0 0 20 20" fill="#d8b066" aria-hidden="true"><path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 14.9 4.7 17.6l1-5.8L1.5 7.7l5.9-.9z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#d8b066" aria-hidden="true"><path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 14.9 4.7 17.6l1-5.8L1.5 7.7l5.9-.9z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#d8b066" aria-hidden="true"><path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 14.9 4.7 17.6l1-5.8L1.5 7.7l5.9-.9z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#d8b066" aria-hidden="true"><path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 14.9 4.7 17.6l1-5.8L1.5 7.7l5.9-.9z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#d8b066" aria-hidden="true"><path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 14.9 4.7 17.6l1-5.8L1.5 7.7l5.9-.9z"/></svg>
+        </span>
+        <span class="num">4.6</span>
+        <span class="src">· 19 Google reviews</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- 3. About / trust — asymmetric split with the business's OWN crew photo -->
+<section class="about" id="about" aria-labelledby="about-h">
+  <div class="wrap about-grid">
+    <div class="about-copy">
+      <span class="kicker">Who you're hiring</span>
+      <h2 class="sec-title" id="about-h">A fence crew that treats your yard like their own.</h2>
+      <div class="h-rule" aria-hidden="true"></div>
+      <p class="lead">Abbey Fence Company is a family-run outfit based on Galt Industrial Blvd. We do the whole job ourselves — no rotating subcontractors — so the people who quote your fence are the people who set the posts.</p>
+      <p style="color:var(--ink-soft); margin-top:16px;">We walk every property before we price it, lay out the line with you, and clean up the site when we're done. Most of our work comes from neighbors of people we've already built for, and we'd like to keep it that way.</p>
+
+      <div class="about-stats">
+        <div>
+          <div class="n">Decades</div>
+          <div class="l">building local fences</div>
+        </div>
+        <div>
+          <div class="n">4 trades</div>
+          <div class="l">wood · vinyl · metal · chain-link</div>
+        </div>
+        <div>
+          <div class="n">Free</div>
+          <div class="l">on-site estimates</div>
+        </div>
+      </div>
+    </div>
+
+    <figure class="about-figure">
+      <!-- The business's OWN Google photo: Abbey crew finishing an ornamental aluminum fence install -->
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAEQzrmBMVPTVWh3FF6sEOLyFMeYPEwHSXn9CssRiGIyggcrfoft5RPEPzZ7_18eOhVSQ5lo2_vmxhS4oxMQ0tE-xC-kgxllwp1vaxLRvLUpRUcbrK7SRZ3iiuqc_19eQadGNC6-=w800-h500-k-no"
+           alt="The Abbey Fence Company crew installing a black ornamental aluminum fence in a residential backyard"
+           width="800" height="500" decoding="async" loading="lazy">
+      <figcaption>Our crew on a recent ornamental aluminum install.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 4. Services — six specific fencing services, asymmetric grid (NOT a 3-card row); inferred for a fence contractor -->
+<section class="services" id="services" aria-labelledby="svc-h">
+  <div class="wrap">
+    <span class="kicker">What we build</span>
+    <h2 class="sec-title" id="svc-h">Fencing for the whole property.</h2>
+    <div class="h-rule" aria-hidden="true"></div>
+    <p class="lead">Every fence is built to the line, the slope, and the reason you want it — privacy, pets, a pool code, or plain good looks.</p>
+
+    <div class="svc-grid">
+      <article class="svc">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8M9 21V8M14 21V8M19 21V8M2 8l4-4 4 4M12 8l4-4 4 4"/><path d="M2 13h20"/></svg>
+        </span>
+        <h3>Wood privacy fences</h3>
+        <p>Cedar and treated-pine privacy walls, board-on-board or shadowbox, set on posts poured deep enough to stay plumb through Missouri freezes.</p>
+      </article>
+
+      <article class="svc">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M3 14h18M9 4v16M15 4v16"/></svg>
+        </span>
+        <h3>Vinyl &amp; composite</h3>
+        <p>Low-maintenance vinyl that never needs paint or stain — clean white or neutral tones that hold up to sun and rain for the long haul.</p>
+      </article>
+
+      <article class="svc">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V6M20 21V6M4 6l8-3 8 3"/><path d="M7 21V9M11 21V9M15 21V9"/></svg>
+        </span>
+        <h3>Ornamental aluminum &amp; steel</h3>
+        <p>Powder-coated picket fencing with a classic wrought-iron look — pool-code compliant, rust-resistant, and built for curb appeal.</p>
+      </article>
+
+      <article class="svc">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4l4 4M7 4l4 4M11 4l4 4M3 8l4 4M7 8l4 4M11 8l4 4" /><rect x="3" y="4" width="18" height="16" rx="1"/></svg>
+        </span>
+        <h3>Chain-link &amp; security</h3>
+        <p>Galvanized and black-vinyl-coated chain-link for yards, pets, and commercial lots — dependable, affordable, and quick to install.</p>
+      </article>
+
+      <article class="svc">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="8" height="16" rx="1"/><rect x="13" y="4" width="8" height="16" rx="1"/><path d="M11 12h2"/></svg>
+        </span>
+        <h3>Gates &amp; openers</h3>
+        <p>Matching walk-gates, double-drive gates, and automatic openers — squared, latched, and hung so they swing true years from now.</p>
+      </article>
+
+      <article class="svc">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l6 6M3 21l3-9 9-9 6 6-9 9-9 3z"/><path d="M9 12l3 3"/></svg>
+        </span>
+        <h3>Repairs &amp; post resets</h3>
+        <p>Storm damage, leaning posts, sagging gates, or a few rotten boards — we fix what you have instead of selling you a fence you don't need.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Trust band — the qualifying 4.6 / 19 rating as a social-proof number (no review text) -->
+<section class="band" aria-labelledby="band-h">
+  <div class="wrap band-inner">
+    <div class="band-quote">
+      <span class="sm">Why neighbors call us back</span>
+      <h2 id="band-h">Rated across the St. Louis area.</h2>
+    </div>
+    <div class="band-rating">
+      <span class="big">4.6</span>
+      <div class="meta">
+        <span class="stars" role="img" aria-label="4.6 out of 5 stars on Google">
+          <svg viewBox="0 0 20 20" fill="#9a7636" aria-hidden="true"><path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 14.9 4.7 17.6l1-5.8L1.5 7.7l5.9-.9z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#9a7636" aria-hidden="true"><path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 14.9 4.7 17.6l1-5.8L1.5 7.7l5.9-.9z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#9a7636" aria-hidden="true"><path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 14.9 4.7 17.6l1-5.8L1.5 7.7l5.9-.9z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#9a7636" aria-hidden="true"><path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 14.9 4.7 17.6l1-5.8L1.5 7.7l5.9-.9z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#9a7636" aria-hidden="true"><path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 14.9 4.7 17.6l1-5.8L1.5 7.7l5.9-.9z"/></svg>
+        </span>
+        <div class="cnt">4.6 stars · 19 Google reviews</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--
+  testimonial: filled with the client's words after they sign.
+  Reserve this slot for a real Abbey Fence Company review — never scraped or invented prose.
+-->
+
+<!-- 6. Our work — the two real photos folded in (fewer than 3, so no standalone gallery) -->
+<section id="work" aria-labelledby="work-h">
+  <div class="wrap">
+    <span class="kicker">Recent work</span>
+    <h2 class="sec-title" id="work-h">A look at what we leave behind.</h2>
+    <div class="h-rule" aria-hidden="true"></div>
+
+    <div class="work-grid">
+      <figure class="work-fig tall">
+        <!-- Business's OWN photo (same finished install, wider framing) -->
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAEQzrmBMVPTVWh3FF6sEOLyFMeYPEwHSXn9CssRiGIyggcrfoft5RPEPzZ7_18eOhVSQ5lo2_vmxhS4oxMQ0tE-xC-kgxllwp1vaxLRvLUpRUcbrK7SRZ3iiuqc_19eQadGNC6-=w800-h500-k-no"
+             alt="A finished black ornamental aluminum fence along the side of a St. Louis home"
+             width="800" height="500" decoding="async" loading="lazy">
+        <figcaption>Ornamental aluminum fence &amp; gate, backyard install.</figcaption>
+      </figure>
+      <figure class="work-fig std">
+        <!-- Representative stock (Pexels #11903184, hotlink-permitted): a residential wood fence install; swap for an Abbey job photo before launch -->
+        <img src="https://images.pexels.com/photos/11903184/pexels-photo-11903184.jpeg?auto=compress&cs=tinysrgb&w=1000"
+             alt="A wood privacy fence enclosing a residential backyard"
+             width="1000" height="667" decoding="async" loading="lazy">
+        <figcaption>Wood privacy fence around a residential yard.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Hours — real opening hours -->
+<section id="hours" class="about" aria-labelledby="hours-h">
+  <div class="wrap hours-grid">
+    <div>
+      <span class="kicker">When we're working</span>
+      <h2 class="sec-title" id="hours-h">Out early, home before dark.</h2>
+      <div class="h-rule" aria-hidden="true"></div>
+      <p class="lead">We run the crew Monday through Friday and keep evenings and weekends free. Leave a message any time — we return calls the next working morning.</p>
+      <p class="hours-note">Hours can shift with weather and job sites; call ahead if you're stopping by the yard.</p>
+    </div>
+
+    <div>
+      <div class="hours-list" id="hours-list">
+        <div class="row" data-day="Mon"><span class="day">Monday</span><span class="time">7:00 AM – 7:00 PM</span></div>
+        <div class="row" data-day="Tue"><span class="day">Tuesday</span><span class="time">7:00 AM – 7:00 PM</span></div>
+        <div class="row" data-day="Wed"><span class="day">Wednesday</span><span class="time">7:00 AM – 7:00 PM</span></div>
+        <div class="row" data-day="Thu"><span class="day">Thursday</span><span class="time">7:00 AM – 7:00 PM</span></div>
+        <div class="row" data-day="Fri"><span class="day">Friday</span><span class="time">7:00 AM – 7:00 PM</span></div>
+        <div class="row closed" data-day="Sat"><span class="day">Saturday</span><span class="time">Closed</span></div>
+        <div class="row closed" data-day="Sun"><span class="day">Sunday</span><span class="time">Closed</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Contact — appointment / request-an-estimate model (inert form, real labels) -->
+<section class="contact" id="contact" aria-labelledby="contact-h">
+  <div class="wrap contact-grid">
+    <div>
+      <span class="kicker">Get started</span>
+      <h2 id="contact-h">Tell us about your fence.</h2>
+      <div class="h-rule" aria-hidden="true"></div>
+      <p class="lead">Send a few details or call the yard — we'll set up a free, no-pressure on-site estimate at a time that works for you.</p>
+
+      <a class="phone-line" href="tel:+13143592304">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg>
+        </span>
+        <span><span class="lbl">Call the yard</span><span class="num">(314) 359-2304</span></span>
+      </a>
+
+      <div class="contact-info">
+        <div class="info-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>10944 Galt Industrial Blvd, St. Louis, MO 63132</span>
+        </div>
+        <div class="info-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span>Mon–Fri, 7 AM – 7 PM · Closed weekends</span>
+        </div>
+        <!-- INFERRED: service area generalized to the confirmable metro (address is in St. Louis, MO); verify specific neighborhoods with owner -->
+        <div class="info-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+          <span>Serving the St. Louis area &amp; surrounding county</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inert estimate form: friendly thank-you, no backend, no "preview" wording on the page -->
+    <form class="form-card" id="estimate-form" novalidate>
+      <h3>Request a free estimate</h3>
+      <p class="fc-sub">We'll get back to you the next working morning. Required fields are marked <span style="color:var(--accent-ink)">*</span>.</p>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="f-name">Name <span class="req">*</span></label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Your name">
+        </div>
+        <div class="field">
+          <label for="f-phone">Phone <span class="req">*</span></label>
+          <input id="f-phone" name="phone" type="tel" autocomplete="tel" required placeholder="(314) 555-0123">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="f-email">Email</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@email.com">
+      </div>
+
+      <div class="field">
+        <label for="f-type">Type of fence</label>
+        <select id="f-type" name="type">
+          <option value="">Not sure yet — help me decide</option>
+          <option>Wood privacy</option>
+          <option>Vinyl / composite</option>
+          <option>Ornamental aluminum / steel</option>
+          <option>Chain-link</option>
+          <option>Gate or opener</option>
+          <option>Repair / post reset</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="f-msg">What are you looking to fence?</label>
+        <textarea id="f-msg" name="message" placeholder="Backyard, front line, pool enclosure, rough length if you know it…"></textarea>
+      </div>
+
+      <button class="btn btn-brass" type="submit">Send my estimate request</button>
+      <p class="form-msg" id="form-msg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- 9. Footer — business only, no PaliTech branding -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-mk">Abbey Fence Company</div>
+        <p class="foot-tag">Family-run fence installation and repair, built to stand for years across the St. Louis area.</p>
+      </div>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="#services">Fencing</a>
+        <a href="#work">Our Work</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact">Free Estimate</a>
+        <a href="tel:+13143592304">(314) 359-2304</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span>10944 Galt Industrial Blvd, St. Louis, MO 63132</span>
+      <span>&copy; <span id="yr">2026</span> Abbey Fence Company. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Highlight today's row in the hours list
+  (function () {
+    var map = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var today = map[new Date().getDay()];
+    var row = document.querySelector('.hours-list .row[data-day="' + today + '"]');
+    if (row) row.classList.add('today');
+  })();
+
+  // Inert estimate form — friendly thank-you pointing to the phone. No backend.
+  (function () {
+    var form = document.getElementById('estimate-form');
+    var msg = document.getElementById('form-msg');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = (document.getElementById('f-name').value || '').trim();
+      var phone = (document.getElementById('f-phone').value || '').trim();
+      if (!name || !phone) {
+        msg.textContent = 'Please add your name and a phone number so we can reach you.';
+        msg.classList.add('show');
+        return;
+      }
+      msg.textContent = 'Thanks' + (name ? ', ' + name.split(' ')[0] : '') + ' — your request is in. We’ll call you the next working morning. Need us sooner? Ring the yard at (314) 359-2304.';
+      msg.classList.add('show');
+      form.reset();
+    });
+  })();
+</script>
+</body>
+</html>
