@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<!--
+  DESIGN SYSTEM — E&S Power Washing
+  Customer feeling:  "These folks are established, careful, and proud of their work — my deck is in good hands."
+  Mode:              light — a service homeowners invite onto their property; cream + slate reads trustworthy and clean, not edgy. Earned, not defaulted.
+  Display font:      Libre Caslon Display (Google Fonts) — literary, established, classic American craftsmanship
+  Body font:         DM Sans (Google Fonts) — modern, legible, keeps the classic display from feeling dated
+  Dominant color:    #2b3942 deep blue-grey slate — the atmosphere of clean water and weathered surfaces brought back to life
+  Accent color:      #9c5a2c warm copper/bronze (desaturated) — brushed-metal warmth against the cool slate; used sparingly
+  Hero archetype:    clean image-forward — full-bleed soft-wash photo, confident left-anchored headline over a slate scrim
+  Memorable moment:  the hand-set Caslon wordmark + the copper hairline "&" ligature treatment, and a full-bleed working photo where the spray itself is the hero
+-->
+<html lang="en" data-banner="on">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E&amp;S Power Washing — Residential &amp; Commercial Pressure Washing · St. Louis Area</title>
+<meta name="description" content="E&amp;S Power Washing restores decks, driveways, siding and commercial exteriors across the St. Louis area. Careful, professional pressure and soft washing. Request a free quote.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+<script>
+  // Runtime banner override so the same file can be shown in person banner-off (?banner=off or #nobanner)
+  (function () {
+    try {
+      var p = new URLSearchParams(location.search);
+      if (p.get('banner') === 'off' || location.hash === '#nobanner') {
+        document.documentElement.setAttribute('data-banner', 'off');
+      }
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --banner-h: 38px;
+
+    --bg:        #f4efe7;  /* cream off-white */
+    --surface:   #efe7da;  /* slightly deeper cream for cards */
+    --ink:       #222c33;  /* off-black blue-grey — body & headings on cream (12.4:1) */
+    --muted:     #545b61;  /* muted body text on cream (6.0:1) */
+    --slate:     #2b3942;  /* dominant dark slate — nav, footer, dark bands */
+    --slate-2:   #344450;  /* lifted slate for cards on dark */
+    --on-slate:  #f4efe7;  /* cream text on slate (10.4:1) */
+    --on-slate-muted: #c2cace; /* muted cream on slate (7.1:1) */
+    --copper:        #9c5a2c; /* accent — 4.69:1 on cream, large/medium use */
+    --copper-ink:    #894424; /* darker copper for SMALL text on cream (6.3:1) */
+    --copper-light:  #c98a4f; /* lighter copper — large text on slate (3:1+) */
+    --copper-on-slate: #dba269; /* brighter copper for SMALL text on slate (5.3:1) + button fill w/ ink text (6.4:1) */
+    --line:      #d9cfbf;     /* hairline on cream */
+    --line-slate: rgba(244,239,231,0.16);
+
+    --maxw: 1200px;
+    --gutter: clamp(20px, 5vw, 64px);
+    --radius: 4px;
+
+    --z-base: 0; --z-raised: 10; --z-nav: 40; --z-overlay: 100; --z-banner: 1000;
+  }
+
+  html[data-banner="off"] { --banner-h: 0px; }
+  html[data-banner="off"] .banner { display: none; }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 { font-family: "Libre Caslon Display", Georgia, serif; font-weight: 400; line-height: 1.08; letter-spacing: 0.01em; margin: 0; }
+  p { margin: 0; }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+  ::selection { background: var(--copper); color: var(--bg); }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--gutter); }
+
+  /* ---------- focus ---------- */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, label:focus-visible {
+    outline: 3px solid var(--copper-light);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .skip {
+    position: absolute; left: 8px; top: -60px; z-index: var(--z-banner);
+    background: var(--slate); color: var(--on-slate); padding: 10px 16px; border-radius: var(--radius);
+    transition: top .2s ease;
+  }
+  .skip:focus { top: 8px; }
+
+  /* ---------- banner ---------- */
+  .banner {
+    position: relative; z-index: var(--z-banner);
+    background: var(--slate);
+    color: var(--on-slate-muted);
+    font-size: 0.78rem; letter-spacing: 0.04em;
+    height: var(--banner-h);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    border-bottom: 1px solid var(--line-slate);
+  }
+  .banner a { color: var(--on-slate); text-decoration: none; border-bottom: 1px solid var(--copper-light); padding-bottom: 1px; }
+  .banner a:hover { color: var(--copper-light); }
+
+  /* ---------- nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: var(--z-nav);
+    background: rgba(43,57,66,0.96);
+    backdrop-filter: saturate(140%) blur(6px);
+    border-bottom: 1px solid var(--line-slate);
+    color: var(--on-slate);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 70px; }
+  .wordmark { display: flex; align-items: baseline; gap: 0; text-decoration: none; color: var(--on-slate); min-width: 0; }
+  .wordmark .es { font-family: "Libre Caslon Display", serif; font-size: 1.5rem; letter-spacing: 0.02em; white-space: nowrap; }
+  .wordmark .amp { color: var(--copper-light); font-family: "Libre Caslon Display", serif; font-style: italic; padding: 0 2px; }
+  .wordmark .sub { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--on-slate-muted); margin-left: 12px; align-self: center; white-space: nowrap; }
+
+  .nav-links { display: flex; align-items: center; gap: clamp(14px, 2vw, 30px); }
+  .nav-links a:not(.cta) { color: var(--on-slate); text-decoration: none; font-size: 0.92rem; font-weight: 500; letter-spacing: 0.01em; white-space: nowrap; }
+  .nav-links a:not(.cta):hover { color: var(--copper-light); }
+  .nav-links a.cta { text-decoration: none; }
+
+  .cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: "DM Sans", sans-serif; font-weight: 600; letter-spacing: 0.01em;
+    background: var(--copper-on-slate); color: var(--ink);
+    border: 1px solid var(--copper-on-slate);
+    padding: 11px 18px; border-radius: var(--radius);
+    text-decoration: none; cursor: pointer;
+    min-height: 44px; max-width: 100%;
+    transition: transform .25s ease, background-color .25s ease, box-shadow .25s ease;
+    touch-action: manipulation;
+  }
+  .cta:hover { transform: translateY(-2px); background: #d99a5e; box-shadow: 0 8px 22px rgba(0,0,0,0.22); }
+  .cta.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+  .cta.ghost:hover { background: var(--ink); color: var(--bg); box-shadow: none; }
+  .cta.on-dark { background: transparent; color: var(--on-slate); border: 1.5px solid var(--on-slate-muted); }
+  .cta.on-dark:hover { background: var(--on-slate); color: var(--slate); }
+
+  /* mobile nav toggle */
+  .nav-toggle { display: none; }
+  .hamburger {
+    display: none;
+    width: 46px; height: 46px; align-items: center; justify-content: center;
+    background: transparent; border: 1px solid var(--line-slate); border-radius: var(--radius);
+    color: var(--on-slate); cursor: pointer; touch-action: manipulation;
+  }
+  .hamburger svg { width: 22px; height: 22px; }
+  .hamburger .x { display: none; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative;
+    min-height: calc(100dvh - var(--banner-h) - 70px);
+    max-height: 880px;
+    display: flex; align-items: flex-end;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .hero-img {
+    position: absolute; inset: 0; z-index: -2;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: 60% 40%;
+    background: #3a4750; /* tint while/if loading */
+  }
+  /* scrim tuned for the LIGHTEST pixels (bright grey siding ~rgb(180,181,178), pale sky) — anchored to the
+     bottom-left text block so EVERY line (top eyebrow through subtext) clears 4.5:1 over the brightest siding. */
+  .hero::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background:
+      /* vertical: heavy at the bottom where the text lives */
+      linear-gradient(180deg, rgba(20,28,33,0.55) 0%, rgba(20,28,33,0.30) 22%, rgba(20,28,33,0.40) 38%, rgba(20,28,33,0.88) 58%, rgba(20,28,33,0.96) 100%),
+      /* diagonal: darken the left where the headline anchors */
+      linear-gradient(78deg, rgba(20,28,33,0.92) 0%, rgba(20,28,33,0.70) 40%, rgba(20,28,33,0.28) 68%, rgba(20,28,33,0.08) 100%);
+  }
+  .hero-inner { width: 100%; padding-block: clamp(40px, 7vh, 84px); color: var(--on-slate); }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.74rem; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--on-slate); font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .hero-eyebrow .tick { width: 26px; height: 1px; background: var(--copper-light); }
+  .hero h1 {
+    color: var(--on-slate);
+    font-size: clamp(2.5rem, 7vw, 5.4rem);
+    line-height: 1.04;
+    max-width: min(92vw, 38rem);
+    text-wrap: balance;
+    text-shadow: 0 2px 30px rgba(0,0,0,0.35);
+  }
+  .hero h1 em { font-style: italic; color: var(--copper-light); }
+  .hero-sub {
+    margin-top: 24px;
+    max-width: 40rem;
+    font-size: clamp(1.02rem, 1.4vw, 1.22rem);
+    color: var(--on-slate);
+    line-height: 1.6;
+  }
+  .hero-ctas { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .hero-meta {
+    margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px 30px;
+    padding-top: 24px; border-top: 1px solid var(--line-slate);
+    font-size: 0.86rem; color: var(--on-slate-muted);
+  }
+  .hero-meta b { color: var(--on-slate); font-weight: 600; }
+  .hero-meta .dot { color: var(--copper-light); }
+
+  /* ---------- section scaffolding ---------- */
+  section { position: relative; }
+  .section-pad { padding-block: clamp(64px, 9vw, 120px); }
+  .kicker {
+    font-size: 0.76rem; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--copper-ink); font-weight: 600; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .kicker .tick { width: 24px; height: 1px; background: var(--copper); display: inline-block; }
+  .kicker.on-dark { color: var(--copper-on-slate); }
+  .kicker.on-dark .tick { background: var(--copper-on-slate); }
+
+  /* ---------- services ---------- */
+  .services-head { display: grid; grid-template-columns: 1fr; gap: 18px; max-width: 760px; margin-bottom: 52px; }
+  .services-head h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); }
+  .services-head p { color: var(--muted); max-width: 56ch; }
+
+  .svc-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: clamp(14px, 1.8vw, 22px);
+  }
+  .svc {
+    grid-column: span 4;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: clamp(24px, 2.4vw, 34px);
+    display: flex; flex-direction: column; gap: 14px;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  /* deliberate asymmetry: first card spans wider, two stack — breaks the 3-equal grid */
+  .svc.feature { grid-column: span 6; background: var(--slate); color: var(--on-slate); border-color: var(--slate); }
+  .svc.feature h3 { color: var(--on-slate); }
+  .svc.feature p { color: var(--on-slate-muted); }
+  .svc.feature .svc-ico { color: var(--copper-light); border-color: var(--line-slate); }
+  .svc.wide { grid-column: span 6; }
+  .svc:hover { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(34,44,51,0.13); border-color: var(--copper); }
+  .svc.feature:hover { box-shadow: 0 14px 34px rgba(0,0,0,0.3); border-color: var(--copper-light); }
+  .svc-ico {
+    width: 52px; height: 52px; flex: none;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line); border-radius: 50%;
+    color: var(--copper-ink);
+  }
+  .svc-ico svg { width: 26px; height: 26px; }
+  .svc h3 { font-size: 1.32rem; }
+  .svc p { color: var(--muted); font-size: 0.96rem; }
+  .svc.feature .svc-lead { font-size: 1.06rem; color: var(--on-slate); max-width: 42ch; }
+
+  /* ---------- about / trust (split) ---------- */
+  .about { background: var(--slate); color: var(--on-slate); }
+  .about-grid {
+    display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+  .about h2 { color: var(--on-slate); font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 22px; max-width: 18ch; }
+  .about p { color: var(--on-slate-muted); margin-bottom: 18px; max-width: 54ch; }
+  .about p strong { color: var(--on-slate); font-weight: 600; }
+  .trust { margin-top: 34px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .trust-item { border-top: 1px solid var(--line-slate); padding-top: 16px; }
+  .trust-item .ti-ico { color: var(--copper-light); margin-bottom: 10px; }
+  .trust-item .ti-ico svg { width: 26px; height: 26px; }
+  .trust-item .ti-h { font-family: "Libre Caslon Display", serif; font-size: 1.6rem; color: var(--on-slate); line-height: 1; }
+  .trust-item .ti-p { font-size: 0.82rem; color: var(--on-slate-muted); margin-top: 6px; letter-spacing: 0.02em; }
+
+  .about-figure { position: relative; }
+  .about-figure img {
+    width: 100%; height: 100%; min-height: 340px;
+    object-fit: cover; border-radius: var(--radius);
+    background: #46535c;
+    aspect-ratio: 4 / 5;
+  }
+  .about-figure figcaption {
+    position: absolute; left: 14px; bottom: 14px; right: 14px;
+    background: rgba(20,28,33,0.82);
+    color: var(--on-slate);
+    font-size: 0.78rem; letter-spacing: 0.02em;
+    padding: 9px 14px; border-radius: var(--radius);
+    border-left: 2px solid var(--copper-light);
+  }
+
+  /* ---------- process strip ---------- */
+  .process { background: var(--bg); }
+  .process-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(28px, 4vw, 60px); align-items: start; }
+  .process h2 { font-size: clamp(1.9rem, 3.6vw, 2.7rem); max-width: 14ch; }
+  .process .lead-note { color: var(--muted); margin-top: 18px; max-width: 38ch; }
+  .steps { display: grid; gap: 4px; }
+  .step { display: grid; grid-template-columns: auto 1fr; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .step:last-child { border-bottom: 0; }
+  .step .num { font-family: "Libre Caslon Display", serif; font-size: 1.5rem; color: var(--copper-ink); line-height: 1; padding-top: 2px; }
+  .step h3 { font-size: 1.18rem; margin-bottom: 6px; }
+  .step p { color: var(--muted); font-size: 0.96rem; }
+
+  /* ---------- contact ---------- */
+  .contact { background: var(--surface); border-top: 1px solid var(--line); }
+  .contact-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: clamp(32px, 5vw, 70px); align-items: start; }
+  .contact h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 18px; max-width: 16ch; }
+  .contact .intro { color: var(--muted); max-width: 46ch; margin-bottom: 30px; }
+
+  .phone-card {
+    background: var(--slate); color: var(--on-slate); border-radius: var(--radius);
+    padding: 26px clamp(22px, 3vw, 32px); margin-bottom: 22px;
+  }
+  .phone-card .label { font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--on-slate-muted); }
+  .phone-card a {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: "Libre Caslon Display", serif; font-size: clamp(1.9rem, 4.6vw, 2.7rem);
+    color: var(--on-slate); text-decoration: none; margin-top: 6px; line-height: 1;
+  }
+  .phone-card a svg { width: 30px; height: 30px; color: var(--copper-light); flex: none; }
+  .phone-card a:hover { color: var(--copper-light); }
+
+  .info-rows { display: grid; gap: 0; }
+  .info-row { display: grid; grid-template-columns: 28px 1fr; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); align-items: start; }
+  .info-row:last-child { border-bottom: 0; }
+  .info-row .ir-ico { color: var(--copper-ink); }
+  .info-row .ir-ico svg { width: 22px; height: 22px; }
+  .info-row .ir-h { font-weight: 600; }
+  .info-row .ir-p { color: var(--muted); font-size: 0.94rem; }
+  .hours-list { display: grid; gap: 2px; margin-top: 4px; }
+  .hours-list .hr { display: flex; justify-content: space-between; gap: 16px; font-size: 0.92rem; color: var(--muted); max-width: 280px; }
+  .hours-list .hr b { color: var(--ink); font-weight: 600; }
+  .hours-all { color: var(--copper-ink); font-weight: 600; }
+
+  /* form */
+  form { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(24px, 3vw, 34px); }
+  form h3 { font-family: "Libre Caslon Display", serif; font-size: 1.5rem; margin-bottom: 6px; }
+  form .form-note { color: var(--muted); font-size: 0.92rem; margin-bottom: 22px; }
+  .field { margin-bottom: 18px; }
+  .field label { display: block; font-size: 0.84rem; font-weight: 600; letter-spacing: 0.02em; margin-bottom: 7px; }
+  .field label .req { color: var(--copper-ink); }
+  .field input, .field select, .field textarea {
+    width: 100%; font-family: inherit; font-size: 0.98rem; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 12px 14px; min-height: 46px;
+  }
+  .field textarea { min-height: 110px; resize: vertical; }
+  .field input::placeholder, .field textarea::placeholder { color: #8b9095; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  form button[type="submit"] { width: 100%; font-size: 1rem; padding: 14px 20px; }
+  .form-status { margin-top: 16px; font-size: 0.92rem; color: var(--copper-ink); font-weight: 600; min-height: 1.2em; }
+
+  /* ---------- footer ---------- */
+  footer { background: var(--ink); color: var(--on-slate); }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding-block: clamp(48px, 6vw, 72px); }
+  .footer-brand .es { font-family: "Libre Caslon Display", serif; font-size: 1.7rem; }
+  .footer-brand .es .amp { color: var(--copper-light); font-style: italic; }
+  .footer-brand p { color: var(--on-slate-muted); margin-top: 14px; max-width: 36ch; font-size: 0.94rem; }
+  .footer-col h4 { font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--on-slate-muted); margin: 0 0 14px; font-family: "DM Sans", sans-serif; font-weight: 600; }
+  .footer-col a, .footer-col p { display: block; color: var(--on-slate); text-decoration: none; font-size: 0.94rem; margin-bottom: 9px; }
+  .footer-col a:hover { color: var(--copper-light); }
+  .footer-bar { border-top: 1px solid var(--line-slate); padding-block: 20px; display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: space-between; font-size: 0.82rem; color: var(--on-slate-muted); }
+  .footer-bar .inferred { color: var(--on-slate-muted); }
+
+  /* ---------- motion ---------- */
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  .anim { animation: rise .7s cubic-bezier(.2,.7,.3,1) both; }
+  .d1 { animation-delay: .05s; } .d2 { animation-delay: .18s; } .d3 { animation-delay: .31s; }
+  .d4 { animation-delay: .44s; } .d5 { animation-delay: .57s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim { animation: none !important; }
+    * { scroll-behavior: auto !important; }
+    .cta, .svc { transition: none !important; }
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1024px) {
+    .svc.feature, .svc.wide { grid-column: span 6; }
+    .svc { grid-column: span 6; }
+  }
+  @media (max-width: 880px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .about-figure { order: -1; }
+    .about-figure img { aspect-ratio: 16 / 10; min-height: 240px; }
+    .process-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+  @media (max-width: 760px) {
+    /* mobile nav: wordmark + hamburger only; links hidden until toggled */
+    .hamburger { display: inline-flex; }
+    .nav-links {
+      display: none;
+      position: absolute; left: 0; right: 0; top: 100%;
+      flex-direction: column; align-items: stretch; gap: 0;
+      background: var(--slate);
+      border-bottom: 1px solid var(--line-slate);
+      padding: 10px var(--gutter) 22px;
+    }
+    .nav-links a:not(.cta) { padding: 14px 0; border-bottom: 1px solid var(--line-slate); font-size: 1rem; }
+    .nav-links .cta { margin-top: 16px; width: 100%; }
+    .nav-toggle:checked ~ .nav-links { display: flex; }
+    .nav-toggle:checked ~ .hamburger .menu { display: none; }
+    .nav-toggle:checked ~ .hamburger .x { display: block; }
+    .wordmark .sub { display: none; }
+
+    .svc-grid { grid-template-columns: 1fr; }
+    .svc, .svc.feature, .svc.wide { grid-column: 1 / -1; }
+    .trust { grid-template-columns: 1fr; gap: 16px; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-brand { grid-column: auto; }
+    .hero { min-height: calc(100dvh - var(--banner-h) - 70px); }
+  }
+  @media (max-width: 380px) {
+    body { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<!-- 0. PaliTech preview banner (toggleable, default on) -->
+<div class="banner">
+  <span>Free website preview by <a href="https://pali-tech.com" target="_blank" rel="noopener" aria-label="Free website preview by PaliTech — pali-tech.com">PaliTech — pali-tech.com</a></span>
+</div>
+
+<!-- 1. Navigation -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="wordmark" href="#top" aria-label="E and S Power Washing home">
+      <span class="es">E<span class="amp">&amp;</span>S</span>
+      <span class="sub">Power Washing</span>
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+    <label class="hamburger" for="nav-toggle" aria-label="Toggle navigation menu" role="button" tabindex="0">
+      <svg class="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+      <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+    </label>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#about">Why E&amp;S</a>
+      <a href="#process">How It Works</a>
+      <a href="#contact">Contact</a>
+      <a class="cta" href="#contact">Request a Free Quote</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <span id="top"></span>
+
+  <!-- 2. Hero — image-forward, left-anchored -->
+  <section class="hero" aria-label="Introduction">
+    <!-- Representative stock photo (Pexels, free, hotlink-permitted) — soft-washing residential siding;
+         swap for E&S's own job photos before launch. Verified loading 200/image-jpeg. -->
+    <img class="hero-img"
+         src="https://images.pexels.com/photos/5652626/pexels-photo-5652626.jpeg?auto=compress&cs=tinysrgb&w=1600"
+         alt="A pressure washing professional in protective gear spraying water to soft-wash the grey siding of a two-story house"
+         width="1600" height="2000" loading="eager" fetchpriority="high" decoding="async">
+    <div class="wrap hero-inner">
+      <span class="hero-eyebrow anim d1"><span class="tick"></span>Serving the St. Louis area</span>
+      <h1 class="anim d2">Bring back the surfaces<br>you'd forgotten were <em>clean</em>.</h1>
+      <p class="hero-sub anim d3">E&amp;S Power Washing lifts years of grime, algae and weather off decks, driveways, siding and storefronts &mdash; carefully, the way you'd do it yourself if you had the right gear. Residential and commercial, around the clock.</p>
+      <div class="hero-ctas anim d4">
+        <a class="cta" href="#contact">Request a Free Quote</a>
+        <a class="cta on-dark" href="tel:+13147105080">Call 314-710-5080</a>
+      </div>
+      <div class="hero-meta anim d5">
+        <span><b>Residential &amp; commercial</b> exteriors</span>
+        <span class="dot">&bull;</span>
+        <span><b>Available 24/7</b> &mdash; by appointment</span>
+        <span class="dot">&bull;</span>
+        <span><b>Free, no-pressure quotes</b></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Services — six specific services, asymmetric grid (feature + cards) -->
+  <section id="services" class="section-pad">
+    <div class="wrap">
+      <div class="services-head">
+        <span class="kicker"><span class="tick"></span>What we clean</span>
+        <h2>Six surfaces, one careful crew.</h2>
+        <p>Every surface takes a different touch &mdash; high pressure where it helps, a gentler soft wash where it matters. Here's the work we do most.</p>
+      </div>
+
+      <div class="svc-grid">
+        <!-- feature card (wider, dark) -->
+        <article class="svc feature">
+          <span class="svc-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 20h18M5 20v-7l5-3 5 3v7M9 20v-4h2v4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 4l1.5 2.5M16 5l-1 2" stroke-linecap="round"/></svg>
+          </span>
+          <h3>Deck &amp; Patio Washing</h3>
+          <p class="svc-lead">Wood, composite and stone &mdash; we strip out the grey weathering, mildew and embedded dirt so your deck looks worth sitting on again, without gouging the boards or blasting the grain.</p>
+        </article>
+
+        <article class="svc wide">
+          <span class="svc-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 21V8l8-4 8 4v13M9 21v-6h6v6" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 11h.01M18 11h.01" stroke-linecap="round"/></svg>
+          </span>
+          <h3>House Soft Wash</h3>
+          <p>Low-pressure, detergent-led cleaning for vinyl, brick and painted siding. It clears algae and that green-black film safely &mdash; no driven water behind the panels, no stripped paint.</p>
+        </article>
+
+        <article class="svc">
+          <span class="svc-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 18h18M6 18l1-9h10l1 9M9 9V6h6v3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h3>Driveways &amp; Concrete</h3>
+          <p>Oil shadows, tire marks and ground-in grime lifted from concrete, pavers and walkways with even, streak-free passes.</p>
+        </article>
+
+        <article class="svc">
+          <span class="svc-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V7h6v14M13 21V11h6v10M7 11h2M7 15h2M15 15h2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h3>Commercial Exteriors</h3>
+          <p>Storefronts, dumpster pads, drive-thrus and building faces kept presentable on a schedule that fits around your business hours.</p>
+        </article>
+
+        <article class="svc">
+          <span class="svc-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9h18M3 15h18M7 4v16M13 4v16M19 4v16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h3>Fence Cleaning</h3>
+          <p>Wood, vinyl and chain-link fences brought back from green and grey to clean &mdash; a quick way to sharpen up the whole yard.</p>
+        </article>
+
+        <article class="svc">
+          <span class="svc-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7l16 0M5 7l1 6h12l1-6M9 13v3M15 13v3M3 4l2 3M21 4l-2 3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h3>Gutter Brightening</h3>
+          <p>The chalky black tiger-stripes on gutter faces scrubbed back to bright &mdash; an easy, high-impact finish after a house wash.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. About / trust — dark split with figure -->
+  <section id="about" class="about section-pad">
+    <div class="wrap about-grid">
+      <div>
+        <span class="kicker on-dark"><span class="tick"></span>Why E&amp;S</span>
+        <h2>Local, careful, and proud of the before-and-after.</h2>
+        <p>E&amp;S Power Washing is a St. Louis&ndash;area outfit built on a simple idea: <strong>match the method to the surface.</strong> The right pressure and the right detergent clean better and protect what's underneath &mdash; your boards, your paint, your mortar.</p>
+        <p>We treat residential and commercial jobs the same way: a walk-through first, a clear quote, and a finish you'd be glad to show a neighbor. No surprises, no pushy upsells &mdash; just clean.</p>
+
+        <div class="trust">
+          <div class="trust-item">
+            <span class="ti-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 4v5c0 4.5-3 8-8 9-5-1-8-4.5-8-9V7l8-4z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div class="ti-h">Insured</div>
+            <div class="ti-p">Coverage in place for every job, on every property.</div>
+          </div>
+          <div class="trust-item">
+            <span class="ti-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9"/></svg></span>
+            <div class="ti-h">24/7</div>
+            <div class="ti-p">Scheduling that works around your day &mdash; early, late, weekends.</div>
+          </div>
+          <div class="trust-item">
+            <span class="ti-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 7h6" stroke-linecap="round"/></svg></span>
+            <div class="ti-h">Free quotes</div>
+            <div class="ti-p">A real walk-through and an honest number before any water runs.</div>
+          </div>
+        </div>
+      </div>
+
+      <figure class="about-figure">
+        <!-- Representative stock (Pexels, free) — pressure-washing stone steps; swap for E&S's own work. Verified 200. -->
+        <img src="https://images.pexels.com/photos/14965464/pexels-photo-14965464.jpeg?auto=compress&cs=tinysrgb&w=900"
+             alt="A worker pressure washing weathered stone steps, the hose mist visible in bright daylight"
+             width="900" height="1125" loading="lazy" decoding="async">
+        <figcaption>Surface by surface &mdash; the difference is in the detail.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 5. Process / how it works (varies the rhythm vs a stat band) -->
+  <section id="process" class="process section-pad">
+    <div class="wrap process-grid">
+      <div>
+        <span class="kicker"><span class="tick"></span>How it works</span>
+        <h2>Three steps from grimy to done.</h2>
+        <p class="lead-note">No deposit to get a number, and nothing locked in until you've seen what we'd do and what it costs.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="num">01</span>
+          <div>
+            <h3>Tell us what needs washing</h3>
+            <p>Call or send a quick note with the surfaces and rough size. A few phone photos help, but they're not required.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="num">02</span>
+          <div>
+            <h3>Get a free, fixed quote</h3>
+            <p>We assess the surface and the soiling, then give you a clear price &mdash; no hourly surprises, no upsell pressure.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="num">03</span>
+          <div>
+            <h3>We clean it right</h3>
+            <p>Pressure or soft wash matched to the surface, edges and corners included, and a tidy site when we leave.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--
+    TESTIMONIALS — reserved slot. Intentionally empty.
+    This business currently has no qualifying public reviews (rated below the 4.0 / 5-review
+    quality bar per DEMO_RULES J), so NO star rating, review count, or invented quotes are shown.
+    Drop the owner's real, signed-off customer words here after launch:
+    <blockquote>“…”<cite>— First L., St. Louis</cite></blockquote>
+  -->
+
+  <!-- 6. Contact — appointment / request-a-quote model (inert form, tap-to-call) -->
+  <section id="contact" class="contact section-pad">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="kicker"><span class="tick"></span>Get in touch</span>
+        <h2>Ready for the before-and-after?</h2>
+        <p class="intro">Tell us about the job and we'll get you a free quote. Prefer to talk it through? The phone's the fastest way to reach us.</p>
+
+        <div class="phone-card">
+          <div class="label">Call or text</div>
+          <a href="tel:+13147105080" aria-label="Call E and S Power Washing at 314-710-5080">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 4h3l1.5 4-2 1.5a12 12 0 005 5l1.5-2 4 1.5V18a2 2 0 01-2 2A15 15 0 014 6a2 2 0 011-2z" stroke-linejoin="round"/></svg>
+            314-710-5080
+          </a>
+        </div>
+
+        <div class="info-rows">
+          <div class="info-row">
+            <span class="ir-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.5 7-11a7 7 0 10-14 0c0 4.5 7 11 7 11z" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4"/></svg></span>
+            <div>
+              <div class="ir-h">Service area</div>
+              <!-- INFERRED: no street address in lead; generalized to the confirmable metro. Verify exact service radius with owner. -->
+              <div class="ir-p">Serving the St. Louis area &mdash; Florissant &amp; surrounding communities.</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <span class="ir-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div>
+              <div class="ir-h">Hours</div>
+              <div class="hours-list">
+                <div class="hr"><b>Mon &ndash; Sun</b><span class="hours-all">Open 24 hours</span></div>
+              </div>
+              <div class="ir-p" style="margin-top:6px;">Reach out any time &mdash; we schedule visits to fit your day.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inert demo form. Internal note: wire to an email forward at signup; do NOT expose preview wording to the prospect. -->
+      <form id="quote-form" novalidate>
+        <h3>Request a free quote</h3>
+        <p class="form-note">A few details get you an accurate number. <span style="color:var(--copper-ink);font-weight:600;">*</span> marks required fields.</p>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="f-name">Name <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Your name" required>
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="314-000-0000" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@email.com">
+        </div>
+
+        <div class="field">
+          <label for="f-service">What needs washing?</label>
+          <select id="f-service" name="service">
+            <option value="">Select a surface…</option>
+            <option>Deck or patio</option>
+            <option>House siding (soft wash)</option>
+            <option>Driveway / concrete</option>
+            <option>Commercial exterior</option>
+            <option>Fence</option>
+            <option>Gutters</option>
+            <option>More than one</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="f-msg">Details</label>
+          <textarea id="f-msg" name="message" placeholder="Surfaces, rough size, anything we should know…"></textarea>
+        </div>
+
+        <button class="cta" type="submit">Send my request</button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- 7. Footer — business only, no PaliTech branding -->
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <div class="es">E<span class="amp">&amp;</span>S Power Washing</div>
+      <p>Residential &amp; commercial pressure and soft washing for the St. Louis area. Careful work, clean results, free quotes.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="#services">Services</a>
+      <a href="#about">Why E&amp;S</a>
+      <a href="#process">How It Works</a>
+      <a href="#contact">Request a Quote</a>
+    </div>
+    <div class="footer-col">
+      <h4>Get in touch</h4>
+      <a href="tel:+13147105080">314-710-5080</a>
+      <p>Serving the St. Louis area</p>
+      <p>Open 24 hours, 7 days</p>
+    </div>
+  </div>
+  <div class="wrap footer-bar">
+    <span>&copy; <span id="yr">2026</span> E&amp;S Power Washing. All rights reserved.</span>
+    <span class="inferred">Residential &amp; Commercial Pressure Washing</span>
+  </div>
+</footer>
+
+<script>
+  // Inert quote form — friendly acknowledgement that points to the phone. No backend by design.
+  (function () {
+    var form = document.getElementById('quote-form');
+    var status = document.getElementById('form-status');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = (document.getElementById('f-name').value || '').trim();
+        var phone = (document.getElementById('f-phone').value || '').trim();
+        if (!name || !phone) {
+          status.textContent = 'Please add your name and a phone number so we can reach you.';
+          return;
+        }
+        status.textContent = 'Thanks' + (name ? ', ' + name.split(' ')[0] : '') + '! We’ll be in touch shortly. For anything urgent, call 314-710-5080.';
+        form.reset();
+      });
+    }
+    var yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>
